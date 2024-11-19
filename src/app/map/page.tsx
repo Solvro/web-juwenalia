@@ -1,3 +1,11 @@
+import InteractiveMap from "@/components/InteractiveMap";
+
 export default function MapPage() {
-    return <div>This is map demo</div>
+    return (
+        <>
+            <div>
+                <InteractiveMap />
+            </div>
+        </>
+    )
 }
