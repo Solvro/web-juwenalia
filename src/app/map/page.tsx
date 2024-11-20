@@ -1,11 +1,18 @@
+"use client"
+
 import InteractiveMap from "@/components/InteractiveMap";
 
-export default function MapPage() {
-    return (
-        <>
-            <div>
-                <InteractiveMap />
-            </div>
-        </>
-    )
+// import dynamic from "next/dynamic";
+
+// const DynamicInteractiveMap = dynamic(() => import("@/components/InteractiveMap"), {
+//   ssr: false,
+// });
+
+export default function Page() {
+  return (
+    <div>
+      {/* <DynamicInteractiveMap /> */}
+      <InteractiveMap />
+    </div>
+  );
 }
