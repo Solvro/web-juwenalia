@@ -1,3 +1,5 @@
+import {Schedule} from "@/components/Schedule";
+
 export default function SchedulePage() {
-    return <div>This is schedule demo</div>
+    return <Schedule/>
 }
