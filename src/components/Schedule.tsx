@@ -1,10 +1,15 @@
-import {DayProps} from "@/lib/types";
-import {fetchData} from "@/lib/api";
+import { DayProps } from "@/lib/types";
+import { fetchData } from "@/lib/api";
 
 const Schedule = async () => {
-    const days = await fetchDays()
+    const response = await fetchData<{ data: DayProps[] }>("items/days?fields=*,events.*,events.artists.*,events.artists.artists_id.*")
+    const days = response.data.map(day => ({
+        ...day,
+        date: new Date(day.date),
+    }))
+
     const weekDays = ['Niedziela', 'Poniedzialek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota']
-    console.log(days)
+
     return (
         <div className="p-4">
             <h1 className={'text-xl font-extrabold mb-6'}>Schedule</h1>
@@ -31,19 +36,9 @@ const Schedule = async () => {
                     ))}
                 </div>
             ))}
-
         </div>
     )
 }
 
-async function fetchDays (): Promise<DayProps[]> {
-    const response = await fetchData<{ data: DayProps[] }>("items/days?fields=*,events.*,events.artists.*,events.artists.artists_id.*")
-    console.log(response)
-     return response.data.map(day => ({
-         ...day,
-         date: new Date(day.date),
-     }))
-
-}
 
 export { Schedule };

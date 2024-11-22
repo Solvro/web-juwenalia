@@ -6,13 +6,13 @@ export interface ArtistProps {
     image: string,
 }
 
-export interface EventArtists {
+interface EventArtists {
     id: number,
     events_id: number,
     artists_id: ArtistProps,
 }
 
-export interface EventProps {
+interface EventProps {
     id: number,
     start_time: string,
     end_time: string,
@@ -25,9 +25,5 @@ export interface DayProps {
     id: number,
     day: number,
     events: EventProps[],
-    date: Date
-}
-
-export interface DayProps {
-
+    date: Date | string,
 }
