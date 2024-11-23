@@ -48,7 +48,3 @@ const Schedule = async () => {
 };
 
 export { Schedule };
-<<<<<<< HEAD
-
-=======
->>>>>>> 67885be (feat: add artist section)
