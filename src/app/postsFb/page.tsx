@@ -1,38 +1,36 @@
-import Alert, { AlertType } from "@/components/alert";
 import SignIn from "@/components/signIn";
-import { isSignedIn } from "@/lib/auth";
+import { getUser } from "@/lib/auth";
 import { getFacebookPosts } from "@/lib/facebook";
-import Image from "next/image";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Post } from "./components/post";
 
 export default async function FbPage() {
-  const posts = await getFacebookPosts();
+  const user = await getUser();
+  const posts = await getFacebookPosts(user);
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 items-center">
       <h1 className="text-4xl font-extrabold text-center text-gray-800">
         Facebook Posts Demo
       </h1>
-      {isSignedIn() ? (
-        null == posts ? (
-          <Alert type={AlertType.ERROR}>Failed to load Facebook posts.</Alert>
-        ) : posts.length === 0 ? (
-          <Alert type={AlertType.INFO}>
-            There are no posts available at the moment. Please check back later.
-          </Alert>
-        ) : (
-          posts.map((post, idx) => (
-            <div key={idx}>
-              <h2 className="text-2xl font-semibold">{post.title}</h2>
-              <p>{post.message}</p>
-              <Image src={post.picture} alt={post.title} className="my-4" />
-              <p className="text-sm text-gray-500">
-                {new Date(post.created_time).toLocaleString()}
-              </p>
-            </div>
-          ))
-        )
-      ) : (
+      {null == user ? (
         <SignIn />
+      ) : null == posts ? (
+        <Alert className="w-1/2" variant="destructive">
+          <AlertTitle>Error</AlertTitle>
+          <AlertDescription>
+            Failed to load Facebook posts. Try again later.
+          </AlertDescription>
+        </Alert>
+      ) : posts.length === 0 ? (
+        <Alert className="w-1/2">
+          <AlertTitle>Feed Empty</AlertTitle>
+          <AlertDescription>
+            There are no posts available at the moment. Please check back later.
+          </AlertDescription>
+        </Alert>
+      ) : (
+        posts.map((post, idx) => <Post key={idx} post={post} author={user} />)
       )}
     </div>
   );
