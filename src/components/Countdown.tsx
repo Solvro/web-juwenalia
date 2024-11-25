@@ -8,11 +8,14 @@ import {
 import React, { useState, useEffect } from "react";
 import { pl } from "date-fns/locale";
 
-const eventDate = new Date(2025, 4, 22, 16);
+const eventDate: Date = new Date(2025, 4, 15, 16); //It's the date from pwr calendar, but i have no idea what the actuall hour will be
 
 function Countdown() {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState<Date>(new Date());
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
+    setCurrentDate(new Date());
+    setIsLoading(false);
     const intervalId = setInterval(() => {
       setCurrentDate(new Date());
     }, 1000);
@@ -20,12 +23,16 @@ function Countdown() {
       clearInterval(intervalId);
     };
   }, []);
-
+  //All of that with loading is mostly for avoiding the dehydration issue
+  if (isLoading) {
+    return <div>Ładowanie odliczania...</div>;
+  }
   function formatTime(): string {
     const forDuration = intervalToDuration({
       start: currentDate,
       end: eventDate,
     });
+
     const duration: string = formatDuration(forDuration, { locale: pl });
     const isOver: number = compareAsc(eventDate, currentDate);
     const formattedEventDate: string = format(
@@ -42,9 +49,7 @@ function Countdown() {
 
   return (
     <div className="countdownBox">
-      <div className="clock">
-        <span>{formatTime()}</span>
-      </div>
+      <span>{formatTime()}</span>
     </div>
   );
 }
