@@ -1,5 +1,6 @@
 import { ArtistProps } from '@/lib/types';
 import { fetchData } from '@/lib/api';
+import { API_URL } from '@/config/api';
 import Image from 'next/image';
 
 const ArtistList = async () => {
@@ -18,7 +19,8 @@ const ArtistList = async () => {
           <p className={'w-1/3'}>{artist.description}</p>
           {artist.url}
           <Image
-            src={`https://cms.juwenalia.solvro.pl/assets/${artist.image}`}
+            className={'aspect-square object-cover'}
+            src={`${API_URL}/assets/${artist.image}`}
             alt='Picture of the artist'
             width={200}
             height={200}
