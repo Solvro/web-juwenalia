@@ -1,7 +1,6 @@
 import { ArtistProps } from '@/lib/types';
 import { fetchData } from '@/lib/api';
-import { API_URL } from '@/config/api';
-import Image from 'next/image';
+import { Artist } from '@/components/Artist';
 
 const ArtistList = async () => {
   const response = await fetchData<{ data: ArtistProps[] }>(
@@ -14,18 +13,7 @@ const ArtistList = async () => {
     <div className='p-4'>
       <h1 className={'text-xl font-extrabold mb-6'}>Artists</h1>
       {artists.map((artist) => (
-        <div key={artist.id}>
-          <h2 className={'font-bold'}>{artist.name}</h2>
-          <p className={'w-1/3'}>{artist.description}</p>
-          {artist.url}
-          <Image
-            className={'aspect-square object-cover'}
-            src={`${API_URL}/assets/${artist.image}`}
-            alt='Picture of the artist'
-            width={200}
-            height={200}
-          />
-        </div>
+        <Artist key={artist.id} {...artist} />
       ))}
     </div>
   );
