@@ -19,7 +19,6 @@ const Schedule = async () => {
     'Piątek',
     'Sobota',
   ];
-
   return (
     <div className='p-4'>
       <h1 className={'text-xl font-extrabold mb-6'}>Schedule</h1>
@@ -48,7 +47,4 @@ const Schedule = async () => {
 };
 
 export { Schedule };
-<<<<<<< HEAD
 
-=======
->>>>>>> 67885be (feat: add artist section)
