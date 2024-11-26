@@ -2,7 +2,14 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['cms.juwenalia.solvro.pl'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cms.juwenalia.solvro.pl',
+        port: '',
+        pathname: '/assets/**',
+      },
+    ],
   },
 };
 
