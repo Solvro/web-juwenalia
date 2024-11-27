@@ -3,20 +3,13 @@ import { AdapterUser } from "next-auth/adapters";
 import { JWT } from "next-auth/jwt";
 import Facebook from "next-auth/providers/facebook";
 import fs from "fs/promises";
+import { FacebookUser } from "./types";
 
 const USER_DETAILS_FILE_NAME = "user_details.json";
 // UTF-8 doesn't work when saving characters like 'ó'
 const USER_DETAILS_FILE_ENCODING = "utf16le";
 
 let user: FacebookUser | null = null;
-
-// Custom user details which would be useful to store
-export interface FacebookUser {
-  id: string;
-  accessToken: string;
-  name: string;
-  profilePicture: string;
-}
 
 // From next-auth
 interface JwtCallbackArguments {

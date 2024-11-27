@@ -1,17 +1,6 @@
-import { FacebookUser } from "./auth";
+import { FacebookPost, FacebookUser } from "./types";
 
-// const FACEBOOK_API_URL = "https://graph.facebook.com/me/posts?access_token=";
 const FACEBOOK_API_URL = "https://graph.facebook.com/v21.0";
-
-export interface FacebookPost {
-  id: string;
-  title?: string;
-  message?: string;
-  full_picture?: string;
-  permalink_url: string;
-  created_time: string;
-  updated_time: string;
-}
 
 async function fetchFromFacebook(
   user: FacebookUser | null,
@@ -23,15 +12,28 @@ async function fetchFromFacebook(
     return null;
   }
   try {
-    return await fetch(
-      `${FACEBOOK_API_URL}/${path}?access_token=${user?.accessToken}&fields=${fields}`
-    );
+    const url = new URL(`${FACEBOOK_API_URL}/${path}`);
+    if (fields) {
+      url.searchParams.append("fields", fields);
+    }
+    const response = await fetch(url.toString(), {
+      headers: { Authorization: `Bearer ${user.accessToken}` },
+    });
+    if (!response.ok) {
+      console.error(response.status, response.statusText);
+      // Don't catch errors on `.json()` as the body might be empty
+      response.json().then(console.error);
+      return null;
+    }
+    return response;
   } catch {
     return null;
   }
 }
 
-export async function getFacebookPosts(user: FacebookUser | null) {
+export async function getFacebookPosts(
+  user: FacebookUser | null
+): Promise<(FacebookPost & { updatedTimestamp: number })[] | null> {
   // Fetch a list of all post ids
   const response = await fetchFromFacebook(
     user,
@@ -48,8 +50,9 @@ export async function getFacebookPosts(user: FacebookUser | null) {
   }
   return posts
     .filter((post) => post?.message)
-    .sort(
-      (a, b) =>
-        new Date(b.updated_time).getTime() - new Date(a.updated_time).getTime()
-    );
+    .map((post) => ({
+      ...post,
+      updatedTimestamp: new Date(post.updated_time).getTime(),
+    }))
+    .sort((a, b) => b.updatedTimestamp - a.updatedTimestamp);
 }

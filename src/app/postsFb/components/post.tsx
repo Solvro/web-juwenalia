@@ -1,5 +1,4 @@
-import { FacebookUser } from "@/lib/auth";
-import { FacebookPost } from "@/lib/facebook";
+import { FacebookPost, FacebookUser } from "@/lib/types";
 import Image from "next/image";
 import ShareButton from "./shareButton";
 
