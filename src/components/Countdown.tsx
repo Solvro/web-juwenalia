@@ -14,8 +14,8 @@ function Countdown() {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
-    setCurrentDate(new Date());
     setIsLoading(false);
+    if (compareAsc(eventDate, new Date()) !== 1) return;
     const intervalId = setInterval(() => {
       setCurrentDate(new Date());
     }, 1000);
@@ -48,7 +48,7 @@ function Countdown() {
   }
 
   return (
-    <div className="countdownBox">
+    <div className="countdown-box">
       <span>{formatTime()}</span>
     </div>
   );
