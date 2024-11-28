@@ -41,12 +41,18 @@ export interface FacebookPost {
   updated_time: string;
 }
 
-/** Custom user details object which would be useful to store. */
+/** A Facebook user as returned by the Facebook API. */
 export interface FacebookUser {
   id: string;
-  accessToken: string;
   name: string;
-  profilePicture: string;
+  picture: {
+    data: {
+      height: number;
+      width: number;
+      url: string;
+      is_silhouette: boolean;
+    };
+  };
 }
 
 // #endregion

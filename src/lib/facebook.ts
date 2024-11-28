@@ -2,13 +2,23 @@ import { FacebookPost, FacebookUser } from "./types";
 
 const FACEBOOK_API_URL = "https://graph.facebook.com/v21.0";
 
-async function fetchFromFacebook(
-  user: FacebookUser | null,
+let user: FacebookUser | null = null;
+let accessToken: string = "";
+
+/**
+ * Retrieves the saved Facebook access token.
+ * Currently uses the environment variables, but could be modified to use a more secure method.
+ */
+const getAccessToken = async () =>
+  (accessToken ||= process.env.FACEBOOK_ACCESS_TOKEN || "");
+
+async function fetchFromFacebook<T>(
   path: string,
   fields: string = ""
-) {
-  if (!user?.accessToken) {
-    console.warn("No access token (user not logged in)");
+): Promise<T | null> {
+  const token = await getAccessToken();
+  if (!token) {
+    console.error("No access token set for Facebook API");
     return null;
   }
   try {
@@ -17,42 +27,48 @@ async function fetchFromFacebook(
       url.searchParams.append("fields", fields);
     }
     const response = await fetch(url.toString(), {
-      headers: { Authorization: `Bearer ${user.accessToken}` },
+      headers: { Authorization: `Bearer ${token}` },
     });
+    const data = await response.json();
     if (!response.ok) {
-      console.error(response.status, response.statusText);
-      // Don't catch errors on `.json()` as the body might be empty
-      response.json().then(console.error);
+      console.error(response.status, response.statusText, data);
       return null;
     }
-    return response;
+    return data;
   } catch {
     return null;
   }
 }
 
-export async function getFacebookPosts(
-  user: FacebookUser | null
-): Promise<(FacebookPost & { updatedTimestamp: number })[] | null> {
-  // Fetch a list of all post ids
-  const response = await fetchFromFacebook(
-    user,
+/**
+ * Retrieves the saved Facebook user data.
+ * If it's the first time calling this function, it fetches the user data from Facebook and saves it for future calls.
+ * If a previous call failed, it will re-attempt to fetch the user data.
+ */
+export const getFacebookUser = async () =>
+  (user ??= await fetchFromFacebook<FacebookUser>("me", "id,name,picture"));
+
+/** Retrieves all non-empty Facebook posts made by the user with the current access token, in reverse chronological order (newest first). */
+export async function getFacebookPosts(): Promise<
+  (FacebookPost & { updatedTimestamp: number })[] | null
+> {
+  const data = await fetchFromFacebook<{ data: FacebookPost[] }>(
     "me/posts",
     "id,message,name,permalink_url,shares,created_time,updated_time,full_picture"
   );
-  if (!response) return null;
-  const data = await response.json();
-  const posts: FacebookPost[] = data?.data;
-  // Ensure the posts are not empty (e.g. timeline events like being born)
+  const posts = data?.data;
   if (!posts) {
     console.warn(data);
     return null;
   }
-  return posts
-    .filter((post) => post?.message)
-    .map((post) => ({
-      ...post,
-      updatedTimestamp: new Date(post.updated_time).getTime(),
-    }))
-    .sort((a, b) => b.updatedTimestamp - a.updatedTimestamp);
+  return (
+    posts
+      // Ensure the posts are not empty (e.g. timeline events like being born)
+      .filter((post) => post?.message)
+      .map((post) => ({
+        ...post,
+        updatedTimestamp: new Date(post.updated_time).getTime(),
+      }))
+      .sort((a, b) => b.updatedTimestamp - a.updatedTimestamp)
+  );
 }

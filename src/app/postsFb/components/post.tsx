@@ -13,10 +13,10 @@ export function Post({
     <div className="border rounded-xl p-3 w-1/3">
       <div className="flex items-center mb-3">
         <Image
-          src={author.profilePicture}
+          src={author.picture.data.url}
           alt={author.name}
-          width={40}
-          height={40}
+          width={author.picture.data.width}
+          height={author.picture.data.height}
           className="rounded-full"
         />
         <div className="ml-2 w-full">
