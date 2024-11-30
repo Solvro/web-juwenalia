@@ -31,6 +31,6 @@ export interface DayProps {
 export interface NewsProps {
   id: number;
   name: string;
-  date_created: Date;
+  date_created: string;
   content: string;
 }

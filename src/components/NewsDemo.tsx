@@ -8,10 +8,7 @@ export const NewsDemo = async () => {
     date_created: new Date(post.date_created),
   }));
 
-  // Sortowanie news'ów od najnowszych, w przyszłości może to nie wystarczyć (przypięte/customowa kolejność)
-  const newsSortedByDate = news.sort(
-    (a, b) => b.date_created.getTime() - a.date_created.getTime()
-  );
+  const newsSortedByDate = news.reverse();
 
   return (
     <div className="p-2 flex flex-col items-center">
