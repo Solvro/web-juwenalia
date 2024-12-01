@@ -13,16 +13,16 @@ export default async function FbPage() {
       </h1>
       {!user || !posts ? (
         <Alert className="w-1/2" variant="destructive">
-          <AlertTitle>Error</AlertTitle>
+          <AlertTitle>Błąd Sieciowy</AlertTitle>
           <AlertDescription>
-            Failed to load Facebook posts. Try again later.
+            Nie udało się pobrać postów z Facebooka. Spróbuj ponownie później.
           </AlertDescription>
         </Alert>
       ) : posts.length === 0 ? (
         <Alert className="w-1/2">
-          <AlertTitle>Feed Empty</AlertTitle>
+          <AlertTitle>Brak Postów</AlertTitle>
           <AlertDescription>
-            There are no posts available at the moment. Please check back later.
+            Nie ma obecnie żadnych postów do wyświetlenia.
           </AlertDescription>
         </Alert>
       ) : (
