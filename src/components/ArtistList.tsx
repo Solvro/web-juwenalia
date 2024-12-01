@@ -12,9 +12,11 @@ const ArtistList = async () => {
   return (
     <div className='p-4'>
       <h1 className={'text-xl font-extrabold mb-6'}>Artists</h1>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 container mx-auto'>
       {artists.map((artist) => (
         <Artist key={artist.id} {...artist} />
       ))}
+      </div>
     </div>
   );
 };
