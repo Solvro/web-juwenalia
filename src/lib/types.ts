@@ -1,9 +1,11 @@
 export interface ArtistProps {
-  id: number;
-  name: string;
-  description: string;
-  url: string;
-  image: string;
+    id: number,
+    name: string,
+    description: string,
+    image: string,
+    instagramUrl: string,
+    spotifyUrl: string,
+    isPopular: boolean,
 }
 
 interface EventArtists {
