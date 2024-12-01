@@ -2,7 +2,7 @@
 
 import StaticMap from "@/components/StaticMap";
 
-// import InteractiveMap from "@/components/InteractiveMap";
+import InteractiveMap from "@/components/InteractiveMap";
 
 // import dynamic from "next/dynamic";
 
@@ -14,7 +14,7 @@ export default function Page() {
   return (
     <div>
       {/* <DynamicInteractiveMap /> */}
-      {/* <InteractiveMap /> */}
+      <InteractiveMap />
       <StaticMap />
     </div>
   );
