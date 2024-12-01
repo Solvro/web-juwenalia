@@ -16,24 +16,87 @@ export default function InteractiveMap() {
 		<div className="h-screen">
 			<h1>Map Demo</h1>
 			<MapContainer
-				center={[51.10951971396077, 17.058494910345214]}
-				zoom={17}
+				center={[51.106972989320404, 17.077329824567546]}
+				zoom={16}
 				scrollWheelZoom={true}
 				className="w-[900px] mx-auto h-[900px]"
 			>
 				{/* <ImageOverlay url="middle-earth-map.jpg" bounds={[[0,0], [302.9278, 227.195]]} className="w-max h-max"></ImageOverlay> */}
 				<TileLayer
-					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+					attribution='&copy; <a href="https://www.openstreetmap.org/copycenter">OpenStreetMap</a> contributors'
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
-				<Marker position={[51.10951971396077, 17.058494910345214]}>
+				<Polygon positions={[[51.10588330048589, 17.077913814910783], [51.10714558243972, 17.07337712840188], [51.1090699006493, 17.075023384204258], [51.108488803099426, 17.07701102945874], [51.109612886848886, 17.078255204381414], [51.10914134657534, 17.08050078833304]]}>
+					<Popup>Hala Stulecia - Juwenalia 2025</Popup>
+				</Polygon>
+				<Marker position={[51.107093550006816, 17.07346238414613]}>
 					<Popup>
-						A pretty CSS3 popup. <br /> Easily customizable.
+						<table className="gap-2">
+							<tr>
+								<th>Linia <br />Tramwajowa</th>
+								<th>Przystanki <br />Końcowe</th>
+							</tr>
+							<tr>
+								<td className="font-bold text-center w-fit">0</td>
+								<td>Zoo, Dworzec Główny</td>
+							</tr>
+							<tr>
+								<td className="font-bold text-center w-fit">2</td>
+								<td>Krzyki, Biskupin</td>
+							</tr>
+							<tr>
+								<td className="font-bold text-center w-fit">4</td>
+								<td>Biskupin, Oporów</td>
+							</tr>
+							<tr>
+								<td className="font-bold text-center w-fit">10</td>
+								<td>Leśnica, Biskupin</td>
+							</tr>
+							<tr>
+								<td className="font-bold text-center w-fit">19</td>
+								<td>Zoo, Kozanów (Dokerska)</td>
+							</tr>
+							<tr>
+								<td className="font-bold text-center w-fit">78</td>
+								<td>Tarnogaj, Biskupin</td>
+							</tr>
+						</table>
 					</Popup>
 				</Marker>
-				<Polygon positions={[[51.11056530328368, 17.062864459186084], [51.110797615354834, 17.06210355052188], [51.1115501675664, 17.06149378124988], [51.11231579506628, 17.064188231793672]]}>
-					<Popup>Popup in Polygon</Popup>
-				</Polygon>
+				<Marker position={[51.10745169656501, 17.07265278898644]}>
+					<Popup>
+						<table className="gap-2">
+							<tr>
+								<th>Linia <br />Autobusowa</th>
+								<th>Przystanki <br />Końcowe</th>
+							</tr>
+							<tr>
+								<td className="font-bold text-center w-fit">145</td>
+								<td>Iwiny - Rondo, Sępolno</td>
+							</tr>
+							<tr>
+								<td className="font-bold text-center w-fit">146</td>
+								<td>Bartoszowice, Gaj - Pętla</td>
+							</tr>
+							<tr>
+								<td className="font-bold text-center w-fit">253</td>
+								<td>Leśnica, Sępolno</td>
+							</tr>
+							<tr>
+								<td className="font-bold text-center w-fit">255</td>
+								<td>Iwiny - Rondo, Sępolno</td>
+							</tr>
+							<tr>
+								<td className="font-bold text-center w-fit">315</td>
+								<td>Swojczyce, Reja</td>
+							</tr>
+							<tr>
+								<td className="font-bold text-center w-fit">345</td>
+								<td>Stadion Olimpijski (Pętla po mieście)</td>
+							</tr>
+						</table>
+					</Popup>
+				</Marker>
 				{/* <SVGOverlay
 					attributes={{ stroke: "red" }}
 					bounds={[
