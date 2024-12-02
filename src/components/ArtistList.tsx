@@ -14,8 +14,10 @@ function shuffleArray<T>(array: T[]): T[] {
 
 const ArtistList = async () => {
   const response = await fetchData<{ data: ArtistProps[] }>(
-    "items/artists?fields=*"
+    "items/artists?fields=*,events.*,events.events_id.*"
   );
+
+  console.log(response.data);
 
   const artists_prefiltered = response.data;
 

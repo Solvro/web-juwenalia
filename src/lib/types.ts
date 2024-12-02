@@ -6,7 +6,13 @@ export interface ArtistProps {
   instagramUrl: string;
   spotifyUrl: string;
   isPopular: boolean;
-  events: number[];
+  events: ArtistEvents[];
+}
+
+interface ArtistEvents {
+  id: number;
+  artists_id: number;
+  events_id: EventProps;
 }
 
 interface EventArtists {
