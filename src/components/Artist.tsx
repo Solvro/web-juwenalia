@@ -10,7 +10,7 @@ const Artist = async ({
   image,
   instagramUrl,
   spotifyUrl,
-  isPopular, // may be used to indicate popularity, tho improbable
+  events,
 }: ArtistProps) => {
   return (
     <div
@@ -36,7 +36,9 @@ const Artist = async ({
               rel="noopener noreferrer"
             >
               <Image
-                className={"mx-4 md:mx-12 rounded-xl p-1 hover:from-fuchsia-500 hover:to-amber-400 bg-gradient-to-bl from-fuchsia-300 to-amber-200"}
+                className={
+                  "mx-4 md:mx-12 rounded-xl p-1  bg-gradient-to-bl from-fuchsia-300 to-amber-200 hover:from-fuchsia-500 hover:to-amber-400 active:from-fuchsia-700 active:to-amber-600"
+                }
                 src={`/buttons/instagram_icon.png`}
                 alt="Link do IG artysty."
                 width="64"
@@ -52,7 +54,9 @@ const Artist = async ({
               role="button"
             >
               <Image
-                className={"mx-4 md:mx-8 rounded-xl p-1 bg-green-200 hover:bg-green-400"}
+                className={
+                  "mx-4 md:mx-8 rounded-xl p-1 bg-green-200 hover:bg-green-400 active:bg-green-600"
+                }
                 src={`/buttons/spotify_logo_full.png`}
                 alt="Link do Spotify artysty."
                 width="192"
@@ -61,7 +65,25 @@ const Artist = async ({
             </Link>
           )}
         </div>
-        <p>{description}</p>
+        <div className="bg-gray-200 rounded-xl p-1 m-2">
+          <h1 className="font-semibold">Kiedy i gdzie:</h1>
+          <div className="flex flex-col items-center">
+            {events.map((event) => (
+              <span key={event.id}>
+                Dzień {event.events_id.day} |{" "}
+                {event.events_id.start_time.slice(0, 5)} |{" "}
+                {event.events_id.location}
+              </span>
+            ))}
+          </div>
+        </div>
+        <Link
+          href={`/schedule`}
+          className="font-semibold text-white bg-stone-700 py-1 px-2 rounded-lg hover:bg-stone-950"
+        >
+          Zobacz w harmonogramie
+        </Link>
+        <p className="mt-2">{description}</p>
       </div>
     </div>
   );
