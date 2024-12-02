@@ -27,7 +27,9 @@ const Artist = async ({
           height={400}
           style={{ width: "100%", height: "auto" }}
         />
+        {/* div for the IG and Spotify buttons */}
         <div className="flex flex-row justify-center items-center p-1">
+          {/* instagram button */}
           {instagramUrl && (
             <Link
               role="button"
@@ -46,6 +48,7 @@ const Artist = async ({
               />
             </Link>
           )}
+          {/* spotify button */}
           {spotifyUrl && (
             <Link
               href={spotifyUrl}
@@ -65,6 +68,7 @@ const Artist = async ({
             </Link>
           )}
         </div>
+        {/* event summary for the artist */}
         <div className="bg-gray-200 rounded-xl p-1 m-2">
           <h1 className="font-semibold">Kiedy i gdzie:</h1>
           <div className="flex flex-col items-center">
@@ -76,13 +80,17 @@ const Artist = async ({
               </span>
             ))}
           </div>
+
+          {/* zobacz w harmonogramie, encapsulated in div because margin did not work for Link */}
+          <div className="m-2">
+            <Link
+              href={`/schedule`}
+              className="font-semibold text-white bg-stone-700 p-2 rounded-lg hover:bg-stone-950"
+            >
+              Zobacz w harmonogramie
+            </Link>
+          </div>
         </div>
-        <Link
-          href={`/schedule`}
-          className="font-semibold text-white bg-stone-700 py-1 px-2 rounded-lg hover:bg-stone-950"
-        >
-          Zobacz w harmonogramie
-        </Link>
         <p className="mt-2">{description}</p>
       </div>
     </div>

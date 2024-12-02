@@ -2,7 +2,7 @@ import { ArtistProps } from "@/lib/types";
 import { fetchData } from "@/lib/api";
 import { Artist } from "@/components/Artist";
 
-// if we need shuffling the artists, so everyone in P/NP category
+// if we need shuffling the artists, so everyone in their respective P/NP category
 // gets somewhat even representation on our site
 function shuffleArray<T>(array: T[]): T[] {
   return array
@@ -10,28 +10,27 @@ function shuffleArray<T>(array: T[]): T[] {
     .sort((a, b) => a.sort - b.sort)
     .map(({ item }) => item);
 }
-//
+///
 
 const ArtistList = async () => {
   const response = await fetchData<{ data: ArtistProps[] }>(
     "items/artists?fields=*,events.*,events.events_id.*"
   );
 
-  console.log(response.data);
+  const artists_raw = response.data;
 
-  const artists_prefiltered = response.data;
-
-  const popularArtists = artists_prefiltered.filter(
+  // divide artists into popular and non-popular
+  const popularArtists = artists_raw.filter(
     (artist) => artist.isPopular
   );
-  const nonPopularArtists = artists_prefiltered.filter(
+  const nonPopularArtists = artists_raw.filter(
     (artist) => !artist.isPopular
   );
 
   // same as with she shuffleArray function
   const shuffledNonPopularArtists = shuffleArray(nonPopularArtists);
   const shuffledPopularArtists = shuffleArray(popularArtists);
-  //
+  ///
 
   const artists = [...shuffledPopularArtists, ...shuffledNonPopularArtists];
 
