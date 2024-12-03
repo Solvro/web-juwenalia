@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import StaticMap from "@/components/StaticMap";
+import { StaticMap } from "@/components/StaticMap";
 
-import InteractiveMap from "@/components/InteractiveMap";
+import { InteractiveMap } from "@/components/InteractiveMap";
 
 // import dynamic from "next/dynamic";
 
@@ -11,11 +11,11 @@ import InteractiveMap from "@/components/InteractiveMap";
 // });
 
 export default function Page() {
-  return (
-    <div>
-      {/* <DynamicInteractiveMap /> */}
-      <InteractiveMap />
-      <StaticMap />
-    </div>
-  );
+	return (
+		<div>
+			{/* <DynamicInteractiveMap /> */}
+			<InteractiveMap />
+			<StaticMap />
+		</div>
+	);
 }

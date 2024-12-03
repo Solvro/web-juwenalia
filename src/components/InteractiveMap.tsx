@@ -10,8 +10,61 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-export default function InteractiveMap() {
+const trams = [
+	{
+		lineNumber: 0,
+		terminus: "Zoo, Dworzec Główny",
+	},
+	{
+		lineNumber: 2,
+		terminus: "Krzyki, Biskupin",
+	},
+	{
+		lineNumber: 4,
+		terminus: "Biskupin, Oporów",
+	},
+	{
+		lineNumber: 10,
+		terminus: "Leśnica, Biskupin",
+	},
+	{
+		lineNumber: 19,
+		terminus: "Zoo, Kozanów (Dokerska)",
+	},
+	{
+		lineNumber: 78,
+		terminus: "Tarnogaj, Biskupin",
+	},
+];
 
+const busses = [
+	{
+		lineNumber: 145,
+		terminus: "Iwiny - Rondo, Sępolno",
+	},
+	{
+		lineNumber: 146,
+		terminus: "Bartoszowice, Gaj - Pętla",
+	},
+	{
+		lineNumber: 253,
+		terminus: "Leśnica, Sępolno",
+	},
+	{
+		lineNumber: 255,
+		terminus: "Iwiny - Rondo, Sępolno",
+	},
+	{
+		lineNumber: 315,
+		terminus: "Swojczyce, Reja",
+	},
+	{
+		lineNumber: 345,
+		terminus: "Stadion Olimpijski (Pętla po mieście)",
+	},
+];
+
+export function InteractiveMap() {
 	return (
 		<div className="h-screen">
 			<h1>Map Demo</h1>
@@ -26,91 +79,68 @@ export default function InteractiveMap() {
 					attribution='&copy; <a href="https://www.openstreetmap.org/copycenter">OpenStreetMap</a> contributors'
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
-				<Polygon positions={[[51.10588330048589, 17.077913814910783], [51.10714558243972, 17.07337712840188], [51.1090699006493, 17.075023384204258], [51.108488803099426, 17.07701102945874], [51.109612886848886, 17.078255204381414], [51.10914134657534, 17.08050078833304]]}>
+				<Polygon
+					positions={[
+						[51.10588330048589, 17.077913814910783],
+						[51.10714558243972, 17.07337712840188],
+						[51.1090699006493, 17.075023384204258],
+						[51.108488803099426, 17.07701102945874],
+						[51.109612886848886, 17.078255204381414],
+						[51.10914134657534, 17.08050078833304],
+					]}
+				>
 					<Popup>Hala Stulecia - Juwenalia 2025</Popup>
 				</Polygon>
 				<Marker position={[51.107093550006816, 17.07346238414613]}>
 					<Popup>
 						<table className="gap-2">
 							<tr>
-								<th>Linia <br />Tramwajowa</th>
-								<th>Przystanki <br />Końcowe</th>
+								<th>
+									Linia <br />
+									Tramwajowa
+								</th>
+								<th>
+									Przystanki <br />
+									Końcowe
+								</th>
 							</tr>
-							<tr>
-								<td className="font-bold text-center w-fit">0</td>
-								<td>Zoo, Dworzec Główny</td>
-							</tr>
-							<tr>
-								<td className="font-bold text-center w-fit">2</td>
-								<td>Krzyki, Biskupin</td>
-							</tr>
-							<tr>
-								<td className="font-bold text-center w-fit">4</td>
-								<td>Biskupin, Oporów</td>
-							</tr>
-							<tr>
-								<td className="font-bold text-center w-fit">10</td>
-								<td>Leśnica, Biskupin</td>
-							</tr>
-							<tr>
-								<td className="font-bold text-center w-fit">19</td>
-								<td>Zoo, Kozanów (Dokerska)</td>
-							</tr>
-							<tr>
-								<td className="font-bold text-center w-fit">78</td>
-								<td>Tarnogaj, Biskupin</td>
-							</tr>
+							{trams.map((tram) => (
+								<tr key={tram.lineNumber}>
+									<td className="font-bold text-center w-fit">
+										{tram.lineNumber}
+									</td>
+									<td>{tram.terminus}</td>
+								</tr>
+							))}
 						</table>
 					</Popup>
 				</Marker>
 				<Marker position={[51.10745169656501, 17.07265278898644]}>
 					<Popup>
 						<table className="gap-2">
+							<tbody>
 							<tr>
-								<th>Linia <br />Autobusowa</th>
-								<th>Przystanki <br />Końcowe</th>
+								<th>
+									Linia <br />
+									Autobusowa
+								</th>
+								<th>
+									Przystanki <br />
+									Końcowe
+								</th>
 							</tr>
-							<tr>
-								<td className="font-bold text-center w-fit">145</td>
-								<td>Iwiny - Rondo, Sępolno</td>
-							</tr>
-							<tr>
-								<td className="font-bold text-center w-fit">146</td>
-								<td>Bartoszowice, Gaj - Pętla</td>
-							</tr>
-							<tr>
-								<td className="font-bold text-center w-fit">253</td>
-								<td>Leśnica, Sępolno</td>
-							</tr>
-							<tr>
-								<td className="font-bold text-center w-fit">255</td>
-								<td>Iwiny - Rondo, Sępolno</td>
-							</tr>
-							<tr>
-								<td className="font-bold text-center w-fit">315</td>
-								<td>Swojczyce, Reja</td>
-							</tr>
-							<tr>
-								<td className="font-bold text-center w-fit">345</td>
-								<td>Stadion Olimpijski (Pętla po mieście)</td>
-							</tr>
+								{busses.map((bus) => (
+									<tr key={bus.lineNumber}>
+										<td className="font-bold text-center w-fit">
+											{bus.lineNumber}
+										</td>
+										<td>{bus.terminus}</td>
+									</tr>
+								))}
+							</tbody>
 						</table>
 					</Popup>
 				</Marker>
-				{/* <SVGOverlay
-					attributes={{ stroke: "red" }}
-					bounds={[
-						[51.11234851390756, 17.064151749871414],
-						[51.11047695895013, 17.060607791709366],
-					]}
-				>
-					<rect x="0" y="0" width="100%" height="100%" fill="blue" opacity="50%" />
-					<circle r="5" cx="10" cy="10" fill="red" />
-					<polygon points="220,10 300,210 170,250 123,234" scale="1" />
-					<text x="50%" y="50%" stroke="white">
-						text
-					</text>
-				</SVGOverlay> */}
 			</MapContainer>
 		</div>
 	);
