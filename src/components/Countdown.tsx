@@ -50,4 +50,4 @@ function Countdown() {
   );
 }
 
-export default Countdown;
+export { Countdown };
