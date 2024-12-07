@@ -8,6 +8,7 @@ const Navbar = () => {
             <Link href="/map">Map</Link>
             <Link href="/postsFb">Fb</Link>
             <Link href="/postsIg">Ig</Link>
+            <Link href="/artists">Artists</Link>
         </div>
     )
 }

@@ -1,9 +1,9 @@
-import { DayProps } from "@/lib/types";
-import { fetchData } from "@/lib/api";
+import { DayProps } from '@/lib/types';
+import { fetchData } from '@/lib/api';
 
 const Schedule = async () => {
   const response = await fetchData<{ data: DayProps[] }>(
-    "items/days?fields=*,events.*,events.artists.*,events.artists.artists_id.*",
+    'items/days?fields=*,events.*,events.artists.*,events.artists.artists_id.*'
   );
   const days = response.data.map((day) => ({
     ...day,
@@ -11,30 +11,30 @@ const Schedule = async () => {
   }));
 
   const weekDays = [
-    "Niedziela",
-    "Poniedzialek",
-    "Wtorek",
-    "Środa",
-    "Czwartek",
-    "Piątek",
-    "Sobota",
+    'Niedziela',
+    'Poniedzialek',
+    'Wtorek',
+    'Środa',
+    'Czwartek',
+    'Piątek',
+    'Sobota',
   ];
 
   return (
-    <div className="p-4">
-      <h1 className={"text-xl font-extrabold mb-6"}>Schedule</h1>
+    <div className='p-4'>
+      <h1 className={'text-xl font-extrabold mb-6'}>Schedule</h1>
       {days.map((day) => (
-        <div key={day.id} className={"border-b-2 border-gray-300 pb-4 mb-6"}>
-          <h2 className={"font-bold text-lg"}>{weekDays[day.date.getDay()]}</h2>
-          <h3 className={"text-gray-600"}>{day.date.toLocaleDateString()}</h3>
-          <h2 className={"mt-4 text-md font-semibold"}>Events:</h2>
+        <div key={day.id} className={'border-b-2 border-gray-300 pb-4 mb-6'}>
+          <h2 className={'font-bold text-lg'}>{weekDays[day.date.getDay()]}</h2>
+          <h3 className={'text-gray-600'}>{day.date.toLocaleDateString()}</h3>
+          <h2 className={'mt-4 text-md font-semibold'}>Events:</h2>
           {day.events.map((event) => (
-            <div key={event.id} className={"ml-4 mt-2"}>
+            <div key={event.id} className={'ml-4 mt-2'}>
               <h2>{`${event.start_time}-${event.end_time}`}</h2>
               <h3>{event.location}</h3>
-              <div className={"ml-4"}>
+              <div className={'ml-4'}>
                 {event.artists.map((artist) => (
-                  <div key={artist.id} className={"text-sm text-gray-800"}>
+                  <div key={artist.id} className={'text-sm text-gray-800'}>
                     {artist.artists_id.name}
                   </div>
                 ))}
