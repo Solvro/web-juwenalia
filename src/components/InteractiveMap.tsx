@@ -3,9 +3,7 @@ import {
 	MapContainer,
 	Marker,
 	Polygon,
-	Polyline,
 	Popup,
-	SVGOverlay,
 	TileLayer,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -74,7 +72,6 @@ export function InteractiveMap() {
 				scrollWheelZoom={true}
 				className="w-[900px] mx-auto h-[900px]"
 			>
-				{/* <ImageOverlay url="middle-earth-map.jpg" bounds={[[0,0], [302.9278, 227.195]]} className="w-max h-max"></ImageOverlay> */}
 				<TileLayer
 					attribution='&copy; <a href="https://www.openstreetmap.org/copycenter">OpenStreetMap</a> contributors'
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -94,41 +91,47 @@ export function InteractiveMap() {
 				<Marker position={[51.107093550006816, 17.07346238414613]}>
 					<Popup>
 						<table className="gap-2">
-							<tr>
-								<th>
-									Linia <br />
-									Tramwajowa
-								</th>
-								<th>
-									Przystanki <br />
-									Końcowe
-								</th>
-							</tr>
-							{trams.map((tram) => (
-								<tr key={tram.lineNumber}>
-									<td className="font-bold text-center w-fit">
-										{tram.lineNumber}
-									</td>
-									<td>{tram.terminus}</td>
+							<thead>
+								<tr>
+									<th>
+										Linia <br />
+										Tramwajowa
+									</th>
+									<th>
+										Przystanki <br />
+										Końcowe
+									</th>
 								</tr>
-							))}
+							</thead>
+							<tbody>
+								{trams.map((tram) => (
+									<tr key={tram.lineNumber}>
+										<td className="font-bold text-center w-fit">
+											{tram.lineNumber}
+										</td>
+										<td>{tram.terminus}</td>
+									</tr>
+								))}
+							</tbody>
 						</table>
 					</Popup>
 				</Marker>
 				<Marker position={[51.10745169656501, 17.07265278898644]}>
 					<Popup>
 						<table className="gap-2">
+							<thead>
+								<tr>
+									<th>
+										Linia <br />
+										Autobusowa
+									</th>
+									<th>
+										Przystanki <br />
+										Końcowe
+									</th>
+								</tr>
+							</thead>
 							<tbody>
-							<tr>
-								<th>
-									Linia <br />
-									Autobusowa
-								</th>
-								<th>
-									Przystanki <br />
-									Końcowe
-								</th>
-							</tr>
 								{busses.map((bus) => (
 									<tr key={bus.lineNumber}>
 										<td className="font-bold text-center w-fit">
