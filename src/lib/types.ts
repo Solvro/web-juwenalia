@@ -70,4 +70,10 @@ export interface FacebookUser {
   };
 }
 
+/** A generated long-lived access token as returned by the Facebook API. */
+export interface FacebookAccessToken {
+  access_token: string;
+  token_type: string;
+}
+
 // #endregion
