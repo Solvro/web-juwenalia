@@ -1,3 +1,15 @@
+/**
+ * Module containing functions related to the Facebook API.
+ *
+ * Access tokens must be generated using the Facebook Graph API Explorer.
+ *
+ * Currently required user token permissions:
+ * - `user_posts` to retrieve the user's posts
+ * - `user_photos` to retrieve the user's profile picture
+ * - `user_link` to retrieve the user's profile link
+ * - `public_profile` (all access tokens require it)
+ */
+
 import { FacebookPost, FacebookUser } from "./types";
 
 const FACEBOOK_API_URL = "https://graph.facebook.com/v21.0";
@@ -14,7 +26,7 @@ const getAccessToken = async () =>
 
 async function fetchFromFacebook<T>(
   path: string,
-  fields: string = ""
+  fields: string = "",
 ): Promise<T | null> {
   const token = await getAccessToken();
   if (!token) {
@@ -46,7 +58,10 @@ async function fetchFromFacebook<T>(
  * If a previous call failed, it will re-attempt to fetch the user data.
  */
 export const getFacebookUser = async () =>
-  (user ??= await fetchFromFacebook<FacebookUser>("me", "id,name,picture"));
+  (user ??= await fetchFromFacebook<FacebookUser>(
+    "me",
+    "id,name,picture,link",
+  ));
 
 /** Retrieves all non-empty Facebook posts made by the user with the current access token, in reverse chronological order (newest first). */
 export async function getFacebookPosts(): Promise<
@@ -54,7 +69,7 @@ export async function getFacebookPosts(): Promise<
 > {
   const data = await fetchFromFacebook<{ data: FacebookPost[] }>(
     "me/posts",
-    "id,message,name,permalink_url,shares,created_time,updated_time,full_picture"
+    "id,message,name,permalink_url,shares,created_time,updated_time,full_picture",
   );
   const posts = data?.data;
   if (!posts) {
