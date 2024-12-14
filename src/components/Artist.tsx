@@ -76,7 +76,7 @@ const Artist = async ({
               <span key={event.id}>
                 Dzień {event.events_id.day} |{" "}
                 {event.events_id.start_time.slice(0, 5)} |{" "}
-                {event.events_id.location}
+                {event.events_id.location.name}
               </span>
             ))}
           </div>
