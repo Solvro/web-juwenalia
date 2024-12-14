@@ -10,21 +10,27 @@ export function Post({
   post: FacebookPost;
 }) {
   return (
-    <div className="border rounded-xl p-3 w-1/3">
-      <div className="flex items-center mb-3">
-        <Image
-          src={author.picture.data.url}
-          alt={author.name}
-          width={author.picture.data.width}
-          height={author.picture.data.height}
-          className="rounded-full"
-        />
+    <div className="w-1/3 rounded-xl border p-3">
+      <div className="mb-3 flex items-center">
+        <a href={author.link} target="_blank" rel="noopener noreferrer">
+          <Image
+            src={author.picture.data.url}
+            alt={author.name}
+            width={author.picture.data.width}
+            height={author.picture.data.height}
+            className="rounded-full"
+          />
+        </a>
         <div className="ml-2 w-full">
-          <p className="font-semibold">{author.name}</p>
+          <p className="font-semibold">
+            <a href={author.link} target="_blank" rel="noopener noreferrer">
+              {author.name}
+            </a>
+          </p>
           <p
-            className="flex items-center text-sm text-gray-500 gap-1"
+            className="flex items-center gap-1 text-sm text-gray-500"
             title={`last updated: ${new Date(
-              post.updated_time
+              post.updated_time,
             ).toLocaleString()}`}
           >
             {new Date(post.created_time).toLocaleString()}
@@ -34,7 +40,7 @@ export function Post({
           </p>
         </div>
       </div>
-      <p className="border-t-2 pt-2 whitespace-pre-line">
+      <p className="whitespace-pre-line border-t-2 pt-2">
         {post.message || <i className="italic text-slate-400">empty post</i>}
       </p>
       {post.full_picture && (

@@ -54,6 +54,7 @@ export interface FacebookPost {
 export interface FacebookUser {
   id: string;
   name: string;
+  link: string;
   picture: {
     data: {
       height: number;
