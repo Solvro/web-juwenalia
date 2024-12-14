@@ -52,10 +52,10 @@ export function StaticMap() {
                     <Image src="/hala-stulecia-piwnica.png" alt={"Hala Stulecia Piętro -1"} width={1000} height={800} className={cn(floorMinusOne ? "" : "hidden")} />
                 </div>
                 <div id="controls" className="grid grid-cols-1 w-1/5">
-                    <Button variant={outside ? "destructive" : "default"} onClick={(e) => switchMapView("Outside")} >Widok Zewnętrzny</Button>
-                    <Button variant={floorZero ? "destructive" : "default"} onClick={(e) => switchMapView("Ground Floor")} >Piętro 0</Button>
-                    <Button variant={floorOne ? "destructive" : "default"} onClick={(e) => switchMapView("Floor 1")} >Piętro 1</Button>
-                    <Button variant={floorMinusOne ? "destructive" : "default"} onClick={(e) => switchMapView("Floor -1")} >Piętro -1</Button>
+                    <Button variant={outside ? "destructive" : "default"} onClick={() => switchMapView("Outside")} >Widok Zewnętrzny</Button>
+                    <Button variant={floorZero ? "destructive" : "default"} onClick={() => switchMapView("Ground Floor")} >Piętro 0</Button>
+                    <Button variant={floorOne ? "destructive" : "default"} onClick={() => switchMapView("Floor 1")} >Piętro 1</Button>
+                    <Button variant={floorMinusOne ? "destructive" : "default"} onClick={() => switchMapView("Floor -1")} >Piętro -1</Button>
                 </div>
             </div>
         </div>
