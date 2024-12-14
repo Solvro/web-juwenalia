@@ -3,6 +3,8 @@ import { Montserrat } from "next/font/google";
 
 import { Navbar } from "@/components/navbar";
 import { QueryProvider } from "@/lib/query-client";
+import { Footer } from "@/components/Footer";
+
 
 import "./globals.css";
 
@@ -28,6 +30,7 @@ export default function RootLayout({
         <body>
           <Navbar />
           {children}
+          <Footer />
         </body>
       </QueryProvider>
     </html>
