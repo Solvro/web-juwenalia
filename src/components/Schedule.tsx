@@ -3,7 +3,7 @@ import { fetchData } from '@/lib/api';
 
 const Schedule = async () => {
   const response = await fetchData<{ data: DayProps[] }>(
-    'items/days?fields=*,events.*,events.artists.*,events.artists.artists_id.*'
+    'items/days?fields=*,events.*,events.location.*,events.artists.*,events.artists.artists_id.*'
   );
   const days = response.data.map((day) => ({
     ...day,
@@ -31,7 +31,7 @@ const Schedule = async () => {
           {day.events.map((event) => (
             <div key={event.id} className={'ml-4 mt-2'}>
               <h2>{`${event.start_time}-${event.end_time}`}</h2>
-              <h3>{event.location}</h3>
+              <h3>{event.location.name}</h3>
               <div className={'ml-4'}>
                 {event.artists.map((artist) => (
                   <div key={artist.id} className={'text-sm text-gray-800'}>
