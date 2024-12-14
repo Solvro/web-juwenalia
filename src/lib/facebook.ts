@@ -13,8 +13,12 @@ import type { FacebookAccessToken, FacebookPost, FacebookUser } from "./types";
 
 const FACEBOOK_API_URL = "https://graph.facebook.com/v21.0";
 
+/** The maximum number of attachments to fetch for each Facebook post. */
+const POST_ATTACHMENT_LIMIT = 10;
+
 let user: FacebookUser | null = null;
-let accessToken = "";
+
+let getAccessTokenPromise: null | Promise<string | null> = null;
 
 /**
  * Retrieves the saved Facebook long-lived access token.
@@ -22,10 +26,8 @@ let accessToken = "";
  * from the short-lived one, which is stored in the environment variable `FACEBOOK_ACCESS_TOKEN`.
  */
 async function getAccessToken() {
-  if (accessToken) {
-    return accessToken;
-  }
-  const shortLivedToken = process.env.FACEBOOK_ACCESS_TOKEN ?? "";
+  if (getAccessTokenPromise != null) return getAccessTokenPromise;
+  const shortLivedToken = process.env.FACEBOOK_ACCESS_TOKEN || "";
   if (!shortLivedToken) {
     console.error("No short-lived access token set for Facebook API");
     return null;
@@ -49,8 +51,7 @@ async function getAccessToken() {
     return null;
   }
   // Save the long-lived access token for future calls
-  accessToken = response.access_token;
-  return accessToken;
+  return response.access_token;
 }
 
 async function fetchFromFacebook<T>(
@@ -65,8 +66,9 @@ async function fetchFromFacebook<T>(
     }
     const headers: RequestInit["headers"] = {};
     if (useAuthentication) {
-      const token = await getAccessToken();
-      if (token === null) {
+      getAccessTokenPromise = getAccessToken();
+      const token = await getAccessTokenPromise;
+      if (token == null || token === "") {
         console.error("No long-lived access token set for Facebook API");
         return null;
       }
@@ -76,7 +78,12 @@ async function fetchFromFacebook<T>(
     const response = await fetch(url.toString(), { headers });
     const data = (await response.json()) as T;
     if (!response.ok) {
-      console.error(response.status, response.statusText, data);
+      console.error(
+        "Bad response from Facebook API:",
+        response.status,
+        response.statusText,
+        data,
+      );
       return null;
     }
     return data;
@@ -102,7 +109,7 @@ export async function getFacebookPosts(): Promise<
 > {
   const data = await fetchFromFacebook<{ data: FacebookPost[] }>(
     "me/posts",
-    "id,message,name,permalink_url,shares,created_time,updated_time,full_picture",
+    `id,message,name,shares,created_time,updated_time,permalink_url,attachments.limit(${POST_ATTACHMENT_LIMIT}){media,subattachments}`,
   );
   const posts = data?.data;
   if (posts === undefined) {

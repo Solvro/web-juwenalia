@@ -44,15 +44,34 @@ export interface NoDataInfoProps {
 
 // #region --- Facebook API-related definitions ---
 
+interface FacebookAttachments {
+  data?: FacebookAttachment[];
+}
+
+export interface FacebookAttachment {
+  /** URL to the Facebook image post, not the image itself. */
+  // url: string;
+  /** Known values: `"photo"` */
+  // type: string;
+  media: {
+    image: {
+      height: number;
+      width: number;
+      src: string;
+    };
+  };
+  subattachments: FacebookAttachments;
+}
+
 /** A Facebook post as returned by the Facebook API. */
 export interface FacebookPost {
   id: string;
   title?: string;
   message?: string;
-  full_picture?: string;
   permalink_url: string;
   created_time: string;
   updated_time: string;
+  attachments?: FacebookAttachments;
 }
 
 /** A Facebook user as returned by the Facebook API. */
