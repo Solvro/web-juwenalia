@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import type { FacebookPost, FacebookUser } from "@/lib/types";
 
+import { PostAttachments } from "./post-attachments";
 import { ShareButton } from "./share-button";
 
 export function Post({
@@ -48,18 +49,10 @@ export function Post({
           <i className="italic text-slate-400">empty post</i>
         )}
       </p>
-      {post.full_picture != null && post.full_picture.length > 0 && (
-        <Image
-          src={post.full_picture}
-          alt={"Facebook post image attachment"}
-          className="my-4"
-          width={800}
-          height={0}
-        />
-      )}
-      {post.permalink_url.length > 0 && (
-        <ShareButton link={post.permalink_url} />
-      )}
+      <div className="flex flex-wrap justify-center md:justify-start">
+        <PostAttachments attachments={post.attachments?.data ?? []} />
+        {post.permalink_url && <ShareButton link={post.permalink_url} />}
+      </div>
     </div>
   );
 }
