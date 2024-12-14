@@ -9,10 +9,11 @@ export default async function FbPage() {
 
   return (
     <div className="flex flex-col items-center gap-5">
-      <h1 className="text-center text-4xl font-extrabold text-gray-800">
-        Facebook Posts Demo
+      <h1 className="m-3 mb-0 text-center font-extrabold text-gray-800 sm:text-2xl md:text-3xl">
+        Najnowsze aktualności
       </h1>
-      {user === null || posts === null ? (
+      <hr className="w-full" />
+      {user == null || posts == null || posts.length === 0 ? (
         <Alert className="w-1/2" variant="destructive">
           <AlertTitle>Błąd Sieciowy</AlertTitle>
           <AlertDescription>
@@ -27,7 +28,11 @@ export default async function FbPage() {
           </AlertDescription>
         </Alert>
       ) : (
-        posts.map((post) => <Post key={post.id} post={post} author={user} />)
+        <div className="flex flex-col items-stretch md:items-center">
+          {posts.map((post) => (
+            <Post key={post.id} post={post} author={user} />
+          ))}
+        </div>
       )}
     </div>
   );
