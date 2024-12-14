@@ -8,28 +8,28 @@ import { Button } from "@/components/button";
 export function ShareButton({ link }: { link: string }) {
   const [clicked, setClicked] = useState(false);
 
-  function handleClick() {
+  async function handleClick() {
     setClicked(true);
-    void navigator.clipboard.writeText(link);
+    await navigator.clipboard.writeText(link);
     setTimeout(() => {
       setClicked(false);
     }, 3000);
   }
   return (
     <Button
-      className="min-w-36"
+      className="hover:text-primary"
       onClick={handleClick}
       disabled={clicked}
       title="Copy post URL to clipboard"
     >
       {clicked ? (
         <>
-          <ClipboardCheckIcon /> URL copied!
+          <ClipboardCheckIcon /> Skopiowano!
         </>
       ) : (
         <>
           <Share2Icon />
-          Share
+          Udostępnij
         </>
       )}
     </Button>

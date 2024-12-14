@@ -6,7 +6,7 @@ function Navbar() {
       <Link href="/">Strona Główna</Link>
       <Link href="/artists">Artyści</Link>
       <Link href="/map">Mapa Wydarzenia</Link>
-      <Link href="/posts-fb">Aktualności</Link>
+      <Link href="/news">Aktualności</Link>
     </div>
   );
 }
