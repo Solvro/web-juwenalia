@@ -1,12 +1,11 @@
-"use client"
+"use client";
 
 import { NoDataInfoProps } from "@/lib/types";
 import { Button } from "./button";
 
 const NoDataInfo = ({ errorTitle, errorMessage }: NoDataInfoProps) => {
-
   const handleReload = () => {
-    window.location.reload()
+    window.location.reload();
   };
 
   return (
