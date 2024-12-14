@@ -1,40 +1,34 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Footer = () => {
-  const List = ({
-    text,
-    children,
-  }: {
-    text: string;
-    children: React.ReactNode;
-  }) => {
-    return (
-      <div>
-        <h2 className="mb-5 text-base font-medium">{text}</h2>
-        <ul>{children}</ul>
-      </div>
-    );
-  };
-  const ListItem = ({
-    url,
-    target,
-    text,
-  }: {
-    url: string;
-    target: string;
-    text: string;
-  }) => {
-    return (
-      <>
-        <li className="mb-2 text-sm">
-          <Link href={url} target={target}>
-            {text}
-          </Link>
-        </li>
-      </>
-    );
-  };
+function List({ text, children }: { text: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <h2 className="mb-5 text-base font-medium">{text}</h2>
+      <ul>{children}</ul>
+    </div>
+  );
+}
+
+function ListItem({
+  url,
+  target = "_blank",
+  text,
+}: {
+  url: string;
+  target?: string;
+  text: string;
+}) {
+  return (
+    <li className="mb-2 text-sm">
+      <Link href={url} target={target}>
+        {text}
+      </Link>
+    </li>
+  );
+}
+
+function Footer() {
   return (
     <>
       <div className="grid place-items-center md:mb-16 md:mt-24">
@@ -47,33 +41,13 @@ const Footer = () => {
         />
         <div className="grid grid-cols-2 gap-x-5 sm:grid-cols-4 sm:justify-around md:flex md:w-11/12 md:flex-row md:justify-around">
           <List text="KONTAKT">
-            <ListItem
-              url="mailto:example@gmail.com"
-              text="Adres e-mail"
-              target="_blank"
-            />
-            <ListItem
-              url="mailto:example@gmail.com"
-              text="Adres e-mail"
-              target="_blank"
-            />
+            <ListItem url="mailto:example@gmail.com" text="Adres e-mail" />
+            <ListItem url="mailto:example@gmail.com" text="Adres e-mail" />
           </List>
           <List text="SOCIAL MEDIA">
-            <ListItem
-              url="https://instagram.com/"
-              text="Instagram"
-              target="_blank"
-            />
-            <ListItem
-              url="https://facebook.com/"
-              text="Facebook"
-              target="_blank"
-            />
-            <ListItem
-              url="https://tiktok.com/"
-              text="Instagram"
-              target="_blank"
-            />
+            <ListItem url="https://instagram.com/" text="Instagram" />
+            <ListItem url="https://facebook.com/" text="Facebook" />
+            <ListItem url="https://tiktok.com/" text="Instagram" />
           </List>
           <Image
             src="/Juwe2025.png"
@@ -105,6 +79,6 @@ const Footer = () => {
       </div>
     </>
   );
-};
+}
 
 export { Footer };
