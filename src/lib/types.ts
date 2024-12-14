@@ -37,6 +37,11 @@ export interface DayProps {
   date: Date | string;
 }
 
+export interface NoDataInfoProps {
+  errorTitle: string;
+  errorMessage: string;
+}
+
 // #region --- Facebook API-related definitions ---
 
 /** A Facebook post as returned by the Facebook API. */

@@ -63,7 +63,10 @@ export default {
         'gradient-main': 'radial-gradient(circle at top left, hsl(var(--primary)), hsl(var(--secondary)))',
         'gradient-secondary': 'radial-gradient(circle at bottom right, hsl(var(--primary)), hsl(var(--secondary)))',
       },
+      spacing: {
+        '90': '22rem'
+      }
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [import("tailwindcss-animate")],
 } satisfies Config;
