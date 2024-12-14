@@ -3,7 +3,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/lib/queryClient";
 import { Navbar } from "@/components/Navbar";
-import SocialSidebar from "@/components/SocialsSidebar";
+import SocialSidebar from "@/sidebar/SocialsSidebar";
 
 export const metadata: Metadata = {
   title: "Juwenalia by Solvro",

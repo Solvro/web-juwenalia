@@ -26,9 +26,9 @@ const Artist = async ({
       className="flex flex-col items-center rounded-lg p-2 text-center text-xl"
     >
       <Image
-        className={"aspect-square rounded-xl mb-4 object-cover"}
+        className={"mb-4 aspect-square rounded-xl object-cover"}
         src={`${API_URL}/assets/${image}`}
-        alt="Picture of the artist"
+        alt="Zdjęcie artysty."
         width={441}
         height={621}
         style={{ width: "100%", height: "621px" }}
@@ -53,7 +53,7 @@ const Artist = async ({
                   "rounded-xl p-1 hover:bg-green-400 active:bg-green-600"
                 }
                 src={`/buttons/spotify_logo_short.png`}
-                // src={`/buttons/spotify-svgrepo-com.svg`}
+                // src={`/buttons/spotify-svgrepo-com.svg`} svg, but it's skeeweed
                 alt="Link do Spotify artysty."
                 width="43"
                 height="43"
@@ -72,9 +72,8 @@ const Artist = async ({
                 className={
                   "rounded-xl bg-gradient-to-bl p-1 hover:from-fuchsia-500 hover:to-amber-400 active:from-fuchsia-700 active:to-amber-600"
                 }
-                // src={`/buttons/instagram_icon.png`}
                 src={`/buttons/ig.svg`}
-                alt="Link do IG artysty."
+                alt="Link do Instagrama artysty."
                 width="43"
                 height="43"
               />
@@ -82,24 +81,25 @@ const Artist = async ({
           )}
         </div>
       </div>
-        <div className="pr-4 text-sm lg:text-xl w-full">
-          {events && events.length > 0 ? (
-            events.slice(0, 1).map((event) => (
-              <div key={event.id} className="mx-2 flex w-full justify-between text-sm lg:text-xl">
-                <div>
-                  {event.events_id.location.name.toUpperCase()}
-                </div>
+      <div className="w-full pr-4 text-sm lg:text-xl">
+        {events && events.length > 0 ? (
+          events.slice(0, 1).map((event) => (
+            <div
+              key={event.id}
+              className="mx-2 flex w-full justify-between text-sm lg:text-xl"
+            >
+              <div>{event.events_id.location.name.toUpperCase()}</div>
 
-                <div>
-                  {getDayInfo(event.events_id.day)} /{" "}
-                  {event.events_id.start_time.slice(0, 5)}
-                </div>
+              <div>
+                {getDayInfo(event.events_id.day)} /{" "}
+                {event.events_id.start_time.slice(0, 5)}
               </div>
-            ))
-          ) : (
-            <span className="mx-2">Brak informacji o koncertach.</span>
-          )}
-        </div>
+            </div>
+          ))
+        ) : (
+          <span className="mx-2">Brak informacji o koncertach.</span>
+        )}
+      </div>
     </div>
   );
 };
