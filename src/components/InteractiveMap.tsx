@@ -7,6 +7,7 @@ import {
 	TileLayer,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { useEffect } from "react";
 
 const trams = [
 	{
@@ -63,6 +64,19 @@ const busses = [
 ];
 
 export function InteractiveMap() {
+    useEffect(() => {
+        // if (typeof window !== "undefined") {
+            return () => {
+                // Clean up the map container when the component is unmounted
+                const container = document.querySelector(".leaflet-container");
+                if (container) {
+					// @ts-ignore
+                    container._leaflet_id = null;
+                }
+            };
+        // }
+    }, []);
+
 	return (
 		<div className="h-screen">
 			<h1>Map Demo</h1>
