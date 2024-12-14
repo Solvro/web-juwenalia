@@ -55,7 +55,7 @@ const ArtistList = async () => {
                   <Artist key={artist.id} {...artist} />
                 ))}
             </div>
-            <hr className="border-t border-gray-400 my-2 -mx-8 w-screen" /> {/* Repeating HR */}
+            <hr className="border-t border-gray-400 my-2 -mx-8 w-screen" /> 
           </div>
         ))
       ) : (
@@ -71,28 +71,6 @@ const ArtistList = async () => {
       )}
     </div>
   </div> 
-
-    
-    // <div className="p-4">
-
-    //   <div className="mx-8">
-    //     <h1 className={"text-2xl md:text-3xl font-extrabold text-center md:text-left"}>Tegoroczni artyści</h1>
-    //   </div>
-    //   <hr className="border-t border-gray-400 my-2" />
-    //   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 container mx-auto">
-    //     {(artists && artists.length > 0) ? (
-    //       artists.map((artist) => (
-    //       <Artist key={artist.id} {...artist} />
-    //     ))) : (
-
-    //       <div className="flex flex-col items-center text-center">
-    //         <h1 className="font-bold text-2xl">Brak Artystów</h1>
-    //         <p className="p-3 text-xl">Nie udało nam się znaleźć podanych artystów. Wróć tutaj później!</p>
-    //         <Link href='#' className={"border-2 border-black rounded-2xl p-3"} >Odśwież</Link>
-    //       </div>
-    //     )}
-    //   </div>
-   // </div>
   );
 };
 

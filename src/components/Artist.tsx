@@ -52,8 +52,8 @@ const Artist = async ({
                 className={
                   "rounded-xl p-1 hover:bg-green-400 active:bg-green-600"
                 }
-                // src={`/buttons/spotify_logo_short.png`}
-                src={`/buttons/spotify-svgrepo-com.svg`}
+                src={`/buttons/spotify_logo_short.png`}
+                // src={`/buttons/spotify-svgrepo-com.svg`}
                 alt="Link do Spotify artysty."
                 width="43"
                 height="43"
