@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/lib/queryClient";
 import { Navbar } from "@/components/Navbar";
+import SocialSidebar from "@/components/SocialsSidebar";
 
 export const metadata: Metadata = {
   title: "Juwenalia by Solvro",
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en" className={montserrat.variable}>
       <QueryProvider>
         <body>
+          <SocialSidebar />
           <Navbar />
           {children}
         </body>
