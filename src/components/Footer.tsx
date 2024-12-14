@@ -41,33 +41,13 @@ function Footer() {
         />
         <div className="grid grid-cols-2 gap-x-5 sm:grid-cols-4 sm:justify-around md:flex md:w-11/12 md:flex-row md:justify-around">
           <List text="KONTAKT">
-            <ListItem
-              url="mailto:example@gmail.com"
-              text="Adres e-mail"
-              target="_blank"
-            />
-            <ListItem
-              url="mailto:example@gmail.com"
-              text="Adres e-mail"
-              target="_blank"
-            />
+            <ListItem url="mailto:example@gmail.com" text="Adres e-mail" />
+            <ListItem url="mailto:example@gmail.com" text="Adres e-mail" />
           </List>
           <List text="SOCIAL MEDIA">
-            <ListItem
-              url="https://instagram.com/"
-              text="Instagram"
-              target="_blank"
-            />
-            <ListItem
-              url="https://facebook.com/"
-              text="Facebook"
-              target="_blank"
-            />
-            <ListItem
-              url="https://tiktok.com/"
-              text="Instagram"
-              target="_blank"
-            />
+            <ListItem url="https://instagram.com/" text="Instagram" />
+            <ListItem url="https://facebook.com/" text="Facebook" />
+            <ListItem url="https://tiktok.com/" text="Instagram" />
           </List>
           <Image
             src="/Juwe2025.png"
