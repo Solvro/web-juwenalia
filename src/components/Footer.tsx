@@ -2,6 +2,39 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Footer = () => {
+  const List = ({
+    text,
+    children,
+  }: {
+    text: string;
+    children: React.ReactNode;
+  }) => {
+    return (
+      <div>
+        <h2 className="mb-5 text-base font-medium">{text}</h2>
+        <ul>{children}</ul>
+      </div>
+    );
+  };
+  const ListItem = ({
+    url,
+    target,
+    text,
+  }: {
+    url: string;
+    target: string;
+    text: string;
+  }) => {
+    return (
+      <>
+        <li className="mb-2 text-sm">
+          <Link href={url} target={target}>
+            {text}
+          </Link>
+        </li>
+      </>
+    );
+  };
   return (
     <>
       <div className="grid place-items-center md:mb-16 md:mt-24">
@@ -13,37 +46,35 @@ const Footer = () => {
           height={175}
         />
         <div className="grid grid-cols-2 gap-x-5 sm:grid-cols-4 sm:justify-around md:flex md:w-11/12 md:flex-row md:justify-around">
-          <div>
-            <h2 className="mb-5 text-base font-medium">KONTAKT</h2>
-            <ul>
-              <li className="mb-2 text-sm">
-                <Link href="mailto:example@gmail.com">Adres e-mail</Link>
-              </li>
-              <li className="mb-2 text-sm">
-                <Link href="mailto:example@gmail.com">Adres e-mail</Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h2 className="mb-5 text-base font-medium">SOCIAL MEDIA</h2>
-            <ul>
-              <li className="mb-2 text-sm">
-                <Link href="https://instagram.com/" target="_blank">
-                  Instagram
-                </Link>
-              </li>
-              <li className="mb-2 text-sm">
-                <Link href="https://facebook.com/" target="_blank">
-                  Facebook
-                </Link>
-              </li>
-              <li className="mb-10 text-sm">
-                <Link href="https://tiktok.com/" target="_blank">
-                  TikTok
-                </Link>
-              </li>
-            </ul>
-          </div>
+          <List text="KONTAKT">
+            <ListItem
+              url="mailto:example@gmail.com"
+              text="Adres e-mail"
+              target="_blank"
+            />
+            <ListItem
+              url="mailto:example@gmail.com"
+              text="Adres e-mail"
+              target="_blank"
+            />
+          </List>
+          <List text="SOCIAL MEDIA">
+            <ListItem
+              url="https://instagram.com/"
+              text="Instagram"
+              target="_blank"
+            />
+            <ListItem
+              url="https://facebook.com/"
+              text="Facebook"
+              target="_blank"
+            />
+            <ListItem
+              url="https://tiktok.com/"
+              text="Instagram"
+              target="_blank"
+            />
+          </List>
           <Image
             src="/Juwe2025.png"
             alt="Description of the image"
@@ -51,40 +82,20 @@ const Footer = () => {
             width={250}
             height={150}
           />
-          <div>
-            <h2 className="mb-5 text-base font-medium">LINKI</h2>
-            <ul>
-              <li className="mb-2 text-sm">
-                <Link href="">Harmonogram</Link>
-              </li>
-              <li className="mb-2 text-sm">
-                <Link href="/artists">Artyści</Link>
-              </li>
-              <li className="mb-2 text-sm">
-                <Link href="/map">Mapa wydarzenia</Link>
-              </li>
-              <li className="mb-10 text-sm">
-                <Link href="/postsFb">Aktualności</Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h2 className="mb-5 text-base font-medium">INNE</h2>
-            <ul>
-              <li className="mb-2 text-sm">
-                <Link href="">Link 1</Link>
-              </li>
-              <li className="mb-2 text-sm">
-                <Link href="">Link 2</Link>
-              </li>
-              <li className="mb-2 text-sm">
-                <Link href="">Link 3</Link>
-              </li>
-            </ul>
-          </div>
+          <List text="LINKI">
+            <ListItem url="/" text="Harmonogram" target="_self" />
+            <ListItem url="/artists" text="Artyści" target="_self" />
+            <ListItem url="/map" text="Mapa wydarzenia" target="_self" />
+            <ListItem url="/postsFb" text="Aktualności" target="_self" />
+          </List>
+          <List text="INNE">
+            <ListItem url="" text="Link 1" target="_self" />
+            <ListItem url="" text="Link 2" target="_self" />
+            <ListItem url="" text="Link 3" target="_self" />
+          </List>
         </div>
       </div>
-      <div className="mb-8 ml-5 text-sm md:mb-16 md:flex md:justify-center">
+      <div className="mb-8 ml-5 mt-8 text-sm md:mb-16 md:flex md:justify-center">
         <div className="w-4/5 md:flex md:flex-row md:justify-between">
           <p className="mb-8 w-48 text-slate-400 md:w-full">
             © Juwenalia 2025. Wszelkie prawa zastrzeżone.
