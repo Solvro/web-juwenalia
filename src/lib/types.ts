@@ -28,6 +28,7 @@ interface EventProps {
   location: { id: number; name: string };
   day: number;
   artists: EventArtists[];
+  name: string | null;
 }
 
 export interface DayProps {
