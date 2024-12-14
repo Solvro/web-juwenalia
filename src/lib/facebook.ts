@@ -6,6 +6,7 @@
  * Currently required user token permissions:
  * - `user_posts` to retrieve the user's posts
  * - `user_photos` to retrieve the user's profile picture
+ * - `user_link` to retrieve the user's profile link
  * - `public_profile` (all access tokens require it)
  */
 
