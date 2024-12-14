@@ -26,8 +26,14 @@ let getAccessTokenPromise: null | Promise<string | null> = null;
  * from the short-lived one, which is stored in the environment variable `FACEBOOK_ACCESS_TOKEN`.
  */
 async function getAccessToken() {
-  if (getAccessTokenPromise != null) return getAccessTokenPromise;
-  const shortLivedToken = process.env.FACEBOOK_ACCESS_TOKEN || "";
+  if (getAccessTokenPromise != null) {
+    return getAccessTokenPromise;
+  }
+  const existingToken = process.env.FACEBOOK_LONG_LIVED_ACCESS_TOKEN;
+  if (existingToken != null) {
+    return existingToken;
+  }
+  const shortLivedToken = process.env.FACEBOOK_ACCESS_TOKEN ?? "";
   if (!shortLivedToken) {
     console.error("No short-lived access token set for Facebook API");
     return null;
@@ -109,7 +115,7 @@ export async function getFacebookPosts(): Promise<
 > {
   const data = await fetchFromFacebook<{ data: FacebookPost[] }>(
     "me/posts",
-    `id,message,name,shares,created_time,updated_time,permalink_url,attachments.limit(${POST_ATTACHMENT_LIMIT}){media,subattachments}`,
+    `id,message,name,shares,created_time,updated_time,permalink_url,attachments.limit(${POST_ATTACHMENT_LIMIT.toString()}){media,subattachments}`,
   );
   const posts = data?.data;
   if (posts === undefined) {
