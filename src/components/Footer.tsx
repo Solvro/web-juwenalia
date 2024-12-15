@@ -4,7 +4,7 @@ import Link from "next/link";
 function List({ text, children }: { text: string; children: React.ReactNode }) {
   return (
     <div>
-      <h2 className="mb-5 text-base font-medium uppercase">{text}</h2>
+      <h2 className="mb-5 text-base font-medium uppercase uppercase">{text}</h2>
       <ul>{children}</ul>
     </div>
   );
@@ -39,12 +39,12 @@ function Footer() {
           width={175}
           height={175}
         />
-        <div className="grid grid-cols-2 gap-x-5 sm:grid-cols-4 sm:justify-around md:flex md:w-11/12 md:flex-row md:justify-around">
-          <List text="KONTAKT">
+        <div className="grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-4 sm:justify-around md:flex md:w-11/12 md:flex-row md:justify-around">
+          <List text="Kontakt">
             <ListItem url="mailto:example@gmail.com" text="Adres e-mail" />
             <ListItem url="mailto:example@gmail.com" text="Adres e-mail" />
           </List>
-          <List text="SOCIAL MEDIA">
+          <List text="Social media">
             <ListItem url="https://instagram.com/" text="Instagram" />
             <ListItem url="https://facebook.com/" text="Facebook" />
             <ListItem url="https://tiktok.com/" text="Instagram" />
