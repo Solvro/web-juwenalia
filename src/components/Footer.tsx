@@ -34,7 +34,7 @@ function Footer() {
       <div className="grid place-items-center md:mb-16 md:mt-24">
         <Image
           src="/Juwe2025.png"
-          alt="Description of the image"
+          alt="Logo Juwenalia 2025 #WROCŁAWRAZEM"
           className="my-20 md:hidden"
           width={175}
           height={175}
