@@ -47,7 +47,7 @@ function Footer() {
           <List text="Social media">
             <ListItem url="https://instagram.com/" text="Instagram" />
             <ListItem url="https://facebook.com/" text="Facebook" />
-            <ListItem url="https://tiktok.com/" text="Instagram" />
+            <ListItem url="https://tiktok.com/" text="TikTok" />
           </List>
           <Image
             src="/Juwe2025.png"
