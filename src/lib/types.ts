@@ -96,3 +96,12 @@ export interface FacebookAccessToken {
 }
 
 // #endregion
+
+// #region --- About Us Page ---
+export interface Person {
+  name: string;
+  role: string;
+  generalRole?: string;
+  image?: string;
+}
+// #endregion
