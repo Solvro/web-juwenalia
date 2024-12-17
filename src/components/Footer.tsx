@@ -39,7 +39,7 @@ function Footer() {
           width={175}
           height={175}
         />
-        <div className="grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-4 sm:justify-around md:flex md:w-11/12 md:flex-row md:justify-around">
+        <div className="sm:grid-cols-4 sm:justify-around md:flex md:w-11/12 md:flex-row md:justify-around max-[475px]:gap-x-12 max-[640px]:gap-x-40 grid grid-cols-2 gap-y-10">
           <List text="Kontakt">
             <ListItem url="mailto:example@gmail.com" text="Adres e-mail" />
             <ListItem url="mailto:example@gmail.com" text="Adres e-mail" />
