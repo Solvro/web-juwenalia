@@ -36,7 +36,7 @@ export function TabSelectorBar<T extends readonly string[]>({
   setSelectedIdx: React.Dispatch<React.SetStateAction<keyof T>>;
 }) {
   return (
-    <ul className="flex gap-1">
+    <ul className="flex flex-wrap justify-center gap-1 sm:justify-start">
       {options.map((option, index) => (
         <TabSelector
           key={option}

@@ -19,12 +19,10 @@ function Section({
 }) {
   return (
     <>
-      <h1 className={`px-6 text-2xl font-extrabold ${className ?? ""}`}>
-        {header}
-      </h1>
-      {body != null && <p className="px-6 text-xl">{body}</p>}
+      <h1 className={`text-2xl font-extrabold ${className ?? ""}`}>{header}</h1>
+      {body != null && <p className="text-xl">{body}</p>}
       <HorizontalRule />
-      <div className={`mb-20 mt-6 flex flex-col gap-5 px-6 ${className ?? ""}`}>
+      <div className={`mb-20 mt-6 flex flex-col gap-5 ${className ?? ""}`}>
         {children}
       </div>
     </>
@@ -33,7 +31,7 @@ function Section({
 
 export default function AboutPage() {
   return (
-    <div className="mt-10 flex flex-col gap-5">
+    <div className="mt-10 flex flex-col gap-5 px-6 sm:px-10 md:px-12 lg:px-20">
       <Section header="Partnerzy">
         <PartnersList />
       </Section>
