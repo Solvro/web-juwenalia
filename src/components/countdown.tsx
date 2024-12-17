@@ -118,6 +118,8 @@ function Countdown() {
         </PaddingWrapper>
       </div>
     </div>
+  ) : (
+    <div>Wydarzenie już trwa!</div>
   );
 }
 
