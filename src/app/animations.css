@@ -1,0 +1,24 @@
+.underscore-anim {
+    position: relative;
+}
+
+.underscore-anim::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.1rem;
+    height: 2px;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    border-radius: 100px;
+    @apply bg-black;
+    transition: 200ms transform, 0ms transform-origin ease-in;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+}
+
+.underscore-anim:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}

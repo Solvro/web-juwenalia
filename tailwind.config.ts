@@ -10,7 +10,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-green-blue': 'radial-gradient(94.87% 94.87% at 90% 70%, var(--gradient-blue) 0%, var(--gradient-green) 100%)'
+        "gradient-green-blue":
+          "radial-gradient(94.87% 94.87% at 90% 70%, var(--gradient-blue) 0%, var(--gradient-green) 100%)",
       },
       fontFamily: {
         sans: ["var(--font-montserrat)", "sans-serif"],
@@ -63,16 +64,15 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
-        'bouncy-arrow-reveal': {
-          '0%': { transform: 'scale(0) rotate(30deg)' },
-          '25%': { transform: 'scale(0.3) rotate(45deg)' },
-          '75%': { transform: 'scale(1) rotate(-4deg)' },
-          '100%': { transform: 'scale(1) rotate(0deg)' },
-        }
+        "bouncy-arrow-reveal": {
+          "0%": { transform: "scale3d(0, 0, 1) rotate(45deg)" },
+          "100%": { transform: "scaleX(1) rotate(0deg)" },
+        },
       },
       animation: {
-        'reveal-arrow': 'bouncy-arrow-reveal 200ms cubic-bezier(0,-0.01,0,.98) forwards'
-      }
+        "reveal-arrow":
+          "bouncy-arrow-reveal 0.2s cubic-bezier(.2, 1.2, .3, 1.4) forwards",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

@@ -1,3 +1,5 @@
+@import "./animations.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,7 +10,7 @@ body {
 
 @layer base {
   :root {
-    --font-montserrat: 'Montserrat', sans-serif;
+    --font-montserrat: "Montserrat", sans-serif;
     --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;
     --card: 0 0% 100%;
@@ -35,8 +37,8 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
 
-    --gradient-green: #58C473;
-    --gradient-blue: #049BAD;
+    --gradient-green: #58c473;
+    --gradient-blue: #049bad;
   }
   .dark {
     --background: 20 14.3% 4.1%;

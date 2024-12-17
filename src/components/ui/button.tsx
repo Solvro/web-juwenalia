@@ -1,104 +1,124 @@
-'use client';
+"use client";
 
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils"
-import {ArrowRight} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
 
 const buttonVariants = cva(
-  "relative overflow-hidden inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border text-[16px] md:text-[18px] font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "relative overflow-hidden inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border text-[14px] md:text-[16px] font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
-  variants: {
+    variants: {
       variant: {
         default: "text-foreground",
+        secondary: "",
+        gradient: "",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        ghost:
+          "border-0 bg-slate-500/0 transition-colors hover:bg-slate-500/10",
+        link: "border-0 !py-1 !px-2",
+      },
+      color: {
+        default: "border-black",
+        black: "border-black",
+        white: "!border-white",
       },
       size: {
-        default: "px-6 py-3 md:px-8 md:py-4",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
+        default: "px-6 py-3 md:px-8 md:py-3",
+        sm: "px-5 py-1 !text-[14px]",
+        lg: "px-12 py-5",
+        icon: "h-12 w-12",
       },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
+      color: "default",
     },
-  }
-)
+  },
+);
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  asChild?: boolean
+  asChild?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button"
+  (
+    {
+      children,
+      className,
+      variant = "default",
+      size,
+      color = "black",
+      asChild = false,
+      ...props
+    },
+    ref,
+  ) => {
+    const Comp = asChild ? Slot : "button";
+
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(
+          buttonVariants({ variant, size, className, color }),
+          "group before:pointer-events-auto before:absolute before:bg-transparent before:content-['']" +
+            " isolate before:top-full before:z-[-1] before:h-[200%] before:w-[110%] before:rounded-[50%]" +
+            " before:duration-[200ms] before:ease-[cubic-bezier(.23,1,.32,1)] before:transition-all hover:before:-top-1/2" +
+            " hover:before:origin-top hover:before:ease-in",
+          {
+            "before:bg-gradient-green-blue": variant === "gradient",
+            "before:bg-white":
+              ["default", "secondary"].includes(variant) && color === "white",
+            "before:bg-black":
+              ["default", "secondary"].includes(variant) &&
+              ["black"].includes(color),
+          },
+        )}
         ref={ref}
-        {...props}
-      />
-    )
-  }
-);
-Button.displayName = "Button"
-
-interface GradientButtonProps extends ButtonProps {
-  children: React.ReactNode;
-  asChild?: boolean;
-  colorType?: 'black' | 'white';
-}
-
-const GradientButton = React.forwardRef<HTMLButtonElement, GradientButtonProps>(
-  ({children, colorType = 'black', asChild = false, ...props }, ref) => {
-
-    return (
-      <Button
-        ref={ref}
-        asChild={asChild}
-        size="default"
-        className={cn("group before:pointer-events-auto before:content-[''] before:absolute before:bg-gradient-green-blue " +
-          "before:w-[110%] before:h-[200%] before:z-[-1] isolate before:top-full before:rounded-[50%] " +
-          "before:transition-all before:duration-[200ms] before:ease-out hover:before:-top-1/2 " +
-          "hover:before:ease-in hover:before:origin-top", {
-          'border-black': colorType === 'black',
-          'border-white': colorType === 'white'
-        })}
         {...props}
       >
-        <div className="flex gap-4 md:gap-8 items-center relative cursor-pointer pointer-events-auto">
-          <span className={cn({
-            "text-foreground": colorType === 'black',
-            'text-white': colorType === 'white'
-          })}>{children}</span>
+        <div className="pointer-events-auto relative flex cursor-pointer items-center gap-4 md:gap-8">
+          <span
+            className={cn("lowercase transition-all duration-200", {
+              "text-foreground": color === "black",
+              "text-white": color === "white",
+              "group-hover:text-black":
+                ["default", "secondary"].includes(variant) && color === "white",
+              "group-hover:text-white":
+                ["default", "secondary"].includes(variant) && color === "black",
+              "underscore-anim": variant === "link",
+            })}
+          >
+            {children}
+          </span>
 
-          <div className="grid place-items-center h-6 w-6 md:h-8 md:w-8 relative">
-            <div className="w-2 h-2 bg-gradient-green-blue rounded-full transition-transform duration-75
-                            group-hover:scale-0" />
-            <div className="absolute w-full h-full grid place-items-center bg-black rounded-full scale-0
-                            transition-transform duration-150 rotate-[30deg] ease-out group-hover:animate-reveal-arrow group-hover:ease-in">
-              <ArrowRight className="!size-5 md:!size-6 text-white" />
+          {(variant === "gradient" || variant === "secondary") && (
+            <div className="relative grid h-6 w-6 place-items-center md:h-8 md:w-8">
+              <div
+                className={cn(
+                  "h-2 w-2 rounded-full transition-transform duration-75 group-hover:scale-0",
+                  {
+                    "bg-gradient-green-blue": variant === "gradient",
+                    "bg-white": variant === "secondary" && color === "white",
+                    "bg-black": variant === "secondary" && color === "black",
+                  },
+                )}
+              />
+              <div className="absolute grid h-full w-full rotate-[30deg] scale-0 place-items-center rounded-full bg-black transition-transform duration-150 ease-out group-hover:animate-reveal-arrow group-hover:ease-in">
+                <ArrowRight className="!size-5 text-white md:!size-6" />
+              </div>
             </div>
-          </div>
+          )}
         </div>
-      </Button>
+      </Comp>
     );
-  }
+  },
 );
-GradientButton.displayName = "CustomButton";
+Button.displayName = "Button";
 
-
-export { GradientButton, Button, buttonVariants }
+export { Button, buttonVariants };
