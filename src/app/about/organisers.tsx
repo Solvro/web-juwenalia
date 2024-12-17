@@ -1,9 +1,10 @@
 "use client";
+
 import { useState } from "react";
 
-import { Person } from "@/lib/types";
 import { PersonCardList } from "@/components/about/person-card-list";
 import { TabSelectorBar } from "@/components/about/tab-selector-bar";
+import type { Person } from "@/lib/types";
 
 const ROLES = ["Organizatorzy", "Koordynatorzy", "Sztab"] as const;
 
@@ -37,27 +38,29 @@ const ORGANISERS: (string[] | Person[])[] = [
   ],
 ];
 
-export function OrganisersList() {
-  const [selectedIdx, setSelectedIdx] = useState<keyof typeof ROLES>(0);
+const isNameArray = (array: string[] | Person[]): array is string[] =>
+  typeof array[0] === "string";
 
-  const section = ORGANISERS[selectedIdx as number];
-  const isNameArray = typeof section[0] === "string";
+export function OrganisersList() {
+  const [selectedIndex, setSelectedIndex] = useState<keyof typeof ROLES>(0);
+
+  const section = ORGANISERS[selectedIndex as number];
 
   return (
     <>
       <TabSelectorBar
         options={ROLES}
-        selectedIdx={selectedIdx}
-        setSelectedIdx={setSelectedIdx}
+        selectedIdx={selectedIndex}
+        setSelectedIdx={setSelectedIndex}
       />
-      {isNameArray ? (
+      {isNameArray(section) ? (
         <ul className="mt-10 flex flex-col gap-2 gap-y-5">
-          {section.map((name, idx) => (
-            <li key={idx}>{name as string}</li>
+          {section.map((name) => (
+            <li key={`organiser-${name}`}>{name}</li>
           ))}
         </ul>
       ) : (
-        <PersonCardList people={section as Person[]} />
+        <PersonCardList people={section} />
       )}
     </>
   );

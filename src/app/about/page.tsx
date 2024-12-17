@@ -1,9 +1,10 @@
-import { HorizontalRule } from "@/components/ui/horizontal-rule";
-import { Button } from "@/components/ui/button";
-import { PartnersList } from "./partners";
-import { OrganisersList } from "./organisers";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
+
+import { HorizontalRule } from "@/components/horizontal-rule";
+
 import { CreatorsList } from "./creators";
+import { OrganisersList } from "./organisers";
+import { PartnersList } from "./partners";
 
 function Section({
   children,
@@ -21,7 +22,7 @@ function Section({
       <h1 className={`px-6 text-2xl font-extrabold ${className ?? ""}`}>
         {header}
       </h1>
-      {body && <p className="px-6 text-xl">{body}</p>}
+      {body != null && <p className="px-6 text-xl">{body}</p>}
       <HorizontalRule />
       <div className={`mb-20 mt-6 flex flex-col gap-5 px-6 ${className ?? ""}`}>
         {children}

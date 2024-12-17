@@ -16,7 +16,9 @@ function TabSelector<T>({
     <li>
       <Button
         className={`rounded-full text-xs text-black ${selected ? "bg-gradient-main text-white" : "bg-transparent"}`}
-        onClick={() => setSelectedIdx(idx)}
+        onClick={() => {
+          setSelectedIdx(idx);
+        }}
       >
         {text}
       </Button>
@@ -24,7 +26,7 @@ function TabSelector<T>({
   );
 }
 
-export function TabSelectorBar<T extends readonly any[]>({
+export function TabSelectorBar<T extends readonly string[]>({
   options,
   selectedIdx,
   setSelectedIdx,
@@ -35,10 +37,10 @@ export function TabSelectorBar<T extends readonly any[]>({
 }) {
   return (
     <ul className="flex gap-1">
-      {options.map((option, idx) => (
+      {options.map((option, index) => (
         <TabSelector
-          key={idx}
-          idx={idx as keyof T}
+          key={option}
+          idx={index as keyof T}
           text={option}
           selectedIdx={selectedIdx}
           setSelectedIdx={setSelectedIdx}

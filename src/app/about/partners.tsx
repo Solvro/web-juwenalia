@@ -1,7 +1,8 @@
 "use client";
 
-import { TabSelectorBar } from "@/components/about/tab-selector-bar";
 import { useState } from "react";
+
+import { TabSelectorBar } from "@/components/about/tab-selector-bar";
 
 const PARTNER_TYPES = ["Główni", "Medialni"] as const;
 
@@ -10,20 +11,21 @@ function PartnerSkeleton() {
 }
 
 export function PartnersList() {
-  const [selectedIdx, setSelectedIdx] = useState<keyof typeof PARTNER_TYPES>(0);
+  const [selectedIndex, setSelectedIndex] =
+    useState<keyof typeof PARTNER_TYPES>(0);
   return (
     <>
       <TabSelectorBar
         options={PARTNER_TYPES}
-        selectedIdx={selectedIdx}
-        setSelectedIdx={setSelectedIdx}
+        selectedIdx={selectedIndex}
+        setSelectedIdx={setSelectedIndex}
       />
       <div className="mt-6 flex flex-wrap gap-2 gap-y-5">
-        {Array.from({ length: 6 - (selectedIdx as number) * 2 }).map(
-          (_, idx) => (
-            <PartnerSkeleton key={idx} />
-          ),
-        )}
+        {[
+          ...Array.from({ length: 6 - (selectedIndex as number) * 2 }).keys(),
+        ].map((value) => (
+          <PartnerSkeleton key={value} />
+        ))}
       </div>
     </>
   );
