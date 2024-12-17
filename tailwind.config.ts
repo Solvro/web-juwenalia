@@ -60,8 +60,17 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       backgroundImage: {
-        'gradient-main': 'radial-gradient(circle at top left, hsl(var(--primary)), hsl(var(--secondary)))',
-        'gradient-secondary': 'radial-gradient(circle at bottom right, hsl(var(--primary)), hsl(var(--secondary)))',
+        "gradient-main":
+          "radial-gradient(circle at top left, hsl(var(--primary)), hsl(var(--secondary)))",
+        "gradient-secondary":
+          "radial-gradient(circle at bottom right, hsl(var(--primary)), hsl(var(--secondary)))",
+      },
+      spacing: {
+        "90": "22rem",
+      },
+      gridTemplateRows: {
+        "animate-height-open": "1fr",
+        "animate-height-closed": "0fr",
       },
     },
   },

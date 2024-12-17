@@ -25,7 +25,7 @@ interface EventProps {
   id: number;
   start_time: string;
   end_time: string;
-  location: string;
+  location: { id: number; name: string };
   day: number;
   artists: EventArtists[];
 }
@@ -35,6 +35,11 @@ export interface DayProps {
   day: number;
   events: EventProps[];
   date: Date | string;
+}
+
+export interface NoDataInfoProps {
+  errorTitle: string;
+  errorMessage: string;
 }
 
 // #region --- Facebook API-related definitions ---
@@ -63,6 +68,12 @@ export interface FacebookUser {
       is_silhouette: boolean;
     };
   };
+}
+
+/** A generated long-lived access token as returned by the Facebook API. */
+export interface FacebookAccessToken {
+  access_token: string;
+  token_type: string;
 }
 
 // #endregion
