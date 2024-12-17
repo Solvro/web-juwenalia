@@ -7,6 +7,7 @@ const Navbar = () => {
       <Link href="/artists">Artyści</Link>
       <Link href="/map">Mapa Wydarzenia</Link>
       <Link href="/postsFb">Aktualności</Link>
+      <Link href="/about">O nas</Link>
     </div>
   );
 };
