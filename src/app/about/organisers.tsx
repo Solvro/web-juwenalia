@@ -1,24 +1,29 @@
 "use client";
+
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
-import { Person } from "@/lib/types";
 import { PersonCardList } from "@/components/about/person-card-list";
 import { TabSelectorBar } from "@/components/about/tab-selector-bar";
+import type { Organisation, Person } from "@/lib/types";
 
 const ROLES = ["Organizatorzy", "Koordynatorzy", "Sztab"] as const;
 
-const ORGANISERS: (string[] | Person[])[] = [
+const ORGANISERS: (Organisation[] | Person[])[] = [
   [
-    "Politechnika Wrocławska",
-    "Uniwersytet Wrocławski",
-    "Wrocławski Uniwersytet Medyczny",
+    { name: "Politechnika Wrocławska", url: "https://pwr.edu.pl" },
+    { name: "Uniwersytet Wrocławski", url: "https://uwr.edu.pl" },
+    {
+      name: "Uniwersytet Medyczny we Wrocławiu",
+      url: "https://www.umw.edu.pl",
+    },
   ],
   [
-    { name: "Konrad Guzek", role: "Lider projektu", image: "konrad-guzek.jpg" },
+    { name: "Konrad Guzek", role: "Lider projektu" },
     {
       name: "Kamil Nowak",
       role: "Koordynator ds. Współpracy Zewnętrznej",
-      image: "kamil-nowak.jpg",
     },
     {
       name: "Krzysztof Krawczyk",
@@ -27,8 +32,8 @@ const ORGANISERS: (string[] | Person[])[] = [
     },
   ],
   [
-    { name: "Jan Kowalski", role: "Sztab", image: "jan-kowalski.jpg" },
-    { name: "Andrzej Nowak", role: "Sztab", image: "andrzej-nowak.jpg" },
+    { name: "Jan Kowalski", role: "Sztab" },
+    { name: "Andrzej Nowak", role: "Sztab" },
     {
       name: "Krzysztof Krawczyk",
       role: "Sztab",
@@ -36,6 +41,10 @@ const ORGANISERS: (string[] | Person[])[] = [
     },
   ],
 ];
+
+const isOrganisationArray = (
+  array: Organisation[] | Person[],
+): array is Organisation[] => "url" in array[0];
 
 export function OrganisersList() {
   const [selectedIdx, setSelectedIdx] = useState<keyof typeof ROLES>(0);
@@ -50,10 +59,23 @@ export function OrganisersList() {
         selectedIdx={selectedIdx}
         setSelectedIdx={setSelectedIdx}
       />
-      {isNameArray ? (
+      {isOrganisationArray(section) ? (
         <ul className="mt-10 flex flex-col gap-2 gap-y-5">
-          {section.map((name, idx) => (
-            <li key={idx}>{name as string}</li>
+          {section.map((organisation) => (
+            <li key={`organiser-${organisation.name}`}>
+              <Link
+                href={organisation.url}
+                className="group flex w-fit gap-2"
+                target="_blank"
+              >
+                <ArrowUpRight />
+                <div className="relative">
+                  {organisation.name}
+                  {/* Fajny underline effect od ChatGPT, nie wiem jak działa ale działa */}
+                  <div className="absolute h-[1px] w-full origin-left scale-x-0 bg-black transition-transform duration-300 group-hover:scale-x-100"></div>
+                </div>
+              </Link>
+            </li>
           ))}
         </ul>
       ) : (
