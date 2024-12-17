@@ -41,11 +41,7 @@ export function PostPreview({ post }: { post: FacebookPost }) {
               </p>
             </div>
           }
-          <Button
-            className="cursor-pointer list-none underline"
-            variant="ghost"
-            onClick={() => setShowDetails((old) => !old)}
-          >
+          <Button variant="link" onClick={() => setShowDetails((old) => !old)}>
             {showDetails ? "Zwiń" : "Zobacz więcej"}
           </Button>
         </div>
