@@ -34,8 +34,8 @@ export function TabSelectorBar<T extends readonly any[]>({
   setSelectedIdx: React.Dispatch<React.SetStateAction<keyof T>>;
 }) {
   return (
-    <ul className="flex gap-1">
-      {options.map((option, idx) => (
+    <ul className="flex flex-wrap justify-center gap-1 sm:justify-start">
+      {options.map((option, index) => (
         <TabSelector
           key={idx}
           idx={idx as keyof T}
