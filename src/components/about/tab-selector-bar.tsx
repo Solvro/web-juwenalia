@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { MouseEvent, RefObject } from "react";
+import type { CSSProperties, MouseEvent, RefObject } from "react";
 
 import { Button } from "../ui/button";
 
@@ -41,31 +41,42 @@ export function TabSelectorBar<T extends readonly any[]>({
   selectedIdx: keyof T;
   setSelectedIdx: React.Dispatch<React.SetStateAction<keyof T>>;
 }) {
-  const [markerWidth, setMarkerWidth] = useState(0);
-  const [markerOffset, setMarkerOffset] = useState(0);
+  const [markerStyle, setMarkerStyle] = useState<CSSProperties>({});
   const markerRef = useRef<HTMLDivElement>(null);
   const initialSelectedRef = useRef<HTMLButtonElement>(null);
 
-  function onSwitchTab(event: MouseEvent<HTMLButtonElement>, index: keyof T) {
-    setSelectedIdx(index);
-    setMarkerWidth(event.currentTarget.offsetWidth);
-    setMarkerOffset(event.currentTarget.offsetLeft);
+  function updateMarkerStyle(button: HTMLButtonElement | null) {
+    setMarkerStyle({
+      width: button?.offsetWidth,
+      height: button?.offsetHeight,
+      left: button?.offsetLeft,
+      top: button?.offsetTop,
+    });
   }
 
   useEffect(() => {
-    // Set initial marker width based on initial selected button
-    if (initialSelectedRef.current != null) {
-      setMarkerWidth(initialSelectedRef.current.offsetWidth);
-      setMarkerOffset(initialSelectedRef.current.offsetLeft);
+    function updateStyle() {
+      updateMarkerStyle(initialSelectedRef.current);
     }
+    updateStyle();
+    window.addEventListener("resize", updateStyle);
+
+    return () => {
+      window.removeEventListener("resize", updateStyle);
+    };
   }, [initialSelectedRef]);
+
+  function onSwitchTab(event: MouseEvent<HTMLButtonElement>, index: keyof T) {
+    setSelectedIdx(index);
+    updateMarkerStyle(event.currentTarget);
+  }
 
   return (
     <ul className="relative flex flex-wrap justify-center gap-1 sm:justify-start">
       <div
         className="absolute bottom-0 -z-10 h-full rounded-full bg-gradient-main text-white transition-all duration-300"
         ref={markerRef}
-        style={{ width: markerWidth, left: `${markerOffset.toString()}px` }}
+        style={markerStyle}
       ></div>
       {options.map((option, index) => (
         <TabSelector
