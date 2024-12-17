@@ -1,20 +1,23 @@
 "use client";
+
 import {
-  intervalToDuration,
-  formatDuration,
   compareAsc,
-  format,
   endOfMinute,
+  format,
+  formatDuration,
+  intervalToDuration,
 } from "date-fns";
-import React, { useState, useEffect } from "react";
 import { pl } from "date-fns/locale";
+import React, { useEffect, useState } from "react";
 
 const eventDate: Date = new Date(2025, 4, 15, 16); //It's the date from pwr calendar, but i have no idea what the actuall hour will be
 
 function Countdown() {
   const [currentDate, setCurrentDate] = useState<Date>(endOfMinute(new Date()));
   useEffect(() => {
-    if (compareAsc(eventDate, new Date()) !== 1) return;
+    if (compareAsc(eventDate, new Date()) !== 1) {
+      return;
+    }
     const intervalId = setInterval(() => {
       setCurrentDate(new Date());
     }, 1000);
@@ -36,7 +39,7 @@ function Countdown() {
       " do MMMM y 'o godzinie' p",
       {
         locale: pl,
-      }
+      },
     );
     return isOver === 1
       ? `Wydarzenie rozpocznie się ${formattedEventDate}, zostało już tylko: ${duration}!!!`

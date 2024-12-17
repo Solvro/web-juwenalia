@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+
+import { Navbar } from "@/components/navbar";
+import { QueryProvider } from "@/lib/query-client";
+
 import "./globals.css";
 import QueryProvider from "@/lib/queryClient";
 import { Navbar } from "@/components/Navbar";

@@ -1,9 +1,11 @@
 "use client";
 
-import { FacebookPost } from "@/lib/types";
 import { format } from "date-fns";
 import { pl } from "date-fns/locale";
 import { useState } from "react";
+
+import type { FacebookPost } from "@/lib/types";
+
 import { Button } from "../ui/button";
 
 export function PostPreview({ post }: { post: FacebookPost }) {
@@ -21,7 +23,7 @@ export function PostPreview({ post }: { post: FacebookPost }) {
       <p className="text-xs text-primary md:text-sm lg:text-base">{date}</p>
       <div className="md:w-3/4 lg:w-2/3">
         <h3 className="md:text-xl lg:text-2xl">
-          {postTitle ? (
+          {postTitle === undefined ? (
             <b className="font-bold">{postTitle}</b>
           ) : (
             <i>Brak tytułu</i>
@@ -32,8 +34,8 @@ export function PostPreview({ post }: { post: FacebookPost }) {
             <div
               className={`grid transition-all ease-in-out ${
                 showDetails
-                  ? "grid-rows-animate-height-open visible opacity-100"
-                  : "grid-rows-animate-height-closed invisible opacity-0"
+                  ? "visible grid-rows-animate-height-open opacity-100"
+                  : "invisible grid-rows-animate-height-closed opacity-0"
               }`}
             >
               <p className="overflow-hidden whitespace-pre-line">
@@ -44,7 +46,9 @@ export function PostPreview({ post }: { post: FacebookPost }) {
           <Button
             className="cursor-pointer list-none underline"
             variant="ghost"
-            onClick={() => setShowDetails((old) => !old)}
+            onClick={() => {
+              setShowDetails((old) => !old);
+            }}
           >
             {showDetails ? "Zwiń" : "Zobacz więcej"}
           </Button>

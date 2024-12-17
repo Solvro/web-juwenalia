@@ -9,13 +9,12 @@
  * - `user_link` to retrieve the user's profile link
  * - `public_profile` (all access tokens require it)
  */
-
-import { FacebookAccessToken, FacebookPost, FacebookUser } from "./types";
+import type { FacebookAccessToken, FacebookPost, FacebookUser } from "./types";
 
 const FACEBOOK_API_URL = "https://graph.facebook.com/v21.0";
 
 let user: FacebookUser | null = null;
-let accessToken: string = "";
+let accessToken = "";
 
 /**
  * Retrieves the saved Facebook long-lived access token.
@@ -23,14 +22,16 @@ let accessToken: string = "";
  * from the short-lived one, which is stored in the environment variable `FACEBOOK_ACCESS_TOKEN`.
  */
 async function getAccessToken() {
-  if (accessToken) return accessToken;
-  const shortLivedToken = process.env.FACEBOOK_ACCESS_TOKEN || "";
+  if (accessToken) {
+    return accessToken;
+  }
+  const shortLivedToken = process.env.FACEBOOK_ACCESS_TOKEN ?? "";
   if (!shortLivedToken) {
     console.error("No short-lived access token set for Facebook API");
     return null;
   }
-  const clientId = process.env.FACEBOOK_APP_ID || "";
-  const clientSecret = process.env.FACEBOOK_APP_SECRET || "";
+  const clientId = process.env.FACEBOOK_APP_ID ?? "";
+  const clientSecret = process.env.FACEBOOK_APP_SECRET ?? "";
   if (!clientId || !clientSecret) {
     console.error("No app ID or secret set for Facebook API");
     return null;
@@ -41,7 +42,7 @@ async function getAccessToken() {
     "",
     false,
   );
-  if (!response || !response.access_token) {
+  if (response?.access_token === undefined) {
     console.error(
       "Failed to generate long-lived access token from Facebook API",
     );
@@ -54,8 +55,8 @@ async function getAccessToken() {
 
 async function fetchFromFacebook<T>(
   path: string,
-  fields: string = "",
-  useAuthentication: boolean = true,
+  fields = "",
+  useAuthentication = true,
 ): Promise<T | null> {
   try {
     const url = new URL(`${FACEBOOK_API_URL}/${path}`);
@@ -65,15 +66,15 @@ async function fetchFromFacebook<T>(
     const headers: RequestInit["headers"] = {};
     if (useAuthentication) {
       const token = await getAccessToken();
-      if (!token) {
+      if (token === null) {
         console.error("No long-lived access token set for Facebook API");
         return null;
       }
-      console.log(token);
-      headers["Authorization"] = `Bearer ${token}`;
+
+      headers.Authorization = `Bearer ${token}`;
     }
     const response = await fetch(url.toString(), { headers });
-    const data = await response.json();
+    const data = (await response.json()) as T;
     if (!response.ok) {
       console.error(response.status, response.statusText, data);
       return null;
@@ -104,14 +105,14 @@ export async function getFacebookPosts(): Promise<
     "id,message,name,permalink_url,shares,created_time,updated_time,full_picture",
   );
   const posts = data?.data;
-  if (!posts) {
+  if (posts === undefined) {
     console.warn(data);
     return null;
   }
   return (
     posts
       // Ensure the posts are not empty (e.g. timeline events like being born)
-      .filter((post) => post?.message)
+      .filter((post) => post.message)
       .map((post) => ({
         ...post,
         updatedTimestamp: new Date(post.updated_time).getTime(),
