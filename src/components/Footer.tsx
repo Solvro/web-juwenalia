@@ -4,7 +4,7 @@ import Link from "next/link";
 function List({ text, children }: { text: string; children: React.ReactNode }) {
   return (
     <div>
-      <h2 className="mb-5 text-base font-medium uppercase uppercase">{text}</h2>
+      <h2 className="mb-5 text-base font-medium uppercase">{text}</h2>
       <ul>{children}</ul>
     </div>
   );
