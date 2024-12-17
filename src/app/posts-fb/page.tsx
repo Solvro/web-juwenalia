@@ -1,5 +1,6 @@
-import { getFacebookPosts, getFacebookUser } from "@/lib/facebook";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { getFacebookPosts, getFacebookUser } from "@/lib/facebook";
+
 import { Post } from "./components/post";
 
 export default async function FbPage() {
@@ -7,11 +8,11 @@ export default async function FbPage() {
   const posts = await getFacebookPosts();
 
   return (
-    <div className="flex flex-col gap-5 items-center">
-      <h1 className="text-4xl font-extrabold text-center text-gray-800">
+    <div className="flex flex-col items-center gap-5">
+      <h1 className="text-center text-4xl font-extrabold text-gray-800">
         Facebook Posts Demo
       </h1>
-      {!user || !posts ? (
+      {user === null || posts === null ? (
         <Alert className="w-1/2" variant="destructive">
           <AlertTitle>Błąd Sieciowy</AlertTitle>
           <AlertDescription>
@@ -26,7 +27,7 @@ export default async function FbPage() {
           </AlertDescription>
         </Alert>
       ) : (
-        posts.map((post, idx) => <Post key={idx} post={post} author={user} />)
+        posts.map((post) => <Post key={post.id} post={post} author={user} />)
       )}
     </div>
   );

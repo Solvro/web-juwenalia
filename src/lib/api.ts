@@ -1,14 +1,11 @@
-import { API_URL } from '@/config/api';
+import { API_URL } from "@/config/api";
 
-export async function fetchData<T>(
-  endpoint: string,
-  options?: RequestInit
-): Promise<T> {
+export async function fetchData<T>(endpoint: string, options?: RequestInit) {
   const response = await fetch(`${API_URL}/${endpoint}`, {
     ...options,
     headers: {
-      'Content-Type': 'application/json',
-      ...(options?.headers ?? {}),
+      "Content-Type": "application/json",
+      ...options?.headers,
     },
   });
 
@@ -16,5 +13,5 @@ export async function fetchData<T>(
     throw new Error(response.statusText);
   }
 
-  return response.json();
+  return response.json() as Promise<T>;
 }

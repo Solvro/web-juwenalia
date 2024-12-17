@@ -1,13 +1,15 @@
-import { getFacebookPosts } from "@/lib/facebook";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Fragment } from "react";
-import { PostPreview } from "./post-preview";
-import { NoDataInfo } from "../ui/NoDataInfo";
-import { HorizontalRule } from "../ui/horizontal-rule";
-import { HomepageHeader } from "../ui/homepage-header";
 
-export async function LatestNews({}) {
+import { getFacebookPosts } from "@/lib/facebook";
+
+import { HomepageHeader } from "../homepage-header";
+import { HorizontalRule } from "../horizontal-rule";
+import { NoDataInfo } from "../no-data-info";
+import { PostPreview } from "./post-preview";
+
+export async function LatestNews() {
   const posts = await getFacebookPosts();
   return (
     <div className="text-xs sm:text-sm md:text-base">
@@ -22,8 +24,8 @@ export async function LatestNews({}) {
             />
           </div>
         ) : (
-          posts.slice(0, 3).map((post, idx) => (
-            <Fragment key={`post-preview-${idx}`}>
+          posts.slice(0, 3).map((post) => (
+            <Fragment key={post.id}>
               <PostPreview post={post} />
               <HorizontalRule />
             </Fragment>

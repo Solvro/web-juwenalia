@@ -1,6 +1,8 @@
-import { FacebookPost, FacebookUser } from "@/lib/types";
 import Image from "next/image";
-import ShareButton from "./shareButton";
+
+import type { FacebookPost, FacebookUser } from "@/lib/types";
+
+import { ShareButton } from "./share-button";
 
 export function Post({
   author,
@@ -34,16 +36,16 @@ export function Post({
             ).toLocaleString()}`}
           >
             {new Date(post.created_time).toLocaleString()}
-            {post.updated_time && post.updated_time != post.created_time && (
+            {post.updated_time && post.updated_time !== post.created_time ? (
               <span> (edited)</span>
-            )}
+            ) : null}
           </p>
         </div>
       </div>
       <p className="whitespace-pre-line border-t-2 pt-2">
-        {post.message || <i className="italic text-slate-400">empty post</i>}
+        {post.message ?? <i className="italic text-slate-400">empty post</i>}
       </p>
-      {post.full_picture && (
+      {post.full_picture === undefined ? null : (
         <Image
           src={post.full_picture}
           alt={"Facebook post image attachment"}
@@ -52,7 +54,7 @@ export function Post({
           height={0}
         />
       )}
-      {post.permalink_url && <ShareButton link={post.permalink_url} />}
+      {post.permalink_url ? <ShareButton link={post.permalink_url} /> : null}
     </div>
   );
 }

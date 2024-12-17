@@ -1,6 +1,6 @@
-import { Countdown } from "@/components/Countdown";
+import { Countdown } from "@/components/countdown";
 import { LatestNews } from "@/components/latest-news/latest-news-section";
-import { Schedule } from "@/components/Schedule";
+import { Schedule } from "@/components/schedule";
 
 export default function Home() {
   return (
