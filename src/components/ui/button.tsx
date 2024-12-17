@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 import {ArrowRight} from "lucide-react";
 
 const buttonVariants = cva(
-  "relative cursor-pointer overflow-hidden inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border text-[16px] md:text-[18px] font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "relative overflow-hidden inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border text-[16px] md:text-[18px] font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
   variants: {
       variant: {
@@ -70,16 +70,16 @@ const GradientButton = React.forwardRef<HTMLButtonElement, GradientButtonProps>(
         ref={ref}
         asChild={asChild}
         size="default"
-        className={cn("cursor-pointer group before:content-[''] before:absolute before:bg-gradient-green-blue " +
-          "before:w-[115%] before:h-[200%] before:z-[-1] isolate before:top-full before:rounded-[50%] " +
-          "before:transition-all before:duration-[250ms] before:ease-out hover:before:-top-1/2 " +
+        className={cn("group before:pointer-events-auto before:content-[''] before:absolute before:bg-gradient-green-blue " +
+          "before:w-[110%] before:h-[200%] before:z-[-1] isolate before:top-full before:rounded-[50%] " +
+          "before:transition-all before:duration-[200ms] before:ease-out hover:before:-top-1/2 " +
           "hover:before:ease-in hover:before:origin-top", {
           'border-black': colorType === 'black',
           'border-white': colorType === 'white'
         })}
         {...props}
       >
-        <div className="flex gap-4 md:gap-8 items-center relative z-2">
+        <div className="flex gap-4 md:gap-8 items-center relative cursor-pointer pointer-events-auto">
           <span className={cn({
             "text-foreground": colorType === 'black',
             'text-white': colorType === 'white'
