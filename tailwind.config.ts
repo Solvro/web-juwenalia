@@ -11,7 +11,7 @@ export default {
     extend: {
       backgroundImage: {
         "gradient-green-blue":
-          "radial-gradient(94.87% 94.87% at 90% 70%, var(--gradient-blue) 0%, var(--gradient-green) 100%)",
+          "radial-gradient(94.87% 94.87% at 90% 70%, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%)",
       },
       fontFamily: {
         sans: ["var(--font-montserrat)", "sans-serif"],
@@ -65,13 +65,13 @@ export default {
       },
       keyframes: {
         "bouncy-arrow-reveal": {
-          "0%": { transform: "scale3d(0, 0, 1) rotate(45deg)" },
+          "0%": { transform: "scale3d(0,0,1) rotate(45deg)" },
           "100%": { transform: "scaleX(1) rotate(0deg)" },
         },
       },
       animation: {
         "reveal-arrow":
-          "bouncy-arrow-reveal 0.2s cubic-bezier(.2, 1.2, .3, 1.4) forwards",
+          "bouncy-arrow-reveal 0.17s cubic-bezier(.2, 1.2, .3, 1.4) forwards",
       },
     },
   },
