@@ -1,21 +1,27 @@
 "use client";
 
-import { StaticMap } from "@/components/StaticMap";
-
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
-const DynamicInteractiveMap = dynamic(() => import("@/components/InteractiveMap").then(mod => mod.InteractiveMap), {
-  ssr: false,
-});
+import { StaticMap } from "@/components/static-map";
+
+const DynamicInteractiveMap = dynamic(
+  async () =>
+    import("@/components/interactive-map").then(
+      (module_) => module_.InteractiveMap,
+    ),
+  {
+    ssr: false,
+  },
+);
 
 export default function Page() {
-	return (
-		<div>
-			<Suspense fallback={<div>Loading...</div>}>
-				<DynamicInteractiveMap />
-			</Suspense>
-			<StaticMap />
-		</div>
-	);
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <DynamicInteractiveMap />
+      </Suspense>
+      <StaticMap />
+    </div>
+  );
 }
