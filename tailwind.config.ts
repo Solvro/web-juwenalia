@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'gradient-green-blue': 'radial-gradient(94.87% 94.87% at 90% 70%, var(--gradient-blue) 0%, var(--gradient-green) 100%)'
+      },
       fontFamily: {
         sans: ["var(--font-montserrat)", "sans-serif"],
       },
@@ -59,19 +62,17 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      backgroundImage: {
-        "gradient-main":
-          "radial-gradient(circle at top left, hsl(var(--primary)), hsl(var(--secondary)))",
-        "gradient-secondary":
-          "radial-gradient(circle at bottom right, hsl(var(--primary)), hsl(var(--secondary)))",
+      keyframes: {
+        'bouncy-arrow-reveal': {
+          '0%': { transform: 'scale(0) rotate(30deg)' },
+          '25%': { transform: 'scale(0.3) rotate(45deg)' },
+          '75%': { transform: 'scale(1) rotate(-4deg)' },
+          '100%': { transform: 'scale(1) rotate(0deg)' },
+        }
       },
-      spacing: {
-        "90": "22rem",
-      },
-      gridTemplateRows: {
-        "animate-height-open": "1fr",
-        "animate-height-closed": "0fr",
-      },
+      animation: {
+        'reveal-arrow': 'bouncy-arrow-reveal 200ms cubic-bezier(0,-0.01,0,.98) forwards'
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],
