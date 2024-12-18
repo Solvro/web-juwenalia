@@ -21,11 +21,11 @@ function TabSelector<T>({
   return (
     <li>
       <Button
-        ref={refObject}
-        className={`rounded-full bg-transparent text-xs ${isSelected ? "text-white" : "text-black"} transition-colors duration-300 md:text-base lg:px-5 lg:py-6 lg:text-lg`}
+        className={`group bg-transparent text-xs ${isSelected ? "rounded-full text-white" : "text-black"} transition-colors duration-300 md:text-base lg:px-5 lg:py-6 lg:text-lg`}
         onClick={(event) => {
           onClick(event, idx);
         }}
+        ref={refObject}
       >
         <Underlined color={isSelected ? "transparent" : "black"}>
           {text}
