@@ -68,7 +68,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           buttonVariants({ variant, size, className, color }),
           "group before:pointer-events-auto before:absolute before:bg-transparent before:content-['']" +
             " isolate before:top-full before:z-[-1] before:h-[200%] before:w-[110%] before:rounded-[50%]" +
-            " before:duration-[200ms] before:ease-[cubic-bezier(.23,1,.32,1)] before:transition-all hover:before:-top-1/2" +
+            " before:ease-[cubic-bezier(.23,1,.32,1)] before:transition-all before:duration-200 hover:before:-top-1/2" +
             " hover:before:origin-top hover:before:ease-in",
           {
             "before:bg-gradient-green-blue": variant === "gradient",
