@@ -45,13 +45,15 @@ export function Post({
         </div>
       </div>
       <p className="whitespace-pre-line border-t-2 pt-2">
-        {(post.message == null || post.message.trim() === "") && (
+        {(post.message ?? "") || (
           <i className="italic text-slate-400">empty post</i>
         )}
       </p>
       <div className="flex flex-wrap justify-center md:justify-start">
         <PostAttachments attachments={post.attachments?.data ?? []} />
-        {post.permalink_url && <ShareButton link={post.permalink_url} />}
+        {post.permalink_url.length > 0 && (
+          <ShareButton link={post.permalink_url} />
+        )}
       </div>
     </div>
   );
