@@ -27,7 +27,7 @@ function TabSelector<T>({
         }}
         ref={refObject}
       >
-        <Underlined color={isSelected ? "transparent" : "black"}>
+        <Underlined bgClass={isSelected ? "bg-transparent" : undefined}>
           {text}
         </Underlined>
       </Button>
