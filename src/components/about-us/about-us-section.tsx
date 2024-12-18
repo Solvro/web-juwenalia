@@ -10,12 +10,10 @@ import { PartnersList } from "./partners";
 
 function Section({
   children,
-  className,
   header,
   body,
 }: {
   children: ReactNode;
-  className?: string;
   header: string;
   body?: string;
 }) {
@@ -23,14 +21,12 @@ function Section({
     <>
       <div>
         <HomepageHeader>{header}</HomepageHeader>
-        {body != null && (
+        {body != null && body.length > 0 && (
           <p className="text-xl lg:text-2xl xl:text-3xl">{body}</p>
         )}
         <HorizontalRule />
       </div>
-      <div className={`mb-20 mt-6 flex flex-col gap-5 ${className ?? ""}`}>
-        {children}
-      </div>
+      <div className="mb-20 mt-6 flex flex-col gap-5">{children}</div>
     </>
   );
 }
