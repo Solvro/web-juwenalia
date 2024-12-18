@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-import { PersonCardList } from "@/components/about/person-card-list";
-import { TabSelectorBar } from "@/components/about/tab-selector-bar";
+import { PersonCardList } from "@/components/about-us/person-card-list";
+import { TabSelectorBar } from "@/components/about-us/tab-selector-bar";
 import type { Person } from "@/lib/types";
 
 const CREATORS: Person[] = [

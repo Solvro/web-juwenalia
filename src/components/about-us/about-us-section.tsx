@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { HorizontalRule } from "@/components/horizontal-rule";
 
+import { HomepageHeader } from "../homepage-header";
 import { CreatorsList } from "./creators";
 import { OrganisersList } from "./organisers";
 import { PartnersList } from "./partners";
@@ -19,9 +20,13 @@ function Section({
 }) {
   return (
     <>
-      <h1 className={`text-2xl font-extrabold ${className ?? ""}`}>{header}</h1>
-      {body != null && <p className="text-xl">{body}</p>}
-      <HorizontalRule />
+      <div>
+        <HomepageHeader>{header}</HomepageHeader>
+        {body != null && (
+          <p className="text-xl lg:text-2xl xl:text-3xl">{body}</p>
+        )}
+        <HorizontalRule />
+      </div>
       <div className={`mb-20 mt-6 flex flex-col gap-5 ${className ?? ""}`}>
         {children}
       </div>
@@ -29,7 +34,7 @@ function Section({
   );
 }
 
-export default function AboutPage() {
+export function AboutUs() {
   return (
     <div className="mt-10 flex flex-col gap-5 px-6 sm:px-10 md:px-12 lg:px-20">
       <Section header="Partnerzy">
