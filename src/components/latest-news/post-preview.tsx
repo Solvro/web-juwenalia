@@ -1,10 +1,12 @@
 "use client";
 
-import { FacebookPost } from "@/lib/types";
 import { format } from "date-fns";
 import { pl } from "date-fns/locale";
 import { useState } from "react";
-import { Button } from "../ui/button";
+
+import type { FacebookPost } from "@/lib/types";
+
+import { Button } from "../button";
 
 export function PostPreview({ post }: { post: FacebookPost }) {
   const date = format(post.updated_time, "dd MMMM yyyy", { locale: pl });
@@ -21,7 +23,7 @@ export function PostPreview({ post }: { post: FacebookPost }) {
       <p className="text-xs text-primary md:text-sm lg:text-base">{date}</p>
       <div className="md:w-3/4 lg:w-2/3">
         <h3 className="md:text-xl lg:text-2xl">
-          {postTitle ? (
+          {postTitle === undefined ? (
             <b className="font-bold">{postTitle}</b>
           ) : (
             <i>Brak tytułu</i>
@@ -41,7 +43,13 @@ export function PostPreview({ post }: { post: FacebookPost }) {
               </p>
             </div>
           }
-          <Button variant="link" onClick={() => setShowDetails((old) => !old)}>
+          <Button
+            className="cursor-pointer list-none underline"
+            variant="ghost"
+            onClick={() => {
+              setShowDetails((old) => !old);
+            }}
+          >
             {showDetails ? "Zwiń" : "Zobacz więcej"}
           </Button>
         </div>

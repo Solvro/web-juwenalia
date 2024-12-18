@@ -1,15 +1,16 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { ClipboardCheckIcon, Share2Icon } from "lucide-react";
 import { useState } from "react";
 
-export default function ShareButton({ link }: { link: string }) {
+import { Button } from "@/components/button";
+
+export function ShareButton({ link }: { link: string }) {
   const [clicked, setClicked] = useState(false);
 
   function handleClick() {
     setClicked(true);
-    navigator.clipboard.writeText(link);
+    void navigator.clipboard.writeText(link);
     setTimeout(() => {
       setClicked(false);
     }, 3000);

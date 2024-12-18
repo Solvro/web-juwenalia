@@ -1,13 +1,14 @@
 "use client";
 
-import { NoDataInfoProps } from "@/lib/types";
+import type { NoDataInfoProps } from "@/lib/types";
+
 import { Button } from "./button";
 
-const NoDataInfo = ({ errorTitle, errorMessage }: NoDataInfoProps) => {
-  const handleReload = () => {
-    window.location.reload();
-  };
+const handleReload = () => {
+  window.location.reload();
+};
 
+function NoDataInfo({ errorTitle, errorMessage }: NoDataInfoProps) {
   return (
     <div className="align-center flex flex-col items-center">
       <h3 className="mb-5 text-lg font-bold">{errorTitle}</h3>
@@ -15,6 +16,6 @@ const NoDataInfo = ({ errorTitle, errorMessage }: NoDataInfoProps) => {
       <Button onClick={handleReload}>odśwież</Button>
     </div>
   );
-};
+}
 
 export { NoDataInfo };

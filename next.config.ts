@@ -1,13 +1,13 @@
-import type { NextConfig } from 'next';
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'cms.juwenalia.solvro.pl',
-        port: '',
-        pathname: '/assets/**',
+        protocol: "https",
+        hostname: "cms.juwenalia.solvro.pl",
+        port: "",
+        pathname: "/assets/**",
       },
       {
         // Facebook CDN for posted images
