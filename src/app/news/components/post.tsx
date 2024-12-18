@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import type { FacebookPost, FacebookUser } from "@/lib/types";
 
+import { PostAttachments } from "./post-attachments";
 import { ShareButton } from "./share-button";
 
 export function Post({
@@ -12,7 +13,7 @@ export function Post({
   post: FacebookPost;
 }) {
   return (
-    <div className="w-1/3 rounded-xl border p-3">
+    <div className="m-3 mt-0 rounded-xl border p-3 text-sm md:m-10 md:mt-0 md:w-2/3 md:text-base xl:w-1/2">
       <div className="mb-3 flex items-center">
         <a href={author.link} target="_blank" rel="noopener noreferrer">
           <Image
@@ -30,31 +31,30 @@ export function Post({
             </a>
           </p>
           <p
-            className="flex items-center gap-1 text-sm text-gray-500"
-            title={`last updated: ${new Date(
+            className="flex items-center gap-1 text-xs text-gray-500 md:text-sm"
+            title={`ostatnia modyfikacja: ${new Date(
               post.updated_time,
             ).toLocaleString()}`}
           >
             {new Date(post.created_time).toLocaleString()}
-            {post.updated_time && post.updated_time !== post.created_time ? (
-              <span> (edited)</span>
-            ) : null}
+            {post.updated_time.length > 0 &&
+              post.updated_time !== post.created_time && (
+                <span> (edytowano)</span>
+              )}
           </p>
         </div>
       </div>
       <p className="whitespace-pre-line border-t-2 pt-2">
-        {post.message ?? <i className="italic text-slate-400">empty post</i>}
+        {(post.message ?? "") || (
+          <i className="italic text-slate-400">empty post</i>
+        )}
       </p>
-      {post.full_picture === undefined ? null : (
-        <Image
-          src={post.full_picture}
-          alt={"Facebook post image attachment"}
-          className="my-4"
-          width={800}
-          height={0}
-        />
-      )}
-      {post.permalink_url ? <ShareButton link={post.permalink_url} /> : null}
+      <div className="flex flex-wrap justify-center md:justify-start">
+        <PostAttachments attachments={post.attachments?.data ?? []} />
+        {post.permalink_url.length > 0 && (
+          <ShareButton link={post.permalink_url} />
+        )}
+      </div>
     </div>
   );
 }

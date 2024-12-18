@@ -7,29 +7,37 @@ import { Button } from "@/components/ui/button";
 
 export function ShareButton({ link }: { link: string }) {
   const [clicked, setClicked] = useState(false);
+  const [copyingFailed, setCopyingFailed] = useState(false);
 
-  function handleClick() {
+  async function handleClick() {
     setClicked(true);
-    void navigator.clipboard.writeText(link);
+    if ("clipboard" in navigator && "writeText" in navigator.clipboard) {
+      await navigator.clipboard.writeText(link);
+    } else {
+      setCopyingFailed(true);
+    }
     setTimeout(() => {
       setClicked(false);
     }, 3000);
   }
   return (
     <Button
-      className="min-w-36"
+      className="align-bottom"
+      variant={copyingFailed ? "destructive" : "default"}
       onClick={handleClick}
       disabled={clicked}
       title="Copy post URL to clipboard"
     >
-      {clicked ? (
+      {copyingFailed ? (
+        <>Nie udało się skopiować</>
+      ) : clicked ? (
         <>
-          <ClipboardCheckIcon /> URL copied!
+          <ClipboardCheckIcon /> Skopiowano!
         </>
       ) : (
         <>
           <Share2Icon />
-          Share
+          Udostępnij
         </>
       )}
     </Button>
