@@ -1,9 +1,10 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { FacebookAttachment } from "@/lib/types";
 import Image from "next/image";
 import { useState } from "react";
+
+import { Button } from "@/components/ui/button";
+import type { FacebookAttachment } from "@/lib/types";
 
 function PostAttachment({ attachment }: { attachment: FacebookAttachment }) {
   const [showSubAttachments, setShowSubAttachments] = useState(false);
@@ -20,14 +21,15 @@ function PostAttachment({ attachment }: { attachment: FacebookAttachment }) {
           className="my-4"
           width={800}
           height={0}
-          // width={attachment.media.image.width}
-          // height={attachment.media.image.height}
         />
       )}
-      {hasSubAttachments && (
+      {/* @solvro/config forced me into doing !! on a boolean */}
+      {!!hasSubAttachments && (
         <Button
           className="order-2 ml-3 hover:text-primary"
-          onClick={() => setShowSubAttachments((old) => !old)}
+          onClick={() => {
+            setShowSubAttachments((old) => !old);
+          }}
         >
           {showSubAttachments ? "Mniej" : "Więcej"} zdjęć
         </Button>
@@ -41,7 +43,7 @@ export function PostAttachments({
 }: {
   attachments: FacebookAttachment[];
 }) {
-  return attachments.map((attachment, idx) => (
-    <PostAttachment attachment={attachment} key={`post-attachment-${idx}`} />
+  return attachments.map((attachment) => (
+    <PostAttachment attachment={attachment} key={attachment.media.image.src} />
   ));
 }
