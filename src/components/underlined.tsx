@@ -9,12 +9,12 @@ import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 export function Underlined<T extends ElementType = "div">({
   children,
   tag,
-  color = "black",
+  bgClass = "bg-black",
   ...props
 }: {
   children: ReactNode;
   tag?: T;
-  color?: string;
+  bgClass?: string;
 } & ComponentPropsWithoutRef<T>) {
   const Tag = tag ?? "div";
   return (
@@ -22,7 +22,7 @@ export function Underlined<T extends ElementType = "div">({
       {children}
       {/* Fajny underline effect od ChatGPT, nie wiem jak działa ale działa */}
       <div
-        className={`absolute h-[1px] w-full origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 bg-${color}`}
+        className={`absolute h-[1px] w-full origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${bgClass}`}
       ></div>
     </Tag>
   );
