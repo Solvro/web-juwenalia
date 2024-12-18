@@ -30,21 +30,17 @@ export function PostPreview({ post }: { post: FacebookPost }) {
           )}
         </h3>
         <div className={`flex flex-col items-start gap-3`}>
-          {
-            <div
-              className={`grid transition-all ease-in-out ${
-                showDetails
-                  ? "visible grid-rows-animate-height-open opacity-100"
-                  : "invisible grid-rows-animate-height-closed opacity-0"
-              }`}
-            >
-              <p className="overflow-hidden whitespace-pre-line">
-                {postMessage}
-              </p>
-            </div>
-          }
+          <div
+            className={`grid transition-all ease-in-out ${
+              showDetails
+                ? "visible grid-rows-animate-height-open opacity-100"
+                : "invisible grid-rows-animate-height-closed opacity-0"
+            }`}
+          >
+            <p className="overflow-hidden whitespace-pre-line">{postMessage}</p>
+          </div>
           <Button
-            className="cursor-pointer list-none underline"
+            className="cursor-pointer list-none underline md:text-base"
             variant="ghost"
             onClick={() => {
               setShowDetails((old) => !old);

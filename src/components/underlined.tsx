@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef, ElementType } from "react";
+import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 
 /**
  * A generic component which has an underline effect on hover.
@@ -6,13 +6,13 @@ import type { ComponentPropsWithoutRef, ElementType } from "react";
  * visible whenever the parent is hovered. By default the underline effect is visible
  * only the element itself is hovered.
  */
-export function Underlined<T extends ElementType>({
+export function Underlined<T extends ElementType = "div">({
   children,
   tag,
   color = "black",
   ...props
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   tag?: T;
   color?: string;
 } & ComponentPropsWithoutRef<T>) {
