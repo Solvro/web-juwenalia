@@ -12,9 +12,9 @@ export function ShareButton({ link }: { link: string }) {
   async function handleClick() {
     setClicked(true);
     if ("clipboard" in navigator && "writeText" in navigator.clipboard) {
-      setCopyingFailed(true);
-    } else {
       await navigator.clipboard.writeText(link);
+    } else {
+      setCopyingFailed(true);
     }
     setTimeout(() => {
       setClicked(false);

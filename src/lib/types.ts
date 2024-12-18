@@ -60,7 +60,7 @@ export interface FacebookAttachment {
       src: string;
     };
   };
-  subattachments: FacebookAttachments;
+  subattachments?: FacebookAttachments;
 }
 
 /** A Facebook post as returned by the Facebook API. */
