@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, MouseEvent, RefObject } from "react";
 
 import { Button } from "../ui/button";
+import { Underlined } from "../underlined";
 
 function TabSelector<T>({
   text,
@@ -21,12 +22,14 @@ function TabSelector<T>({
     <li>
       <Button
         ref={refObject}
-        className={`rounded-full bg-transparent text-xs ${isSelected ? "text-white" : "text-black"} transition-colors duration-300`}
+        className={`rounded-full bg-transparent text-xs ${isSelected ? "text-white" : "text-black"} transition-colors duration-300 md:text-base lg:px-5 lg:py-6 lg:text-lg`}
         onClick={(event) => {
           onClick(event, idx);
         }}
       >
-        {text}
+        <Underlined color={isSelected ? "transparent" : "black"}>
+          {text}
+        </Underlined>
       </Button>
     </li>
   );

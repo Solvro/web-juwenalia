@@ -7,6 +7,7 @@ import { getFacebookPosts } from "@/lib/facebook";
 import { HomepageHeader } from "../homepage-header";
 import { HorizontalRule } from "../horizontal-rule";
 import { NoDataInfo } from "../no-data-info";
+import { Underlined } from "../underlined";
 import { PostPreview } from "./post-preview";
 
 export async function LatestNews() {
@@ -32,8 +33,10 @@ export async function LatestNews() {
           ))
         )}
       </div>
-      <div className="mb-10 mt-5 flex justify-center md:text-lg lg:mt-10 lg:text-2xl">
-        <Link href="/news">Przejrzyj więcej aktualności</Link>
+      <div className="mb-10 mt-5 flex items-center justify-center gap-1 md:text-lg lg:mt-10 lg:text-2xl">
+        <Underlined tag={Link} href="/news">
+          Przejrzyj więcej aktualności
+        </Underlined>
         <ArrowUpRight />
       </div>
     </div>

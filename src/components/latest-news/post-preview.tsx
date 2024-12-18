@@ -24,9 +24,9 @@ export function PostPreview({ post }: { post: FacebookPost }) {
       <div className="md:w-3/4 lg:w-2/3">
         <h3 className="md:text-xl lg:text-2xl">
           {postTitle === undefined ? (
-            <b className="font-bold">{postTitle}</b>
-          ) : (
             <i>Brak tytułu</i>
+          ) : (
+            <b className="font-bold">{postTitle}</b>
           )}
         </h3>
         <div className={`flex flex-col items-start gap-3`}>

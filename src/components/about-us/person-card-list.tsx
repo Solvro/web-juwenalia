@@ -33,7 +33,7 @@ function PersonCard({ person }: { person: Person }) {
 export function PersonCardList({ people }: { people: Person[] }) {
   return (
     <ul
-      className={`mt-10 grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-x-2 gap-y-5 sm:gap-x-8 sm:gap-y-10 lg:gap-14`}
+      className={`mt-10 grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-x-2 gap-y-5 sm:gap-x-8 sm:gap-y-10 md:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] lg:gap-14`}
     >
       {people.map((person) => (
         <li

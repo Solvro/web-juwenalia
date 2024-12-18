@@ -1,9 +1,10 @@
 "use client";
+
 import { useState } from "react";
 
-import { Person } from "@/lib/types";
-import { PersonCardList } from "@/components/about/person-card-list";
-import { TabSelectorBar } from "@/components/about/tab-selector-bar";
+import { PersonCardList } from "@/components/about-us/person-card-list";
+import { TabSelectorBar } from "@/components/about-us/tab-selector-bar";
+import type { Person } from "@/lib/types";
 
 const CREATORS: Person[] = [
   { name: "Adrian Iskra", role: "UI/UX" },
@@ -20,19 +21,19 @@ const CREATORS: Person[] = [
 const ROLES = ["Wszyscy", "Frontend", "UI/UX", "PM & TL"] as const;
 
 const getSurname = (person: Person) =>
-  person.name.split(" ").at(-1) || person.name;
+  person.name.split(" ").at(-1) ?? person.name;
 
 /** To be used when sorting an array of `Person`. Currently sorts by surname in ascending alphabetical order. */
 const comparePeople = (a: Person, b: Person) =>
   getSurname(a).localeCompare(getSurname(b));
 
 export function CreatorsList() {
-  const [selectedIdx, setSelectedIdx] = useState<keyof typeof ROLES>(0);
+  const [selectedIndex, setSelectedIndex] = useState<keyof typeof ROLES>(0);
 
-  const role = ROLES[selectedIdx];
+  const role = ROLES[selectedIndex];
 
   const creators =
-    selectedIdx === 0
+    selectedIndex === 0
       ? CREATORS
       : CREATORS.filter(
           (creator) => role === (creator.generalRole ?? creator.role),
@@ -42,8 +43,8 @@ export function CreatorsList() {
     <>
       <TabSelectorBar
         options={ROLES}
-        selectedIdx={selectedIdx}
-        setSelectedIdx={setSelectedIdx}
+        selectedIdx={selectedIndex}
+        setSelectedIdx={setSelectedIndex}
       />
       <PersonCardList people={creators.sort(comparePeople)} />
     </>
