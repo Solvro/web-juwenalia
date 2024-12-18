@@ -4,9 +4,11 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-import { PersonCardList } from "@/components/about/person-card-list";
-import { TabSelectorBar } from "@/components/about/tab-selector-bar";
+import { PersonCardList } from "@/components/about-us/person-card-list";
+import { TabSelectorBar } from "@/components/about-us/tab-selector-bar";
 import type { Organisation, Person } from "@/lib/types";
+
+import { Underlined } from "../underlined";
 
 const ROLES = ["Organizatorzy", "Koordynatorzy", "Sztab"] as const;
 
@@ -65,15 +67,11 @@ export function OrganisersList() {
             <li key={`organiser-${organisation.name}`}>
               <Link
                 href={organisation.url}
-                className="group flex w-fit gap-2"
+                className="group flex w-fit gap-2 lg:text-lg xl:text-xl 2xl:text-2xl"
                 target="_blank"
               >
                 <ArrowUpRight />
-                <div className="relative">
-                  {organisation.name}
-                  {/* Fajny underline effect od ChatGPT, nie wiem jak działa ale działa */}
-                  <div className="absolute h-[1px] w-full origin-left scale-x-0 bg-black transition-transform duration-300 group-hover:scale-x-100"></div>
-                </div>
+                <Underlined>{organisation.name}</Underlined>
               </Link>
             </li>
           ))}
