@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -8,17 +8,26 @@ import { PersonCardList } from "@/components/about-us/person-card-list";
 import { TabSelectorBar } from "@/components/about-us/tab-selector-bar";
 import type { Organisation, Person } from "@/lib/types";
 
-import { Underlined } from "../underlined";
-
 const ROLES = ["Organizatorzy", "Koordynatorzy", "Sztab"] as const;
 
 const ORGANISERS: (Organisation[] | Person[])[] = [
   [
-    { name: "Politechnika Wrocławska", url: "https://pwr.edu.pl" },
-    { name: "Uniwersytet Wrocławski", url: "https://uwr.edu.pl" },
+    {
+      name: "Politechnika Wrocławska",
+      url: "https://pwr.edu.pl",
+      logo: "https://www.iskierkawroc.pl/wp-content/uploads/2019/04/logo-PWr-kolor-pion-bez-tla.png",
+      logoScale: 0.4,
+    },
+    {
+      name: "Uniwersytet Wrocławski",
+      url: "https://uwr.edu.pl",
+      logo: "https://www.ogrodbotaniczny.wroclaw.pl/images/bg/logo_uwr.png",
+      logoScale: 0.85,
+    },
     {
       name: "Uniwersytet Medyczny we Wrocławiu",
       url: "https://www.umw.edu.pl",
+      logo: "https://www.wroclaw.pl/files/cumulus/1/__hidden/cms_document_fields/umed-mini.jpg",
     },
   ],
   [
@@ -49,20 +58,20 @@ const isOrganisationArray = (
 ): array is Organisation[] => "url" in array[0];
 
 export function OrganisersList() {
-  const [selectedIdx, setSelectedIdx] = useState<keyof typeof ROLES>(0);
+  const [selectedIndex, setSelectedIndex] = useState<keyof typeof ROLES>(0);
 
-  const section = ORGANISERS[selectedIdx as number];
-  const isNameArray = typeof section[0] === "string";
+  const section = ORGANISERS[selectedIndex as number];
 
   return (
     <>
       <TabSelectorBar
         options={ROLES}
-        selectedIdx={selectedIdx}
-        setSelectedIdx={setSelectedIdx}
+        selectedIdx={selectedIndex}
+        setSelectedIdx={setSelectedIndex}
       />
       {isOrganisationArray(section) ? (
-        <ul className="mt-10 flex flex-col gap-2 gap-y-5">
+        // TODO: Convert into carousel
+        <ul className="mt-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-5 sm:gap-x-8 md:gap-x-12 lg:gap-x-16 xl:gap-x-20 2xl:gap-x-24">
           {section.map((organisation) => (
             <li key={`organiser-${organisation.name}`}>
               <Link
@@ -70,14 +79,22 @@ export function OrganisersList() {
                 className="group flex w-fit gap-2 lg:text-lg xl:text-xl 2xl:text-2xl"
                 target="_blank"
               >
-                <ArrowUpRight />
-                <Underlined>{organisation.name}</Underlined>
+                <Image
+                  src={organisation.logo}
+                  alt={organisation.name}
+                  width={150}
+                  height={0}
+                  className={`w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64`}
+                  style={{
+                    transform: `scale(${organisation.logoScale?.toString() ?? "1"})`,
+                  }}
+                />
               </Link>
             </li>
           ))}
         </ul>
       ) : (
-        <PersonCardList people={section as Person[]} />
+        <PersonCardList people={section} />
       )}
     </>
   );

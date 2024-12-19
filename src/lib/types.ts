@@ -101,6 +101,8 @@ export interface FacebookAccessToken {
 export interface Organisation {
   name: string;
   url: string;
+  logo: string;
+  logoScale?: number;
 }
 
 export interface Person {

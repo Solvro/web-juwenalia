@@ -19,6 +19,21 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "platform-lookaside.fbsbx.com",
       },
+      {
+        // Temporary: for PWr logo
+        protocol: "https",
+        hostname: "www.iskierkawroc.pl",
+      },
+      {
+        // Temporary: for UWr logo
+        protocol: "https",
+        hostname: "www.ogrodbotaniczny.wroclaw.pl",
+      },
+      {
+        // Temporary: for UMWr logo
+        protocol: "https",
+        hostname: "www.wroclaw.pl",
+      },
     ],
   },
 };
