@@ -4,6 +4,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
 import { ArrowRight } from "lucide-react";
 import * as React from "react";
+import { Config } from "tailwindcss";
 
 import { cn } from "@/lib/utils";
 
@@ -14,7 +15,7 @@ const buttonVariants = cva(
       variant: {
         default: "text-foreground",
         secondary: "",
-        gradient: "",
+        gradient: "before:bg-gradient-main",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         ghost:
@@ -71,12 +72,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             " before:ease-[cubic-bezier(.23,1,.32,1)] before:transition-all before:duration-200 hover:before:-top-1/2" +
             " hover:before:origin-top hover:before:ease-in",
           {
-            "before:bg-gradient-main": variant === "gradient",
             "before:bg-white":
-              ["default", "secondary"].includes(variant) &&
+              ["default", "secondary"].includes(variant || "") &&
               variantColor === "white",
             "before:bg-black":
-              ["default", "secondary"].includes(variant) &&
+              ["default", "secondary"].includes(variant || "") &&
               ["black"].includes(variantColor),
           },
         )}
@@ -89,12 +89,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               "text-foreground": variantColor === "black",
               "text-white": variantColor === "white",
               "group-hover:text-black":
-                ["default", "secondary"].includes(variant) &&
+                ["default", "secondary"].includes(variant || "") &&
                 variantColor === "white",
               "group-hover:text-white":
-                ["default", "secondary"].includes(variant) &&
+                ["default", "secondary"].includes(variant || "") &&
                 variantColor === "black",
-              "underscore-anim": variant === "link",
+              "": variant === "link",
             })}
           >
             {children}
