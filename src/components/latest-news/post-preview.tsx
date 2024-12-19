@@ -24,27 +24,23 @@ export function PostPreview({ post }: { post: FacebookPost }) {
       <div className="md:w-3/4 lg:w-2/3">
         <h3 className="md:text-xl lg:text-2xl">
           {postTitle === undefined ? (
-            <b className="font-bold">{postTitle}</b>
-          ) : (
             <i>Brak tytułu</i>
+          ) : (
+            <b className="font-bold">{postTitle}</b>
           )}
         </h3>
         <div className={`flex flex-col items-start gap-3`}>
-          {
-            <div
-              className={`grid transition-all ease-in-out ${
-                showDetails
-                  ? "visible grid-rows-animate-height-open opacity-100"
-                  : "invisible grid-rows-animate-height-closed opacity-0"
-              }`}
-            >
-              <p className="overflow-hidden whitespace-pre-line">
-                {postMessage}
-              </p>
-            </div>
-          }
+          <div
+            className={`grid transition-all ease-in-out ${
+              showDetails
+                ? "visible grid-rows-animate-height-open opacity-100"
+                : "invisible grid-rows-animate-height-closed opacity-0"
+            }`}
+          >
+            <p className="overflow-hidden whitespace-pre-line">{postMessage}</p>
+          </div>
           <Button
-            className="cursor-pointer list-none underline"
+            className="cursor-pointer list-none underline md:text-base"
             variant="ghost"
             onClick={() => {
               setShowDetails((old) => !old);

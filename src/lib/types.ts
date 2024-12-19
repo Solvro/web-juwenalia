@@ -77,3 +77,17 @@ export interface FacebookAccessToken {
 }
 
 // #endregion
+
+// #region --- About Us Page ---
+export interface Organisation {
+  name: string;
+  url: string;
+}
+
+export interface Person {
+  name: string;
+  role: string;
+  generalRole?: string;
+  image?: string;
+}
+// #endregion
