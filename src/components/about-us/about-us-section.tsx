@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import { HorizontalRule } from "@/components/horizontal-rule";
 
 import { HomepageHeader } from "../homepage-header";
-import { CreatorsList } from "./creators";
 import { OrganisersList } from "./organisers";
 import { PartnersList } from "./partners";
 
@@ -43,12 +42,6 @@ export function AboutUs() {
           magnis augue scelerisque facilisi accumsan."
       >
         <OrganisersList />
-      </Section>
-      <Section
-        header="Twórcy aplikacji"
-        body="Lorem ipsum dolor sit amet consectetur. Lectus purus faucibus senectus hendrerit nullam consequat amet convallis sagittis. Quisque mauris magnis augue scelerisque facilisi accumsan."
-      >
-        <CreatorsList />
       </Section>
     </div>
   );
