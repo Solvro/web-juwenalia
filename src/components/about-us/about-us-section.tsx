@@ -1,7 +1,6 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
-import { Button } from "@/components/ui/button";
-import { HorizontalRule } from "@/components/ui/horizontal-rule";
+import { HorizontalRule } from "@/components/horizontal-rule";
 
 import { HomepageHeader } from "../homepage-header";
 import { CreatorsList } from "./creators";

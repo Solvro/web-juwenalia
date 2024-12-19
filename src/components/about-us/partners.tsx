@@ -25,8 +25,8 @@ export function PartnersList() {
     <>
       <TabSelectorBar
         options={PARTNER_TYPES}
-        selectedIdx={selectedIdx}
-        setSelectedIdx={setSelectedIdx}
+        selectedIdx={selectedIndex}
+        setSelectedIdx={setSelectedIndex}
       />
       <div className="mt-6 flex flex-wrap justify-center gap-x-2 gap-y-5 md:gap-x-3 md:gap-y-6 lg:gap-x-4 lg:gap-y-7">
         {[...Array.from({ length: skeletonsLength }).keys()].map(

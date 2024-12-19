@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, MouseEvent, RefObject } from "react";
 
-import { Button } from "../ui/button";
 import { Underlined } from "../underlined";
 
 function TabSelector<T>({
@@ -20,8 +19,8 @@ function TabSelector<T>({
   const isSelected = idx === selectedIdx;
   return (
     <li>
-      <Button
-        className={`group bg-transparent text-xs ${isSelected ? "rounded-full text-white" : "text-black"} transition-colors duration-300 md:text-base lg:px-5 lg:py-6 lg:text-lg`}
+      <button
+        className={`group bg-transparent px-2 py-1 text-xs sm:px-3 sm:py-2 md:px-4 md:py-2 ${isSelected ? "rounded-full text-white" : "text-black"} transition-colors duration-300 md:text-base lg:px-5 lg:py-3 lg:text-lg`}
         onClick={(event) => {
           onClick(event, idx);
         }}
@@ -30,12 +29,12 @@ function TabSelector<T>({
         <Underlined bgClass={isSelected ? "bg-transparent" : undefined}>
           {text}
         </Underlined>
-      </Button>
+      </button>
     </li>
   );
 }
 
-export function TabSelectorBar<T extends readonly any[]>({
+export function TabSelectorBar<T extends readonly string[]>({
   options,
   selectedIdx,
   setSelectedIdx,
