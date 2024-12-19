@@ -21,7 +21,7 @@ const buttonVariants = cva(
           "border-0 bg-slate-500/0 transition-colors hover:bg-slate-500/10",
         link: "border-0 !py-1 !px-2",
       },
-      color: {
+      variantColor: {
         default: "border-black",
         black: "border-black",
         white: "!border-white",
@@ -36,7 +36,7 @@ const buttonVariants = cva(
     defaultVariants: {
       variant: "default",
       size: "default",
-      color: "default",
+      variantColor: "default",
     },
   },
 );
@@ -54,7 +54,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       variant = "default",
       size,
-      color = "black",
+      variantColor = "black",
       asChild = false,
       ...props
     },
@@ -65,7 +65,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp
         className={cn(
-          buttonVariants({ variant, size, className, color }),
+          buttonVariants({ variant, size, className, variantColor }),
           "group before:pointer-events-auto before:absolute before:bg-transparent before:content-['']" +
             " isolate before:top-full before:z-[-1] before:h-[200%] before:w-[110%] before:rounded-[50%]" +
             " before:ease-[cubic-bezier(.23,1,.32,1)] before:transition-all before:duration-200 hover:before:-top-1/2" +
@@ -73,10 +73,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           {
             "before:bg-gradient-main": variant === "gradient",
             "before:bg-white":
-              ["default", "secondary"].includes(variant) && color === "white",
+              ["default", "secondary"].includes(variant) &&
+              variantColor === "white",
             "before:bg-black":
               ["default", "secondary"].includes(variant) &&
-              ["black"].includes(color),
+              ["black"].includes(variantColor),
           },
         )}
         ref={ref}
@@ -85,12 +86,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <div className="pointer-events-auto relative flex cursor-pointer items-center gap-4 md:gap-8">
           <span
             className={cn("lowercase transition-all duration-200", {
-              "text-foreground": color === "black",
-              "text-white": color === "white",
+              "text-foreground": variantColor === "black",
+              "text-white": variantColor === "white",
               "group-hover:text-black":
-                ["default", "secondary"].includes(variant) && color === "white",
+                ["default", "secondary"].includes(variant) &&
+                variantColor === "white",
               "group-hover:text-white":
-                ["default", "secondary"].includes(variant) && color === "black",
+                ["default", "secondary"].includes(variant) &&
+                variantColor === "black",
               "underscore-anim": variant === "link",
             })}
           >
@@ -104,8 +107,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                   "h-2 w-2 rounded-full transition-transform duration-75 group-hover:scale-0",
                   {
                     "bg-gradient-main": variant === "gradient",
-                    "bg-white": variant === "secondary" && color === "white",
-                    "bg-black": variant === "secondary" && color === "black",
+                    "bg-white":
+                      variant === "secondary" && variantColor === "white",
+                    "bg-black":
+                      variant === "secondary" && variantColor === "black",
                   },
                 )}
               />
