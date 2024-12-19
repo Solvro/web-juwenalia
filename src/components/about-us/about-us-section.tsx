@@ -20,18 +20,22 @@ function Section({
       <div>
         <HomepageHeader>{header}</HomepageHeader>
         {body != null && body.length > 0 && (
-          <p className="text-xl lg:text-2xl xl:text-3xl">{body}</p>
+          <p className="px-6 text-xl sm:px-10 md:px-12 lg:px-20 lg:text-2xl xl:text-3xl">
+            {body}
+          </p>
         )}
         <HorizontalRule />
       </div>
-      <div className="mb-20 mt-6 flex flex-col gap-5">{children}</div>
+      <div className="mb-20 mt-6 flex flex-col gap-5 px-6 sm:px-10 md:px-12 lg:px-20">
+        {children}
+      </div>
     </>
   );
 }
 
 export function AboutUs() {
   return (
-    <div className="mt-10 flex flex-col gap-5 px-6 sm:px-10 md:px-12 lg:px-20">
+    <div className="mt-10 flex flex-col gap-5">
       <Section header="Partnerzy">
         <PartnersList />
       </Section>
