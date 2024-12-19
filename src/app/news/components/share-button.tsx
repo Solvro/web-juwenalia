@@ -22,24 +22,24 @@ export function ShareButton({ link }: { link: string }) {
   }
   return (
     <Button
-      className="align-bottom"
       variant={copyingFailed ? "destructive" : "default"}
       onClick={handleClick}
       disabled={clicked}
-      title="Copy post URL to clipboard"
+      title="Skopiuj link do schowka"
     >
-      {copyingFailed ? (
-        <>Nie udało się skopiować</>
-      ) : clicked ? (
-        <>
-          <ClipboardCheckIcon /> Skopiowano!
-        </>
-      ) : (
-        <>
-          <Share2Icon />
-          Udostępnij
-        </>
-      )}
+      <div className="flex items-center gap-4">
+        {copyingFailed ? (
+          <>Nie udało się skopiować</>
+        ) : clicked ? (
+          <>
+            <ClipboardCheckIcon /> Skopiowano!
+          </>
+        ) : (
+          <>
+            <Share2Icon /> Udostępnij
+          </>
+        )}
+      </div>
     </Button>
   );
 }
