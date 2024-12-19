@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/button";
 import type { FacebookAttachment } from "@/lib/types";
 
 function PostAttachment({ attachment }: { attachment: FacebookAttachment }) {
@@ -26,7 +26,7 @@ function PostAttachment({ attachment }: { attachment: FacebookAttachment }) {
       {/* @solvro/config forced me into doing !! on a boolean */}
       {!!hasSubAttachments && (
         <Button
-          className="order-2 ml-3 hover:text-primary"
+          className="order-2 ml-3"
           onClick={() => {
             setShowSubAttachments((old) => !old);
           }}

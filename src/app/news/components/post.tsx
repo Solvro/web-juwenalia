@@ -34,9 +34,9 @@ export function Post({
             className="flex items-center gap-1 text-xs text-gray-500 md:text-sm"
             title={`ostatnia modyfikacja: ${new Date(
               post.updated_time,
-            ).toLocaleString()}`}
+            ).toLocaleString("pl-PL")}`}
           >
-            {new Date(post.created_time).toLocaleString()}
+            {new Date(post.created_time).toLocaleString("pl-PL")}
             {post.updated_time.length > 0 &&
               post.updated_time !== post.created_time && (
                 <span> (edytowano)</span>
@@ -45,9 +45,7 @@ export function Post({
         </div>
       </div>
       <p className="whitespace-pre-line border-t-2 pt-2">
-        {(post.message ?? "") || (
-          <i className="italic text-slate-400">empty post</i>
-        )}
+        {post.message ?? ""}
       </p>
       <div className="flex flex-wrap justify-center md:justify-start">
         <PostAttachments attachments={post.attachments?.data ?? []} />
