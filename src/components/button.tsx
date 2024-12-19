@@ -71,7 +71,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             " before:ease-[cubic-bezier(.23,1,.32,1)] before:transition-all before:duration-200 hover:before:-top-1/2" +
             " hover:before:origin-top hover:before:ease-in",
           {
-            "before:bg-gradient-green-blue": variant === "gradient",
+            "before:bg-gradient-main": variant === "gradient",
             "before:bg-white":
               ["default", "secondary"].includes(variant) && color === "white",
             "before:bg-black":
@@ -103,13 +103,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 className={cn(
                   "h-2 w-2 rounded-full transition-transform duration-75 group-hover:scale-0",
                   {
-                    "bg-gradient-green-blue": variant === "gradient",
+                    "bg-gradient-main": variant === "gradient",
                     "bg-white": variant === "secondary" && color === "white",
                     "bg-black": variant === "secondary" && color === "black",
                   },
                 )}
               />
-              <div className="group-hover:animate-reveal-arrow absolute grid h-full w-full rotate-[30deg] scale-0 place-items-center rounded-full bg-black transition-transform duration-150 ease-out group-hover:ease-in">
+              <div className="absolute grid h-full w-full rotate-[30deg] scale-0 place-items-center rounded-full bg-black transition-transform duration-150 ease-out group-hover:animate-reveal-arrow group-hover:ease-in">
                 <ArrowRight className="!size-5 text-white md:!size-6" />
               </div>
             </div>

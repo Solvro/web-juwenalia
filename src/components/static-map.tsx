@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-import { Button } from "./ui/button";
+import { Button } from "./button";
 
 export function StaticMap() {
   const [outside, setOutside] = useState(true);
