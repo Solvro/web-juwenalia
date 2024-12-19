@@ -1,4 +1,3 @@
-import { Person } from "@/lib/types";
 import Image from "next/image";
 
 import type { Person } from "@/lib/types";
