@@ -77,7 +77,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               variantColor === "white",
             "before:bg-black":
               ["default", "secondary"].includes(variant || "") &&
-              ["black"].includes(variantColor),
+              ["black"].includes(variantColor || ""),
           },
         )}
         ref={ref}
