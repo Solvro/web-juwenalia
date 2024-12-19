@@ -2,7 +2,7 @@
 
 import type { NoDataInfoProps } from "@/lib/types";
 
-import { Button } from "./ui/button";
+import { Button } from "./button";
 
 const handleReload = () => {
   window.location.reload();
@@ -13,13 +13,7 @@ function NoDataInfo({ errorTitle, errorMessage }: NoDataInfoProps) {
     <div className="align-center flex flex-col items-center">
       <h3 className="mb-5 text-lg font-bold">{errorTitle}</h3>
       <p className="mb-5 w-80 text-center sm:w-90">{errorMessage}</p>
-      <Button
-        className="rounded-[100px] border-black font-medium"
-        variant="outline"
-        onClick={handleReload}
-      >
-        odśwież
-      </Button>
+      <Button onClick={handleReload}>odśwież</Button>
     </div>
   );
 }

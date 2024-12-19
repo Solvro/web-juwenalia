@@ -63,7 +63,7 @@ export default {
       },
       backgroundImage: {
         "gradient-main":
-          "radial-gradient(circle at top left, hsl(var(--primary)), hsl(var(--secondary)))",
+          "radial-gradient(94.87% 94.87% at 90% 70%, hsl(var(--primary)), hsl(var(--secondary)))",
         "gradient-secondary":
           "radial-gradient(circle at bottom right, hsl(var(--primary)), hsl(var(--secondary)))",
       },
@@ -73,6 +73,16 @@ export default {
       gridTemplateRows: {
         "animate-height-open": "1fr",
         "animate-height-closed": "0fr",
+      },
+      keyframes: {
+        "bouncy-arrow-reveal": {
+          "0%": { transform: "scale3d(0,0,1) rotate(45deg)" },
+          "100%": { transform: "scaleX(1) rotate(0deg)" },
+        },
+      },
+      animation: {
+        "reveal-arrow":
+          "bouncy-arrow-reveal 0.17s cubic-bezier(.2, 1.2, .3, 1.4) forwards",
       },
     },
   },

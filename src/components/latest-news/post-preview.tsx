@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import type { FacebookPost } from "@/lib/types";
 
-import { Button } from "../ui/button";
+import { Button } from "../button";
 
 export function PostPreview({ post }: { post: FacebookPost }) {
   const date = format(post.updated_time, "dd MMMM yyyy", { locale: pl });
