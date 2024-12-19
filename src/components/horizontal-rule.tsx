@@ -3,8 +3,5 @@
  * parent has a margin/padding, while retaining vertical margins.
  */
 export function HorizontalRule() {
-  return (
-    // TODO: fix 100vw causing horizontal scrollbar whenever there is a vertical scrollbar
-    <hr className="my-5 -ml-[calc((100vw-100%)/2)] w-[100vw] border-b-2 border-gray-300" />
-  );
+  return <hr className="border-gray-300-0 my-5 border-b-2" />;
 }

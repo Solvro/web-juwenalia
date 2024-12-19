@@ -20,7 +20,7 @@ function TabSelector<T>({
   return (
     <li>
       <button
-        className={`group bg-transparent px-2 py-1 text-xs sm:px-3 sm:py-2 md:px-4 md:py-2 ${isSelected ? "rounded-full text-white" : "text-black"} transition-colors duration-300 md:text-base lg:px-5 lg:py-3 lg:text-lg`}
+        className={`group bg-transparent px-2 py-1 text-xs min-[400px]:px-3 min-[400px]:py-2 md:px-4 md:py-2 ${isSelected ? "rounded-full text-white" : "text-black"} transition-colors duration-300 md:text-base lg:px-5 lg:py-3 lg:text-lg`}
         onClick={(event) => {
           onClick(event, idx);
         }}
