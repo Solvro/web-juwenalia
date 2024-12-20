@@ -4,11 +4,8 @@ import {
   compareAsc,
   differenceInDays,
   endOfMinute,
-  format,
-  formatDuration,
   intervalToDuration,
 } from "date-fns";
-import { pl } from "date-fns/locale";
 import React, { useEffect, useState } from "react";
 
 const eventDate: Date = new Date(2025, 4, 21, 16); //It's the date from pwr calendar, but i have no idea what the actuall hour will be
@@ -35,7 +32,7 @@ function Countdown() {
   const days = differenceInDays(eventDate, currentDate);
   const isOver: number = compareAsc(eventDate, currentDate);
   const duration = {
-    days: days ?? 0,
+    days: days,
     hours: forDuration.hours ?? 0,
     minutes: forDuration.minutes ?? 0,
     seconds: forDuration.seconds ?? 0,
