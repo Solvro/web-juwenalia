@@ -72,10 +72,10 @@ function Countdown() {
           <div className="px-1">{duration.seconds}</div>
         </div>
       </div>
-      <div className="font-montserrat py-5 text-left text-[20px] font-normal leading-[24px] text-[#FFF] sm:text-center sm:text-[32px]">
+      <div className="font-montserrat max-w-[50vw] py-5 text-left text-[20px] font-normal leading-[24px] text-[#FFF] sm:max-w-[100vw] sm:text-center sm:text-[32px]">
         Juwenalia Wrocław 2025 już 21 i 22 maja
       </div>
-      <div className="flex justify-start sm:justify-center">
+      <div className="flex -translate-x-20 scale-[0.55] justify-start sm:translate-x-0 sm:scale-100 sm:justify-center">
         <svg
           width="357"
           height="48"
