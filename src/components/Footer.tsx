@@ -31,15 +31,15 @@ function ListItem({
 function Footer() {
   return (
     <footer>
-      <div className="md:mb-16 md:mt-24 grid place-items-center">
+      <div className="grid place-items-center md:mb-16 md:mt-24">
         <Image
           src="/Juwe2025.png"
           alt="Logo Juwenalia 2025 #WROCŁAWRAZEM"
-          className="md:hidden my-20"
+          className="my-20 md:hidden"
           width={175}
           height={175}
         />
-        <div className="sm:grid-cols-4 sm:justify-around md:flex md:w-11/12 md:flex-row md:justify-around max-[475px]:gap-x-12 max-[640px]:gap-x-40 grid grid-cols-2 gap-y-10">
+        <div className="grid grid-cols-2 gap-y-10 max-[640px]:gap-x-40 max-[475px]:gap-x-12 sm:grid-cols-4 sm:justify-around md:flex md:w-11/12 md:flex-row md:justify-around">
           <List text="Kontakt">
             <ListItem url="mailto:example@gmail.com" text="Adres e-mail" />
             <ListItem url="mailto:example@gmail.com" text="Adres e-mail" />
@@ -52,7 +52,7 @@ function Footer() {
           <Image
             src="/Juwe2025.png"
             alt="Logo Juwenalia 2025 #WROCŁAWRAZEM"
-            className="md:-mt-8 md:block hidden"
+            className="hidden md:-mt-8 md:block"
             width={250}
             height={150}
           />
@@ -69,9 +69,9 @@ function Footer() {
           </List>
         </div>
       </div>
-      <div className="md:mb-16 md:flex md:justify-center mb-8 ml-5 mt-8 text-sm">
-        <div className="md:flex md:flex-row md:justify-between w-4/5">
-          <p className="md:w-full mb-8 w-48 text-slate-400">
+      <div className="mb-8 ml-5 mt-8 text-sm md:mb-16 md:flex md:justify-center">
+        <div className="w-4/5 md:flex md:flex-row md:justify-between">
+          <p className="mb-8 w-48 text-slate-400 md:w-full">
             © Juwenalia 2025. Wszelkie prawa zastrzeżone.
           </p>
           <p className="w-52 font-medium">Made with ❤️ by Solvro</p>
