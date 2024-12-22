@@ -11,6 +11,7 @@ export async function fetchData<T>(endpoint: string, options?: RequestInit) {
   });
 
   if (!response.ok) {
+    console.warn(await response.json());
     throw new Error(response.statusText);
   }
 
