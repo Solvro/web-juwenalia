@@ -22,7 +22,9 @@ export async function PhraseSearch() {
     .filter(
       (phrase) =>
         phrase.startDateTime < currentTime &&
-        phrase.startDateTime + phrase.intervalHours * 3600 * 1000 > currentTime,
+        phrase.startDateTime +
+          phrase.word.length * phrase.intervalHours * 3600 * 1000 >
+          currentTime,
     )
     // In case there are two overlapping phrases, we want to display the one that was started the latest.
     .sort((a, b) => b.startDateTime - a.startDateTime)
