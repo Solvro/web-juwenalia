@@ -10,9 +10,11 @@ const handleReload = () => {
 
 function NoDataInfo({ errorTitle, errorMessage }: NoDataInfoProps) {
   return (
-    <div className="align-center flex flex-col items-center">
-      <h3 className="mb-5 text-lg font-bold">{errorTitle}</h3>
-      <p className="mb-5 w-80 text-center sm:w-90">{errorMessage}</p>
+    <div className="flex w-full flex-col items-center gap-3">
+      <h3 className="text-balance text-lg font-bold">{errorTitle}</h3>
+      <p className="max-w-[250px] text-center sm:w-90 md:max-w-[400px]">
+        {errorMessage}
+      </p>
       <Button onClick={handleReload}>odśwież</Button>
     </div>
   );
