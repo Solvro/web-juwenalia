@@ -46,11 +46,10 @@ export interface NoDataInfoProps {
 }
 
 export interface SearchPhrase {
-  id: number;
+  uuid: string;
   word: string;
   startDate: string;
   intervalHours: number;
-  page: "home" | "artists" | "map" | "news";
 }
 
 // #region --- Facebook API-related definitions ---
