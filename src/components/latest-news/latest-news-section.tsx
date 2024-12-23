@@ -1,7 +1,7 @@
-import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { Fragment } from "react";
 
-import { Button } from "@/components/button";
+import { ArrowSeeMore } from "@/components/arrow-see-more";
 import { getFacebookPosts } from "@/lib/facebook";
 
 import { HomepageHeader } from "../homepage-header";
@@ -35,15 +35,9 @@ export async function LatestNews() {
             ))}
 
             <div className="mt-6 grid w-full place-items-center md:mt-12">
-              <Button
-                variant="ghost"
-                className="group flex hover:bg-transparent"
-              >
-                <span className="text-lg font-light !normal-case md:text-xl">
-                  Przejrzyj więcej aktualności
-                </span>
-                <ArrowRight className="ease-[cubic-bezier(0.85,0,0.15,1)] mb-1 ml-3 inline-flex -rotate-45 scale-[1.7] stroke-1 transition-transform group-hover:-translate-y-1/4 group-hover:translate-x-1/4 md:scale-[1.8]" />
-              </Button>
+              <Link href="/news">
+                <ArrowSeeMore text="Przejrzyj więcej aktualności" />
+              </Link>
             </div>
           </div>
         )}

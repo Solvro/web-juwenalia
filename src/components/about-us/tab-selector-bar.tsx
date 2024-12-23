@@ -18,7 +18,7 @@ function TabSelector<T>({
   return (
     <li className="w-auto">
       <button
-        className={`group bg-transparent px-4 py-2 text-base md:px-6 md:py-4 ${isSelected ? "rounded-full text-white" : "text-black"} transition-colors duration-300 lg:px-5 lg:py-3`}
+        className={`group bg-transparent px-4 py-2 text-base md:px-5 ${isSelected ? "rounded-full text-white" : "text-black"} transition-colors duration-300 lg:px-5 lg:py-3`}
         onClick={(event) => {
           onClick(event, idx);
         }}

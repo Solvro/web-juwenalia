@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { pl } from "date-fns/locale";
 import { useState } from "react";
 
+import PaddingWrapper from "@/components/padding-wrapper";
 import type { FacebookPost } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -20,7 +21,7 @@ export function PostPreview({ post }: { post: FacebookPost }) {
   }
   const [showDetails, setShowDetails] = useState(false);
   return (
-    <div className="flex w-full flex-col items-start gap-2 px-3 py-3 sm:px-7 md:flex-row md:justify-between md:px-12 lg:px-24">
+    <PaddingWrapper className="flex w-full flex-col items-start gap-2 py-3 md:flex-row md:justify-between">
       <p className="bg-gradient-main bg-clip-text text-xs text-transparent md:text-sm lg:text-base">
         {date}
       </p>
@@ -57,6 +58,6 @@ export function PostPreview({ post }: { post: FacebookPost }) {
           </Button>
         </div>
       </div>
-    </div>
+    </PaddingWrapper>
   );
 }
