@@ -1,17 +1,13 @@
-import dynamic from "next/dynamic";
-import type { Settings } from "react-slick";
+"use client";
 
-import { Artist } from "@/components/artist";
-import { getArtists } from "@/lib/artists";
+import React from "react";
+import type { Settings } from "react-slick";
+import Slider from "react-slick";
 
 import "../app/slick-theme.css";
 import "../app/slick.css";
 
-const Slider = dynamic(async () => import("react-slick"), { ssr: true });
-
-async function Carousel() {
-  const artists = await getArtists();
-
+function Carousel() {
   const settings: Settings = {
     dots: true,
     infinite: false,
