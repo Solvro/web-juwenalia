@@ -1,4 +1,4 @@
-import PaddingWrapper from "@/components/padding-wrapper";
+import { PaddingWrapper } from "@/components/padding-wrapper";
 
 export function HomepageHeader({ children }: { children: React.ReactNode }) {
   return (

@@ -2,7 +2,7 @@ import type { ClassValue } from "clsx";
 
 import { cn } from "@/lib/utils";
 
-function PaddingWrapper({
+export function PaddingWrapper({
   children,
   className,
 }: {
@@ -15,5 +15,3 @@ function PaddingWrapper({
     </div>
   );
 }
-
-export default PaddingWrapper;

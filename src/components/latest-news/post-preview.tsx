@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import { pl } from "date-fns/locale";
 import { useState } from "react";
 
-import PaddingWrapper from "@/components/padding-wrapper";
+import { PaddingWrapper } from "@/components/padding-wrapper";
 import type { FacebookPost } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
