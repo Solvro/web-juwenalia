@@ -1,12 +1,12 @@
 import { cn } from "@/lib/utils";
 
-type LegendProps = {
+interface LegendProps {
   items: {
     text: string;
     color: string;
   }[];
   className?: string;
-};
+}
 
 export function Legend({ items, className }: LegendProps) {
   return (

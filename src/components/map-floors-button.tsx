@@ -1,13 +1,11 @@
-import ReactNode from "react";
-
 import { cn } from "@/lib/utils";
 
-type MapFloorsButtonProps = {
+interface MapFloorsButtonProps {
   text: string;
   icon: React.ReactNode;
   active: boolean;
   onClick: () => void;
-};
+}
 
 export function MapFloorsButton({
   text,

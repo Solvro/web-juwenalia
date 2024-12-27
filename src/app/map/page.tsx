@@ -1,14 +1,16 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 
 import { Button } from "@/components/button";
 import { StaticMap } from "@/components/static-map";
 
 const DynamicInteractiveMap = dynamic(
   () =>
-    import("@/components/interactive-map").then((mod) => mod.InteractiveMap),
+    import("@/components/interactive-map").then(
+      (module_) => module_.InteractiveMap,
+    ),
   {
     ssr: false,
   },
@@ -29,7 +31,9 @@ export default function Page() {
         <Button
           variant={activeStaticMap ? "levelSelected" : "levelUnselected"}
           disabled={activeStaticMap}
-          onClick={() => switchMap()}
+          onClick={() => {
+            switchMap();
+          }}
           className="text-wrap p-6"
         >
           Mapa Wydarzenia
@@ -37,7 +41,9 @@ export default function Page() {
         <Button
           variant={activeInteractiveMap ? "levelSelected" : "levelUnselected"}
           disabled={activeInteractiveMap}
-          onClick={() => switchMap()}
+          onClick={() => {
+            switchMap();
+          }}
           className="text-wrap p-6"
         >
           Imprezy Towarzyszące

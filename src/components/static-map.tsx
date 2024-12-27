@@ -13,6 +13,14 @@ import {
   AccordionTrigger,
 } from "./ui/accordion";
 
+const legendItems = [
+  { text: "Strefa Wyłączona", color: "#CD2E32" },
+  { text: "Scena Plenerowa", color: "#D2CBA3" },
+  { text: "Zaplecze Techniczne", color: "#5F6EB6" },
+  { text: "Gastro", color: "#BBE880" },
+  { text: "Partnerzy/Atrakcje", color: "#CB6BA9" },
+];
+
 export function StaticMap() {
   const [outside, setOutside] = useState(true);
   const [floorZero, setFloorZero] = useState(false);
@@ -21,30 +29,34 @@ export function StaticMap() {
 
   function switchMapView(switchTo: string) {
     switch (switchTo) {
-      case "Outside":
+      case "Outside": {
         setOutside(true);
         setFloorZero(false);
         setFloorOne(false);
         setFloorMinusOne(false);
         break;
-      case "Ground Floor":
+      }
+      case "Ground Floor": {
         setOutside(false);
         setFloorZero(true);
         setFloorOne(false);
         setFloorMinusOne(false);
         break;
-      case "Floor 1":
+      }
+      case "Floor 1": {
         setOutside(false);
         setFloorZero(false);
         setFloorOne(true);
         setFloorMinusOne(false);
         break;
-      case "Floor -1":
+      }
+      case "Floor -1": {
         setOutside(false);
         setFloorZero(false);
         setFloorOne(false);
         setFloorMinusOne(true);
         break;
+      }
       default:
         break;
     }
@@ -57,25 +69,33 @@ export function StaticMap() {
       <div id="map-container">
         <div className="mx-auto mb-10 hidden w-[90%] sm:grid sm:grid-cols-2 sm:gap-2 xl:grid-cols-4">
           <MapFloorsButton
-            onClick={() => switchMapView("Outside")}
+            onClick={() => {
+              switchMapView("Outside");
+            }}
             active={outside}
             text="Scena plenerowa, gastronomia, atrakcje"
             icon={<SunIcon className="size-10" />}
           />
           <MapFloorsButton
-            onClick={() => switchMapView("Floor 1")}
+            onClick={() => {
+              switchMapView("Floor 1");
+            }}
             active={floorOne}
             text="Trybuna A, strefa dla gości"
             icon={<h1 className="text-3xl font-bold">1</h1>}
           />
           <MapFloorsButton
-            onClick={() => switchMapView("Ground Floor")}
+            onClick={() => {
+              switchMapView("Ground Floor");
+            }}
             active={floorZero}
             text="Strefa atrakcji, backstage"
             icon={<h1 className="text-3xl font-bold">0</h1>}
           />
           <MapFloorsButton
-            onClick={() => switchMapView("Floor -1")}
+            onClick={() => {
+              switchMapView("Floor -1");
+            }}
             active={floorMinusOne}
             text="Scena techno, gastronomia, strefa partnera"
             icon={<h1 className="text-3xl font-bold">-1</h1>}
@@ -131,25 +151,33 @@ export function StaticMap() {
             <AccordionContent>
               <div id="controls" className="grid grid-cols-1 gap-5">
                 <MapFloorsButton
-                  onClick={() => switchMapView("Outside")}
+                  onClick={() => {
+                    switchMapView("Outside");
+                  }}
                   active={outside}
                   text="Scena plenerowa, gastronomia, atrakcje"
                   icon={<SunIcon className="size-10" />}
                 />
                 <MapFloorsButton
-                  onClick={() => switchMapView("Floor 1")}
+                  onClick={() => {
+                    switchMapView("Floor 1");
+                  }}
                   active={floorOne}
                   text="Trybuna A, strefa dla gości"
                   icon={<h1 className="text-3xl font-bold">1</h1>}
                 />
                 <MapFloorsButton
-                  onClick={() => switchMapView("Ground Floor")}
+                  onClick={() => {
+                    switchMapView("Ground Floor");
+                  }}
                   active={floorZero}
                   text="Strefa atrakcji, backstage"
                   icon={<h1 className="text-3xl font-bold">0</h1>}
                 />
                 <MapFloorsButton
-                  onClick={() => switchMapView("Floor -1")}
+                  onClick={() => {
+                    switchMapView("Floor -1");
+                  }}
                   active={floorMinusOne}
                   text="Scena techno, gastronomia, strefa partnera"
                   icon={<h1 className="text-3xl font-bold">-1</h1>}
@@ -174,11 +202,3 @@ export function StaticMap() {
     </div>
   );
 }
-
-const legendItems = [
-  { text: "Strefa Wyłączona", color: "#CD2E32" },
-  { text: "Scena Plenerowa", color: "#D2CBA3" },
-  { text: "Zaplecze Techniczne", color: "#5F6EB6" },
-  { text: "Gastro", color: "#BBE880" },
-  { text: "Partnerzy/Atrakcje", color: "#CB6BA9" },
-];
