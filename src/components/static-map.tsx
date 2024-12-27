@@ -1,10 +1,10 @@
-import { Sun, SunIcon, SunMedium } from "lucide-react";
+import { SunIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-import { Button } from "./button";
+import { Legend } from "./legend";
 import { MapFloorsButton } from "./map-floors-button";
 import {
   Accordion,
@@ -157,8 +157,28 @@ export function StaticMap() {
               </div>
             </AccordionContent>
           </AccordionItem>
+          <AccordionItem value="Legenda">
+            <AccordionTrigger className="pl-5 font-bold">
+              Legenda
+            </AccordionTrigger>
+            <AccordionContent>
+              <Legend items={legendItems} />
+            </AccordionContent>
+          </AccordionItem>
         </Accordion>
+        <Legend
+          items={legendItems}
+          className="hidden sm:my-10 sm:grid sm:grid-cols-3"
+        />
       </div>
     </div>
   );
 }
+
+const legendItems = [
+  { text: "Strefa Wyłączona", color: "#CD2E32" },
+  { text: "Scena Plenerowa", color: "#D2CBA3" },
+  { text: "Zaplecze Techniczne", color: "#5F6EB6" },
+  { text: "Gastro", color: "#BBE880" },
+  { text: "Partnerzy/Atrakcje", color: "#CB6BA9" },
+];
