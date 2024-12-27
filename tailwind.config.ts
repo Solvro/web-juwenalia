@@ -76,13 +76,35 @@ export default {
       },
       keyframes: {
         "bouncy-arrow-reveal": {
-          "0%": { transform: "scale3d(0,0,1) rotate(45deg)" },
-          "100%": { transform: "scaleX(1) rotate(0deg)" },
+          "0%": {
+            transform: "scale3d(0,0,1) rotate(45deg)",
+          },
+          "100%": {
+            transform: "scaleX(1) rotate(0deg)",
+          },
+        },
+        "accordion-down": {
+          from: {
+            height: "0",
+          },
+          to: {
+            height: "var(--radix-accordion-content-height)",
+          },
+        },
+        "accordion-up": {
+          from: {
+            height: "var(--radix-accordion-content-height)",
+          },
+          to: {
+            height: "0",
+          },
         },
       },
       animation: {
         "reveal-arrow":
           "bouncy-arrow-reveal 0.17s cubic-bezier(.2, 1.2, .3, 1.4) forwards",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
