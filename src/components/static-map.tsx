@@ -57,8 +57,9 @@ export function StaticMap() {
         setFloorMinusOne(true);
         break;
       }
-      default:
+      default: {
         break;
+      }
     }
   }
 

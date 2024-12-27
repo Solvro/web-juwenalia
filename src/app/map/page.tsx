@@ -7,7 +7,7 @@ import { Button } from "@/components/button";
 import { StaticMap } from "@/components/static-map";
 
 const DynamicInteractiveMap = dynamic(
-  () =>
+  async () =>
     import("@/components/interactive-map").then(
       (module_) => module_.InteractiveMap,
     ),

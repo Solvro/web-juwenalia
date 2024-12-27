@@ -16,8 +16,8 @@ export function Legend({ items, className }: LegendProps) {
         className,
       )}
     >
-      {items.map((item, index) => (
-        <div key={index} className="flex items-center">
+      {items.map((item) => (
+        <div key={item.text} className="flex items-center">
           <div
             className="mr-2 h-4 w-4 rounded-full"
             style={{ backgroundColor: item.color }}
