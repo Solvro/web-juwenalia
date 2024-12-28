@@ -93,7 +93,7 @@ export function LetterSearch({
         <DialogTrigger asChild>
           <button
             onClick={handleClick}
-            className="absolute bg-gradient-main bg-clip-text text-xl font-medium text-transparent"
+            className="absolute z-[1000] bg-gradient-main bg-clip-text text-xl font-medium text-transparent"
             style={{
               left: `${(leftPercentage * windowDimensions.width).toString()}px`,
               top: `${(topPercentage * windowDimensions.height).toString()}px`,
