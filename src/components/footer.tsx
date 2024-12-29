@@ -33,13 +33,13 @@ function Footer() {
     <footer>
       <div className="grid place-items-center md:mb-16 md:mt-24">
         <Image
-          src="/Juwe2025.png"
+          src="/Juwe2025.svg"
           alt="Logo Juwenalia 2025 #WROCŁAWRAZEM"
           className="my-20 md:hidden"
           width={175}
           height={175}
         />
-        <div className="grid grid-cols-2 gap-y-10 max-[640px]:gap-x-40 max-[475px]:gap-x-12 sm:grid-cols-4 sm:justify-around md:flex md:w-11/12 md:flex-row md:justify-around">
+        <div className="grid grid-cols-2 gap-y-10 max-[640px]:gap-x-40 max-[475px]:gap-x-12 sm:ml-20 sm:w-11/12 sm:grid-cols-4 sm:justify-around md:flex md:flex-row md:justify-around lg:ml-0 lg:w-full">
           <List text="Kontakt">
             <ListItem url="mailto:example@gmail.com" text="Adres e-mail" />
             <ListItem url="mailto:example@gmail.com" text="Adres e-mail" />
@@ -50,7 +50,7 @@ function Footer() {
             <ListItem url="https://tiktok.com/" text="TikTok" />
           </List>
           <Image
-            src="/Juwe2025.png"
+            src="/Juwe2025.svg"
             alt="Logo Juwenalia 2025 #WROCŁAWRAZEM"
             className="hidden md:-mt-8 md:block"
             width={250}
