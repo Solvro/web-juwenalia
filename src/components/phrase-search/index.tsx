@@ -8,6 +8,9 @@ export async function PhraseSearch() {
   try {
     ({ data: phrases } = await fetchData<{ data: SearchPhrase[] }>(
       "items/phrases",
+      // Ensure the phrases are cached for a maximum of 30 minutes
+      // Otherwise, they are only fetched when the app is built for the **first time**
+      { headers: { "Cache-Control": "max-age=1800" } },
     ));
   } catch (error) {
     console.error("Could not load the phrases", error);
