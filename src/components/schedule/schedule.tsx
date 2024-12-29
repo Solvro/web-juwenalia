@@ -1,4 +1,4 @@
-import { DynamicSchedule } from "@/components/dynamic-schedule";
+import { DynamicSchedule } from "@/components/schedule/dynamic-schedule";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { fetchData } from "@/lib/api";
 import type { DayProps } from "@/lib/types";
