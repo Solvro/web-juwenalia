@@ -80,6 +80,9 @@ async function fetchFromFacebook<T>(
       }
 
       headers.Authorization = `Bearer ${token}`;
+    } else {
+      // This prevents Next.js from caching and reusing a stale access token
+      headers["Cache-Control"] = "no-store";
     }
     const response = await fetch(url.toString(), {
       headers,
