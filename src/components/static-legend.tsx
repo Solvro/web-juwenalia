@@ -11,16 +11,6 @@ export function StaticLegend({
   const activeLevel = items.find((level) => level.name === activeView);
 
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  if (activeLevel === null) {
-    return (
-      <NoDataInfo
-        errorTitle="Brak legendy"
-        errorMessage="Legenda dla obecnego widoku jest niedostępna."
-      />
-    );
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (activeLevel === undefined) {
     return (
       <NoDataInfo
