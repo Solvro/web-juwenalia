@@ -195,6 +195,9 @@ export function StaticMap() {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+        <h1 className="mx-auto mt-4 hidden w-[90%] font-semibold sm:block">
+          Legenda
+        </h1>
         <Legend
           items={legendItems}
           className="hidden sm:my-10 sm:grid sm:grid-cols-3"

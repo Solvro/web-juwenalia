@@ -12,7 +12,7 @@ export function Legend({ items, className }: LegendProps) {
   return (
     <div
       className={cn(
-        "mx-auto grid w-fit grid-cols-2 gap-x-28 gap-y-2 sm:gap-x-4",
+        "mx-auto grid w-[90%] grid-cols-2 gap-x-28 gap-y-2 sm:w-fit sm:gap-x-4",
         className,
       )}
     >
