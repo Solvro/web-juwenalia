@@ -1,11 +1,12 @@
-import { SunIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
+import { mapItems } from "@/config/legend-items";
+import type { MapView } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-import { Legend } from "./legend";
 import { MapFloorsButton } from "./map-floors-button";
+import { StaticLegend } from "./static-legend";
 import {
   Accordion,
   AccordionContent,
@@ -13,48 +14,25 @@ import {
   AccordionTrigger,
 } from "./ui/accordion";
 
-const legendItems = [
-  { text: "Strefa Wyłączona", color: "#CD2E32" },
-  { text: "Scena Plenerowa", color: "#D2CBA3" },
-  { text: "Zaplecze Techniczne", color: "#5F6EB6" },
-  { text: "Gastro", color: "#BBE880" },
-  { text: "Partnerzy/Atrakcje", color: "#CB6BA9" },
-];
-
 export function StaticMap() {
-  const [outside, setOutside] = useState(true);
-  const [floorZero, setFloorZero] = useState(false);
-  const [floorOne, setFloorOne] = useState(false);
-  const [floorMinusOne, setFloorMinusOne] = useState(false);
+  const [view, setView] = useState<MapView>("Outside");
 
   function switchMapView(switchTo: string) {
     switch (switchTo) {
       case "Outside": {
-        setOutside(true);
-        setFloorZero(false);
-        setFloorOne(false);
-        setFloorMinusOne(false);
+        setView("Outside");
         break;
       }
       case "Ground Floor": {
-        setOutside(false);
-        setFloorZero(true);
-        setFloorOne(false);
-        setFloorMinusOne(false);
+        setView("Ground Floor");
         break;
       }
       case "Floor 1": {
-        setOutside(false);
-        setFloorZero(false);
-        setFloorOne(true);
-        setFloorMinusOne(false);
+        setView("Floor 1");
         break;
       }
       case "Floor -1": {
-        setOutside(false);
-        setFloorZero(false);
-        setFloorOne(false);
-        setFloorMinusOne(true);
+        setView("Floor -1");
         break;
       }
       default: {
@@ -69,80 +47,33 @@ export function StaticMap() {
       <hr className="mb-16 mt-5" />
       <div id="map-container">
         <div className="mx-auto mb-10 hidden w-[90%] sm:grid sm:grid-cols-2 sm:gap-2 xl:grid-cols-4">
-          <MapFloorsButton
-            onClick={() => {
-              switchMapView("Outside");
-            }}
-            active={outside}
-            text="Scena plenerowa, gastronomia, atrakcje"
-            icon={<SunIcon className="size-10" />}
-          />
-          <MapFloorsButton
-            onClick={() => {
-              switchMapView("Floor 1");
-            }}
-            active={floorOne}
-            text="Trybuna A, strefa dla gości"
-            icon={<h1 className="text-3xl font-bold">1</h1>}
-          />
-          <MapFloorsButton
-            onClick={() => {
-              switchMapView("Ground Floor");
-            }}
-            active={floorZero}
-            text="Strefa atrakcji, backstage"
-            icon={<h1 className="text-3xl font-bold">0</h1>}
-          />
-          <MapFloorsButton
-            onClick={() => {
-              switchMapView("Floor -1");
-            }}
-            active={floorMinusOne}
-            text="Scena techno, gastronomia, strefa partnera"
-            icon={<h1 className="text-3xl font-bold">-1</h1>}
-          />
+          {mapItems.map((level) => {
+            return (
+              <MapFloorsButton
+                key={level.name}
+                level={level}
+                active={view === level.name}
+                onClick={() => {
+                  switchMapView(level.name);
+                }}
+              />
+            );
+          })}
         </div>
         <div id="map" className="w-screen">
-          <Image
-            src="/hala-stulecia-zewnatrz.png"
-            alt={"Hala Stulecia Widok Satelitarny"}
-            width={1000}
-            height={800}
-            className={cn(
-              outside ? "" : "hidden",
-              "mx-auto aspect-square w-[90%] rounded-3xl object-cover xl:aspect-auto xl:object-fill",
-            )}
-          />
-          <Image
-            src="/hala-stulecia-poziom-0.png"
-            alt={"Hala Stulecia Parter"}
-            width={1000}
-            height={800}
-            className={cn(
-              floorZero ? "" : "hidden",
-              "mx-auto aspect-square w-[90%] rounded-3xl object-cover",
-            )}
-          />
-          <Image
-            src="/hala-stulecia-poziom-1.png"
-            alt={"Hala Stulecia Piętro 1"}
-            width={1000}
-            height={800}
-            className={cn(
-              floorOne ? "" : "hidden",
-              "mx-auto aspect-square w-[90%] rounded-3xl object-cover",
-            )}
-          />
-          <Image
-            src="/hala-stulecia-piwnica.png"
-            alt={"Hala Stulecia Piętro -1"}
-            width={1000}
-            height={800}
-            className={cn(
-              floorMinusOne ? "" : "hidden",
-              "mx-auto aspect-square w-[90%] rounded-3xl object-cover",
-            )}
-          />
+          {mapItems.map((MapLevel) => (
+            <Image
+              key={MapLevel.name}
+              src={MapLevel.image.src}
+              alt={MapLevel.image.alt}
+              width={1000}
+              height={800}
+              className={cn(
+                view === MapLevel.name ? "" : "hidden",
+                "mx-auto aspect-square w-[90%] rounded-3xl object-cover",
+              )}
+            />
+          ))}
         </div>
         <Accordion type="multiple" className="sm:hidden">
           <AccordionItem value="Poziomy">
@@ -151,38 +82,18 @@ export function StaticMap() {
             </AccordionTrigger>
             <AccordionContent>
               <div id="controls" className="grid grid-cols-1 gap-5">
-                <MapFloorsButton
-                  onClick={() => {
-                    switchMapView("Outside");
-                  }}
-                  active={outside}
-                  text="Scena plenerowa, gastronomia, atrakcje"
-                  icon={<SunIcon className="size-10" />}
-                />
-                <MapFloorsButton
-                  onClick={() => {
-                    switchMapView("Floor 1");
-                  }}
-                  active={floorOne}
-                  text="Trybuna A, strefa dla gości"
-                  icon={<h1 className="text-3xl font-bold">1</h1>}
-                />
-                <MapFloorsButton
-                  onClick={() => {
-                    switchMapView("Ground Floor");
-                  }}
-                  active={floorZero}
-                  text="Strefa atrakcji, backstage"
-                  icon={<h1 className="text-3xl font-bold">0</h1>}
-                />
-                <MapFloorsButton
-                  onClick={() => {
-                    switchMapView("Floor -1");
-                  }}
-                  active={floorMinusOne}
-                  text="Scena techno, gastronomia, strefa partnera"
-                  icon={<h1 className="text-3xl font-bold">-1</h1>}
-                />
+                {mapItems.map((level) => {
+                  return (
+                    <MapFloorsButton
+                      key={level.name}
+                      level={level}
+                      active={view === level.name}
+                      onClick={() => {
+                        switchMapView(level.name);
+                      }}
+                    />
+                  );
+                })}
               </div>
             </AccordionContent>
           </AccordionItem>
@@ -191,16 +102,17 @@ export function StaticMap() {
               Legenda
             </AccordionTrigger>
             <AccordionContent>
-              <Legend items={legendItems} />
+              <StaticLegend items={mapItems} activeView={view} />
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-        <h1 className="mx-auto mt-4 hidden w-[90%] font-semibold sm:block">
+        <h2 className="mx-auto mt-4 hidden w-[90%] font-semibold sm:block">
           Legenda
-        </h1>
-        <Legend
-          items={legendItems}
-          className="hidden sm:my-10 sm:grid sm:grid-cols-3"
+        </h2>
+        <StaticLegend
+          items={mapItems}
+          activeView={view}
+          className="hidden sm:my-10 sm:grid"
         />
       </div>
     </div>

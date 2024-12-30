@@ -34,7 +34,7 @@ export default function Page() {
           onClick={() => {
             switchMap();
           }}
-          className="text-wrap p-6"
+          className="text-wrap p-6 text-[3vw] sm:text-base"
         >
           Mapa Wydarzenia
         </Button>
@@ -44,7 +44,7 @@ export default function Page() {
           onClick={() => {
             switchMap();
           }}
-          className="text-wrap p-6"
+          className="text-wrap p-6 text-[3vw] sm:text-base"
         >
           Imprezy Towarzyszące
         </Button>
