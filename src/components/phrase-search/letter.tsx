@@ -18,30 +18,6 @@ import {
 
 const PATHS = ["/", "/artists", "/map", "/news"];
 
-/** Gets the current page and location to display the letter on, based on the hash of the UUID. */
-function getPhraseMetadata(phrase: SearchPhrase, currentIndex: number) {
-  const hashBase = `${phrase.uuid}:${currentIndex.toString()}:`;
-  const pathHash = hashString(`${hashBase}path`);
-  const leftHash = hashString(`${hashBase}leftPercentage`);
-  const topHash = hashString(`${hashBase}topPercentage`);
-  // Ensure the index is within the bounds of the PATHS array
-  const pathIndex = Number(pathHash % BigInt(PATHS.length));
-  const page = PATHS[pathIndex];
-  const leftPercentage = Number(leftHash % BigInt(1000)) / 1000;
-  const topPercentage = Number(topHash % BigInt(1000)) / 1000;
-  return { page, leftPercentage, topPercentage };
-}
-
-/** Simple hashing function using FNV-1a. Result is a positive BigInt. */
-function hashString(value: string) {
-  let hash = BigInt("2166136261"); // FNV-1a hash seed (prime number)
-  for (let index = 0; index < value.length; index++) {
-    hash ^= BigInt(value.codePointAt(index) ?? 0);
-    hash *= BigInt("16777619"); // FNV-1a multiplier (prime number)
-  }
-  return hash > 0 ? hash : -hash;
-}
-
 export function LetterSearch({
   phrase,
   currentIndex,
@@ -49,7 +25,9 @@ export function LetterSearch({
   phrase: SearchPhrase;
   currentIndex: number;
 }) {
-  const [isClient, setIsClient] = useState(false);
+  const [leftPercentage, setLeftPercentage] = useState(-1);
+  const [topPercentage, setTopPercentage] = useState(-1);
+  const [page, setPage] = useState("");
   const [cookies, setCookie] = useCookies<
     "foundLetters",
     { foundLetters?: Record<SearchPhrase["uuid"], number[]> }
@@ -58,16 +36,19 @@ export function LetterSearch({
   const windowDimensions = useWindowDimensions();
 
   useEffect(() => {
-    setIsClient(true);
+    // Randomise top, left, and page
+    setLeftPercentage(Math.random() * 100);
+    setTopPercentage(Math.random() * 100);
+    setPage(PATHS[Math.floor(Math.random() * PATHS.length)]);
   }, [phrase, currentIndex]);
 
-  const { page, leftPercentage, topPercentage } = getPhraseMetadata(
-    phrase,
-    currentIndex,
-  );
-
   // Need to check if rendering on client to prevent hydration error
-  if (pathname !== page || !isClient) {
+  if (
+    pathname !== page ||
+    leftPercentage === -1 ||
+    topPercentage === -1 ||
+    page === ""
+  ) {
     return null;
   }
 
