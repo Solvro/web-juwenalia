@@ -10,7 +10,7 @@ export async function PhraseSearch() {
       "items/phrases",
       // Ensure the phrases are cached for a maximum of 30 minutes
       // Otherwise, they are only fetched when the app is built for the **first time**
-      { headers: { "Cache-Control": "max-age=1800" } },
+      { next: { revalidate: 1800 } },
     ));
   } catch (error) {
     console.error("Could not load the phrases", error);

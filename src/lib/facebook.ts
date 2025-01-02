@@ -70,7 +70,10 @@ async function fetchFromFacebook<T>(
     if (fields) {
       url.searchParams.append("fields", fields);
     }
-    const headers: HeadersInit = {};
+    const options: RequestInit = {};
+    // Can't define options.headers and options.next immediately when declaring `options` because TypeScript later complains they may be undefined
+    options.headers = {};
+    options.next = {};
     if (useAuthentication) {
       getAccessTokenPromise = getAccessToken();
       const token = await getAccessTokenPromise;
@@ -78,16 +81,14 @@ async function fetchFromFacebook<T>(
         console.error("No long-lived access token set for Facebook API");
         return null;
       }
-
-      headers.Authorization = `Bearer ${token}`;
+      // Cache responses for posts, user data etc. for 5 minutes
+      options.next.revalidate = 300;
+      options.headers.Authorization = `Bearer ${token}`;
     } else {
-      // This prevents Next.js from caching and reusing a stale access token
-      headers["Cache-Control"] = "no-store";
+      // Don't cache responses for generating access tokens
+      options.next.revalidate = 0;
     }
-    const response = await fetch(url.toString(), {
-      headers,
-      next: { revalidate: 300 },
-    });
+    const response = await fetch(url.toString(), options);
     const data = (await response.json()) as T;
     if (!response.ok) {
       console.error(
