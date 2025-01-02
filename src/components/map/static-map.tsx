@@ -5,19 +5,19 @@ import { mapItems } from "@/config/legend-items";
 import type { MapView } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-import { MapFloorsButton } from "./map-floors-button";
-import { StaticLegend } from "./static-legend";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./ui/accordion";
+} from "../ui/accordion";
+import { MapFloorsButton } from "./map-floors-button";
+import { StaticLegend } from "./static-legend";
 
 export function StaticMap() {
   const [view, setView] = useState<MapView>("Outside");
 
-  function switchMapView(switchTo: string) {
+  function switchMapView(switchTo: MapView) {
     switch (switchTo) {
       case "Outside": {
         setView("Outside");

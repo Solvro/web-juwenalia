@@ -1,7 +1,7 @@
 import type { StaticLegendProps } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-import { NoDataInfo } from "./no-data-info";
+import { NoDataInfo } from "../no-data-info";
 
 export function StaticLegend({
   items,
@@ -10,7 +10,6 @@ export function StaticLegend({
 }: StaticLegendProps) {
   const activeLevel = items.find((level) => level.name === activeView);
 
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (activeLevel === undefined) {
     return (
       <NoDataInfo

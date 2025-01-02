@@ -4,11 +4,11 @@ import dynamic from "next/dynamic";
 import { Suspense, useState } from "react";
 
 import { Button } from "@/components/button";
-import { StaticMap } from "@/components/static-map";
+import { StaticMap } from "@/components/map/static-map";
 
 const DynamicInteractiveMap = dynamic(
   async () =>
-    import("@/components/interactive-map").then(
+    import("@/components/map/interactive-map").then(
       (module_) => module_.InteractiveMap,
     ),
   {
