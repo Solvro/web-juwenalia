@@ -1,14 +1,14 @@
+import { MapPin } from "lucide-react";
+
+import { WrLegendItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 interface LegendProps {
-  items: {
-    text: string;
-    color: string;
-  }[];
+  items: WrLegendItem[];
   className?: string;
 }
 
-export function Legend({ items, className }: LegendProps) {
+export function WrMapLegend({ items, className }: LegendProps) {
   return (
     <div
       className={cn(
@@ -17,12 +17,9 @@ export function Legend({ items, className }: LegendProps) {
       )}
     >
       {items.map((item) => (
-        <div key={item.text} className="flex items-center">
-          <div
-            className="mr-2 h-4 w-4 rounded-full"
-            style={{ backgroundColor: item.color }}
-          />
-          <span>{item.text}</span>
+        <div key={item.name} className="flex items-center">
+          <MapPin className="mr-2 h-8 w-8" color={item.color} />
+          <span>{item.name}</span>
         </div>
       ))}
     </div>
