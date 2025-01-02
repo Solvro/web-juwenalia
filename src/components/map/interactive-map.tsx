@@ -1,8 +1,16 @@
 "use client";
 
+// @ts-ignore
+import { Marker } from "@adamscybot/react-leaflet-component-marker";
 import "leaflet/dist/leaflet.css";
+import { MapPin } from "lucide-react";
 import { useEffect } from "react";
-import { MapContainer, Marker, Polygon, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Popup, TileLayer } from "react-leaflet";
+
+import { wrLegendItems } from "@/config/wr-legend-items";
+import { LeafletElement } from "@/lib/types";
+
+import { WrMapLegend } from "./wr-map-legend";
 
 const trams = [
   {
@@ -58,14 +66,9 @@ const busses = [
   },
 ];
 
-interface LeafletElement extends Element {
-  _leaflet_id?: string | null;
-}
-
 export function InteractiveMap() {
   useEffect(() => {
     return () => {
-      // Clean up the map container when the component is unmounted
       const container: LeafletElement | null =
         document.querySelector(".leaflet-container");
       if (container !== null) {
@@ -75,31 +78,40 @@ export function InteractiveMap() {
   }, []);
 
   return (
-    <div className="h-screen">
-      <h1>Map Demo</h1>
+    <div>
+      <h1 className="mt-8 pl-5 text-4xl font-semibold">Mapa Wydarzenia</h1>
+      <hr className="mb-16 mt-5" />
       <MapContainer
         center={[51.106_972_989_320_404, 17.077_329_824_567_546]}
         zoom={16}
         scrollWheelZoom={true}
-        className="mx-auto h-[900px] w-[900px]"
+        dragging={true}
+        className="mx-auto h-[75vh] w-[90%] touch-auto rounded-3xl object-cover"
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copycenter">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Polygon
-          positions={[
-            [51.105_883_300_485_89, 17.077_913_814_910_783],
-            [51.107_145_582_439_72, 17.073_377_128_401_88],
-            [51.109_069_900_649_3, 17.075_023_384_204_258],
-            [51.108_488_803_099_426, 17.077_011_029_458_74],
-            [51.109_612_886_848_886, 17.078_255_204_381_414],
-            [51.109_141_346_575_34, 17.080_500_788_333_04],
-          ]}
-        >
-          <Popup>Hala Stulecia - Juwenalia 2025</Popup>
-        </Polygon>
-        <Marker position={[51.107_093_550_006_816, 17.073_462_384_146_13]}>
+        {wrLegendItems.map((item) => (
+          <Marker
+            key={item.name}
+            position={item.coordinates}
+            icon={<MapPin className="h-8 w-8" color={item.color} />}
+          >
+            <Popup>
+              <div className="flex flex-col">
+                <h2 className="text-xl font-semibold">{item.name}</h2>
+                <p>{item.description}</p>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+      </MapContainer>
+      <h2 className="mx-auto mt-4 hidden w-[90%] font-semibold sm:block">
+        Legenda
+      </h2>
+      <WrMapLegend className="my-10 grid" items={wrLegendItems} />
+      {/* <Marker position={[51.107_093_550_006_816, 17.073_462_384_146_13]}>
           <Popup>
             <table className="gap-2">
               <thead>
@@ -154,8 +166,7 @@ export function InteractiveMap() {
               </tbody>
             </table>
           </Popup>
-        </Marker>
-      </MapContainer>
+        </Marker> */}
     </div>
   );
 }
