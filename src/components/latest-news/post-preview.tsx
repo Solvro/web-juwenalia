@@ -4,7 +4,9 @@ import { format } from "date-fns";
 import { pl } from "date-fns/locale";
 import { useState } from "react";
 
+import { PaddingWrapper } from "@/components/padding-wrapper";
 import type { FacebookPost } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 import { Button } from "../button";
 
@@ -19,29 +21,35 @@ export function PostPreview({ post }: { post: FacebookPost }) {
   }
   const [showDetails, setShowDetails] = useState(false);
   return (
-    <div className="flex w-full flex-col items-start gap-2 px-3 py-3 sm:px-7 md:flex-row md:justify-between md:px-12 lg:justify-around lg:px-24">
-      <p className="text-xs text-primary md:text-sm lg:text-base">{date}</p>
+    <PaddingWrapper className="flex w-full flex-col items-start gap-2 py-3 md:flex-row md:justify-between">
+      <p className="bg-gradient-main bg-clip-text text-xs text-transparent md:text-sm lg:text-base">
+        {date}
+      </p>
       <div className="md:w-3/4 lg:w-2/3">
-        <h3 className="md:text-xl lg:text-2xl">
+        <h3 className="text-lg md:text-xl lg:text-2xl">
           {postTitle === undefined ? (
             <i>Brak tytułu</i>
           ) : (
-            <b className="font-bold">{postTitle}</b>
+            <span className="font-semibold">{postTitle}</span>
           )}
         </h3>
-        <div className={`flex flex-col items-start gap-3`}>
+        <div className="flex flex-col items-start gap-3">
           <div
-            className={`grid transition-all ease-in-out ${
-              showDetails
-                ? "visible grid-rows-animate-height-open opacity-100"
-                : "invisible grid-rows-animate-height-closed opacity-0"
-            }`}
+            className={cn(
+              "invisible grid grid-rows-animate-height-closed opacity-0 transition-all ease-in-out",
+              {
+                "visible grid-rows-animate-height-open opacity-100":
+                  showDetails,
+              },
+            )}
           >
-            <p className="overflow-hidden whitespace-pre-line">{postMessage}</p>
+            <p className="mt-6 overflow-hidden whitespace-pre-line">
+              {postMessage}
+            </p>
           </div>
           <Button
-            className="cursor-pointer list-none underline md:text-base"
-            variant="ghost"
+            className="cursor-pointer list-none font-light hover:bg-transparent"
+            variant="link"
             onClick={() => {
               setShowDetails((old) => !old);
             }}
@@ -50,6 +58,6 @@ export function PostPreview({ post }: { post: FacebookPost }) {
           </Button>
         </div>
       </div>
-    </div>
+    </PaddingWrapper>
   );
 }
