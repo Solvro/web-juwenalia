@@ -31,9 +31,9 @@ export function StaticMap() {
 
   function switchMapView(switchTo: MapView) {
     try {
-      const temp = mapItems.find((item) => item.name === switchTo);
-      setCurrentView(temp || mapItems[0]);
-    } catch (err) {
+      const temporary = mapItems.find((item) => item.name === switchTo);
+      setCurrentView(temporary ?? mapItems[0]);
+    } catch {
       return (
         <NoDataInfo
           errorTitle="Brak widoku mapy"
@@ -115,15 +115,15 @@ export function StaticMap() {
           </Dialog>
         </div>
         <div id="map" className="w-screen">
-          {mapItems.map((MapLevel) => (
+          {mapItems.map((dialogMapLevel) => (
             <Image
-              key={MapLevel.name}
-              src={MapLevel.image.src}
-              alt={MapLevel.image.alt}
+              key={dialogMapLevel.name}
+              src={dialogMapLevel.image.src}
+              alt={dialogMapLevel.image.alt}
               width={1000}
               height={800}
               className={cn(
-                view === MapLevel.name ? "" : "hidden",
+                view === dialogMapLevel.name ? "" : "hidden",
                 "mx-auto aspect-square w-[90%] rounded-3xl object-cover",
               )}
             />

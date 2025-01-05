@@ -52,7 +52,7 @@ const DialogContent = React.forwardRef<
   </DialogPortal>
 ));
 DialogContent.displayName = DialogPrimitive.Content.displayName;
-
+// eslint-disable-next-line react/function-component-definition
 const DialogHeader = ({
   className,
   ...props
@@ -66,7 +66,7 @@ const DialogHeader = ({
   />
 );
 DialogHeader.displayName = "DialogHeader";
-
+// eslint-disable-next-line react/function-component-definition
 const DialogFooter = ({
   className,
   ...props
