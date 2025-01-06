@@ -40,7 +40,7 @@ function Section({
 
 export function AboutUs() {
   return (
-    <div className="mt-24 flex flex-col gap-24 md:gap-32 lg:gap-64">
+    <div className="mt-24 flex flex-col gap-24 md:mt-32 md:gap-32 lg:mt-48 lg:gap-64">
       <Section header="Partnerzy">
         <PartnersList />
       </Section>
