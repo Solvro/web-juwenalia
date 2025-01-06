@@ -26,7 +26,7 @@ interface EventProps {
   start_time: string;
   end_time: string;
   location: { id: number; name: string };
-  day: number;
+  day: DayProps;
   artists: EventArtists[];
 }
 
