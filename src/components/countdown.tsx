@@ -32,7 +32,7 @@ function Countdown() {
   const days = differenceInDays(eventDate, currentDate);
   const isOver: number = compareAsc(eventDate, currentDate);
   const duration = {
-    days: days,
+    days,
     hours: forDuration.hours ?? 0,
     minutes: forDuration.minutes ?? 0,
     seconds: forDuration.seconds ?? 0,
