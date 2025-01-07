@@ -1,4 +1,3 @@
-import { Maximize } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -6,7 +5,6 @@ import { mapItems } from "@/config/legend-items";
 import type { MapLevel, MapView } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-import { Button } from "../button";
 import { NoDataInfo } from "../no-data-info";
 import {
   Accordion,
@@ -14,14 +12,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../ui/dialog";
+import { MapEnlargementButton } from "./map-enlargement-button";
 import { MapFloorsButton } from "./map-floors-button";
 import { StaticLegend } from "./static-legend";
 
@@ -84,35 +75,7 @@ export function StaticMap() {
         </div>
         <div className="mx-auto mb-5 flex w-[90%] flex-row items-center justify-between">
           <h2 className="mt-auto font-semibold">Mapa</h2>
-          <Dialog>
-            <DialogTrigger asChild className="hidden xl:flex">
-              <Button
-                variant="default"
-                className="hidden w-max items-center xl:flex [&_svg]:size-6"
-              >
-                <div className="flex flex-row gap-2">
-                  <Maximize />
-                  <span className="normal-case">Powiększ</span>
-                </div>
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="fixed left-[50vw] top-[50vh] h-fit max-w-fit">
-              <DialogHeader className="">
-                <DialogTitle className="mb-2 text-center">
-                  {currentView.description}
-                </DialogTitle>
-                <DialogDescription className="h-[85vh] w-max">
-                  <Image
-                    src={currentView.image.src}
-                    alt={currentView.image.alt}
-                    width={1000}
-                    height={800}
-                    className="mx-auto h-full rounded-3xl"
-                  />
-                </DialogDescription>
-              </DialogHeader>
-            </DialogContent>
-          </Dialog>
+          <MapEnlargementButton currentView={currentView} />
         </div>
         <div id="map" className="w-screen">
           {mapItems.map((dialogMapLevel) => (
