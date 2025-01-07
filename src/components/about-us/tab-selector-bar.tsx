@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, MouseEvent, RefObject } from "react";
 
-import { Underlined } from "../underlined";
-
 function TabSelector<T>({
   text,
   idx,
@@ -18,17 +16,15 @@ function TabSelector<T>({
 }) {
   const isSelected = idx === selectedIdx;
   return (
-    <li>
+    <li className="w-auto">
       <button
-        className={`group bg-transparent px-2 py-1 text-xs min-[400px]:px-3 min-[400px]:py-2 md:px-4 md:py-2 ${isSelected ? "rounded-full text-white" : "text-black"} transition-colors duration-300 md:text-base lg:px-5 lg:py-3 lg:text-lg`}
+        className={`group bg-transparent px-4 py-2 text-base md:px-5 ${isSelected ? "rounded-full text-white" : "text-black"} transition-colors duration-300 lg:px-5 lg:py-3`}
         onClick={(event) => {
           onClick(event, idx);
         }}
         ref={refObject}
       >
-        <Underlined bgClass={isSelected ? "bg-transparent" : undefined}>
-          {text}
-        </Underlined>
+        {text}
       </button>
     </li>
   );
@@ -44,8 +40,8 @@ export function TabSelectorBar<T extends readonly string[]>({
   setSelectedIdx: React.Dispatch<React.SetStateAction<keyof T>>;
 }) {
   const [markerStyle, setMarkerStyle] = useState<CSSProperties>({});
-  const markerRef = useRef<HTMLDivElement>(null);
-  const initialSelectedRef = useRef<HTMLButtonElement>(null);
+  const markerRef = useRef<HTMLDivElement | null>(null);
+  const initialSelectedRef = useRef<HTMLButtonElement | null>(null);
 
   function updateMarkerStyle(button: HTMLButtonElement | null) {
     setMarkerStyle({
@@ -74,12 +70,12 @@ export function TabSelectorBar<T extends readonly string[]>({
   }
 
   return (
-    <ul className="relative flex flex-wrap justify-center gap-1 sm:justify-start">
+    <ul className="relative flex flex-wrap gap-1 sm:justify-start">
       <div
-        className="absolute bottom-0 -z-10 h-full rounded-full bg-gradient-main text-white transition-all duration-300"
+        className="absolute bottom-0 -z-10 h-full w-auto rounded-full bg-gradient-main text-white transition-all duration-300"
         ref={markerRef}
         style={markerStyle}
-      ></div>
+      />
       {options.map((option, index) => (
         <TabSelector
           key={option}

@@ -96,7 +96,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               "group-hover:text-white":
                 ["default", "secondary"].includes(variant ?? "") &&
                 variantColor === "black",
-              "": variant === "link",
+              "underline-animation flex": variant === "link",
             })}
           >
             {children}
