@@ -4,7 +4,6 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -22,6 +21,8 @@ const buttonVariants = cva(
         ghost:
           "border-0 bg-slate-500/0 transition-colors hover:bg-slate-500/10",
         link: "border-0 !py-1 !px-2",
+        levelSelected: "bg-gradient-main w-[90%] mx-auto border-0 rounded-2xl",
+        levelUnselected: "border-2 border-grey-300 w-[90%] mx-auto rounded-2xl",
       },
       variantColor: {
         default: "border-black",
