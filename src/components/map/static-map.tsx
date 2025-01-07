@@ -4,6 +4,7 @@ import { useState } from "react";
 import { MAP_ITEMS } from "@/config/legend-items";
 import { cn } from "@/lib/utils";
 
+import { NoDataInfo } from "../no-data-info";
 import {
   Accordion,
   AccordionContent,
