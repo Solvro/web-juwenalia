@@ -31,14 +31,11 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
 
   return (
     <div>
-      {/*<h1 className={"text-xl font-extrabold mb-6"}>Schedule</h1>*/}
       {days.map((day) => (
-        <div key={day.id} className="mt-[100px]">
+        <div key={day.id} className="mt-24">
           <HomepageHeader>
             {format(day.date, "d MMMM (EEEE)", { locale: pl })}
           </HomepageHeader>
-          {/*<table>*/}
-          {/*  <tbody>*/}
           {day.events.map((event) => {
             const eventStart = combineDateAndTime(day.date, event.start_time);
             const eventEnd = combineDateAndTime(day.date, event.end_time);
@@ -46,11 +43,15 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
             return (
               <div key={event.id}>
                 <HorizontalRule />
-                {isOn ? (
-                  <p className="text-white-600 bg-gradient-secondary">Is on</p>
-                ) : null}
-                <div className="flex flex-col justify-between px-4 sm:flex-row sm:items-center sm:py-[15px] md:px-10 md:py-[35px]">
+                <div className="flex flex-col justify-between px-4 sm:flex-row sm:items-center sm:py-6 md:px-10 md:py-[35px]">
                   <div className="flex flex-col">
+                    {isOn ? (
+                      <div className="my-1 flex max-w-28 items-center justify-center rounded-md bg-gradient-main px-2.5 py-[5px]">
+                        <div className="text-[10px] font-black text-white">
+                          WŁAŚNIE TRWA
+                        </div>
+                      </div>
+                    ) : null}
                     {event.artists.length > 0 ? (
                       <div>
                         {event.artists.map((artist) => (
