@@ -4,7 +4,6 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -22,6 +21,8 @@ const buttonVariants = cva(
         ghost:
           "border-0 bg-slate-500/0 transition-colors hover:bg-slate-500/10",
         link: "border-0 !py-1 !px-2",
+        levelSelected: "bg-gradient-main w-[90%] mx-auto border-0 rounded-2xl",
+        levelUnselected: "border-2 border-grey-300 w-[90%] mx-auto rounded-2xl",
       },
       variantColor: {
         default: "border-black",
@@ -43,116 +44,113 @@ const buttonVariants = cva(
   },
 );
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+export interface ButtonProps<T extends React.ElementType = "button">
+  extends React.HTMLAttributes<T>,
     VariantProps<typeof buttonVariants> {
+  as?: T;
   asChild?: boolean;
-  href?: string;
+  disabled?: boolean;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      children,
-      className,
-      variant = "default",
-      size,
-      variantColor = "black",
-      asChild = false,
-      href,
-      ...props
-    },
-    ref,
-  ) => {
-    const Comp = asChild ? Slot : "button";
+function ButtonInner<T extends React.ElementType = "button">(
+  {
+    children,
+    className = "",
+    size = "default",
+    disabled = false,
+    as = "button" as T,
+    variant = "default",
+    variantColor = "black",
+    asChild = false,
+    ...props
+  }: ButtonProps<T> &
+    Omit<React.ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>,
+  ref: React.Ref<T>,
+) {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+  const Comp = asChild ? Slot : (as as React.ElementType);
 
-    return (
-      <Comp
-        className={cn(
-          buttonVariants({ variant, size, className, variantColor }),
-          "group inline-flex w-full before:pointer-events-auto before:absolute before:bg-transparent before:content-['']" +
-            " isolate before:top-full before:z-[-1] before:h-[200%] before:w-[110%] before:rounded-[50%]" +
-            " before:ease-[cubic-bezier(.23,1,.32,1)] before:transition-all before:duration-200 hover:before:-top-1/2" +
-            " hover:before:origin-top hover:before:ease-in",
-          {
-            "before:bg-white":
-              ["default", "secondary"].includes(variant ?? "") &&
-              variantColor === "white",
-            "before:bg-black":
-              ["default", "secondary"].includes(variant ?? "") &&
-              ["black"].includes(variantColor ?? ""),
-          },
-        )}
-        ref={ref}
-        {...props}
-      >
-        {typeof href === "string" && href.trim() !== "" ? (
-          <Link href={href} className="relative w-full">
-            <ButtonContent
-              variant={variant}
-              size={size}
-              variantColor={variantColor}
-            >
-              {children}
-            </ButtonContent>
-          </Link>
-        ) : (
-          <ButtonContent
-            variant={variant}
-            size={size}
-            variantColor={variantColor}
-          >
-            {children}
-          </ButtonContent>
-        )}
-      </Comp>
-    );
-  },
-);
-Button.displayName = "Button";
-
-function ButtonContent({
-  children,
-  variantColor,
-  variant,
-}: VariantProps<typeof buttonVariants> & { children: React.ReactNode }) {
   return (
-    <div className="pointer-events-auto relative flex w-full cursor-pointer items-center justify-between gap-4 md:gap-8">
-      <span
-        className={cn("lowercase transition-all duration-200", {
-          "text-foreground": variantColor === "black",
-          "text-white": variantColor === "white",
-          "group-hover:text-black":
+    <Comp
+      className={cn(
+        buttonVariants({
+          variant,
+          size,
+          className,
+          variantColor,
+        }),
+        "group inline-flex w-fit before:pointer-events-auto before:absolute before:bg-transparent before:content-['']" +
+        " isolate before:top-full before:z-[-1] before:h-[200%] before:w-[110%] before:rounded-[50%]" +
+        " before:ease-[cubic-bezier(.23,1,.32,1)] before:transition-all before:duration-200 hover:before:-top-1/2" +
+        " hover:before:origin-top hover:before:ease-in",
+        {
+          "before:bg-white":
             ["default", "secondary"].includes(variant ?? "") &&
             variantColor === "white",
-          "group-hover:text-white":
+          "before:bg-black":
             ["default", "secondary"].includes(variant ?? "") &&
-            variantColor === "black",
-          "underline-animation flex": variant === "link",
-        })}
-      >
-        {children}
-      </span>
-
-      {(variant === "gradient" || variant === "secondary") && (
-        <div className="relative grid h-6 w-6 place-items-center md:h-8 md:w-8">
-          <div
-            className={cn(
-              "h-2 w-2 rounded-full transition-transform duration-75 group-hover:scale-0",
-              {
-                "bg-gradient-main": variant === "gradient",
-                "bg-white": variant === "secondary" && variantColor === "white",
-                "bg-black": variant === "secondary" && variantColor === "black",
-              },
-            )}
-          />
-          <div className="absolute grid h-full w-full rotate-[30deg] scale-0 place-items-center rounded-full bg-black transition-transform duration-150 ease-out group-hover:animate-reveal-arrow group-hover:ease-in">
-            <ArrowRight className="!size-5 text-white md:!size-6" />
-          </div>
-        </div>
+            ["black"].includes(variantColor ?? ""),
+          "pointer-events-none bg-foreground/20 opacity-50": disabled,
+        },
       )}
-    </div>
+      ref={ref}
+      {...props}
+    >
+      <div
+        className={cn(
+          "pointer-events-auto relative flex w-full cursor-pointer items-center justify-between gap-4 md:gap-8",
+          {
+            "pointer-events-none": disabled,
+          },
+        )}
+      >
+        <span
+          className={cn("lowercase transition-all duration-200", {
+            "text-foreground": variantColor === "black",
+            "text-white": variantColor === "white",
+            "group-hover:text-black":
+              ["default", "secondary"].includes(variant ?? "") &&
+              variantColor === "white",
+            "group-hover:text-white":
+              ["default", "secondary"].includes(variant ?? "") &&
+              variantColor === "black",
+            "underline-animation flex": variant === "link",
+          })}
+        >
+          {children}
+        </span>
+
+        {(variant === "gradient" || variant === "secondary") && (
+          <div className="relative grid h-6 w-6 place-items-center md:h-8 md:w-8">
+            <div
+              className={cn(
+                "h-2 w-2 rounded-full transition-transform duration-75 group-hover:scale-0",
+                {
+                  "bg-gradient-main": variant === "gradient",
+                  "bg-white":
+                    variant === "secondary" && variantColor === "white",
+                  "bg-black":
+                    variant === "secondary" && variantColor === "black",
+                },
+              )}
+            />
+            <div className="absolute grid h-full w-full rotate-[30deg] scale-0 place-items-center rounded-full bg-black transition-transform duration-150 ease-out group-hover:animate-reveal-arrow group-hover:ease-in">
+              <ArrowRight className="!size-5 text-white md:!size-6" />
+            </div>
+          </div>
+        )}
+      </div>
+    </Comp>
   );
 }
+
+const Button = React.forwardRef(ButtonInner) as <
+  T extends React.ElementType = "button",
+>(
+  props: ButtonProps<T> & { ref?: React.Ref<T> } & Omit<
+    React.ComponentPropsWithoutRef<T>,
+    keyof ButtonProps<T>
+  >,
+) => ReturnType<typeof ButtonInner>;
 
 export { Button, buttonVariants };
