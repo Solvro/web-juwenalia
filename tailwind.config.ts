@@ -99,12 +99,22 @@ export default {
             height: "0",
           },
         },
+        "gradient-swap": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+        "pulse-circle": {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.5)" },
+        },
       },
       animation: {
         "reveal-arrow":
           "bouncy-arrow-reveal 0.17s cubic-bezier(.2, 1.2, .3, 1.4) forwards",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "moving-gradient": "gradient-swap 3s ease-in-out infinite",
+        "pulsating-circle": "pulse-circle 1.5s ease-in-out infinite",
       },
     },
   },
