@@ -21,7 +21,7 @@ interface EventArtists {
   artists_id: ArtistProps;
 }
 
-interface EventProps {
+export interface EventProps {
   id: number;
   start_time: string;
   end_time: string;
