@@ -13,7 +13,8 @@ export function Day({ event, isOn }: Props) {
       <div className="flex flex-col justify-between px-4 sm:flex-row sm:items-center sm:py-6 md:px-10 md:py-[35px]">
         <div className="flex flex-col">
           {isOn ? (
-            <div className="my-1 flex max-w-28 items-center justify-center rounded-md bg-gradient-main px-2.5 py-[5px]">
+            <div className="my-1 flex max-w-32 animate-moving-gradient items-center justify-center rounded-md bg-gradient-main bg-[length:200%_200%] py-[5px]">
+              <div className="mx-1 h-1.5 w-1.5 animate-pulsating-circle rounded-full bg-white"></div>
               <div className="text-[10px] font-black text-white">
                 WŁAŚNIE TRWA
               </div>
