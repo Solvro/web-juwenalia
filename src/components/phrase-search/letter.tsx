@@ -37,8 +37,8 @@ export function LetterSearch({
 
   useEffect(() => {
     // Randomise top, left, and page
-    setLeftPercentage(Math.random() * 100);
-    setTopPercentage(Math.random() * 100);
+    setLeftPercentage(Math.random());
+    setTopPercentage(Math.random());
     setPage(PATHS[Math.floor(Math.random() * PATHS.length)]);
   }, [phrase, currentIndex]);
 
