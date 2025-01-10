@@ -1,0 +1,20 @@
+.underline-animation {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -0.1rem;
+    @apply left-0 h-[1px] w-full rounded-full bg-foreground;
+    transition:
+      200ms transform,
+      0ms transform-origin ease-in;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+}

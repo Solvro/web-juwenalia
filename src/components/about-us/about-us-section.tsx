@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { HorizontalRule } from "@/components/horizontal-rule";
+import { PaddingWrapper } from "@/components/padding-wrapper";
 
 import { HomepageHeader } from "../homepage-header";
 import { OrganisersList } from "./organisers";
@@ -16,29 +17,34 @@ function Section({
   body?: string;
 }) {
   return (
-    <>
-      <div>
+    <div className="w-full">
+      <div className="w-full">
         <HomepageHeader>{header}</HomepageHeader>
         {body != null && body.length > 0 && (
-          <p className="px-6 text-xl sm:px-10 md:px-12 lg:px-20 lg:text-2xl xl:text-3xl">
-            {body}
-          </p>
+          <PaddingWrapper className="mt-6 md:pb-6">
+            <p className="max-w-[450px] text-base md:max-w-[60%] md:text-xl lg:text-2xl">
+              {body}
+            </p>
+          </PaddingWrapper>
         )}
+
         <HorizontalRule />
       </div>
-      <div className="mb-20 mt-6 flex flex-col gap-5 px-6 sm:px-10 md:px-12 lg:px-20">
+
+      <PaddingWrapper className="mt-12 flex flex-col gap-7">
         {children}
-      </div>
-    </>
+      </PaddingWrapper>
+    </div>
   );
 }
 
 export function AboutUs() {
   return (
-    <div className="mt-10 flex flex-col gap-5">
+    <div className="mt-24 flex flex-col gap-24 md:mt-32 md:gap-32 lg:mt-48 lg:gap-64">
       <Section header="Partnerzy">
         <PartnersList />
       </Section>
+
       <Section
         header="Organizatorzy"
         body="Lorem ipsum dolor sit amet consectetur. Lectus purus faucibus senectus

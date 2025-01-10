@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 
+import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { QueryProvider } from "@/lib/query-client";
 
@@ -23,11 +24,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={montserrat.variable}>
+    <html lang="pl" className={montserrat.variable}>
       <QueryProvider>
         <body>
           <Navbar />
           {children}
+          <Footer />
         </body>
       </QueryProvider>
     </html>
