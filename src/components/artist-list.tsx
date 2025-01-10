@@ -2,7 +2,9 @@ import { Artist } from "@/components/artist";
 import { fetchData } from "@/lib/api";
 import type { ArtistProps } from "@/lib/types";
 
+import { HorizontalRule } from "./horizontal-rule";
 import { NoDataInfo } from "./no-data-info";
+import { PaddingWrapper } from "./padding-wrapper";
 
 // if we need shuffling the artists, so everyone in their respective P/NP category
 // gets somewhat even representation on our site
@@ -34,41 +36,30 @@ async function ArtistList() {
 
   return (
     <div className="">
-      <div className="mx-8 px-12">
+      <PaddingWrapper className="">
         <h1
           className={
-            "my-8 text-center text-2xl font-extrabold md:text-left md:text-5xl"
+            "my-8 text-center text-2xl font-extrabold sm:text-left sm:text-5xl"
           }
         >
           Tegoroczni artyści
         </h1>
-      </div>
-      <hr className="my-2 border-t border-gray-400" />
-      <div className="mx-auto mt-8 px-8">
+      </PaddingWrapper>
+      <HorizontalRule />
+      <PaddingWrapper className="mt-8">
         {artists.length > 0 ? (
-          // Calculate rows for the grid
-          Array.from({ length: Math.ceil(artists.length / 3) }).map(
-            (_, rowIndex) => (
-              <div key={rowIndex}>
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  {artists
-                    .slice(rowIndex * 3, rowIndex * 3 + 3) // Grab 3 artists per row
-                    .map((artist) => (
-                      <Artist key={artist.id} {...artist} />
-                    ))}
-                </div>
-                <hr className="-mx-8 my-2 w-screen border-t border-gray-400" />{" "}
-                {/* Repeating HR (the reason why i ain't using normal grid*/}
-              </div>
-            ),
-          )
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {artists.map((artist) => (
+              <Artist key={artist.id} {...artist} />
+            ))}
+          </div>
         ) : (
           <NoDataInfo
             errorTitle="Brak artystów"
             errorMessage="Nie udało nam się znaleźć listy artystów. Wróć tutaj później!"
           />
         )}
-      </div>
+      </PaddingWrapper>
     </div>
   );
 }
