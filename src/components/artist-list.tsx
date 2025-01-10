@@ -1,8 +1,8 @@
-import Link from "next/link";
-
 import { Artist } from "@/components/artist";
 import { fetchData } from "@/lib/api";
 import type { ArtistProps } from "@/lib/types";
+
+import { NoDataInfo } from "./no-data-info";
 
 // if we need shuffling the artists, so everyone in their respective P/NP category
 // gets somewhat even representation on our site
@@ -63,15 +63,10 @@ async function ArtistList() {
             ),
           )
         ) : (
-          <div className="flex flex-col items-center text-center">
-            <h1 className="text-2xl font-bold">Brak Artystów</h1>
-            <p className="p-3 text-xl">
-              Nie udało nam się znaleźć podanych artystów. Wróć tutaj później!
-            </p>
-            <Link href="." className={"rounded-2xl border-2 border-black p-3"}>
-              Odśwież
-            </Link>
-          </div>
+          <NoDataInfo
+            errorTitle="Brak artystów"
+            errorMessage="Nie udało nam się znaleźć listy artystów. Wróć tutaj później!"
+          />
         )}
       </div>
     </div>
