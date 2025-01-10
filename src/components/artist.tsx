@@ -12,7 +12,7 @@ export function Artist({
   spotifyUrl,
   events,
 }: ArtistProps) {
-  const weekDays = ["Nie", "PON", "WT", "ŚR", "CZW", "PT", "SOB"];
+  const weekDays = ["NIE", "PON", "WT", "ŚR", "CZW", "PT", "SOB"];
 
   const days: Date[] = events.map(
     (event) => new Date(event.events_id.day.date),
