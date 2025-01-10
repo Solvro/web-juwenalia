@@ -41,4 +41,3 @@ next-env.d.ts
 
 # facebook user data cache
 user_details.json
-package-lock.json
