@@ -12,12 +12,12 @@ export function Artist({
   spotifyUrl,
   events,
 }: ArtistProps) {
-  const weekDays = ["Nie", "Pon", "Wt", "Śr", "Czw", "Pt", "Sob"];
+  const weekDays = ["Nie", "PON", "WT", "ŚR", "CZW", "PT", "SOB"];
 
   const days: Date[] = events.map(
     (event) => new Date(event.events_id.day.date),
   );
-  const validDays: Date | undefined = days.find(
+  const firstValidDay: Date | undefined = days.find(
     (date) => !Number.isNaN(date.getTime()),
   );
 
@@ -29,7 +29,7 @@ export function Artist({
       <Image
         className={"mb-4 aspect-square rounded-xl object-cover"}
         src={`${API_URL}/assets/${image}`}
-        alt="Picture of the artist"
+        alt="Zdjęcie artysty."
         width={441}
         height={621}
         style={{ width: "100%", height: "621px" }}
@@ -53,8 +53,7 @@ export function Artist({
                 className={
                   "rounded-xl p-1 hover:bg-green-400 active:bg-green-600"
                 }
-                src={`/buttons/spotify_logo_short.png`}
-                // src={`/buttons/spotify-svgrepo-com.svg`}
+                src={`/buttons/spotify-svgrepo-com.svg`}
                 alt="Link do Spotify artysty."
                 width="43"
                 height="43"
@@ -73,9 +72,8 @@ export function Artist({
                 className={
                   "rounded-xl bg-gradient-to-bl p-1 hover:from-fuchsia-500 hover:to-amber-400 active:from-fuchsia-700 active:to-amber-600"
                 }
-                // src={`/buttons/instagram_icon.png`}
                 src={`/buttons/ig.svg`}
-                alt="Link do IG artysty."
+                alt="Link do Instagrama artysty."
                 width="43"
                 height="43"
               />
@@ -92,13 +90,13 @@ export function Artist({
             >
               <div>{event.events_id.location.name.toUpperCase()}</div>
 
-              {validDays instanceof Date && (
+              {firstValidDay instanceof Date && (
                 <div>
-                  {weekDays[validDays.getDay()]}
+                  {weekDays[firstValidDay.getDay()]}
                   {` / `}
-                  {validDays.getDate()}
+                  {firstValidDay.getDate()}
                   {`.`}
-                  {validDays.getMonth() + 1}
+                  {firstValidDay.getMonth() + 1}
                   {` / `}
                   {event.events_id.start_time.slice(0, 5)}
                 </div>
