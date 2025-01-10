@@ -27,16 +27,17 @@ export function Artist({
       className="flex flex-col items-center rounded-lg p-2 text-center text-xl"
     >
       <Image
-        className={"mb-4 aspect-square rounded-xl object-cover"}
+        className={
+          "mb-4 aspect-square h-[400px] w-full rounded-xl object-cover sm:h-[621px]"
+        }
         src={`${API_URL}/assets/${image}`}
-        alt="Zdjęcie artysty."
+        alt={`Zdjęcie artysty ${name}`}
         width={441}
         height={621}
-        style={{ width: "100%", height: "621px" }}
       />
 
       <div className="flex w-full flex-row justify-between">
-        <h2 className={"p-2 text-2xl font-extrabold lg:text-3xl"}>
+        <h2 className={"p-2 text-left text-2xl font-extrabold xl:text-3xl"}>
           {name.toUpperCase()}
         </h2>
         {/* div for the IG and Spotify buttons */}
@@ -88,10 +89,11 @@ export function Artist({
               key={event.id}
               className="mx-2 flex w-full justify-between text-sm lg:text-xl"
             >
-              <div>{event.events_id.location.name.toUpperCase()}</div>
-
+              <div className="text-left">
+                {event.events_id.location.name.toUpperCase()}
+              </div>
               {firstValidDay instanceof Date && (
-                <div>
+                <div className="text-right">
                   {weekDays[firstValidDay.getDay()]}
                   {` / `}
                   {firstValidDay.getDate()}
