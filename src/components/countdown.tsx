@@ -68,7 +68,7 @@ function Countdown() {
           :
         </div>
         <div>
-          <div className="mb-[-20px] w-[190px] px-1 text-[14px] font-medium sm:text-[20px] lg:text-[24px] xl:text-[28px]">
+          <div className="mb-[-20px] px-1 text-[14px] font-medium sm:text-[20px] lg:text-[24px] xl:text-[28px]">
             SEKUND
           </div>
           <div className="px-1">{duration.seconds}</div>
