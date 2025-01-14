@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { Button } from "@/components/button";
 import { PaddingWrapper } from "@/components/padding-wrapper";
 
@@ -23,11 +21,14 @@ export function BuyTicketCta() {
             </p>
           </div>
 
-          <Link href="/" className="max-w-[225px]">
-            <Button variant="secondary" variantColor="white" className="w-full">
-              kup bilet
-            </Button>
-          </Link>
+          <Button
+            variant="secondary"
+            variantColor="white"
+            className="w-full max-w-[225px]"
+            href="/"
+          >
+            kup bilet
+          </Button>
         </div>
       </div>
     </PaddingWrapper>
