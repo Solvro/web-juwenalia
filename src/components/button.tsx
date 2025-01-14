@@ -64,7 +64,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
-    const Comp = href ? Link : asChild ? Slot : "button";
+    const Comp = asChild ? Slot : "button";
 
     return (
       <Comp
@@ -83,51 +83,76 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               ["black"].includes(variantColor ?? ""),
           },
         )}
-        {...(href ? { href } : {})}
         ref={ref}
         {...props}
       >
-        <div className="pointer-events-auto relative flex w-full cursor-pointer items-center justify-between gap-4 md:gap-8">
-          <span
-            className={cn("lowercase transition-all duration-200", {
-              "text-foreground": variantColor === "black",
-              "text-white": variantColor === "white",
-              "group-hover:text-black":
-                ["default", "secondary"].includes(variant ?? "") &&
-                variantColor === "white",
-              "group-hover:text-white":
-                ["default", "secondary"].includes(variant ?? "") &&
-                variantColor === "black",
-              "underline-animation flex": variant === "link",
-            })}
+        {href ? (
+          <Link href={href} className="relative w-full">
+            <ButtonContent
+              variant={variant}
+              size={size}
+              variantColor={variantColor}
+            >
+              {children}
+            </ButtonContent>
+          </Link>
+        ) : (
+          <ButtonContent
+            variant={variant}
+            size={size}
+            variantColor={variantColor}
           >
             {children}
-          </span>
-
-          {(variant === "gradient" || variant === "secondary") && (
-            <div className="relative grid h-6 w-6 place-items-center md:h-8 md:w-8">
-              <div
-                className={cn(
-                  "h-2 w-2 rounded-full transition-transform duration-75 group-hover:scale-0",
-                  {
-                    "bg-gradient-main": variant === "gradient",
-                    "bg-white":
-                      variant === "secondary" && variantColor === "white",
-                    "bg-black":
-                      variant === "secondary" && variantColor === "black",
-                  },
-                )}
-              />
-              <div className="absolute grid h-full w-full rotate-[30deg] scale-0 place-items-center rounded-full bg-black transition-transform duration-150 ease-out group-hover:animate-reveal-arrow group-hover:ease-in">
-                <ArrowRight className="!size-5 text-white md:!size-6" />
-              </div>
-            </div>
-          )}
-        </div>
+          </ButtonContent>
+        )}
       </Comp>
     );
   },
 );
 Button.displayName = "Button";
+
+function ButtonContent({
+  children,
+  variantColor,
+  variant,
+}: VariantProps<typeof buttonVariants>) {
+  return (
+    <div className="pointer-events-auto relative flex w-full cursor-pointer items-center justify-between gap-4 md:gap-8">
+      <span
+        className={cn("lowercase transition-all duration-200", {
+          "text-foreground": variantColor === "black",
+          "text-white": variantColor === "white",
+          "group-hover:text-black":
+            ["default", "secondary"].includes(variant ?? "") &&
+            variantColor === "white",
+          "group-hover:text-white":
+            ["default", "secondary"].includes(variant ?? "") &&
+            variantColor === "black",
+          "underline-animation flex": variant === "link",
+        })}
+      >
+        {children}
+      </span>
+
+      {(variant === "gradient" || variant === "secondary") && (
+        <div className="relative grid h-6 w-6 place-items-center md:h-8 md:w-8">
+          <div
+            className={cn(
+              "h-2 w-2 rounded-full transition-transform duration-75 group-hover:scale-0",
+              {
+                "bg-gradient-main": variant === "gradient",
+                "bg-white": variant === "secondary" && variantColor === "white",
+                "bg-black": variant === "secondary" && variantColor === "black",
+              },
+            )}
+          />
+          <div className="absolute grid h-full w-full rotate-[30deg] scale-0 place-items-center rounded-full bg-black transition-transform duration-150 ease-out group-hover:animate-reveal-arrow group-hover:ease-in">
+            <ArrowRight className="!size-5 text-white md:!size-6" />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export { Button, buttonVariants };
