@@ -4,6 +4,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -48,6 +49,7 @@ export interface ButtonProps<T extends React.ElementType = "button">
   as?: T;
   asChild?: boolean;
   disabled?: boolean;
+  href?: string;
 }
 
 function ButtonInner<T extends React.ElementType = "button">(
