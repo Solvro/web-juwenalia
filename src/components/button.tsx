@@ -83,7 +83,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               ["black"].includes(variantColor ?? ""),
           },
         )}
-        href={href}
+        {...(href ? { href } : {})}
         ref={ref}
         {...props}
       >
