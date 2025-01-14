@@ -86,7 +86,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        {href ? (
+        {href !== undefined ? (
           <Link href={href} className="relative w-full">
             <ButtonContent
               variant={variant}
@@ -115,7 +115,7 @@ function ButtonContent({
   children,
   variantColor,
   variant,
-}: VariantProps<typeof buttonVariants>) {
+}: VariantProps<typeof buttonVariants> & { children: React.ReactNode }) {
   return (
     <div className="pointer-events-auto relative flex w-full cursor-pointer items-center justify-between gap-4 md:gap-8">
       <span
