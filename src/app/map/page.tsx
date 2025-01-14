@@ -29,6 +29,7 @@ export default function Page() {
     <div>
       <div className="mx-auto mt-10 grid w-4/5 grid-cols-2 gap-10">
         <Button
+          variant={activeStaticMap ? "levelSelected" : "levelUnselected"}
           disabled={activeStaticMap}
           onClick={() => {
             switchMap();
@@ -38,6 +39,7 @@ export default function Page() {
           Mapa Wydarzenia
         </Button>
         <Button
+          variant={activeInteractiveMap ? "levelSelected" : "levelUnselected"}
           disabled={activeInteractiveMap}
           onClick={() => {
             switchMap();
