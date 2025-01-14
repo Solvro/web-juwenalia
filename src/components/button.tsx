@@ -21,6 +21,8 @@ const buttonVariants = cva(
         ghost:
           "border-0 bg-slate-500/0 transition-colors hover:bg-slate-500/10",
         link: "border-0 !py-1 !px-2",
+        levelSelected: "bg-gradient-main w-[90%] mx-auto border-0 rounded-2xl",
+        levelUnselected: "border-2 border-grey-300 w-[90%] mx-auto rounded-2xl",
       },
       variantColor: {
         default: "border-black",
@@ -83,7 +85,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        <div className="pointer-events-auto relative flex w-full cursor-pointer items-center justify-between gap-4 md:gap-8">
+        <div className="pointer-events-auto relative flex cursor-pointer items-center gap-4 md:gap-8">
           <span
             className={cn("lowercase transition-all duration-200", {
               "text-foreground": variantColor === "black",
