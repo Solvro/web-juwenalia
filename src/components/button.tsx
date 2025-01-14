@@ -86,7 +86,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        {href !== undefined ? (
+        {typeof href === "string" && href.trim() !== "" ? (
           <Link href={href} className="relative w-full">
             <ButtonContent
               variant={variant}
