@@ -4,6 +4,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -46,6 +47,7 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  href?: string;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -57,17 +59,18 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       size,
       variantColor = "black",
       asChild = false,
+      href,
       ...props
     },
     ref,
   ) => {
-    const Comp = asChild ? Slot : "button";
+    const Comp = href ? Link : asChild ? Slot : "button";
 
     return (
       <Comp
         className={cn(
           buttonVariants({ variant, size, className, variantColor }),
-          "group before:pointer-events-auto before:absolute before:bg-transparent before:content-['']" +
+          "group inline-flex w-full before:pointer-events-auto before:absolute before:bg-transparent before:content-['']" +
             " isolate before:top-full before:z-[-1] before:h-[200%] before:w-[110%] before:rounded-[50%]" +
             " before:ease-[cubic-bezier(.23,1,.32,1)] before:transition-all before:duration-200 hover:before:-top-1/2" +
             " hover:before:origin-top hover:before:ease-in",
@@ -80,6 +83,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               ["black"].includes(variantColor ?? ""),
           },
         )}
+        href={href}
         ref={ref}
         {...props}
       >
