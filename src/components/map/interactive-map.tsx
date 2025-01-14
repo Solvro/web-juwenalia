@@ -64,7 +64,7 @@ export function InteractiveMap() {
       <h2 className="mx-auto mt-4 hidden w-[90%] font-semibold sm:block">
         Legenda
       </h2>
-      <WrMapLegend className="my-10 grid" items={wrLegendItems} />
+      <WrMapLegend className="my-10" items={wrLegendItems} />
     </div>
   );
 }
