@@ -4,6 +4,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -21,8 +22,6 @@ const buttonVariants = cva(
         ghost:
           "border-0 bg-slate-500/0 transition-colors hover:bg-slate-500/10",
         link: "border-0 !py-1 !px-2",
-        levelSelected: "bg-gradient-main w-[90%] mx-auto border-0 rounded-2xl",
-        levelUnselected: "border-2 border-grey-300 w-[90%] mx-auto rounded-2xl",
       },
       variantColor: {
         default: "border-black",
@@ -48,6 +47,7 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  href?: string;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -59,6 +59,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       size,
       variantColor = "black",
       asChild = false,
+      href,
       ...props
     },
     ref,
@@ -69,7 +70,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         className={cn(
           buttonVariants({ variant, size, className, variantColor }),
-          "group before:pointer-events-auto before:absolute before:bg-transparent before:content-['']" +
+          "group inline-flex w-full before:pointer-events-auto before:absolute before:bg-transparent before:content-['']" +
             " isolate before:top-full before:z-[-1] before:h-[200%] before:w-[110%] before:rounded-[50%]" +
             " before:ease-[cubic-bezier(.23,1,.32,1)] before:transition-all before:duration-200 hover:before:-top-1/2" +
             " hover:before:origin-top hover:before:ease-in",
@@ -85,47 +86,73 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        <div className="pointer-events-auto relative flex cursor-pointer items-center gap-4 md:gap-8">
-          <span
-            className={cn("lowercase transition-all duration-200", {
-              "text-foreground": variantColor === "black",
-              "text-white": variantColor === "white",
-              "group-hover:text-black":
-                ["default", "secondary"].includes(variant ?? "") &&
-                variantColor === "white",
-              "group-hover:text-white":
-                ["default", "secondary"].includes(variant ?? "") &&
-                variantColor === "black",
-              "underline-animation flex": variant === "link",
-            })}
+        {typeof href === "string" && href.trim() !== "" ? (
+          <Link href={href} className="relative w-full">
+            <ButtonContent
+              variant={variant}
+              size={size}
+              variantColor={variantColor}
+            >
+              {children}
+            </ButtonContent>
+          </Link>
+        ) : (
+          <ButtonContent
+            variant={variant}
+            size={size}
+            variantColor={variantColor}
           >
             {children}
-          </span>
-
-          {(variant === "gradient" || variant === "secondary") && (
-            <div className="relative grid h-6 w-6 place-items-center md:h-8 md:w-8">
-              <div
-                className={cn(
-                  "h-2 w-2 rounded-full transition-transform duration-75 group-hover:scale-0",
-                  {
-                    "bg-gradient-main": variant === "gradient",
-                    "bg-white":
-                      variant === "secondary" && variantColor === "white",
-                    "bg-black":
-                      variant === "secondary" && variantColor === "black",
-                  },
-                )}
-              />
-              <div className="absolute grid h-full w-full rotate-[30deg] scale-0 place-items-center rounded-full bg-black transition-transform duration-150 ease-out group-hover:animate-reveal-arrow group-hover:ease-in">
-                <ArrowRight className="!size-5 text-white md:!size-6" />
-              </div>
-            </div>
-          )}
-        </div>
+          </ButtonContent>
+        )}
       </Comp>
     );
   },
 );
 Button.displayName = "Button";
+
+function ButtonContent({
+  children,
+  variantColor,
+  variant,
+}: VariantProps<typeof buttonVariants> & { children: React.ReactNode }) {
+  return (
+    <div className="pointer-events-auto relative flex w-full cursor-pointer items-center justify-between gap-4 md:gap-8">
+      <span
+        className={cn("lowercase transition-all duration-200", {
+          "text-foreground": variantColor === "black",
+          "text-white": variantColor === "white",
+          "group-hover:text-black":
+            ["default", "secondary"].includes(variant ?? "") &&
+            variantColor === "white",
+          "group-hover:text-white":
+            ["default", "secondary"].includes(variant ?? "") &&
+            variantColor === "black",
+          "underline-animation flex": variant === "link",
+        })}
+      >
+        {children}
+      </span>
+
+      {(variant === "gradient" || variant === "secondary") && (
+        <div className="relative grid h-6 w-6 place-items-center md:h-8 md:w-8">
+          <div
+            className={cn(
+              "h-2 w-2 rounded-full transition-transform duration-75 group-hover:scale-0",
+              {
+                "bg-gradient-main": variant === "gradient",
+                "bg-white": variant === "secondary" && variantColor === "white",
+                "bg-black": variant === "secondary" && variantColor === "black",
+              },
+            )}
+          />
+          <div className="absolute grid h-full w-full rotate-[30deg] scale-0 place-items-center rounded-full bg-black transition-transform duration-150 ease-out group-hover:animate-reveal-arrow group-hover:ease-in">
+            <ArrowRight className="!size-5 text-white md:!size-6" />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export { Button, buttonVariants };

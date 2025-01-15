@@ -18,3 +18,8 @@
     transform-origin: bottom left;
   }
 }
+
+button:hover .underline-animation::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
