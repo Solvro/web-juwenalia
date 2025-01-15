@@ -21,13 +21,14 @@ interface EventArtists {
   artists_id: ArtistProps;
 }
 
-interface EventProps {
+export interface EventProps {
   id: number;
   start_time: string;
   end_time: string;
   location: { id: number; name: string };
   day: DayProps;
   artists: EventArtists[];
+  name: string | null;
 }
 
 export interface DayProps {
