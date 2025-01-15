@@ -140,3 +140,14 @@ export interface MapFloorsButtonProps {
   active: boolean;
   onClick: () => void;
 }
+
+export interface WrLegendItem {
+  name: string;
+  description: string | React.ReactNode; // React.ReactNode używane dla n.p. tabelek w opisie
+  color: string;
+  coordinates: [number, number];
+}
+
+export interface LeafletElement extends Element {
+  _leaflet_id?: string | null;
+}
