@@ -5,6 +5,7 @@ import { Montserrat } from "next/font/google";
 
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
+import { SocialSidebar } from "@/components/socials-sidebar";
 import { QueryProvider } from "@/lib/query-client";
 
 import "./globals.css";
@@ -31,6 +32,7 @@ export default function RootLayout({
     <html lang="pl" className={montserrat.variable}>
       <QueryProvider>
         <body>
+          <SocialSidebar />
           <Navbar />
           {children}
           <Footer />
