@@ -2,7 +2,7 @@ import { SunIcon } from "lucide-react";
 
 import type { MapLevel } from "@/lib/types";
 
-export const mapItems: MapLevel[] = [
+export const MAP_ITEMS: MapLevel[] = [
   {
     name: "Outside",
     description: "Scena plenerowa, gastronomia, atrakcje",
