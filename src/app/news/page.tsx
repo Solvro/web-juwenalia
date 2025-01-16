@@ -1,6 +1,6 @@
-import { NoDataInfo } from "@/components/no-data-info";
 import { getFacebookPosts, getFacebookUser } from "@/lib/facebook";
 
+import { NewsErrorMessage } from "./components/news-error-message";
 import { Post } from "./components/post";
 
 export default async function FbPage() {
@@ -14,15 +14,9 @@ export default async function FbPage() {
       </h1>
       <hr className="w-full" />
       {user == null || posts == null ? (
-        <NoDataInfo
-          errorTitle="Błąd sieciowy"
-          errorMessage="Nie udało się pobrać postów z Facebooka. Spróbuj ponownie później."
-        />
+        <NewsErrorMessage type="network" />
       ) : posts.length === 0 ? (
-        <NoDataInfo
-          errorTitle="Brak postów"
-          errorMessage="Nie ma obecnie żadnych postów do wyświetlenia."
-        />
+        <NewsErrorMessage type="noPosts" />
       ) : (
         <div className="flex flex-col items-stretch md:items-center">
           {posts.map((post) => (
