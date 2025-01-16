@@ -26,7 +26,7 @@ interface EventProps {
   start_time: string;
   end_time: string;
   location: { id: number; name: string };
-  day: number;
+  day: DayProps;
   artists: EventArtists[];
 }
 
@@ -112,3 +112,31 @@ export interface Person {
   image?: string;
 }
 // #endregion
+
+export type MapView = "Outside" | "Ground Floor" | "Floor 1" | "Floor -1";
+
+export interface MapLevel {
+  name: MapView;
+  description: string;
+  icon: React.ReactNode;
+  image: {
+    src: string;
+    alt: string;
+  };
+  nodes: {
+    name: string;
+    color: string;
+  }[];
+}
+
+export interface StaticLegendProps {
+  items: MapLevel[];
+  activeView: MapView;
+  className?: string;
+}
+
+export interface MapFloorsButtonProps {
+  level: MapLevel;
+  active: boolean;
+  onClick: () => void;
+}

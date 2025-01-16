@@ -3,5 +3,5 @@
  * parent has a margin/padding, while retaining vertical margins.
  */
 export function HorizontalRule() {
-  return <hr className="border-gray-300-0 my-5 border-b-2" />;
+  return <hr className="my-5 h-[1.5px] w-full bg-gray-300" />;
 }
