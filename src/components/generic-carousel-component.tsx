@@ -1,7 +1,6 @@
 "use client";
 
 import type { Settings } from "react-slick";
-import Slider from "react-slick";
 
 import { Artist } from "@/components/artist";
 import type { CarouselProps } from "@/lib/types";
@@ -18,6 +17,7 @@ function Carousel({ artists }: CarouselProps) {
     slidesToScroll: 3,
     initialSlide: 0,
     responsive: [
+      { breakpoint: 800, settings: { slidesToShow: 2, slidesToScroll: 2 } },
       { breakpoint: 600, settings: { slidesToShow: 1.5, slidesToScroll: 1.5 } },
       { breakpoint: 500, settings: { slidesToShow: 1.4, slidesToScroll: 1.4 } },
       { breakpoint: 400, settings: { slidesToShow: 1, slidesToScroll: 1 } },
