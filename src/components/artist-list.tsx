@@ -8,6 +8,7 @@ import { PaddingWrapper } from "./padding-wrapper";
 
 // if we need shuffling the artists, so everyone in their respective category
 // gets a somewhat even representation on our site
+
 function shuffleArray<T>(array: T[]): T[] {
   return array
     .map((item) => ({ item, sort: Math.random() }))
