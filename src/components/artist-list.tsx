@@ -45,7 +45,13 @@ async function ArtistList() {
 
   return (
     <div className="">
+    <div className="">
       <PaddingWrapper className="">
+        <h1
+          className={
+            "my-8 text-center text-2xl font-extrabold sm:text-left sm:text-5xl"
+          }
+        >
         <h1
           className={
             "my-8 text-center text-2xl font-extrabold sm:text-left sm:text-5xl"
