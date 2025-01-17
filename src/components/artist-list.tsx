@@ -1,6 +1,6 @@
-// components/artist-list.tsx
 import { Artist } from "@/components/artist";
-import { getArtists } from "@/lib/artists";
+import { fetchData } from "@/lib/api";
+import type { ArtistProps } from "@/lib/types";
 
 import { HorizontalRule } from "./horizontal-rule";
 import { NoDataInfo } from "./no-data-info";
@@ -43,9 +43,13 @@ async function ArtistList() {
   const artists = [...shuffledPopularArtists, ...shuffledUnpopularArtists];
 
   return (
-    <div>
+    <div className="">
       <PaddingWrapper className="">
-        <h1 className="my-8 text-center text-2xl font-extrabold sm:text-left sm:text-5xl">
+        <h1
+          className={
+            "my-8 text-center text-2xl font-extrabold sm:text-left sm:text-5xl"
+          }
+        >
           Tegoroczni artyści
         </h1>
       </PaddingWrapper>
