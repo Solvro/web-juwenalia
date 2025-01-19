@@ -17,38 +17,21 @@ function Carousel({ artists }: { artists: ArtistProps[] }) {
     slidesToScroll: 3,
     initialSlide: 0,
     responsive: [
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1.7,
-          slidesToScroll: 1.7,
-        },
-      },
-      {
-        breakpoint: 400,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
+      { breakpoint: 800, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+      { breakpoint: 600, settings: { slidesToShow: 1.5, slidesToScroll: 1.5 } },
+      { breakpoint: 500, settings: { slidesToShow: 1.4, slidesToScroll: 1.4 } },
+      { breakpoint: 400, settings: { slidesToShow: 1, slidesToScroll: 1 } },
     ],
   };
 
   return (
-    <div className="slider-container mx-auto my-20 flex h-fit w-4/5 flex-col justify-center">
+    <div className="slider-container mx-auto my-20 flex h-fit w-11/12 flex-col justify-center">
       <Slider {...settings}>
-        <div className="h-96 border-4 border-solid border-red-900">
-          <h3>1</h3>
-        </div>
-        <div className="h-96 border-4 border-solid border-red-900">
-          <h3>2</h3>
-        </div>
-        <div className="h-96 border-4 border-solid border-red-900">
-          <h3>3</h3>
-        </div>
-        <div className="h-96 border-4 border-solid border-red-900">
-          <h3>4</h3>
-        </div>
+        {artists.map((artist) => (
+          <div key={artist.id} className="p-4">
+            <Artist {...artist} />
+          </div>
+        ))}
       </Slider>
     </div>
   );
