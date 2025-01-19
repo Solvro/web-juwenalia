@@ -9,6 +9,10 @@ export interface ArtistProps {
   events: ArtistEvents[];
 }
 
+export interface CarouselProps {
+  artists: ArtistProps[];
+}
+
 interface ArtistEvents {
   id: number;
   artists_id: number;
