@@ -1,6 +1,5 @@
 "use client";
 
-import "react-slick";
 import type { Settings } from "react-slick";
 import Slider from "react-slick";
 
