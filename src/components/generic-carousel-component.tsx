@@ -1,6 +1,5 @@
 "use client";
 
-import "react-slick";
 import type { Settings } from "react-slick";
 
 import { Artist } from "@/components/artist";
