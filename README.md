@@ -1,6 +1,6 @@
 # Juwenalia Wrocław Razem
 
-**Official website**
+**Official Website**
 
 ![Homepage](https://i.imgur.com/69i20kk.jpeg)
 
