@@ -1,4 +1,4 @@
-# Juwenanlia Wrocław Razem
+# Juwenalia Wrocław Razem
 
 **The official website**
 
@@ -14,7 +14,7 @@ Aplikacja jest owocem współpracy członków Koła Naukowego Solvro oraz Samorz
 
 #### Welcome to the repository of the Juwenalia #wrocławrazem official website!
 
-The app is the result of collaboration between the members of Solvro Science Club and Student's Union of Wrocław University of Science and Technology. It serves as the official communication channel between the event organizers and its participants. Its main goal is to quickly and conveniently provide all the essential information for festival goers - without the need to search through social media. Event schedule, map, artists - all that in one place! What's more, thanks to integration with the organizer's Facebook account, we ensure that You will always stay up-to-date!
+This app is the result of collaboration between members of the Solvro Science Club and the Students' Union of Wrocław University of Science and Technology. It serves as the official communication channel between the event organizers and its participants. Its main goal is to quickly and conveniently provide all the essential information for festival goers - without the need to search through social media. Event schedule, map, artists - all of that in one place! What's more, thanks to integration with the organizer's Facebook account, we ensure that You will always stay up-to-date!
 
 ## Our team
 
@@ -27,6 +27,7 @@ The app is the result of collaboration between the members of Solvro Science Clu
 - [@GTR1701](https://github.com/GTR1701) - Frontend Developer
 - [@zeolsem](https://github.com/zeolsem) - Frontend Developer
 - [@Konzum59](https://github.com/Konzum59) - Frontend Developer
+- [@czaja307](https://github.com/czaja307) - Devops
 
 ## Technologies used
 
@@ -79,7 +80,7 @@ Open your browser and navigate to [http://localhost:3000](http://localhost:3000)
 
 ### Github Solvro Handbook
 
-https://docs.solvro.pl/guides/github
+<https://docs.solvro.pl/guides/github>
 
 ### SSH
 
@@ -98,12 +99,10 @@ If you are a Windows, follow this [tutorial](https://www.youtube.com/watch?v=vEx
 2. Create new feature branch
 
 ```bash
-   git checkout -b WEB-x_my_feature_branch
+   git checkout -b feat/x_my_feature_branch
 ```
 
-> x - stands for issue number; it is going to checkout and create new branch name WEB-x_my_feature_branch
-
-3. Commit your changes:
+> 'x' stands for issue number; this command will create and checkout a new branch named feat/x_my_feature_branch 3. Commit your changes:
 
 ```bash
    git add .
@@ -113,7 +112,7 @@ If you are a Windows, follow this [tutorial](https://www.youtube.com/watch?v=vEx
 4. Push to remote:
 
 ```bash
-   git push origin WEB-x_my_feature_branch
+   git push origin feat/x_my_feature_branch
 ```
 
 5. Create a Pull Request on GitHub and wait for a review
@@ -125,8 +124,8 @@ If you are a Windows, follow this [tutorial](https://www.youtube.com/watch?v=vEx
 - Clean up after a successful merge
 
   ```bash
-  git branch -d WEB-x_my_feature_branch
-  git push origin --delete WEB-x_my_feature_branch
+  git branch -d feat/x_my_feature_branch
+  git push origin --delete feat/x_my_feature_branch
   ```
 
 ## Contact
