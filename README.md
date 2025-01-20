@@ -101,7 +101,9 @@ If you are a Windows, follow this [tutorial](https://www.youtube.com/watch?v=vEx
    git checkout -b WEB-x_my_feature_branch
 ```
 
-> x - stands for issue number; it is going to checkout and create new branch name WEB-x_my_feature_branch 3. Commit your changes:
+> x - stands for issue number; it is going to checkout and create new branch name WEB-x_my_feature_branch
+
+3. Commit your changes:
 
 ```bash
    git add .
