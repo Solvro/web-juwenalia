@@ -17,7 +17,8 @@ export async function Schedule() {
         <Alert className="w-1/2" variant="destructive">
           <AlertTitle>Błąd Sieciowy</AlertTitle>
           <AlertDescription>
-            Nie udało się pobrać harmonogramu. Spróbuj ponownie później.
+            Nie udało się pobrać harmonogramu. Proszę spróbować ponownie
+            później.
           </AlertDescription>
         </Alert>
       </div>
