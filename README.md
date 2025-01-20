@@ -1,6 +1,6 @@
 # Juwenalia Wrocław Razem
 
-**The official website**
+**Official website**
 
 ![Homepage](https://i.imgur.com/69i20kk.jpeg)
 
@@ -84,7 +84,7 @@ Open your browser and navigate to [http://localhost:3000](http://localhost:3000)
 
 ### SSH
 
-If you are a Windows, follow this [tutorial](https://www.youtube.com/watch?v=vExsOTgIOGw) to connect via SSH
+If you are a Windows user, follow this [tutorial](https://www.youtube.com/watch?v=vExsOTgIOGw) to connect via SSH
 
 ### Building a new feature
 
