@@ -6,13 +6,13 @@
 
 ## 🇵🇱
 
-#### Witamy w repozytorium oficjalnej strony internetowej Juwenaliów #wrocławrazem!
+### Witamy w repozytorium oficjalnej strony internetowej Juwenaliów #wrocławrazem!
 
 Aplikacja jest owocem współpracy członków Koła Naukowego Solvro oraz Samorządu Studenckiego Politechniki Wrocławskiej. Stanowi oficjalny kanał komunikacji pomiędzy organizatorami wydarzenia oraz jego uczestnikami. Jej celem jest szybkie i wygodne dostarczenie wszelkich niezbędnych informacji dla imprezowiczów - bez potrzeby przeszukiwania social mediów. Harmonogram, mapa, artyści - wszystko w jednym miejscu! Co więcej, dzięki integracji z profilem na Facebooku organizatora, aplikacja zapewnia, że wszyscy uczestnicy zawsze będą na bieżąco ze wszystkim, co dzieje się wokół Juwenaliów.
 
 ## 🇬🇧
 
-#### Welcome to the repository of the Juwenalia #wrocławrazem official website!
+### Welcome to the repository of the Juwenalia #wrocławrazem official website!
 
 This app is the result of collaboration between members of the Solvro Science Club and the Students' Union of Wrocław University of Science and Technology. It serves as the official communication channel between the event organizers and its participants. Its main goal is to quickly and conveniently provide all the essential information for festival goers - without the need to search through social media. Event schedule, map, artists - all of that in one place! What's more, thanks to integration with the organizer's Facebook account, we ensure that You will always stay up-to-date!
 
@@ -41,7 +41,7 @@ This app is the result of collaboration between members of the Solvro Science Cl
 
 [![docs.solvro.pl](https://i.imgur.com/fuV0gra.png)](https://docs.solvro.pl)
 
-# Development
+## Development
 
 ### 1. Clone the Repository
 
