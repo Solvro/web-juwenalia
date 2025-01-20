@@ -3,7 +3,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { fetchData } from "@/lib/api";
 import type { DayProps } from "@/lib/types";
 
-async function Schedule() {
+export async function Schedule() {
   let days = null;
   try {
     const response = await fetchData<{ data: DayProps[] }>(
@@ -25,10 +25,8 @@ async function Schedule() {
   }
 
   if (days.length === 0) {
-    return <div />;
+    return null;
   }
 
   return <DynamicSchedule daysList={days} />;
 }
-
-export { Schedule };
