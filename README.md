@@ -129,7 +129,7 @@ If you are a Windows, follow this [tutorial](https://www.youtube.com/watch?v=vEx
 
 ## Contact
 
-For questions or suggestions, reach out to us:
+For questions or suggestions, please reach out to us:
 
 - ✉️ Email: <kn.solvro@pwr.edu.pl>
 - 🌐 Website: [solvro.pwr.edu.pl](https://solvro.pwr.edu.pl/)
