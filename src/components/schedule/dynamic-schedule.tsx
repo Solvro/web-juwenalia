@@ -1,13 +1,16 @@
 "use client";
 
-import { format, isWithinInterval } from "date-fns";
+import { format, isWithinInterval, setDefaultOptions } from "date-fns";
 import { pl } from "date-fns/locale";
+import { useEffect, useState } from "react";
 
 import { HomepageHeader } from "@/components/homepage-header";
 import { HorizontalRule } from "@/components/horizontal-rule";
 import { NoDataInfo } from "@/components/no-data-info";
 import { Day } from "@/components/schedule/day";
 import type { DayProps } from "@/lib/types";
+
+setDefaultOptions({ locale: pl });
 
 interface Props {
   daysList: DayProps[];
@@ -20,12 +23,19 @@ const combineDateAndTime = (date: Date, time: string): Date => {
   return combinedDate;
 };
 
-const isNowOn = (start: Date, end: Date) => {
-  const currentDate = new Date();
-  return isWithinInterval(currentDate, { start, end });
-};
-
 function DynamicSchedule({ daysList }: Props): React.ReactElement {
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   const days = daysList.map((day) => ({
     ...day,
     date: new Date(day.date),
@@ -35,14 +45,15 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
     <div>
       {days.map((day) => (
         <div key={day.id} className="mt-24">
-          <HomepageHeader>
-            {format(day.date, "d MMMM (EEEE)", { locale: pl })}
-          </HomepageHeader>
+          <HomepageHeader>{format(day.date, "d MMMM (EEEE)")}</HomepageHeader>
           {day.events.length > 0 ? (
             day.events.map((event) => {
               const eventStart = combineDateAndTime(day.date, event.start_time);
               const eventEnd = combineDateAndTime(day.date, event.end_time);
-              const isOn = isNowOn(eventStart, eventEnd);
+              const isOn = isWithinInterval(currentTime, {
+                start: eventStart,
+                end: eventEnd,
+              });
               return <Day isOn={isOn} event={event} key={event.id} />;
             })
           ) : (
