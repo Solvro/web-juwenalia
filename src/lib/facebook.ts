@@ -65,44 +65,46 @@ async function fetchFromFacebook<T>(
   fields = "",
   useAuthentication = true,
 ): Promise<T | null> {
-  try {
-    const url = new URL(`${FACEBOOK_API_URL}/${path}`);
-    if (fields) {
-      url.searchParams.append("fields", fields);
-    }
-    const options: RequestInit = {};
-    // Can't define options.headers and options.next immediately when declaring `options` because TypeScript later complains they may be undefined
-    options.headers = {};
-    options.next = {};
-    if (useAuthentication) {
-      getAccessTokenPromise = getAccessToken();
-      const token = await getAccessTokenPromise;
-      if (token == null || token === "") {
-        console.error("No long-lived access token set for Facebook API");
-        return null;
-      }
-      // Cache responses for posts, user data etc. for 5 minutes
-      options.next.revalidate = 300;
-      options.headers.Authorization = `Bearer ${token}`;
-    } else {
-      // Don't cache responses for generating access tokens
-      options.next.revalidate = 0;
-    }
-    const response = await fetch(url.toString(), options);
-    const data = (await response.json()) as T;
-    if (!response.ok) {
-      console.error(
-        "Bad response from Facebook API:",
-        response.status,
-        response.statusText,
-        data,
-      );
+  const url = new URL(`${FACEBOOK_API_URL}/${path}`);
+  if (fields) {
+    url.searchParams.append("fields", fields);
+  }
+  const options: RequestInit = {};
+  // Can't define options.headers and options.next immediately when declaring `options` because TypeScript later complains they may be undefined
+  options.headers = {};
+  options.next = {};
+  if (useAuthentication) {
+    getAccessTokenPromise = getAccessToken();
+    const token = await getAccessTokenPromise;
+    if (token == null || token === "") {
+      console.error("No long-lived access token set for Facebook API");
       return null;
     }
-    return data;
-  } catch {
+    // Cache responses for posts, user data etc. for 5 minutes
+    options.next.revalidate = 300;
+    options.headers.Authorization = `Bearer ${token}`;
+  } else {
+    // Don't cache responses for generating access tokens
+    options.next.revalidate = 0;
+  }
+  let response;
+  try {
+    response = await fetch(url.toString(), options);
+  } catch (error) {
+    console.error("Network error while fetching from Facebook API:", error);
     return null;
   }
+  const data = (await response.json()) as T;
+  if (!response.ok) {
+    console.error(
+      "Bad response from Facebook API:",
+      response.status,
+      response.statusText,
+      data,
+    );
+    return null;
+  }
+  return data;
 }
 
 /**
