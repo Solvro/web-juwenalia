@@ -5,10 +5,9 @@ export async function fetchData<T>(endpoint: string, options?: RequestInit) {
     ...options,
     headers: {
       "Content-Type": "application/json",
-      "Cache-Control": "no-cache",
       ...(options?.headers as Record<string, string>),
     },
-    cache: "no-store",
+    next: { revalidate: 30 },
   });
 
   if (!response.ok) {
