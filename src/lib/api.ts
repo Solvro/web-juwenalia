@@ -7,7 +7,7 @@ export async function fetchData<T>(endpoint: string, options?: RequestInit) {
       "Content-Type": "application/json",
       ...(options?.headers as Record<string, string>),
     },
-    next: { revalidate: 30 },
+    next: { revalidate: 60 },
   });
 
   if (!response.ok) {
