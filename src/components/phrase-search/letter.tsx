@@ -36,7 +36,6 @@ export function LetterSearch({
   const windowDimensions = useWindowDimensions();
 
   useEffect(() => {
-    // Randomise top, left, and page
     setLeftPercentage(Math.random());
     setTopPercentage(Math.random());
     setPage(PATHS[Math.floor(Math.random() * PATHS.length)]);
@@ -68,16 +67,26 @@ export function LetterSearch({
     });
   }
 
+  // To prevent letter from overflowing off the page
+  const verticalStyle =
+    topPercentage > 0.5
+      ? { bottom: (1 - topPercentage) * windowDimensions.height }
+      : { top: topPercentage * windowDimensions.height };
+  const horizontalStyle =
+    leftPercentage > 0.5
+      ? { right: (1 - leftPercentage) * windowDimensions.width }
+      : { left: leftPercentage * windowDimensions.width };
+
   return (
     <Dialog>
       {!foundLetter && (
         <DialogTrigger asChild>
           <button
             onClick={handleClick}
-            className="absolute z-[1000] bg-gradient-main bg-clip-text text-xl font-medium text-transparent"
+            className="absolute z-[1000] bg-gradient-main bg-clip-text p-2 text-xl font-medium text-transparent"
             style={{
-              left: `${(leftPercentage * windowDimensions.width).toString()}px`,
-              top: `${(topPercentage * windowDimensions.height).toString()}px`,
+              ...verticalStyle,
+              ...horizontalStyle,
             }}
           >
             {phrase.word[currentIndex]}
