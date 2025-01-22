@@ -57,14 +57,10 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
               return <Day isOn={isOn} event={event} key={event.id} />;
             })
           ) : (
-            <div className="flex w-full items-center justify-center">
-              <NoDataInfo
-                errorTitle={"Brak wydarzeń"}
-                errorMessage={
-                  "Nie udało nam się znaleźć żadnych wydarzeń w tym dniu. Wróć tutaj później!"
-                }
-              />
-            </div>
+            <NoDataInfo
+              errorTitle="Brak wydarzeń"
+              errorMessage="Nie udało nam się znaleźć żadnych wydarzeń w tym dniu. Wróć tutaj później!"
+            />
           )}
           <HorizontalRule />
         </div>
