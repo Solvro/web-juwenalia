@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="pl" className={montserrat.variable}>
       <QueryProvider>
-        <body>
+        <body className="relative">
           <Navbar />
           <PhraseSearch />
           {children}
