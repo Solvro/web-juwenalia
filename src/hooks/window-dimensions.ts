@@ -1,3 +1,4 @@
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export function useWindowDimensions() {
@@ -5,18 +6,14 @@ export function useWindowDimensions() {
     width: 0,
     height: 0,
   });
+  const pathname = usePathname();
 
   function handleResize() {
-    setWindowDimensions({
-      width: Math.max(document.body.scrollWidth, document.body.offsetWidth),
-      height: Math.max(
-        document.body.scrollHeight,
-        document.body.offsetHeight,
-        document.documentElement.clientHeight,
-        document.documentElement.scrollHeight,
-        document.documentElement.offsetHeight,
-      ),
-    });
+    const dimensions = {
+      width: document.body.offsetWidth,
+      height: document.body.offsetHeight,
+    };
+    setWindowDimensions(dimensions);
   }
 
   useEffect(() => {
@@ -26,6 +23,10 @@ export function useWindowDimensions() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    handleResize();
+  }, [pathname]);
 
   return windowDimensions;
 }

@@ -122,17 +122,16 @@ export const getFacebookUser = async () =>
 export async function getFacebookPosts(): Promise<
   (FacebookPost & { updatedTimestamp: number })[] | null
 > {
-  const data = await fetchFromFacebook<{ data: FacebookPost[] }>(
+  const response = await fetchFromFacebook<{ data: FacebookPost[] }>(
     "me/posts",
     `id,message,name,shares,created_time,updated_time,permalink_url,attachments.limit(${POST_ATTACHMENT_LIMIT.toString()}){media,subattachments}`,
   );
-  const posts = data?.data;
-  if (posts === undefined) {
-    console.warn(data);
+  if (response?.data == null) {
+    console.warn("Could not obtain Facebook posts");
     return null;
   }
   return (
-    posts
+    response.data
       // Ensure the posts are not empty (e.g. timeline events like being born)
       .filter((post) => post.message != null && post.message.length > 0)
       .map((post) => ({
