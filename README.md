@@ -18,10 +18,10 @@ This app is the result of collaboration between members of the Solvro Science Cl
 
 ## Our team
 
-- [@JanGolenski](https://github.com/JanGolenski) - Project Manager
 - [@Octopus4344](https://github.com/Octopus4344) - Frontend Techlead
+- [@JanGolenski](https://github.com/JanGolenski) - Project Manager
 - [@Adriskk](https://github.com/Adriskk) - UI/UX Designer, Frontend Developer
-- [@basia2137](https://github.com/basia2137) - UI/UX Designer
+- [Basia Cząstkiewicz](https://www.instagram.com/basiiiikkkk/) - UI/UX Designer
 - [@kguzek](https://github.com/kguzek) - Frontend Developer
 - [@jedryczkatymon](https://github.com/jedryczkatymon) - Frontend Developer
 - [@GTR1701](https://github.com/GTR1701) - Frontend Developer
@@ -102,7 +102,9 @@ If you are a Windows user, follow this [tutorial](https://www.youtube.com/watch?
    git checkout -b feat/x_my_feature_branch
 ```
 
-> 'x' stands for issue number; this command will create and checkout a new branch named feat/x_my_feature_branch 3. Commit your changes:
+> 'x' stands for issue number; this command will create and checkout a new branch named feat/x_my_feature_branch
+
+3. Commit your changes:
 
 ```bash
    git add .
