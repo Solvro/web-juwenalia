@@ -18,16 +18,16 @@ This app is the result of collaboration between members of the Solvro Science Cl
 
 ## Our team
 
-- [@Octopus4344](https://github.com/Octopus4344) - Frontend Techlead
-- [@JanGolenski](https://github.com/JanGolenski) - Project Manager
-- [@Adriskk](https://github.com/Adriskk) - UI/UX Designer, Frontend Developer
+- [Apolonia Abramowicz](https://github.com/Octopus4344) - Frontend Techlead
+- [Jan Goleński](https://github.com/JanGolenski) - Project Manager
+- [Adrian Iskra](https://github.com/Adriskk) - UI/UX Designer, Frontend Developer
 - [Basia Cząstkiewicz](https://www.instagram.com/basiiiikkkk/) - UI/UX Designer
-- [@kguzek](https://github.com/kguzek) - Frontend Developer
-- [@jedryczkatymon](https://github.com/jedryczkatymon) - Frontend Developer
-- [@GTR1701](https://github.com/GTR1701) - Frontend Developer
-- [@zeolsem](https://github.com/zeolsem) - Frontend Developer
-- [@Konzum59](https://github.com/Konzum59) - Frontend Developer
-- [@czaja307](https://github.com/czaja307) - Devops
+- [Konrad Guzek](https://github.com/kguzek) - Frontend Developer
+- [Tymon Jedryczka](https://github.com/jedryczkatymon) - Frontend Developer
+- [Dawid Kowal](https://github.com/GTR1701) - Frontend Developer
+- [Miłosz Kowalczyk](https://github.com/zeolsem) - Frontend Developer
+- [Kuba Dołharz](https://github.com/Konzum59) - Frontend Developer
+- [Kuba Czajkowski](https://github.com/czaja307) - Devops
 
 ## Technologies used
 
