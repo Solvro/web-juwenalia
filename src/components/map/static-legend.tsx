@@ -1,24 +1,13 @@
-import type { StaticLegendProps } from "@/lib/types";
+import type { MapLevel } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-import { NoDataInfo } from "../no-data-info";
-
 export function StaticLegend({
-  items,
-  activeView,
+  activeLevel,
   className,
-}: StaticLegendProps) {
-  const activeLevel = items.find((level) => level.name === activeView);
-
-  if (activeLevel === undefined) {
-    return (
-      <NoDataInfo
-        errorTitle="Brak legendy"
-        errorMessage="Legenda dla obecnego widoku jest niedostępna."
-      />
-    );
-  }
-
+}: {
+  activeLevel: MapLevel;
+  className?: string;
+}) {
   return (
     <div
       className={cn(

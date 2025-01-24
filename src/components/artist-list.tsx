@@ -6,33 +6,41 @@ import { HorizontalRule } from "./horizontal-rule";
 import { NoDataInfo } from "./no-data-info";
 import { PaddingWrapper } from "./padding-wrapper";
 
-// if we need shuffling the artists, so everyone in their respective P/NP category
-// gets somewhat even representation on our site
+// if we need shuffling the artists, so everyone in their respective category
+// gets a somewhat even representation on our site
 function shuffleArray<T>(array: T[]): T[] {
   return array
     .map((item) => ({ item, sort: Math.random() }))
     .sort((a, b) => a.sort - b.sort)
     .map(({ item }) => item);
 }
-///
+
+/** Splits an array into two arrays by applying the predicate to each item. */
+export function partitionArray<T>(array: T[], predicate: (item: T) => boolean) {
+  const truthy: T[] = [];
+  const falsy: T[] = [];
+  for (const item of array) {
+    (predicate(item) ? truthy : falsy).push(item);
+  }
+  return [truthy, falsy];
+}
 
 async function ArtistList() {
   const response = await fetchData<{ data: ArtistProps[] }>(
     "items/artists?fields=*,events.*,events.events_id.*,events.events_id.location.*,events.events_id.day.*",
   );
 
-  const artists_raw = response.data;
+  const rawArtists = response.data;
 
-  // divide artists into popular and non-popular
-  const popularArtists = artists_raw.filter((artist) => artist.isPopular);
-  const nonPopularArtists = artists_raw.filter((artist) => !artist.isPopular);
+  const [popularArtists, unpopularArtists] = partitionArray(
+    rawArtists,
+    (artist) => artist.isPopular,
+  );
 
-  // same as with she shuffleArray function
-  const shuffledNonPopularArtists = shuffleArray(nonPopularArtists);
   const shuffledPopularArtists = shuffleArray(popularArtists);
-  ///
+  const shuffledUnpopularArtists = shuffleArray(unpopularArtists);
 
-  const artists = [...shuffledPopularArtists, ...shuffledNonPopularArtists];
+  const artists = [...shuffledPopularArtists, ...shuffledUnpopularArtists];
 
   return (
     <div className="">
@@ -46,20 +54,20 @@ async function ArtistList() {
         </h1>
       </PaddingWrapper>
       <HorizontalRule />
-      <PaddingWrapper className="mt-8">
-        {artists.length > 0 ? (
+      {artists.length > 0 ? (
+        <PaddingWrapper className="mt-8">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {artists.map((artist) => (
               <Artist key={artist.id} {...artist} />
             ))}
           </div>
-        ) : (
-          <NoDataInfo
-            errorTitle="Brak artystów"
-            errorMessage="Nie udało nam się znaleźć listy artystów. Wróć tutaj później!"
-          />
-        )}
-      </PaddingWrapper>
+        </PaddingWrapper>
+      ) : (
+        <NoDataInfo
+          errorTitle="Brak artystów"
+          errorMessage="Nie udało nam się znaleźć listy artystów. Wróć tutaj później!"
+        />
+      )}
     </div>
   );
 }
