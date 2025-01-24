@@ -70,7 +70,7 @@ async function fetchFromFacebook<T>(
     if (fields) {
       url.searchParams.append("fields", fields);
     }
-    const headers: RequestInit["headers"] = {};
+    const headers: HeadersInit = {};
     if (useAuthentication) {
       getAccessTokenPromise = getAccessToken();
       const token = await getAccessTokenPromise;
@@ -81,7 +81,10 @@ async function fetchFromFacebook<T>(
 
       headers.Authorization = `Bearer ${token}`;
     }
-    const response = await fetch(url.toString(), { headers });
+    const response = await fetch(url.toString(), {
+      headers,
+      next: { revalidate: 300 },
+    });
     const data = (await response.json()) as T;
     if (!response.ok) {
       console.error(

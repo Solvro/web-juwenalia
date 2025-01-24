@@ -5,9 +5,10 @@ export async function fetchData<T>(endpoint: string, options?: RequestInit) {
     ...options,
     headers: {
       "Content-Type": "application/json",
-      // eslint-disable-next-line @typescript-eslint/no-misused-spread
-      ...options?.headers,
+      "Cache-Control": "no-cache",
+      ...(options?.headers as Record<string, string>),
     },
+    cache: "no-store",
   });
 
   if (!response.ok) {
