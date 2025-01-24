@@ -3,12 +3,12 @@
 import type { Settings } from "react-slick";
 
 import { Artist } from "@/components/artist";
-import type { CarouselProps } from "@/lib/types";
+import type { ArtistProps } from "@/lib/types";
 
 import "../app/slick-theme.css";
 import "../app/slick.css";
 
-function Carousel({ artists }: CarouselProps) {
+function Carousel({ artists }: { artists: ArtistProps[] }) {
   const settings: Settings = {
     dots: true,
     infinite: false,
