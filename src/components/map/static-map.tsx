@@ -1,11 +1,9 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import { mapItems } from "@/config/legend-items";
-import type { MapLevel, MapView } from "@/lib/types";
+import { MAP_ITEMS } from "@/config/legend-items";
 import { cn } from "@/lib/utils";
 
-import { NoDataInfo } from "../no-data-info";
 import {
   Accordion,
   AccordionContent,
@@ -13,46 +11,12 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 import { MapEnlargementButton } from "./map-enlargement-button";
-import { MapFloorsButton } from "./map-floors-button";
+import { MapLevelSelector } from "./map-level-selector";
 import { StaticLegend } from "./static-legend";
 
 export function StaticMap() {
-  const [view, setView] = useState<MapView>("Outside");
-  const [currentView, setCurrentView] = useState<MapLevel>(mapItems[0]);
-
-  function switchMapView(switchTo: MapView) {
-    try {
-      const temporary = mapItems.find((item) => item.name === switchTo);
-      setCurrentView(temporary ?? mapItems[0]);
-    } catch {
-      return (
-        <NoDataInfo
-          errorTitle="Brak widoku mapy"
-          errorMessage="Mapa dla tego widoku jest niedostępna."
-        />
-      );
-    }
-    switch (switchTo) {
-      case "Outside": {
-        setView("Outside");
-        break;
-      }
-      case "Ground Floor": {
-        setView("Ground Floor");
-        break;
-      }
-      case "Floor 1": {
-        setView("Floor 1");
-        break;
-      }
-      case "Floor -1": {
-        break;
-      }
-      default: {
-        break;
-      }
-    }
-  }
+  const [currentLevelIndex, setCurrentLevelIndex] = useState<number>(0);
+  const currentLevel = MAP_ITEMS[currentLevelIndex];
 
   return (
     <div>
@@ -60,25 +24,17 @@ export function StaticMap() {
       <hr className="mb-16 mt-5" />
       <div id="map-container">
         <div className="mx-auto mb-10 hidden w-[90%] sm:grid sm:grid-cols-2 sm:gap-2 xl:grid-cols-4">
-          {mapItems.map((level) => {
-            return (
-              <MapFloorsButton
-                key={level.name}
-                level={level}
-                active={view === level.name}
-                onClick={() => {
-                  switchMapView(level.name);
-                }}
-              />
-            );
-          })}
+          <MapLevelSelector
+            currentLevelIndex={currentLevelIndex}
+            setCurrentLevelIndex={setCurrentLevelIndex}
+          />
         </div>
         <div className="mx-auto mb-5 flex w-[90%] flex-row items-center justify-between">
           <h2 className="mt-auto font-semibold">Mapa</h2>
-          <MapEnlargementButton currentView={currentView} />
+          <MapEnlargementButton currentView={currentLevel} />
         </div>
         <div id="map" className="w-screen">
-          {mapItems.map((dialogMapLevel) => (
+          {MAP_ITEMS.map((dialogMapLevel, dialogMapLevelIndex) => (
             <Image
               key={dialogMapLevel.name}
               src={dialogMapLevel.image.src}
@@ -86,8 +42,8 @@ export function StaticMap() {
               width={1000}
               height={800}
               className={cn(
-                view === dialogMapLevel.name ? "" : "hidden",
                 "mx-auto aspect-square w-[90%] rounded-3xl object-cover",
+                { hidden: dialogMapLevelIndex !== currentLevelIndex },
               )}
             />
           ))}
@@ -99,18 +55,10 @@ export function StaticMap() {
             </AccordionTrigger>
             <AccordionContent>
               <div id="controls" className="grid grid-cols-1 gap-5">
-                {mapItems.map((level) => {
-                  return (
-                    <MapFloorsButton
-                      key={level.name}
-                      level={level}
-                      active={view === level.name}
-                      onClick={() => {
-                        switchMapView(level.name);
-                      }}
-                    />
-                  );
-                })}
+                <MapLevelSelector
+                  currentLevelIndex={currentLevelIndex}
+                  setCurrentLevelIndex={setCurrentLevelIndex}
+                />
               </div>
             </AccordionContent>
           </AccordionItem>
@@ -119,7 +67,7 @@ export function StaticMap() {
               Legenda
             </AccordionTrigger>
             <AccordionContent>
-              <StaticLegend items={mapItems} activeView={view} />
+              <StaticLegend activeLevel={currentLevel} />
             </AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -127,8 +75,7 @@ export function StaticMap() {
           Legenda
         </h2>
         <StaticLegend
-          items={mapItems}
-          activeView={view}
+          activeLevel={currentLevel}
           className="hidden sm:my-10 sm:grid"
         />
       </div>
