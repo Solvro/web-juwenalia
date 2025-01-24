@@ -4,7 +4,6 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -43,68 +42,76 @@ const buttonVariants = cva(
   },
 );
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+type Variant = VariantProps<typeof buttonVariants>["variant"];
+type VariantColor = VariantProps<typeof buttonVariants>["variantColor"];
+type Size = VariantProps<typeof buttonVariants>["size"];
+
+export interface ButtonProps<T extends React.ElementType = "button">
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: Variant;
+  variantColor?: VariantColor;
+  size?: Size;
+  as?: T;
   asChild?: boolean;
-  href?: string;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+type T = React.ElementType;
+
+const Button = React.forwardRef<
+  HTMLElement,
+  ButtonProps<T> & Omit<React.ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>
+>(
   (
     {
       children,
-      className,
-      variant = "default",
-      size,
-      variantColor = "black",
+      className = "",
+      size = "default" as Size,
+      disabled = false,
+      as = "button",
+      variant = "default" as Variant,
+      variantColor = "black" as VariantColor,
       asChild = false,
-      href,
       ...props
     },
     ref,
   ) => {
-    const Comp = asChild ? Slot : "button";
+    const Comp = (asChild as boolean) ? Slot : (as as T);
 
     return (
       <Comp
         className={cn(
-          buttonVariants({ variant, size, className, variantColor }),
-          "group inline-flex w-full before:pointer-events-auto before:absolute before:bg-transparent before:content-['']" +
+          buttonVariants({
+            variant: variant as Variant,
+            size: size as Size,
+            className: className as string,
+            variantColor: variantColor as VariantColor,
+          }),
+          "group inline-flex w-fit before:pointer-events-auto before:absolute before:bg-transparent before:content-['']" +
             " isolate before:top-full before:z-[-1] before:h-[200%] before:w-[110%] before:rounded-[50%]" +
             " before:ease-[cubic-bezier(.23,1,.32,1)] before:transition-all before:duration-200 hover:before:-top-1/2" +
             " hover:before:origin-top hover:before:ease-in",
           {
             "before:bg-white":
-              ["default", "secondary"].includes(variant ?? "") &&
-              variantColor === "white",
+              ["default", "secondary"].includes((variant ?? "") as string) &&
+              variantColor === ("white" as string),
             "before:bg-black":
-              ["default", "secondary"].includes(variant ?? "") &&
-              ["black"].includes(variantColor ?? ""),
+              ["default", "secondary"].includes((variant ?? "") as string) &&
+              ["black"].includes((variantColor ?? "") as string),
+            "pointer-events-none bg-foreground/20 opacity-50":
+              disabled as boolean,
           },
         )}
         ref={ref}
-        {...props}
+        {...(props as React.ComponentPropsWithoutRef<T>)}
       >
-        {typeof href === "string" && href.trim() !== "" ? (
-          <Link href={href} className="relative w-full">
-            <ButtonContent
-              variant={variant}
-              size={size}
-              variantColor={variantColor}
-            >
-              {children}
-            </ButtonContent>
-          </Link>
-        ) : (
-          <ButtonContent
-            variant={variant}
-            size={size}
-            variantColor={variantColor}
-          >
-            {children}
-          </ButtonContent>
-        )}
+        <ButtonContent
+          variant={variant as Variant}
+          size={size as Size}
+          variantColor={variantColor as VariantColor}
+          disabled={disabled as boolean}
+        >
+          {children}
+        </ButtonContent>
       </Comp>
     );
   },
@@ -115,34 +122,53 @@ function ButtonContent({
   children,
   variantColor,
   variant,
-}: VariantProps<typeof buttonVariants> & { children: React.ReactNode }) {
+  disabled,
+}: VariantProps<typeof buttonVariants> & {
+  children: React.ReactNode;
+} & React.ButtonHTMLAttributes<HTMLButtonElement> & {
+    variant?: Variant;
+    variantColor?: VariantColor;
+    size?: Size;
+  }) {
   return (
-    <div className="pointer-events-auto relative flex w-full cursor-pointer items-center justify-between gap-4 md:gap-8">
+    <div
+      className={cn(
+        "pointer-events-auto relative flex w-full cursor-pointer items-center justify-between gap-4 md:gap-8",
+        {
+          "pointer-events-none": disabled,
+        },
+      )}
+    >
       <span
         className={cn("lowercase transition-all duration-200", {
-          "text-foreground": variantColor === "black",
-          "text-white": variantColor === "white",
+          "text-foreground": variantColor === ("black" as string),
+          "text-white": variantColor === ("white" as string),
           "group-hover:text-black":
-            ["default", "secondary"].includes(variant ?? "") &&
-            variantColor === "white",
+            ["default", "secondary"].includes((variant ?? "") as string) &&
+            variantColor === ("white" as string),
           "group-hover:text-white":
-            ["default", "secondary"].includes(variant ?? "") &&
-            variantColor === "black",
-          "underline-animation flex": variant === "link",
+            ["default", "secondary"].includes((variant ?? "") as string) &&
+            variantColor === ("black" as string),
+          "underline-animation flex": variant === ("link" as string),
         })}
       >
         {children}
       </span>
 
-      {(variant === "gradient" || variant === "secondary") && (
+      {(variant === ("gradient" as string) ||
+        variant === ("secondary" as string)) && (
         <div className="relative grid h-6 w-6 place-items-center md:h-8 md:w-8">
           <div
             className={cn(
               "h-2 w-2 rounded-full transition-transform duration-75 group-hover:scale-0",
               {
-                "bg-gradient-main": variant === "gradient",
-                "bg-white": variant === "secondary" && variantColor === "white",
-                "bg-black": variant === "secondary" && variantColor === "black",
+                "bg-gradient-main": variant === ("gradient" as string),
+                "bg-white":
+                  variant === ("secondary" as string) &&
+                  variantColor === ("white" as string),
+                "bg-black":
+                  variant === ("secondary" as string) &&
+                  variantColor === ("black" as string),
               },
             )}
           />
