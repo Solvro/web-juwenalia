@@ -8,7 +8,6 @@ import { PaddingWrapper } from "./padding-wrapper";
 
 // if we need shuffling the artists, so everyone in their respective category
 // gets a somewhat even representation on our site
-
 function shuffleArray<T>(array: T[]): T[] {
   return array
     .map((item) => ({ item, sort: Math.random() }))
@@ -45,13 +44,7 @@ async function ArtistList() {
 
   return (
     <div className="">
-    <div className="">
       <PaddingWrapper className="">
-        <h1
-          className={
-            "my-8 text-center text-2xl font-extrabold sm:text-left sm:text-5xl"
-          }
-        >
         <h1
           className={
             "my-8 text-center text-2xl font-extrabold sm:text-left sm:text-5xl"
