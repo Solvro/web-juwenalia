@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export interface ArtistProps {
   id: number;
   name: string;
@@ -113,12 +115,10 @@ export interface Person {
 }
 // #endregion
 
-export type MapView = "Outside" | "Ground Floor" | "Floor 1" | "Floor -1";
-
 export interface MapLevel {
-  name: MapView;
+  name: "Outside" | "Ground Floor" | "Floor 1" | "Floor -1";
   description: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   image: {
     src: string;
     alt: string;
@@ -127,12 +127,6 @@ export interface MapLevel {
     name: string;
     color: string;
   }[];
-}
-
-export interface StaticLegendProps {
-  items: MapLevel[];
-  activeView: MapView;
-  className?: string;
 }
 
 export interface MapFloorsButtonProps {
