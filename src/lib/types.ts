@@ -9,10 +9,6 @@ export interface ArtistProps {
   events: ArtistEvents[];
 }
 
-export interface CarouselProps {
-  artists: ArtistProps[];
-}
-
 interface ArtistEvents {
   id: number;
   artists_id: number;
@@ -25,14 +21,13 @@ interface EventArtists {
   artists_id: ArtistProps;
 }
 
-export interface EventProps {
+interface EventProps {
   id: number;
   start_time: string;
   end_time: string;
   location: { id: number; name: string };
   day: DayProps;
   artists: EventArtists[];
-  name: string | null;
 }
 
 export interface DayProps {
