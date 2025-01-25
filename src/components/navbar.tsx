@@ -23,8 +23,8 @@ export function Navbar() {
         width={84}
         height={84}
       />
-      <div className="hidden sm:absolute sm:inset-y-0 sm:right-4 sm:flex sm:gap-2 lg:gap-10 xl:gap-12">
-        <div className="items-center font-normal leading-none sm:flex sm:flex-row sm:gap-1 sm:text-sm md:text-base lg:gap-6 xl:gap-8 xl:text-lg">
+      <div className="hidden sm:absolute sm:inset-y-0 sm:right-1 sm:flex sm:gap-2 lg:gap-10 xl:gap-12">
+        <div className="items-center font-normal leading-none sm:flex sm:flex-row sm:gap-4 sm:text-sm md:gap-6 md:text-base lg:gap-7 xl:gap-8 xl:text-lg">
           <Link
             href="/"
             aria-label="Przejdź do strony głównej"
@@ -54,10 +54,10 @@ export function Navbar() {
             Aktualności
           </Link>
         </div>
-        <div className="flex flex-col items-center justify-center rounded-full border-2 border-solid border-white bg-black px-5 py-[11px] hover:cursor-pointer hover:border-black hover:bg-gradient-main sm:w-28 lg:w-40 xl:w-44">
-          <div className="flex font-semibold sm:gap-2 sm:text-sm sm:leading-7 lg:gap-6 lg:text-lg lg:leading-6">
+        <div className="flex flex-col items-center justify-center rounded-full border-2 border-solid border-white bg-black px-2 py-[11px] hover:cursor-pointer hover:border-black hover:bg-gradient-main sm:w-24 md:w-36 lg:w-40 lg:px-5 xl:w-44">
+          <div className="flex font-semibold sm:gap-2 sm:text-xs sm:leading-7 md:text-base lg:gap-6 lg:leading-6">
             kup bilet{" "}
-            <div className="flex h-[25px] w-[25px] shrink-0 items-center justify-center fill-none">
+            <div className="flex h-[25px] shrink-0 items-center justify-center fill-none sm:w-2 lg:w-4 xl:w-[25px]">
               <Image
                 className={`fill-none transition-opacity duration-500 ease-in-out`}
                 src="/buttons/dot-for-button.svg"
