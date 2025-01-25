@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -43,6 +42,7 @@ export function NavbarMobile({ onButtonClick }: NavbarMobileProps) {
           />
         }
         onOverlayClick={onButtonClick}
+        aria-describedby={undefined}
       >
         <SheetHeader className="flex space-x-2">
           <Image
@@ -52,35 +52,40 @@ export function NavbarMobile({ onButtonClick }: NavbarMobileProps) {
             height={83}
           />
         </SheetHeader>
-        <div className="flex flex-1 flex-col items-center justify-end gap-2.5 px-8 py-7">
-          <div className="flex h-20 w-64 shrink-0 items-center justify-between"></div>
-          <div className="flex flex-col text-xl font-semibold leading-6">
-            <div className="flex flex-col items-start gap-6 text-black">
-              <Link href="/" aria-label="Przejdź do strony głównej">
+        <div className="flex flex-1 flex-col items-center justify-end gap-2.5 px-3 py-7">
+          <div className="w-62 flex h-20 shrink-0 items-center justify-between"></div>
+          <div className="flex flex-col text-lg font-semibold leading-7">
+            <div className="flex flex-col items-start gap-7 text-black">
+              <Link
+                href="/"
+                aria-label="Przycisk do przejścia do strony głównej"
+              >
                 Strona Główna
               </Link>
-              <Link href="/artists" aria-label="Przejdź do strony z artystami">
+              <Link
+                href="/artists"
+                aria-label="Przycisk do przejścia do strony z artystami"
+              >
                 Artyści
               </Link>
               <Link
                 href="/map "
-                aria-label="Przejdź do strony z mapą wydarzenia"
+                aria-label="Przycisk do przejścia do strony z mapą wydarzenia"
               >
                 Mapa Wydarzenia
               </Link>
               <Link
                 href="/news"
-                aria-label="Przejdź do strony z aktualnościami"
+                aria-label="Przycisk do przejścia do strony z aktualnościami"
               >
                 Aktualności
               </Link>
             </div>
-            <div className="absolute bottom-20 flex rounded-[30px] bg-gradient-main px-8 py-5 text-white">
+            <div className="absolute bottom-20 flex rounded-full bg-gradient-main px-8 py-5 text-white">
               kup bilet {/*Placeholder */}
             </div>
           </div>
         </div>
-        <SheetDescription></SheetDescription>
       </SheetContent>
     </Sheet>
   );
