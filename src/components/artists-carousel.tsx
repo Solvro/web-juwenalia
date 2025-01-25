@@ -7,14 +7,9 @@ async function ArtistsCarousel() {
     "items/artists?fields=*,events.*,events.events_id.*,events.events_id.location.*,events.events_id.day.*",
   );
 
-  const artists_raw = response.data;
+  const popularArtists = response.data.filter((artist) => artist.isPopular);
 
-  // divide artists into popular and non-popular
-  const popularArtists = artists_raw.filter((artist) => artist.isPopular);
-
-  const artists = [...popularArtists];
-
-  return <Carousel artists={artists} />;
+  return <Carousel artists={popularArtists} />;
 }
 
 export { ArtistsCarousel };
