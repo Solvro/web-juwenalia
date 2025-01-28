@@ -69,7 +69,7 @@ function Countdown() {
     seconds: forDuration.seconds ?? 0,
   };
   return (
-    <div className="relative top-[-80px] z-[-10] h-[77vh] w-full flex-shrink-0 rounded-b-[40px] bg-[url('/images/background_homepage.png')] bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:rounded-b-[40px] before:bg-black before:opacity-30 sm:top-[-50px] sm:h-[90vh] sm:w-full sm:rounded-b-[60px] sm:before:sm:rounded-b-[60px] lg:h-[90vh] xl:h-[95vh]">
+    <div className="relative top-[-80px] z-[-10] h-[85vh] w-full flex-shrink-0 rounded-b-[40px] bg-[url('/images/background_homepage.png')] bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:rounded-b-[40px] before:bg-black before:opacity-30 sm:top-[-50px] sm:h-[90vh] sm:w-full sm:rounded-b-[60px] sm:before:sm:rounded-b-[60px] lg:h-[90vh] xl:h-[95vh]">
       <div className="absolute left-5 top-10 mt-20 text-[8vh] font-extrabold leading-[7vh] text-[#FFF] sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-[50%] sm:transform sm:text-[76px] sm:leading-[80px] lg:text-[112px] lg:leading-[96px] xl:text-[156px] xl:leading-[110px]">
         <PaddingWrapper className="">
           {isToday === 1 ? (
