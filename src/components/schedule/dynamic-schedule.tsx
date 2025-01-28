@@ -44,7 +44,7 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
   return (
     <div>
       {days.map((day) => (
-        <div key={day.id} className="mt-24">
+        <div key={day.id} className="sm:mt-24">
           <HomepageHeader>{format(day.date, "d MMMM (EEEE)")}</HomepageHeader>
           {day.events.length > 0 ? (
             day.events.map((event) => {
