@@ -12,7 +12,7 @@ import type { ReactNode } from "react";
 
 import { PaddingWrapper } from "./padding-wrapper";
 
-const eventStartDate: Date = new Date(2024, 4, 21, 16); //It's the date from pwr calendar, but i have no idea what the actuall hour will be
+const eventStartDate: Date = new Date(2025, 4, 21, 16); //It's the date from pwr calendar, but i have no idea what the actuall hour will be
 const eventEndDate: Date = new Date(2025, 4, 23, 2);
 function TextsForTimer({ children }: { children: ReactNode }) {
   return (
