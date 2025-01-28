@@ -14,9 +14,9 @@ export function AnimatedSidebar({ children }: AnimatedSidebarProps) {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > lastScrollY + 25 && latest > 150) {
+    if (latest - lastScrollY > 0 && latest > 150) {
       setIsVisible(false);
-    } else if (latest < lastScrollY - 50) {
+    } else {
       setIsVisible(true);
     }
     setLastScrollY(latest);
@@ -24,15 +24,19 @@ export function AnimatedSidebar({ children }: AnimatedSidebarProps) {
 
   return (
     <motion.div
-      initial={{ x: 50, opacity: 0 }}
-      animate={isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
+      initial={{ x: 50, opacity: 0, scale: 0 }}
+      animate={
+        isVisible
+          ? { x: 0, opacity: 1, scale: 1 }
+          : { x: 50, opacity: 0, scale: 0 }
+      }
       style={{
         position: "fixed",
         right: 0,
         top: "33%",
         transform: "translateY(-50%)",
       }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.4 }}
     >
       {children}
     </motion.div>

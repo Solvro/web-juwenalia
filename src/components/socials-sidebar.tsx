@@ -58,8 +58,8 @@ export function SocialSidebar() {
             className="rounded-xl p-1 hover:bg-gray-700 active:bg-gray-500"
             src="/social-icons/tt-white.svg"
             alt="TikTok"
-            width={32}
-            height={32}
+            width={27}
+            height={27}
           />
         </Link>
       </div>
