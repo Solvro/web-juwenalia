@@ -37,7 +37,7 @@ function CountdownOverText({
   );
 }
 function Colon() {
-  return <p className="hidden sm:mt-14 sm:block lg:mt-16 xl:mt-20">:</p>;
+  return <p className="hidden sm:block">:</p>;
 }
 function Countdown() {
   const [currentDate, setCurrentDate] = useState<Date>(endOfMinute(new Date()));
@@ -73,7 +73,7 @@ function Countdown() {
       <div className="absolute left-5 top-10 mt-20 text-[8vh] font-extrabold leading-[7vh] text-[#FFF] sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-[50%] sm:transform sm:text-[76px] sm:leading-[80px] lg:text-[112px] lg:leading-[96px] xl:text-[156px] xl:leading-[110px]">
         <PaddingWrapper className="">
           {isToday === 1 ? (
-            <div className="flex flex-col justify-start sm:flex-row sm:space-x-2 lg:space-x-3 xl:space-x-4">
+            <div className="flex flex-col justify-start sm:flex-row sm:items-center sm:space-x-2 lg:space-x-3 xl:space-x-4">
               <div className="sm:mr-12 lg:mr-16 xl:mr-20">
                 <TextsForTimer>DNI</TextsForTimer>
                 <p className="">{duration.days}</p>
