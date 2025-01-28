@@ -8,10 +8,7 @@ import { Schedule } from "@/components/schedule/schedule";
 export default function Home() {
   return (
     <>
-      <div>This is the main page</div>
-
       <Countdown />
-
       <Schedule />
       <ArtistsCarousel />
       <BuyTicketCta />
