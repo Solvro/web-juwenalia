@@ -53,37 +53,31 @@ export function NavbarMobile({ onButtonClick }: NavbarMobileProps) {
           />
         </SheetHeader>
         <div className="flex flex-1 flex-col items-center justify-end gap-2.5 px-3 py-7">
-          <div className="w-62 flex h-20 shrink-0 items-center justify-between"></div>
-          <div className="flex flex-col text-lg font-semibold leading-7">
-            <div className="flex flex-col items-start gap-7 text-black">
-              <Link
-                href="/"
-                aria-label="Przycisk do przejścia do strony głównej"
-              >
-                Strona Główna
-              </Link>
-              <Link
-                href="/artists"
-                aria-label="Przycisk do przejścia do strony z artystami"
-              >
-                Artyści
-              </Link>
-              <Link
-                href="/map "
-                aria-label="Przycisk do przejścia do strony z mapą wydarzenia"
-              >
-                Mapa Wydarzenia
-              </Link>
-              <Link
-                href="/news"
-                aria-label="Przycisk do przejścia do strony z aktualnościami"
-              >
-                Aktualności
-              </Link>
-            </div>
-            <div className="absolute bottom-20 flex rounded-full bg-gradient-main px-8 py-5 text-white">
-              kup bilet {/*Placeholder */}
-            </div>
+          <div className="mt-20 flex flex-col items-start gap-7 text-xl font-semibold leading-7 text-black">
+            <Link href="/" aria-label="Przycisk do przejścia do strony głównej">
+              Strona Główna
+            </Link>
+            <Link
+              href="/artists"
+              aria-label="Przycisk do przejścia do strony z artystami"
+            >
+              Artyści
+            </Link>
+            <Link
+              href="/map "
+              aria-label="Przycisk do przejścia do strony z mapą wydarzenia"
+            >
+              Mapa Wydarzenia
+            </Link>
+            <Link
+              href="/news"
+              aria-label="Przycisk do przejścia do strony z aktualnościami"
+            >
+              Aktualności
+            </Link>
+          </div>
+          <div className="absolute bottom-20 flex rounded-full bg-gradient-main px-8 py-5 text-white">
+            kup bilet {/*Placeholder */}
           </div>
         </div>
       </SheetContent>
