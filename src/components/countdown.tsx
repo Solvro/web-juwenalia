@@ -16,7 +16,7 @@ const eventStartDate: Date = new Date(2025, 4, 21, 16); //It's the date from pwr
 const eventEndDate: Date = new Date(2025, 4, 23, 2);
 function TextsForTimer({ children }: { children: ReactNode }) {
   return (
-    <div className="mt-2.5 text-base font-medium sm:mt-0 sm:text-[20px] lg:text-[24px] xl:text-[28px]">
+    <div className="mt-2.5 text-base font-medium sm:mt-0 sm:text-[20px] lg:text-[24px] xl:pb-1.5 xl:text-[28px]">
       {children}
     </div>
   );
