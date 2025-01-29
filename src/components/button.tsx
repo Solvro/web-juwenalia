@@ -80,9 +80,9 @@ function ButtonInner<T extends React.ElementType = "button">(
           variantColor,
         }),
         "group inline-flex w-fit before:pointer-events-auto before:absolute before:bg-transparent before:content-['']" +
-        " isolate before:top-full before:z-[-1] before:h-[200%] before:w-[110%] before:rounded-[50%]" +
-        " before:ease-[cubic-bezier(.23,1,.32,1)] before:transition-all before:duration-200 hover:before:-top-1/2" +
-        " hover:before:origin-top hover:before:ease-in",
+          " isolate before:top-full before:z-[-1] before:h-[200%] before:w-[110%] before:rounded-[50%]" +
+          " before:ease-[cubic-bezier(.23,1,.32,1)] before:transition-all before:duration-200 hover:before:-top-1/2" +
+          " hover:before:origin-top hover:before:ease-in",
         {
           "before:bg-white":
             ["default", "secondary"].includes(variant ?? "") &&
@@ -148,9 +148,9 @@ const Button = React.forwardRef(ButtonInner) as <
   T extends React.ElementType = "button",
 >(
   props: ButtonProps<T> & { ref?: React.Ref<T> } & Omit<
-    React.ComponentPropsWithoutRef<T>,
-    keyof ButtonProps<T>
-  >,
+      React.ComponentPropsWithoutRef<T>,
+      keyof ButtonProps<T>
+    >,
 ) => ReturnType<typeof ButtonInner>;
 
 export { Button, buttonVariants };
