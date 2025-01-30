@@ -65,40 +65,46 @@ async function fetchFromFacebook<T>(
   fields = "",
   useAuthentication = true,
 ): Promise<T | null> {
-  try {
-    const url = new URL(`${FACEBOOK_API_URL}/${path}`);
-    if (fields) {
-      url.searchParams.append("fields", fields);
-    }
-    const headers: HeadersInit = {};
-    if (useAuthentication) {
-      getAccessTokenPromise = getAccessToken();
-      const token = await getAccessTokenPromise;
-      if (token == null || token === "") {
-        console.error("No long-lived access token set for Facebook API");
-        return null;
-      }
-
-      headers.Authorization = `Bearer ${token}`;
-    }
-    const response = await fetch(url.toString(), {
-      headers,
-      next: { revalidate: 300 },
-    });
-    const data = (await response.json()) as T;
-    if (!response.ok) {
-      console.error(
-        "Bad response from Facebook API:",
-        response.status,
-        response.statusText,
-        data,
-      );
+  const url = new URL(`${FACEBOOK_API_URL}/${path}`);
+  if (fields) {
+    url.searchParams.append("fields", fields);
+  }
+  const options: RequestInit = {};
+  // Can't define options.headers and options.next immediately when declaring `options` because TypeScript later complains they may be undefined
+  options.headers = {};
+  options.next = {};
+  if (useAuthentication) {
+    getAccessTokenPromise = getAccessToken();
+    const token = await getAccessTokenPromise;
+    if (token == null || token === "") {
+      console.error("No long-lived access token set for Facebook API");
       return null;
     }
-    return data;
-  } catch {
+    // Cache responses for posts, user data etc. for 5 minutes
+    options.next.revalidate = 300;
+    options.headers.Authorization = `Bearer ${token}`;
+  } else {
+    // Don't cache responses for generating access tokens
+    options.next.revalidate = 0;
+  }
+  let response;
+  try {
+    response = await fetch(url.toString(), options);
+  } catch (error) {
+    console.error("Network error while fetching from Facebook API:", error);
     return null;
   }
+  const data = (await response.json()) as T;
+  if (!response.ok) {
+    console.error(
+      "Bad response from Facebook API:",
+      response.status,
+      response.statusText,
+      data,
+    );
+    return null;
+  }
+  return data;
 }
 
 /**
@@ -116,17 +122,16 @@ export const getFacebookUser = async () =>
 export async function getFacebookPosts(): Promise<
   (FacebookPost & { updatedTimestamp: number })[] | null
 > {
-  const data = await fetchFromFacebook<{ data: FacebookPost[] }>(
+  const response = await fetchFromFacebook<{ data: FacebookPost[] }>(
     "me/posts",
     `id,message,name,shares,created_time,updated_time,permalink_url,attachments.limit(${POST_ATTACHMENT_LIMIT.toString()}){media,subattachments}`,
   );
-  const posts = data?.data;
-  if (posts === undefined) {
-    console.warn(data);
+  if (response?.data == null) {
+    console.warn("Could not obtain Facebook posts");
     return null;
   }
   return (
-    posts
+    response.data
       // Ensure the posts are not empty (e.g. timeline events like being born)
       .filter((post) => post.message)
       .map((post) => ({

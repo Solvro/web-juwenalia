@@ -45,6 +45,13 @@ export interface NoDataInfoProps {
   errorMessage: string;
 }
 
+export interface SearchPhrase {
+  uuid: string;
+  word: string;
+  startDate: string;
+  intervalHours: number;
+}
+
 // #region --- Facebook API-related definitions ---
 
 interface FacebookAttachments {
