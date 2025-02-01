@@ -50,7 +50,6 @@ export interface ButtonProps<T extends React.ElementType = "button">
   as?: T;
   asChild?: boolean;
   disabled?: boolean;
-  href?: string;
 }
 
 function ButtonInner<T extends React.ElementType = "button">(
