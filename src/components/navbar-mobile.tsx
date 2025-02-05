@@ -1,6 +1,7 @@
 import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import {
   Sheet,
@@ -15,6 +16,7 @@ interface NavbarMobileProps {
 }
 
 export function NavbarMobile({ onButtonClick }: NavbarMobileProps) {
+  const currentPath = usePathname();
   return (
     <Sheet>
       <SheetTrigger onClick={onButtonClick}>
@@ -26,7 +28,7 @@ export function NavbarMobile({ onButtonClick }: NavbarMobileProps) {
           role="button"
           aria-label="Ikona rozwijanego menu"
           onClick={onButtonClick}
-          //color="white"
+          color={currentPath === "/" ? "white" : "black"}
         />
       </SheetTrigger>
       <SheetTitle />
