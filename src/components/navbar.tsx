@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import type { ReactNode } from "react";
 
@@ -20,7 +21,7 @@ function ForLinks({
     <Link
       href={link}
       aria-label={label}
-      className="rounded-full hover:bg-gradient-main sm:p-1 lg:p-2"
+      className="rounded-full hover:bg-gradient-main hover:text-white sm:p-1 lg:p-2"
     >
       {children}
     </Link>
@@ -28,11 +29,14 @@ function ForLinks({
 }
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const currentPath = usePathname();
   const changeLogoState = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
-    <div className="relative mx-5 mt-6 flex w-11/12 justify-between sm:mx-1 sm:mt-8 sm:w-auto sm:bg-black sm:text-white lg:mx-8">
+    <div
+      className={`relative mx-5 mt-2.5 flex w-11/12 justify-between sm:mx-1 ${currentPath === "/" ? "sm:text-white" : "sm:text-black"} sm:w-auto lg:mx-8`}
+    >
       {/* That black backgruond is just temporary for visibility, because it's hard to see anything without background image from countdown */}
       <Image
         className={`sm:opacity-100 ${
@@ -62,7 +66,9 @@ export function Navbar() {
           </ForLinks>
         </div>
 
-        <div className="flex flex-row items-center justify-center rounded-full border-2 border-solid border-white bg-black px-2 py-[11px] font-semibold hover:cursor-pointer hover:border-black hover:bg-gradient-main sm:w-24 sm:gap-2 sm:text-xs sm:leading-7 md:w-36 md:text-base lg:w-40 lg:gap-6 lg:px-5 lg:leading-6 xl:w-44">
+        <div
+          className={`flex flex-row items-center justify-center rounded-full border-2 border-solid ${currentPath === "/" ? "border-white hover:border-black" : "border-black hover:border-white hover:text-white"} px-2 py-[11px] font-semibold hover:cursor-pointer hover:bg-gradient-main sm:w-24 sm:gap-2 sm:text-xs sm:leading-7 md:w-36 md:text-base lg:w-40 lg:gap-6 lg:px-5 lg:leading-6 xl:w-44`}
+        >
           kup bilet{" "}
           <div className="flex h-[25px] shrink-0 items-center justify-center fill-none sm:w-2 lg:w-4 xl:w-[25px]">
             <Image
