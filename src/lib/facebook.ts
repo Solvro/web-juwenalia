@@ -128,7 +128,7 @@ export async function getFacebookPosts(): Promise<
   return (
     posts
       // Ensure the posts are not empty (e.g. timeline events like being born)
-      .filter((post) => post.message)
+      .filter((post) => post.message != null && post.message.length > 0)
       .map((post) => ({
         ...post,
         updatedTimestamp: new Date(post.updated_time).getTime(),
