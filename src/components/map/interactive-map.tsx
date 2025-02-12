@@ -1,6 +1,7 @@
 "use client";
 
 import { Marker } from "@adamscybot/react-leaflet-component-marker";
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { MapPin } from "lucide-react";
 import { useEffect } from "react";
@@ -9,6 +10,7 @@ import { MapContainer, Popup, TileLayer, useMap } from "react-leaflet";
 import { wrLegendItems } from "@/config/wr-legend-items";
 import type { LeafletElement } from "@/lib/types";
 
+import { HorizontalRule } from "../horizontal-rule";
 import { WrMapLegend } from "./wr-map-legend";
 
 export function InteractiveMap() {
@@ -26,6 +28,9 @@ export function InteractiveMap() {
     const map = useMap();
     useEffect(() => {
       map.dragging.enable();
+      if (L.Browser.mobile) {
+        map.dragging.disable();
+      }
     }, [map]);
     return null;
   }
@@ -33,13 +38,13 @@ export function InteractiveMap() {
   return (
     <div>
       <h1 className="mt-8 pl-5 text-4xl font-semibold">Mapa Wydarzenia</h1>
-      <hr className="mb-16 mt-5" />
+      <HorizontalRule />
       <MapContainer
         center={[51.106_972, 17.077_329]}
         zoom={16}
         scrollWheelZoom={true}
         dragging={false}
-        className="relative z-0 mx-auto h-[75vh] w-[90%] touch-auto rounded-3xl object-cover"
+        className="relative z-0 mx-auto h-[50vh] w-[90%] touch-auto rounded-3xl object-cover sm:h-[75vh]"
       >
         <MapInitializer />
         <TileLayer

@@ -5,6 +5,7 @@ import { Suspense, useState } from "react";
 
 import { Button } from "@/components/button";
 import { StaticMap } from "@/components/map/static-map";
+import { PaddingWrapper } from "@/components/padding-wrapper";
 
 const DynamicInteractiveMap = dynamic(
   async () =>
@@ -26,14 +27,14 @@ export default function Page() {
   }
 
   return (
-    <div className="mt-48">
-      <div className="mx-auto mt-10 grid w-4/5 grid-cols-2 gap-10">
+    <PaddingWrapper>
+      <div className="mt-10 grid grid-cols-2 gap-10">
         <Button
           disabled={activeStaticMap}
           onClick={() => {
             switchMap();
           }}
-          className="text-wrap p-6 text-[3vw] sm:text-base"
+          className="mx-auto text-wrap p-6 text-[3vw] sm:text-base"
         >
           Mapa Wydarzenia
         </Button>
@@ -42,7 +43,7 @@ export default function Page() {
           onClick={() => {
             switchMap();
           }}
-          className="text-wrap p-6 text-[3vw] sm:text-base"
+          className="mx-auto text-wrap p-6 text-[3vw] sm:text-base"
         >
           Imprezy Towarzyszące
         </Button>
@@ -56,6 +57,6 @@ export default function Page() {
           </Suspense>
         )}
       </div>
-    </div>
+    </PaddingWrapper>
   );
 }

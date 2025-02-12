@@ -1,6 +1,8 @@
 import type { MapLevel } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
+import { PaddingWrapper } from "../padding-wrapper";
+
 export function StaticLegend({
   activeLevel,
   className,
@@ -9,7 +11,7 @@ export function StaticLegend({
   className?: string;
 }) {
   return (
-    <div
+    <PaddingWrapper
       className={cn(
         "mx-auto grid w-[90%] grid-cols-2 gap-y-2 sm:grid-cols-[repeat(3,minmax(0,1fr))] md:w-max",
         className,
@@ -24,6 +26,6 @@ export function StaticLegend({
           <p className="w-fit text-[3vw] sm:text-base">{node.name}</p>
         </div>
       ))}
-    </div>
+    </PaddingWrapper>
   );
 }
