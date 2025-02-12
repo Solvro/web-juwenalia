@@ -1,4 +1,4 @@
-import { Carousel } from "@/components/artist-carousel-template";
+import { Carousel } from "@/components/artists/artist-carousel-template";
 import { fetchData } from "@/lib/api";
 import type { ArtistProps } from "@/lib/types";
 

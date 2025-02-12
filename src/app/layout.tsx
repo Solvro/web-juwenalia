@@ -2,6 +2,7 @@ import { setDefaultOptions } from "date-fns";
 import { pl } from "date-fns/locale";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import Head from "next/head";
 
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
@@ -15,6 +16,9 @@ setDefaultOptions({ locale: pl });
 export const metadata: Metadata = {
   title: "Juwenalia 2025 #WrocławRazem",
   description: "Juwenalia Wrocław",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 const montserrat = Montserrat({

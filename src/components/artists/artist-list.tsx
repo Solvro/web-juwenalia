@@ -1,10 +1,10 @@
-import { Artist } from "@/components/artist";
+import { Artist } from "@/components/artists/artist";
 import { fetchData } from "@/lib/api";
 import type { ArtistProps } from "@/lib/types";
 
-import { HorizontalRule } from "./horizontal-rule";
-import { NoDataInfo } from "./no-data-info";
-import { PaddingWrapper } from "./padding-wrapper";
+import { HorizontalRule } from "../horizontal-rule";
+import { NoDataInfo } from "../no-data-info";
+import { PaddingWrapper } from "../padding-wrapper";
 
 // if we need shuffling the artists, so everyone in their respective category
 // gets a somewhat even representation on our site

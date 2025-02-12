@@ -1,4 +1,4 @@
-import { ArtistList } from "@/components/artist-list";
+import { ArtistList } from "@/components/artists/artist-list";
 
 export default function ArtistPage() {
   return <ArtistList />;
