@@ -13,7 +13,6 @@ async function ArtistsCarousel() {
     }
     return <Carousel artists={popularArtists} />;
   } catch (error) {
-    console.error(error);
     return null;
   }
 }
