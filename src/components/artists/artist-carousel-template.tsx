@@ -72,14 +72,14 @@ function Carousel({ artists }: { artists: ArtistProps[] }) {
             as={Link}
             href="/artists"
             variant="secondary"
-            className="ml-4 mr-20 mt-4 w-full max-w-[225px]"
+            className="ml-4 mr-20 w-full max-w-[225px]"
           >
             zobacz więcej
           </Button>
         </div>
       </div>
       <PaddingWrapper>
-        <Slider {...settings} className="lg:mt-32">
+        <Slider {...settings}>
           {artists.map((artist) => (
             <div key={artist.id} className="p-4">
               <Artist {...artist} />
