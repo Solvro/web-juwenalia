@@ -35,7 +35,7 @@ export function AnimatedSidebar({ children }: AnimatedSidebarProps) {
         right: 0,
         top: "33%",
         transform: "translateY(-50%)",
-        zIndex: 9999,
+        zIndex: 50,
       }}
       transition={{ duration: 0.4 }}
     >
