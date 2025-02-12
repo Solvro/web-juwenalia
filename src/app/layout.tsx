@@ -13,7 +13,7 @@ import "./globals.css";
 setDefaultOptions({ locale: pl });
 
 export const metadata: Metadata = {
-  title: "Juwenalia by Solvro",
+  title: "Juwenalia 2025 #WrocławRazem",
   description: "Juwenalia Wrocław",
 };
 

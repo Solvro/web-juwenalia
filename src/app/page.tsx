@@ -4,6 +4,7 @@ import { BuyTicketCta } from "@/components/buy-ticket-cta";
 import { Countdown } from "@/components/countdown";
 import { LatestNews } from "@/components/latest-news/latest-news-section";
 import { Schedule } from "@/components/schedule/schedule";
+import { TicketsComingSoon } from "@/components/tickets-coming-soon";
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
       <Countdown />
       <Schedule />
       <ArtistsCarousel />
-      <BuyTicketCta />
+      <TicketsComingSoon />
       <LatestNews />
       <AboutUs />
     </>
