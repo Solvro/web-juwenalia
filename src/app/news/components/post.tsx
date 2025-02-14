@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import type { FacebookPost, FacebookUser } from "@/lib/types";
 
@@ -15,7 +16,7 @@ export function Post({
   return (
     <div className="m-3 mt-0 rounded-xl border p-3 text-sm md:m-10 md:mt-0 md:w-2/3 md:text-base xl:w-1/2">
       <div className="mb-3 flex items-center">
-        <a href={author.link} target="_blank" rel="noopener noreferrer">
+        <Link href={author.link} target="_blank" rel="noopener noreferrer">
           <Image
             src={author.picture.data.url}
             alt={author.name}
@@ -23,12 +24,12 @@ export function Post({
             height={author.picture.data.height}
             className="rounded-full"
           />
-        </a>
+        </Link>
         <div className="ml-2 w-full">
           <p className="font-semibold">
-            <a href={author.link} target="_blank" rel="noopener noreferrer">
+            <Link href={author.link} target="_blank" rel="noopener noreferrer">
               {author.name}
-            </a>
+            </Link>
           </p>
           <p
             className="flex items-center gap-1 text-xs text-gray-500 md:text-sm"

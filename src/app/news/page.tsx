@@ -18,7 +18,7 @@ export default async function FbPage() {
       ) : posts.length === 0 ? (
         <NewsErrorMessage type="noPosts" />
       ) : (
-        <div className="flex flex-col items-stretch md:items-center">
+        <div className="flex w-full flex-col items-stretch md:items-center">
           {posts.map((post) => (
             <Post key={post.id} post={post} author={user} />
           ))}
