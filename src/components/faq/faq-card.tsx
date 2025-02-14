@@ -7,7 +7,16 @@ import { useState } from "react";
 import type { Faq } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-const FAQ_CARD_SPANS = [6, 5, 7, 8, 4, 5, 7, 6];
+const FAQ_CARD_SPANS = [
+  "col-span-6",
+  "col-span-5",
+  "col-span-7",
+  "col-span-8",
+  "col-span-4",
+  "col-span-5",
+  "col-span-7",
+  "col-span-6",
+];
 
 function CardFace({
   questionId,
@@ -47,7 +56,7 @@ export function FrequentlyAskedQuestion({
     <button
       className={cn(
         "relative rounded-2xl bg-gradient-main text-start text-primary-foreground transition-transform duration-300 [transform-style:preserve-3d] sm:rounded-3xl md:rounded-[2rem] lg:rounded-[4rem]",
-        `col-span-${span.toString()}`,
+        span,
         {
           "[transform:rotateY(180deg)]": flipped,
         },
