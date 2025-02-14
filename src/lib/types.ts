@@ -116,6 +116,13 @@ export interface Person {
 }
 // #endregion
 
+export interface Faq {
+  id: number;
+  question: string;
+  answer: string;
+  // sort?: number | null;
+}
+
 export interface MapLevel {
   name: "Outside" | "Ground Floor" | "Floor 1" | "Floor -1";
   description: string;
