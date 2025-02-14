@@ -17,14 +17,13 @@ function PostAttachment({ attachment }: { attachment: FacebookAttachment }) {
       ) : (
         <Image
           src={attachment.media.image.src}
-          alt={"Facebook post image attachment"}
-          className="my-4"
+          alt="Facebook post image attachment"
+          className="my-4 basis-full"
           width={800}
           height={0}
         />
       )}
-      {/* @solvro/config forced me into doing !! on a boolean */}
-      {!!hasSubAttachments && (
+      {hasSubAttachments ? (
         <Button
           className="order-2 ml-3"
           onClick={() => {
@@ -33,7 +32,7 @@ function PostAttachment({ attachment }: { attachment: FacebookAttachment }) {
         >
           {showSubAttachments ? "Mniej" : "Więcej"} zdjęć
         </Button>
-      )}
+      ) : null}
     </>
   );
 }
