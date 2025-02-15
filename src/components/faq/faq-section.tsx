@@ -8,9 +8,11 @@ export async function FrequentlyAskedQuestions() {
   const faqs = await fetchData<{ data: Faq[] }>("items/faqs");
   return (
     <PaddingWrapper>
-      <div className="mb-14 box-border grid grid-cols-12 justify-between gap-4 sm:gap-8 md:gap-12 xl:gap-16 xl:px-6">
-        <div className="col-span-6 flex h-full w-full items-center justify-center text-4xl font-[900] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
-          <h2 className="w-min text-balance">Częste Pytania</h2>
+      <div className="mb-14 box-border grid grid-cols-12 justify-between gap-2 sm:gap-4 md:gap-6">
+        <div className="col-span-12 mb-8 flex h-full w-full font-[900] sm:col-span-6 sm:mb-0">
+          <h2 className="text-balance text-3xl sm:w-min sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
+            Częste Pytania
+          </h2>
         </div>
         {faqs.data.map((faq, index) => (
           <FrequentlyAskedQuestion key={faq.id} faq={faq} index={index} />

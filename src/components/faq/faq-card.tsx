@@ -8,46 +8,40 @@ import type { Faq } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 const FAQ_CARD_SPANS = [
-  "col-span-6",
-  "col-span-5",
-  "col-span-7",
-  "col-span-8",
-  "col-span-4",
-  "col-span-5",
-  "col-span-7",
-  "col-span-6",
+  "col-span-6 bg-gradient-alt-1 sm:row-span-2",
+  "col-span-6 bg-gradient-alt-2",
+  "col-span-12 bg-gradient-alt-1 sm:col-span-8 sm:bg-gradient-alt-3",
+  "col-span-6 bg-gradient-alt-3 sm:col-span-4 sm:bg-gradient-main",
+  "col-span-6 bg-gradient-main sm:bg-gradient-alt-1 sm:col-span-3",
+  "col-span-12 bg-gradient-alt-1 sm:col-span-9 sm:bg-gradient-alt-3",
+  "col-span-12 bg-gradient-alt-2 sm:col-span-9",
+  "col-span-6 bg-gradient-alt-3 sm:col-span-3 sm:bg-gradient-main",
 ];
 
 function CardFace({
-  questionId,
   className,
   children,
-  as: Tag = "div",
   onClick,
 }: {
-  questionId: number;
   children: ReactNode;
   className?: ClassValue;
   as?: ElementType;
   onClick: (event_: MouseEvent) => void;
 }) {
   return (
-    <Tag
+    <div
       className={cn(
-        "inset-0 h-full w-full [backface-visibility:hidden]",
+        "col-start-1 row-start-1 [backface-visibility:hidden]",
         className,
       )}
     >
       <button
         onClick={onClick}
-        className="h-full w-full px-3 py-2 text-start sm:px-4 sm:py-3 md:px-6 md:py-5 lg:px-10 lg:py-9"
+        className="flex h-full w-full flex-col justify-between gap-2 px-4 py-5 text-start sm:px-4 sm:py-3 md:px-6 md:py-5 lg:px-10 lg:py-9"
       >
-        <h3 className="font-extrabold sm:text-xl md:mb-2 md:text-4xl lg:mb-7 lg:text-8xl">
-          {questionId.toString().padStart(2, "0")}
-        </h3>
         {children}
       </button>
-    </Tag>
+    </div>
   );
 }
 
@@ -68,10 +62,9 @@ export function FrequentlyAskedQuestion({
   }
 
   return (
-    <details
-      open
+    <div
       className={cn(
-        "relative cursor-pointer rounded-2xl bg-gradient-main text-primary-foreground transition-transform duration-300 [transform-style:preserve-3d] sm:rounded-3xl md:rounded-[2rem] lg:rounded-[4rem]",
+        "grid cursor-pointer rounded-2xl text-primary-foreground transition-transform duration-300 [transform-style:preserve-3d] sm:rounded-3xl",
         span,
         {
           "[transform:rotateY(180deg)]": flipped,
@@ -80,26 +73,26 @@ export function FrequentlyAskedQuestion({
     >
       {/* For some reason the front face is visible when the card is flipped (despite backface-visibility: hidden), but manually hiding it is a decent hack */}
       <CardFace
-        questionId={questionId}
-        className={cn("absolute list-none transition-all duration-300", {
-          "invisible opacity-0": flipped,
-        })}
+        className={cn(
+          "transition-[visibility,opacity] [animation-duration:inherit]",
+          {
+            "invisible opacity-0": flipped,
+          },
+        )}
         onClick={toggleFlipped}
-        as="summary"
       >
-        <p className="text-sm font-semibold sm:text-lg md:text-3xl/tight lg:text-4xl/snug lg:font-bold xl:text-5xl/snug">
+        <h3 className="text-4xl font-extrabold sm:text-xl md:mb-2 md:text-4xl lg:mb-7 lg:text-8xl">
+          #{questionId}
+        </h3>
+        <p className="font-bold sm:text-lg md:text-3xl/tight lg:text-4xl/snug lg:font-bold xl:text-5xl/snug">
           {faq.question}
         </p>
       </CardFace>
-      <CardFace
-        questionId={questionId}
-        className="[transform:rotateY(180deg)]"
-        onClick={toggleFlipped}
-      >
-        <p className="text-sm sm:text-base md:text-xl lg:text-2xl xl:text-5xl/tight">
+      <CardFace className="[transform:rotateY(180deg)]" onClick={toggleFlipped}>
+        <p className="whitespace-pre-wrap sm:text-base md:text-xl lg:text-2xl xl:text-5xl/tight">
           {faq.answer}
         </p>
       </CardFace>
-    </details>
+    </div>
   );
 }

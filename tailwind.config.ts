@@ -66,6 +66,12 @@ export default {
           "radial-gradient(94.87% 94.87% at 90% 70%, hsl(var(--primary)), hsl(var(--secondary)))",
         "gradient-secondary":
           "radial-gradient(circle at bottom right, hsl(var(--primary)), hsl(var(--secondary)))",
+        "gradient-alt-1":
+          "radial-gradient(circle at top center, #59D9E3, #1B78BE)",
+        "gradient-alt-2":
+          "radial-gradient(circle at right 30%, #FFB77C, #FF6CBF)",
+        "gradient-alt-3":
+          "radial-gradient(circle at top right, #9256F5, #DC7E84)",
       },
       spacing: {
         "90": "22rem",
