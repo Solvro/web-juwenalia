@@ -1,13 +1,13 @@
 "use client";
 
 import type { ClassValue } from "clsx";
-import type { ElementType, MouseEvent, ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 import { useState } from "react";
 
 import type { Faq } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-const FAQ_CARD_SPANS = [
+const FAQ_CARD_STYLES = [
   "col-span-6 bg-gradient-alt-1 sm:row-span-2",
   "col-span-6 bg-gradient-alt-2",
   "col-span-12 bg-gradient-alt-1 sm:col-span-8 sm:bg-gradient-alt-3",
@@ -25,7 +25,6 @@ function CardFace({
 }: {
   children: ReactNode;
   className?: ClassValue;
-  as?: ElementType;
   onClick: (event_: MouseEvent) => void;
 }) {
   return (
@@ -53,7 +52,7 @@ export function FrequentlyAskedQuestion({
   index: number;
 }) {
   const [flipped, setFlipped] = useState(false);
-  const span = FAQ_CARD_SPANS[index % FAQ_CARD_SPANS.length];
+  const span = FAQ_CARD_STYLES[index % FAQ_CARD_STYLES.length];
   const questionId = index + 1;
 
   function toggleFlipped(event_: MouseEvent) {
