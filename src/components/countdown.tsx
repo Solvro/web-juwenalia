@@ -151,6 +151,7 @@ function AnimatedCount({ value }: { value: number }) {
     },
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-misused-spread
   const displayValues = [...String(value).padStart(2, "0")];
 
   return (

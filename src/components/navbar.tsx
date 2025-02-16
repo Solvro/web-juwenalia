@@ -72,7 +72,7 @@ export function Navbar() {
       <div className="hidden items-center gap-4 lg:flex lg:gap-10 xl:gap-12">
         <div className="items-center font-normal leading-none sm:flex sm:flex-row sm:gap-4 sm:text-sm md:gap-6 md:text-base lg:gap-7 xl:gap-8 xl:text-lg">
           {NAV_LINKS.map(({ name, url, label }, index) => (
-            <ForLinks link={url} label={label} key={index}>
+            <ForLinks link={url} label={label} key={`key${index.toString()}`}>
               {name}
             </ForLinks>
           ))}
