@@ -43,8 +43,8 @@ async function ArtistList() {
   const artists = [...shuffledPopularArtists, ...shuffledUnpopularArtists];
 
   return (
-    <div className="">
-      <PaddingWrapper className="">
+    <div className="mt-48">
+      <PaddingWrapper>
         <h1
           className={
             "my-8 text-center text-2xl font-extrabold sm:text-left sm:text-5xl"

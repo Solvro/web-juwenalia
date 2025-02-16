@@ -2,12 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+import { FOOTER_LINKS } from "@/config/data";
+
 import { AnimatedSidebar } from "./sidebar-animations";
 
 export function SocialSidebar() {
-  const fb_url = process.env.JUWE_FB_URL;
-  const ig_url = process.env.JUWE_IG_URL;
-  const tt_url = process.env.JUWE_TIKTOK_URL;
+  const fb_url = FOOTER_LINKS.socials.fb;
+  const ig_url = FOOTER_LINKS.socials.ig;
+  const tt_url = FOOTER_LINKS.socials.tt;
 
   return (
     <AnimatedSidebar>

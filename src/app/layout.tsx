@@ -35,10 +35,10 @@ export default function RootLayout({
     <html lang="pl" className={montserrat.variable}>
       <QueryProvider>
         <body>
-          <SocialSidebar />
           <Navbar />
           {children}
           <Footer />
+          <SocialSidebar />
         </body>
       </QueryProvider>
     </html>
