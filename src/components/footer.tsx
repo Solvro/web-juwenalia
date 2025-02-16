@@ -1,6 +1,7 @@
 import type { ClassValue } from "clsx";
 import { Space_Grotesk } from "next/font/google";
 import Image from "next/image";
+import type { StaticImageData } from "next/image";
 import Link from "next/link";
 
 import Logo from "@/../public/Juwe2025.svg";
@@ -77,7 +78,7 @@ function Footer() {
 
           <div className="relative col-span-2 row-start-1 row-end-1 h-full min-h-52 w-full sm:min-h-60 lg:col-start-3 lg:min-h-full xl:col-span-3 xl:col-start-3">
             <Image
-              src={Logo}
+              src={Logo as StaticImageData}
               alt="Logo Juwenalia 2025 #WROCŁAWRAZEM"
               className="relative"
               loading="lazy"
@@ -87,7 +88,12 @@ function Footer() {
 
           <List text="Linki" className="pt-6">
             {NAV_LINKS.map(({ name, url, label }, index) => (
-              <ListItem text={name} url={url} label={label} key={index} />
+              <ListItem
+                text={name}
+                url={url}
+                label={label}
+                key={`key${index.toString()}`}
+              />
             ))}
           </List>
 

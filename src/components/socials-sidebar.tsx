@@ -16,7 +16,7 @@ export function SocialSidebar() {
       <div className="fixed right-0 z-50 flex w-12 -translate-y-1/2 flex-col rounded-l-2xl border-b border-l border-t border-[#ababab] border-opacity-50 bg-black">
         {/* Facebook */}
         <Link
-          href={fb_url ?? "."}
+          href={fb_url}
           target="_blank"
           rel="noopener noreferrer"
           role="button"
@@ -33,7 +33,7 @@ export function SocialSidebar() {
 
         {/* Instagram */}
         <Link
-          href={ig_url ?? "."}
+          href={ig_url}
           target="_blank"
           rel="noopener noreferrer"
           role="button"
@@ -50,7 +50,7 @@ export function SocialSidebar() {
 
         {/* TikTok */}
         <Link
-          href={tt_url ?? "."}
+          href={tt_url}
           target="_blank"
           rel="noopener noreferrer"
           role="button"

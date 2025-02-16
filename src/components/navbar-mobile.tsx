@@ -22,7 +22,11 @@ export function NavbarMobile({ isOpened, onOpenChange }: NavbarMobileProps) {
   const currentPath = usePathname();
   return (
     <Sheet open={isOpened} onOpenChange={onOpenChange} defaultOpen={false}>
-      <SheetTrigger onClick={() => onOpenChange(false)}>
+      <SheetTrigger
+        onClick={() => {
+          onOpenChange(false);
+        }}
+      >
         <Menu
           className="block"
           size={32}
@@ -30,7 +34,9 @@ export function NavbarMobile({ isOpened, onOpenChange }: NavbarMobileProps) {
           tabIndex={0}
           role="button"
           aria-label="Ikona rozwijanego menu"
-          onClick={() => onOpenChange(false)}
+          onClick={() => {
+            onOpenChange(false);
+          }}
           color={currentPath === "/" ? "white" : "black"}
         />
       </SheetTrigger>
@@ -44,11 +50,15 @@ export function NavbarMobile({ isOpened, onOpenChange }: NavbarMobileProps) {
               alt="Przycisk do zamkniecia menu"
               width={35}
               height={35}
-              onClick={() => onOpenChange(false)}
+              onClick={() => {
+                onOpenChange(false);
+              }}
             />
           </div>
         }
-        onOverlayClick={() => onOpenChange(false)}
+        onOverlayClick={() => {
+          onOpenChange(false);
+        }}
         aria-describedby={undefined}
       >
         <SheetHeader className="flex space-x-2">
@@ -61,13 +71,15 @@ export function NavbarMobile({ isOpened, onOpenChange }: NavbarMobileProps) {
         </SheetHeader>
         <div className="flex h-full flex-col justify-between pb-32">
           <div className="mt-20 flex flex-col items-start gap-5 text-2xl font-semibold text-black">
-            {NAV_LINKS?.map(({ name, url, label }, index) => (
+            {NAV_LINKS.map(({ name, url, label }, index) => (
               <Link
                 href={url}
                 aria-label={label}
                 className="nav-link link-item"
-                key={index}
-                onClick={() => onOpenChange(false)}
+                key={`key${index.toString()}`}
+                onClick={() => {
+                  onOpenChange(false);
+                }}
               >
                 {name}
               </Link>
