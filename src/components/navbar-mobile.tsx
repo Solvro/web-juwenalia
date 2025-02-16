@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { Button } from "@/components/button";
 import {
   Sheet,
   SheetContent,
@@ -10,40 +11,44 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { NAV_LINKS } from "@/config/data";
 
 interface NavbarMobileProps {
-  onButtonClick: () => void;
+  onOpenChange: (open: boolean) => void;
+  isOpened: boolean;
 }
 
-export function NavbarMobile({ onButtonClick }: NavbarMobileProps) {
+export function NavbarMobile({ isOpened, onOpenChange }: NavbarMobileProps) {
   const currentPath = usePathname();
   return (
-    <Sheet>
-      <SheetTrigger onClick={onButtonClick}>
+    <Sheet open={isOpened} onOpenChange={onOpenChange} defaultOpen={false}>
+      <SheetTrigger onClick={() => onOpenChange(false)}>
         <Menu
-          className="block sm:hidden"
+          className="block"
           size={32}
           strokeWidth={2.5}
           tabIndex={0}
           role="button"
           aria-label="Ikona rozwijanego menu"
-          onClick={onButtonClick}
+          onClick={() => onOpenChange(false)}
           color={currentPath === "/" ? "white" : "black"}
         />
       </SheetTrigger>
       <SheetTitle />
       <SheetContent
+        className="max-h-screen"
         closeIcon={
-          <Image
-            src="/buttons/close-button.svg"
-            alt="Przycisk do zamkniecia menu"
-            width={35}
-            height={35}
-            className="h-24"
-            onClick={onButtonClick}
-          />
+          <div className="grid place-items-center">
+            <Image
+              src="/buttons/close-button.svg"
+              alt="Przycisk do zamkniecia menu"
+              width={35}
+              height={35}
+              onClick={() => onOpenChange(false)}
+            />
+          </div>
         }
-        onOverlayClick={onButtonClick}
+        onOverlayClick={() => onOpenChange(false)}
         aria-describedby={undefined}
       >
         <SheetHeader className="flex space-x-2">
@@ -54,33 +59,30 @@ export function NavbarMobile({ onButtonClick }: NavbarMobileProps) {
             height={83}
           />
         </SheetHeader>
-        <div className="flex flex-1 flex-col items-center justify-end gap-2.5 px-3 py-7">
-          <div className="mt-20 flex flex-col items-start gap-7 text-xl font-semibold leading-7 text-black">
-            <Link href="/" aria-label="Przycisk do przejścia do strony głównej">
-              Strona Główna
-            </Link>
-            <Link
-              href="/artists"
-              aria-label="Przycisk do przejścia do strony z artystami"
-            >
-              Artyści
-            </Link>
-            <Link
-              href="/map "
-              aria-label="Przycisk do przejścia do strony z mapą wydarzenia"
-            >
-              Mapa Wydarzenia
-            </Link>
-            <Link
-              href="/news"
-              aria-label="Przycisk do przejścia do strony z aktualnościami"
-            >
-              Aktualności
-            </Link>
+        <div className="flex h-full flex-col justify-between pb-32">
+          <div className="mt-20 flex flex-col items-start gap-5 text-2xl font-semibold text-black">
+            {NAV_LINKS?.map(({ name, url, label }, index) => (
+              <Link
+                href={url}
+                aria-label={label}
+                className="nav-link link-item"
+                key={index}
+                onClick={() => onOpenChange(false)}
+              >
+                {name}
+              </Link>
+            ))}
           </div>
-          <div className="absolute bottom-20 flex rounded-full bg-gradient-main px-8 py-5 text-white">
-            kup bilet {/*Placeholder */}
-          </div>
+
+          <Button
+            as={Link}
+            href="/"
+            className="!w-full !bg-gradient-main !py-4 before:!bg-black/10 [&_*]:hover:!text-white"
+            variant="default"
+            variantColor="white"
+          >
+            Kup Bilet
+          </Button>
         </div>
       </SheetContent>
     </Sheet>

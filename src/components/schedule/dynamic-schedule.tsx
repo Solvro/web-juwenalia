@@ -42,7 +42,7 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
   }));
 
   return (
-    <div className="space-y-14 sm:mt-24 sm:space-y-24">
+    <div className="mt-16 space-y-14 sm:mt-24 sm:space-y-24">
       {days.map((day) => (
         <div key={day.id}>
           <HomepageHeader>{format(day.date, "d MMMM (EEEE)")}</HomepageHeader>

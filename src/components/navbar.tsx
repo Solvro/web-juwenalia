@@ -6,6 +6,11 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import type { ReactNode } from "react";
 
+import { Button } from "@/components/button";
+import { PaddingWrapper } from "@/components/padding-wrapper";
+import { NAV_LINKS } from "@/config/data";
+import { cn } from "@/lib/utils";
+
 import { NavbarMobile } from "./navbar-mobile";
 
 function ForLinks({
@@ -17,11 +22,15 @@ function ForLinks({
   link: string;
   label: string;
 }) {
+  const currentPath = usePathname();
+
   return (
     <Link
       href={link}
       aria-label={label}
-      className="rounded-full hover:bg-gradient-main hover:text-white sm:p-1 lg:p-2"
+      className={cn("nav-link link-item underline-animation", {
+        "after:bg-white": currentPath === "/",
+      })}
     >
       {children}
     </Link>
@@ -30,60 +39,58 @@ function ForLinks({
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const currentPath = usePathname();
-  const changeLogoState = () => {
-    setIsMenuOpen(!isMenuOpen);
+
+  const changeLogoState = (open: boolean) => {
+    setIsMenuOpen(open);
   };
+
   return (
-    <div
-      className={`relative mx-5 mt-2.5 flex w-11/12 justify-between sm:mx-1 ${currentPath === "/" ? "sm:text-white" : "sm:text-black"} sm:w-auto lg:mx-8`}
+    <PaddingWrapper
+      className={cn(
+        // Later on need to be modified in order to react to user scroll behaviour,
+        // scroll down: nav hides,
+        // scroll up: nav shows
+        "absolute top-0 flex w-full items-center justify-between py-3",
+        {
+          "sm:text-white": currentPath === "/",
+        },
+      )}
     >
-      {/* That black backgruond is just temporary for visibility, because it's hard to see anything without background image from countdown */}
-      <Image
-        className={`sm:opacity-100 ${
-          isMenuOpen ? "opacity-0" : "opacity-100"
-        } transition-opacity duration-500 ease-in-out`}
-        src="/LOGO_juwenalia2025.svg"
-        alt="Logo na juwenalia 2025"
-        width={84}
-        height={84}
-      />
-      <div className="hidden sm:absolute sm:inset-y-0 sm:right-1 sm:flex sm:gap-2 lg:gap-10 xl:gap-12">
+      <Link href="/" className="relative aspect-square w-[100px] lg:w-[130px]">
+        <Image
+          className={cn(
+            "h-full w-full opacity-100 transition-opacity duration-500 ease-in-out",
+            {
+              "opacity-0": isMenuOpen,
+            },
+          )}
+          src="/LOGO_juwenalia2025.svg"
+          alt="Logo na juwenalia 2025"
+          fill
+        />
+      </Link>
+      <div className="hidden items-center gap-4 lg:flex lg:gap-10 xl:gap-12">
         <div className="items-center font-normal leading-none sm:flex sm:flex-row sm:gap-4 sm:text-sm md:gap-6 md:text-base lg:gap-7 xl:gap-8 xl:text-lg">
-          <ForLinks link="/" label="Przejdź do strony głównej">
-            Strona Główna
-          </ForLinks>
-
-          <ForLinks link="/artists" label="Przejdź do strony z artystami">
-            Artyści
-          </ForLinks>
-
-          <ForLinks link="/map" label="Przejdź do strony z mapą wydarzenia">
-            Mapa Wydarzenia
-          </ForLinks>
-
-          <ForLinks link="/news" label="Przejdź do strony z aktualnościami">
-            Aktualności
-          </ForLinks>
+          {NAV_LINKS.map(({ name, url, label }, index) => (
+            <ForLinks link={url} label={label} key={index}>
+              {name}
+            </ForLinks>
+          ))}
         </div>
 
-        <div
-          className={`flex flex-row items-center justify-center rounded-full border-2 border-solid ${currentPath === "/" ? "border-white hover:border-black" : "border-black hover:border-white hover:text-white"} px-2 py-[11px] font-semibold hover:cursor-pointer hover:bg-gradient-main sm:w-24 sm:gap-2 sm:text-xs sm:leading-7 md:w-36 md:text-base lg:w-40 lg:gap-6 lg:px-5 lg:leading-6 xl:w-44`}
+        <Button
+          as={Link}
+          href="/"
+          variant="gradient"
+          variantColor={currentPath === "/" ? "white" : "black"}
+          className="h-14 max-w-[200px]"
         >
-          kup bilet{" "}
-          <div className="flex h-[25px] shrink-0 items-center justify-center fill-none sm:w-2 lg:w-4 xl:w-[25px]">
-            <Image
-              className={`transition-opacity duration-500 ease-in-out`}
-              src="/buttons/dot-for-button.svg"
-              alt="Element dekoracyjny przycisku do kupowania biletu"
-              width={6}
-              height={6}
-            />
-          </div>
-        </div>
+          kup bilet
+        </Button>
       </div>
-      <div className="absolute bottom-2 right-4 sm:hidden">
-        <NavbarMobile onButtonClick={changeLogoState} />
+      <div className="flex lg:hidden">
+        <NavbarMobile isOpened={isMenuOpen} onOpenChange={changeLogoState} />
       </div>
-    </div>
+    </PaddingWrapper>
   );
 }

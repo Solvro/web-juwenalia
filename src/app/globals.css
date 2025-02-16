@@ -6,6 +6,11 @@
 
 body {
   font-family: var(--font-montserrat), sans-serif;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 @layer base {
