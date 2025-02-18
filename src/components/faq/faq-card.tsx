@@ -2,7 +2,7 @@
 
 import type { ClassValue } from "clsx";
 import type { MouseEvent, ReactNode } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import type { Faq } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -37,12 +37,27 @@ function getColSpan(faq: Faq, sibling: Faq | null): ClassValue {
 function CardFace({
   className,
   children,
+  visible,
   onClick,
 }: {
   children: ReactNode;
   className?: ClassValue;
+  visible: boolean;
   onClick: (event_: MouseEvent) => void;
 }) {
+  const [showScrollbar, setShowScrollbar] = useState(false);
+  useEffect(() => {
+    if (visible) {
+      setShowScrollbar(true);
+      return;
+    }
+    const timeout = setTimeout(() => {
+      setShowScrollbar(false);
+    }, 300);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [visible]);
   return (
     <div
       className={cn(
@@ -50,7 +65,11 @@ function CardFace({
         className,
       )}
     >
-      <div className="h-full max-h-90 w-full overflow-y-scroll px-3 sm:px-4 md:px-5 lg:px-10">
+      <div
+        className={cn("h-full max-h-90 w-full px-3 sm:px-4 md:px-5 lg:px-10", {
+          "overflow-y-scroll": showScrollbar,
+        })}
+      >
         <button
           onClick={onClick}
           className="flex h-full w-full flex-col justify-between gap-2 text-start"
@@ -103,6 +122,7 @@ export function FrequentlyAskedQuestion({
             "invisible opacity-0": flipped,
           },
         )}
+        visible={!flipped}
         onClick={toggleFlipped}
       >
         <h3 className="text-4xl font-extrabold sm:text-xl md:mb-2 md:text-4xl lg:mb-7 lg:text-6xl">
@@ -112,7 +132,11 @@ export function FrequentlyAskedQuestion({
           {faq.question}
         </p>
       </CardFace>
-      <CardFace className="[transform:rotateY(180deg)]" onClick={toggleFlipped}>
+      <CardFace
+        className="[transform:rotateY(180deg)]"
+        onClick={toggleFlipped}
+        visible={flipped}
+      >
         <p className="whitespace-pre-wrap sm:text-base md:text-xl">
           {faq.answer}
         </p>
