@@ -120,7 +120,6 @@ export interface Faq {
   id: number;
   question: string;
   answer: string;
-  // sort?: number | null;
 }
 
 export interface MapLevel {

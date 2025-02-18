@@ -9,6 +9,7 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [{ pattern: /^col-span-\d/, variants: ["sm"] }],
   theme: {
     extend: {
       fontFamily: {
