@@ -129,7 +129,11 @@ function Footer() {
         >
           Made with ❤️ by&nbsp;
           <span className="inline-flex">
-            <Image src={Solvro} alt="logo solvro" className="size-5" />
+            <Image
+              src={Solvro as StaticImageData}
+              alt="logo solvro"
+              className="size-5"
+            />
             &nbsp;Solvro
           </span>
         </Link>
