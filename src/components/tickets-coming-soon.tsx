@@ -9,7 +9,7 @@ const handleReload = () => {
 
 export function TicketsComingSoon() {
   return (
-    <PaddingWrapper className="my-24 grid min-h-[80svh] w-full place-items-center bg-gradient-main py-16 md:my-32 md:min-h-[40svh] md:py-20 lg:my-48 lg:py-24">
+    <PaddingWrapper className="my-24 grid w-full place-items-center bg-gradient-main py-16 md:my-32 md:min-h-[40svh] md:py-20 lg:my-48 lg:py-24">
       <div className="flex h-full w-full flex-col gap-1 md:gap-16 lg:flex-row lg:justify-between lg:gap-32">
         <h1 className="flex flex-col text-5xl font-black uppercase text-white sm:text-7xl md:text-8xl">
           <span>bilety już</span>
@@ -18,7 +18,7 @@ export function TicketsComingSoon() {
           </span>
         </h1>
 
-        <div className="relative my-auto flex w-full flex-col gap-10 md:my-0 lg:mx-auto lg:w-fit">
+        <div className="relative my-auto mt-5 flex w-full flex-col gap-10 md:my-0 lg:mx-auto lg:w-fit">
           <div className="flex max-w-[600px] flex-col sm:gap-1.5 md:gap-1">
             <p className="text-white md:text-lg lg:text-xl">
               Bilety nie są jeszcze dostępne.

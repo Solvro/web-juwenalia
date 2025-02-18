@@ -79,14 +79,15 @@ function ButtonInner<T extends React.ElementType = "button">(
           className,
           variantColor,
         }),
-        "group inline-flex w-fit before:pointer-events-auto before:absolute before:bg-transparent before:content-['']" +
-          " isolate before:top-full before:z-[-1] before:h-[200%] before:w-[110%] before:rounded-[50%]" +
+        "group pointer-events-auto inline-flex w-fit before:pointer-events-auto before:absolute before:bg-transparent before:content-['']" +
+          " isolate before:left-1/2 before:top-full before:z-[-1] before:h-[200%] before:w-[110%] before:-translate-x-1/2 before:rounded-[50%]" +
           " before:ease-[cubic-bezier(.23,1,.32,1)] before:transition-all before:duration-200 hover:before:-top-1/2" +
-          " hover:before:origin-top hover:before:ease-in",
+          " z-2 before:pointer-events-none hover:before:origin-top hover:before:ease-in",
         {
           "before:bg-white":
             ["default", "secondary"].includes(variant ?? "") &&
             variantColor === "white",
+          "before:bg-gradient-main": variant === "gradient",
           "before:bg-black":
             ["default", "secondary"].includes(variant ?? "") &&
             ["black"].includes(variantColor ?? ""),
@@ -98,7 +99,7 @@ function ButtonInner<T extends React.ElementType = "button">(
     >
       <div
         className={cn(
-          "pointer-events-auto relative flex w-full cursor-pointer items-center justify-between gap-4 md:gap-8",
+          "pointer-events-none relative flex h-fit w-full cursor-pointer items-center justify-between gap-4 md:gap-8",
           {
             "pointer-events-none": disabled,
           },

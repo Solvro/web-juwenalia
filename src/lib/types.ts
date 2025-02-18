@@ -135,3 +135,9 @@ export interface MapFloorsButtonProps {
   active: boolean;
   onClick: () => void;
 }
+
+export interface NavLink {
+  url: string;
+  name: string;
+  label: string;
+}

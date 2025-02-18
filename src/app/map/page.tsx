@@ -26,7 +26,7 @@ export default function Page() {
   }
 
   return (
-    <div>
+    <div className="mt-48">
       <div className="mx-auto mt-10 grid w-4/5 grid-cols-2 gap-10">
         <Button
           disabled={activeStaticMap}

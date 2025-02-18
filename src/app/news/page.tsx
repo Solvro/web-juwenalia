@@ -8,7 +8,7 @@ export default async function FbPage() {
   const posts = await getFacebookPosts();
 
   return (
-    <div className="flex flex-col items-center gap-5">
+    <div className="mt-48 flex flex-col items-center gap-5">
       <h1 className="m-3 mb-0 text-center font-extrabold text-gray-800 sm:text-2xl md:text-3xl">
         Najnowsze aktualności
       </h1>
