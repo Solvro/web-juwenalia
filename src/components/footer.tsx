@@ -5,6 +5,7 @@ import type { StaticImageData } from "next/image";
 import Link from "next/link";
 
 import Logo from "@/../public/Juwe2025.svg";
+import Solvro from "@/../public/logo-solvro.svg";
 import { HorizontalRule } from "@/components/horizontal-rule";
 import { PaddingWrapper } from "@/components/padding-wrapper";
 import { FOOTER_LINKS, NAV_LINKS } from "@/config/data";
@@ -22,9 +23,9 @@ function List({
   className?: ClassValue;
 }) {
   return (
-    <div className={cn("flex w-fit flex-col gap-4", className)}>
+    <div className={cn("flex w-full flex-col gap-4", className)}>
       <h2 className="text-base font-medium uppercase">{text}</h2>
-      <ul className="w-fit">{children}</ul>
+      <ul className="flex w-full flex-col">{children}</ul>
     </div>
   );
 }
@@ -41,7 +42,7 @@ function ListItem({
   text: string;
 }) {
   return (
-    <li className="mb-2 w-full whitespace-nowrap text-sm font-light md:text-base">
+    <li className="mb-2 w-full text-sm font-light md:text-base">
       <Link
         href={url}
         target={target}
@@ -58,8 +59,8 @@ function Footer() {
   return (
     <footer className="mt-32 w-full border-t border-gray-300">
       <PaddingWrapper>
-        <div className="grid h-full w-full grid-cols-2 gap-5 py-5 lg:grid-cols-6 lg:gap-10 lg:py-16 xl:grid-cols-7">
-          <List text="Kontakt" className="pt-6">
+        <div className="grid h-full w-full grid-cols-2 gap-5 py-5 lg:grid-cols-4 lg:gap-20 lg:py-16 xl:grid-cols-6">
+          <List text="Kontakt" className="pt-6 lg:row-start-2 xl:row-start-1">
             <ListItem
               text={FOOTER_LINKS.contact.mail}
               url={`mailto:${FOOTER_LINKS.contact.mail}`}
@@ -70,13 +71,16 @@ function Footer() {
             />
           </List>
 
-          <List text="Social media" className="pt-6">
+          <List
+            text="Social media"
+            className="pt-6 lg:row-start-2 xl:row-start-1"
+          >
             <ListItem text="Instagram" url={FOOTER_LINKS.socials.ig} />
             <ListItem text="Facebook" url={FOOTER_LINKS.socials.fb} />
             <ListItem text="Tiktok" url={FOOTER_LINKS.socials.tt} />
           </List>
 
-          <div className="relative col-span-2 row-start-1 row-end-1 h-full min-h-52 w-full sm:min-h-60 lg:col-start-3 lg:min-h-full xl:col-span-3 xl:col-start-3">
+          <div className="relative col-span-2 row-start-1 row-end-1 h-full min-h-52 w-full sm:min-h-60 lg:col-start-2 lg:col-end-4 lg:row-start-1 lg:row-end-1 xl:col-span-2 xl:col-start-3 xl:min-h-full">
             <Image
               src={Logo as StaticImageData}
               alt="Logo Juwenalia 2025 #WROCŁAWRAZEM"
@@ -86,7 +90,7 @@ function Footer() {
             />
           </div>
 
-          <List text="Linki" className="pt-6">
+          <List text="Linki" className="pt-6 lg:row-start-2 xl:row-start-1">
             {NAV_LINKS.map(({ name, url, label }, index) => (
               <ListItem
                 text={name}
@@ -97,7 +101,7 @@ function Footer() {
             ))}
           </List>
 
-          <List text="Inne" className="pt-6">
+          <List text="Inne" className="pt-6 lg:row-start-2 xl:row-start-1">
             <ListItem
               text="Polityka prywatności"
               url={FOOTER_LINKS.privacyPolicy}
@@ -115,9 +119,20 @@ function Footer() {
           </span>
         </span>
 
-        <p className={cn("text-sm font-medium", spaceGrotesk.className)}>
-          Made with ❤️ by Solvro
-        </p>
+        <Link
+          href="https://solvro.pl/"
+          target="_blank"
+          className={cn(
+            "flex items-center text-sm font-medium",
+            spaceGrotesk.className,
+          )}
+        >
+          Made with ❤️ by&nbsp;
+          <span className="inline-flex">
+            <Image src={Solvro} alt="logo solvro" className="size-5" />
+            &nbsp;Solvro
+          </span>
+        </Link>
       </PaddingWrapper>
     </footer>
   );
