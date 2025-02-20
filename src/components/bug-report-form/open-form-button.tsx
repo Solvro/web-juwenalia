@@ -6,5 +6,5 @@ import { Button } from "../button";
 
 export function OpenBugReportFormButton() {
   const { openDialog } = useBugReport();
-  return <Button onClick={openDialog}>Złoś błąd</Button>;
+  return <Button onClick={openDialog}>Zgłoś błąd</Button>;
 }
