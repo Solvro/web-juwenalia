@@ -11,6 +11,8 @@ import { PaddingWrapper } from "@/components/padding-wrapper";
 import { FOOTER_LINKS, NAV_LINKS } from "@/config/data";
 import { cn } from "@/lib/utils";
 
+import { OpenBugReportFormButton } from "./bug-report-form/open-form-button";
+
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: "400" });
 
 function List({
@@ -100,13 +102,11 @@ function Footer() {
               />
             ))}
           </List>
-
-          <List text="Inne" className="pt-6 lg:row-start-2 xl:row-start-1">
-            <ListItem
-              text="Polityka prywatności"
-              url={FOOTER_LINKS.privacyPolicy}
-            />
-            <ListItem text="Zgłoś błąd" url={FOOTER_LINKS.bugReport} />
+          <List text="Inne">
+            <ListItem url="" text="Link 1" target="_self" />
+            <ListItem url="" text="Link 2" target="_self" />
+            <ListItem url="" text="Link 3" target="_self" />
+            <OpenBugReportFormButton />
           </List>
         </div>
       </PaddingWrapper>
