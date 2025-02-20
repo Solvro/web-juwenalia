@@ -24,7 +24,7 @@ export function useBugReport() {
 }
 
 export function BugReportProvider({ children }: { children: ReactNode }) {
-  const [isDialogOpen, setIsDialogOpen] = useState(true); // TODO: Change to false
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
     <BugReportContext.Provider
