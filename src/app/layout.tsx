@@ -36,8 +36,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl" className={montserrat.variable}>
-      <body className="relative">
-        <QueryProvider>
+      <QueryProvider>
+        <body className="relative">
           <BugReportProvider>
             <SocialSidebar />
             <Navbar />
@@ -47,8 +47,8 @@ export default function RootLayout({
             <Toaster />
             <SocialSidebar />
           </BugReportProvider>
-        </QueryProvider>
-      </body>
+        </body>
+      </QueryProvider>
     </html>
   );
 }
