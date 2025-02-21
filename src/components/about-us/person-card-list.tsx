@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { API_URL } from "@/config/api";
 import type { Person } from "@/lib/types";
 
 const DEFAULT_IMAGE_MALE = "avatar-man.png";
@@ -16,7 +17,11 @@ function PersonCard({ person }: { person: Person }) {
     <div className="flex max-w-[200px] flex-col items-center text-center">
       <div className="overflow-hidden rounded-full bg-neutral-300">
         <Image
-          src={`/${person.image ?? defaultImage}`}
+          src={
+            person.image
+              ? `${API_URL}/assets/${person.image}`
+              : `/${defaultImage}`
+          }
           alt={`${person.name}'s photo`}
           width={125}
           height={125}

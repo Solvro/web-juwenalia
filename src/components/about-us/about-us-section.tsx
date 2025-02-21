@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 
 import { HorizontalRule } from "@/components/horizontal-rule";
 import { PaddingWrapper } from "@/components/padding-wrapper";
+import { fetchData } from "@/lib/api";
+import { Organisation, Person } from "@/lib/types";
 
 import { HomepageHeader } from "../homepage-header";
 import { OrganisersList } from "./organisers";
@@ -38,7 +40,22 @@ function Section({
   );
 }
 
-export function AboutUs() {
+export async function AboutUs() {
+  const [responseOrganisers, responseCoordinators, responseStaff] =
+    await Promise.all([
+      fetchData<{ data: Organisation[] }>(
+        "items/organisers?fields=name, url, logo, logoScale",
+      ),
+      fetchData<{ data: Person[] }>(
+        "items/coordinators?fields=name, role, image",
+      ),
+      fetchData<{ data: Person[] }>("items/staff?fields=name, role, image"),
+    ]);
+  const allData = [
+    responseOrganisers.data,
+    responseCoordinators.data,
+    responseStaff.data,
+  ];
   return (
     <div className="mt-24 flex flex-col gap-24 md:mt-32 md:gap-32 lg:mt-48 lg:gap-64">
       <Section header="Partnerzy">
@@ -51,7 +68,7 @@ export function AboutUs() {
           hendrerit nullam consequat amet convallis sagittis. Quisque mauris
           magnis augue scelerisque facilisi accumsan."
       >
-        <OrganisersList />
+        <OrganisersList allOrganisers={allData} />
       </Section>
     </div>
   );
