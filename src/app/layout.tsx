@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { PhraseSearch } from "@/components/phrase-search";
 import { SocialSidebar } from "@/components/socials-sidebar";
+import { Toaster } from "@/components/ui/sonner";
 import { QueryProvider } from "@/lib/query-client";
 
 import "./globals.css";
@@ -41,6 +42,7 @@ export default function RootLayout({
           <PhraseSearch />
           {children}
           <Footer />
+          <Toaster />
           <SocialSidebar />
         </body>
       </QueryProvider>
