@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { HorizontalRule } from "@/components/horizontal-rule";
 import { PaddingWrapper } from "@/components/padding-wrapper";
 import { fetchData } from "@/lib/api";
-import { Organisation, Person } from "@/lib/types";
+import type { Organisation, Person } from "@/lib/types";
 
 import { HomepageHeader } from "../homepage-header";
 import { OrganisersList } from "./organisers";
