@@ -47,9 +47,6 @@ export function BugReportForm() {
         body: new URLSearchParams(body).toString(),
       });
     },
-    onError: (error) => {
-      console.error("Error while sending feedback form", error);
-    },
   });
   const form = useForm<FeedbackFormSchema>({
     resolver: zodResolver(feedbackFormSchema),
@@ -99,7 +96,10 @@ export function BugReportForm() {
               onSubmit={form.handleSubmit((values) => {
                 toast.promise(mutateAsync(values), {
                   loading: "Trwa wysyłanie zgłoszenia...",
-                  error: "Nastąpił błąd podczas wysyłania zgłoszenia",
+                  error: (error) => {
+                    console.error("Error while sending feedback form:", error);
+                    return "Nastąpił błąd podczas wysyłania zgłoszenia";
+                  },
                   success: "Zgłoszenie wysłane pomyślnie!",
                 });
               })}
