@@ -104,10 +104,12 @@
   bottom: -50px;
 
   display: block;
+  --active-width-increase: 50px;
 
   width: 100%;
   padding: 0;
   margin: 0;
+  margin-left: calc(var(--active-width-increase) / -2);
 
   list-style: none;
 
@@ -115,13 +117,11 @@
 }
 
 .slick-dots li {
-  position: relative;
-
   display: inline-block;
 
   width: 20px;
   height: 20px;
-  margin: 0 20px;
+  margin: 0 10px;
   padding: 0;
 
   cursor: pointer;
@@ -150,37 +150,33 @@
   outline: none;
 }
 
-.slick-dots li button:hover:before,
-.slick-dots li button:focus:before {
+.slick-dots li button:hover,
+.slick-dots li button:focus {
   opacity: 0.5;
 }
 
-.slick-dots li button:before {
-  font-family: "slick";
-  font-size: 50px;
-  line-height: 20px;
+.slick-dots li button {
+  transition: all 300ms ease;
 
-  position: absolute;
-  top: 0;
-  left: 0;
+  --radius: 7px;
+  --diameter: calc(2 * var(--radius));
+  height: var(--diameter);
+  width: var(--diameter);
 
-  width: 20px;
-  height: 20px;
-
-  content: "•";
-  text-align: center;
+  content: "";
+  background: linear-gradient(hsl(var(--foreground)), hsl(var(--foreground)))
+    100% 100% repeat;
+  border-radius: var(--radius);
 
   opacity: 0.25;
   color: black;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-.slick-dots li.slick-active button:before {
+.slick-dots li.slick-active button {
   opacity: 1;
-  margin-top: -7px;
-  margin-left: -10px;
-  transform: scale(0.75, 0.5);
-  content: url("https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/1A1A1A/external-glyph-shapes-tanah-basah-glyph-tanah-basah-42.png");
+  width: calc(var(--diameter) + var(--active-width-increase));
+}
+
+.slick-dots li.slick-active ~ li button {
+  margin-left: var(--active-width-increase);
 }
