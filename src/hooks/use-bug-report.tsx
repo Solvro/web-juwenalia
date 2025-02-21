@@ -4,7 +4,6 @@ import type { ReactNode } from "react";
 import { createContext, useContext, useState } from "react";
 
 import { BugReportForm } from "@/components/bug-report-form";
-import { Toaster } from "@/components/ui/sonner";
 
 const BugReportContext = createContext<{
   isDialogOpen: boolean;
@@ -40,7 +39,6 @@ export function BugReportProvider({ children }: { children: ReactNode }) {
       }}
     >
       {children}
-      <Toaster />
       <BugReportForm />
     </BugReportContext.Provider>
   );
