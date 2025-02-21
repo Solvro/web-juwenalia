@@ -1,10 +1,12 @@
 "use client";
 
+import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
 import { Button } from "@/components/button";
 import type { FacebookAttachment } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 function PostAttachment({ attachment }: { attachment: FacebookAttachment }) {
   const [showSubAttachments, setShowSubAttachments] = useState(false);
@@ -25,12 +27,19 @@ function PostAttachment({ attachment }: { attachment: FacebookAttachment }) {
       )}
       {hasSubAttachments ? (
         <Button
-          className="order-2 ml-3"
+          className="order-2 mt-2 sm:ml-3 sm:mt-0"
           onClick={() => {
             setShowSubAttachments((old) => !old);
           }}
         >
-          {showSubAttachments ? "Mniej" : "Więcej"} zdjęć
+          <div className="flex items-center gap-4">
+            <ChevronDown
+              className={cn("transition-transform duration-300", {
+                "rotate-180": showSubAttachments,
+              })}
+            />
+            {showSubAttachments ? "Mniej" : "Więcej"} zdjęć
+          </div>
         </Button>
       ) : null}
     </>
