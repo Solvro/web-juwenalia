@@ -5,14 +5,13 @@ import React, { useState } from "react";
 import type { Settings } from "react-slick";
 import Slider from "react-slick";
 
+import "@/app/slick-theme.css";
+import "@/app/slick.css";
 import { Artist } from "@/components/artists/artist";
 import { Button } from "@/components/button";
 import { HomepageHeader } from "@/components/homepage-header";
 import { PaddingWrapper } from "@/components/padding-wrapper";
 import type { ArtistProps } from "@/lib/types";
-
-import "../../app/slick-theme.css";
-import "../../app/slick.css";
 
 function Carousel({ artists }: { artists: ArtistProps[] }) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
