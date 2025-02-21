@@ -94,14 +94,31 @@ export function BugReportForm() {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit((values) => {
-                toast.promise(mutateAsync(values), {
-                  loading: "Trwa wysyłanie zgłoszenia...",
-                  error: (error) => {
-                    console.error("Error while sending feedback form:", error);
-                    return "Nastąpił błąd podczas wysyłania zgłoszenia";
+                toast.promise(
+                  mutateAsync(values).then((response) => {
+                    // Sometimes the Google Forms response has status "0" (string) despite successful submission
+                    if (!response.ok && response.status.toString() === "0") {
+                      console.warn(
+                        "Feedback form response status is 0:",
+                        response,
+                      );
+                      // If you return a non-ok response object the toast will show an error
+                      return null;
+                    }
+                    return response;
+                  }),
+                  {
+                    loading: "Trwa wysyłanie zgłoszenia...",
+                    error: (error) => {
+                      console.error(
+                        "Error while sending feedback form:",
+                        error,
+                      );
+                      return "Nastąpił błąd podczas wysyłania zgłoszenia";
+                    },
+                    success: "Zgłoszenie wysłane pomyślnie!",
                   },
-                  success: "Zgłoszenie wysłane pomyślnie!",
-                });
+                );
               })}
               className="grid w-full gap-4 py-4 sm:max-w-[425px]"
             >
