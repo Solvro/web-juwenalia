@@ -3,7 +3,7 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import type { Settings } from "react-slick";
 import Slider from "react-slick";
 
@@ -50,7 +50,6 @@ function CarouselArrow({
 
 export function Carousel({ artists }: { artists: ArtistProps[] }) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const sliderRef = useRef<Slider>(null);
 
   const getAppendDots = (dotsToShow: number) =>
     function appendDots(dots: ReactNode[]) {
@@ -91,8 +90,7 @@ export function Carousel({ artists }: { artists: ArtistProps[] }) {
         totalArtists={artists.length}
       />
     ),
-    beforeChange: (currentSlide, nextSlide) => {
-      console.warn({ currentSlide, nextSlide });
+    beforeChange: (_, nextSlide) => {
       setCurrentIndex(nextSlide);
     },
     customPaging: (index) => <button>{index + 1}</button>,
@@ -140,7 +138,7 @@ export function Carousel({ artists }: { artists: ArtistProps[] }) {
         </div>
       </div>
       <PaddingWrapper>
-        <Slider {...settings} ref={sliderRef}>
+        <Slider {...settings}>
           {artists.map((artist) => (
             <div key={artist.id} className="p-4">
               <Artist {...artist} />
