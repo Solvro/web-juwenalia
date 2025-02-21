@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import { PersonCardList } from "@/components/about-us/person-card-list";
 import { TabSelectorBar } from "@/components/about-us/tab-selector-bar";
-import type { Organisation, Person } from "@/lib/types";
+import type { ArrayIndex, Organisation, Person } from "@/lib/types";
 
 const ROLES = ["Organizatorzy", "Koordynatorzy", "Sztab"] as const;
 
@@ -58,9 +58,10 @@ const isOrganisationArray = (
 ): array is Organisation[] => "url" in array[0];
 
 export function OrganisersList() {
-  const [selectedIndex, setSelectedIndex] = useState<keyof typeof ROLES>(0);
+  const [selectedIndex, setSelectedIndex] =
+    useState<ArrayIndex<typeof ROLES>>(0);
 
-  const section = ORGANISERS[selectedIndex as number];
+  const section = ORGANISERS[selectedIndex];
 
   return (
     <>

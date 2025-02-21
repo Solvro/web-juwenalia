@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { PersonCardList } from "@/components/about-us/person-card-list";
 import { TabSelectorBar } from "@/components/about-us/tab-selector-bar";
-import type { Person } from "@/lib/types";
+import type { ArrayIndex, Person } from "@/lib/types";
 
 const CREATORS: Person[] = [
   { name: "Adrian Iskra", role: "UI/UX" },
@@ -28,7 +28,8 @@ const comparePeople = (a: Person, b: Person) =>
   getSurname(a).localeCompare(getSurname(b));
 
 export function CreatorsList() {
-  const [selectedIndex, setSelectedIndex] = useState<keyof typeof ROLES>(0);
+  const [selectedIndex, setSelectedIndex] =
+    useState<ArrayIndex<typeof ROLES>>(0);
 
   const role = ROLES[selectedIndex];
 

@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { TabSelectorBar } from "@/components/about-us/tab-selector-bar";
+import type { ArrayIndex } from "@/lib/types";
 
 const PARTNER_TYPES = ["Główni", "Medialni"] as const;
 
@@ -19,8 +20,8 @@ function PartnerSkeleton({ index, total }: { index: number; total: number }) {
 
 export function PartnersList() {
   const [selectedIndex, setSelectedIndex] =
-    useState<keyof typeof PARTNER_TYPES>(0);
-  const skeletonsLength = 8 + (selectedIndex as number) * 3;
+    useState<ArrayIndex<typeof PARTNER_TYPES>>(0);
+  const skeletonsLength = 8 + selectedIndex * 3;
   return (
     <>
       <TabSelectorBar
