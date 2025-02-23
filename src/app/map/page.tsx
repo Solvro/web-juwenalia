@@ -28,7 +28,7 @@ export default function Page() {
 
   return (
     <PaddingWrapper>
-      <div className="mt-10 grid grid-cols-2 gap-10">
+      <div className="mt-44 grid grid-cols-2 gap-10">
         <Button
           disabled={activeStaticMap}
           onClick={() => {
@@ -48,7 +48,7 @@ export default function Page() {
           Imprezy Towarzyszące
         </Button>
       </div>
-      <div>
+      <div className="mt-16">
         {activeStaticMap ? (
           <StaticMap />
         ) : (
