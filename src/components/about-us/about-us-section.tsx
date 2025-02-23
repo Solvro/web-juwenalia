@@ -62,16 +62,16 @@ export async function AboutUs() {
       "items/mediaPartners?fields=name, url, logo, logoScale",
     ),
   ]);
-  const allData = [
+  const organisersData = [
     responseOrganisers.data,
     responseCoordinators.data,
     responseStaff.data,
   ];
-  const gaming = [responseMainPartners.data, responseMediaPartners.data];
+  const partnersData = [responseMainPartners.data, responseMediaPartners.data];
   return (
     <div className="mt-24 flex flex-col gap-24 md:mt-32 md:gap-32 lg:mt-48 lg:gap-64">
       <Section header="Partnerzy">
-        <PartnersList allPartners={gaming} />
+        <PartnersList allPartners={partnersData} />
       </Section>
 
       <Section
@@ -80,7 +80,7 @@ export async function AboutUs() {
           hendrerit nullam consequat amet convallis sagittis. Quisque mauris
           magnis augue scelerisque facilisi accumsan."
       >
-        <OrganisersList allOrganisers={allData} />
+        <OrganisersList allOrganisers={organisersData} />
       </Section>
     </div>
   );
