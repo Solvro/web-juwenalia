@@ -10,17 +10,6 @@ import type { ArrayIndex, Organisation } from "@/lib/types";
 
 const PARTNER_TYPES = ["Główni", "Medialni"] as const;
 
-//function PartnerSkeleton({ index, total }: { index: number; total: number }) {
-//  const animationDelay = `${(index * 500).toString()}ms`;
-//  const animationDuration = `${(total * 500).toString()}ms`;
-//  return (
-//    <div
-//      className="w-[100px] animate-pulse rounded-full bg-neutral-300 p-5 sm:w-[150px] sm:py-6 lg:w-[200px] lg:py-7"
-//      style={{ animationDelay, animationDuration }}
-//    ></div>
-//  );
-//}
-
 export function PartnersList({
   allPartners,
 }: {
@@ -30,6 +19,7 @@ export function PartnersList({
     useState<ArrayIndex<typeof PARTNER_TYPES>>(0);
   const PARTNERS: Organisation[][] = allPartners;
   const section = PARTNERS[selectedIndex];
+  //I have no idea how partners should look like. It's only a placeholder for showing data from directus (it's copied from organisers.tsx )
   return (
     <>
       <TabSelectorBar
