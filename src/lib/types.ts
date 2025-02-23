@@ -108,6 +108,11 @@ export interface FacebookAccessToken {
 // #endregion
 
 // #region --- About Us Page ---
+type ParseInt<T> = T extends `${infer N extends number}` ? N : never;
+export type ArrayIndex<T extends readonly unknown[]> = ParseInt<
+  Exclude<keyof T, keyof []>
+>;
+
 export interface Organisation {
   name: string;
   url: string;

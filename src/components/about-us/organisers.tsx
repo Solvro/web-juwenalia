@@ -7,7 +7,7 @@ import { useState } from "react";
 import { PersonCardList } from "@/components/about-us/person-card-list";
 import { TabSelectorBar } from "@/components/about-us/tab-selector-bar";
 import { API_URL } from "@/config/api";
-import type { Organisation, Person } from "@/lib/types";
+import type { ArrayIndex, Organisation, Person } from "@/lib/types";
 
 const ROLES = ["Organizatorzy", "Koordynatorzy", "Sztab"] as const;
 
@@ -20,10 +20,10 @@ export function OrganisersList({
 }: {
   allOrganisers: (Organisation[] | Person[])[];
 }) {
-  const [selectedIndex, setSelectedIndex] = useState<keyof typeof ROLES>(0);
+  const [selectedIndex, setSelectedIndex] =
+    useState<ArrayIndex<typeof ROLES>>(0);
   const ORGANISERS: (Organisation[] | Person[])[] = allOrganisers;
-  const section = ORGANISERS[selectedIndex as number];
-
+  const section = ORGANISERS[selectedIndex];
   return (
     <>
       <TabSelectorBar
