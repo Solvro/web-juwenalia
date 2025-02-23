@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, MouseEvent, RefObject } from "react";
 
+import type { ArrayIndex } from "@/lib/types";
+
 function TabSelector<T>({
   text,
   idx,
@@ -36,8 +38,8 @@ export function TabSelectorBar<T extends readonly string[]>({
   setSelectedIdx,
 }: {
   options: T;
-  selectedIdx: keyof T;
-  setSelectedIdx: React.Dispatch<React.SetStateAction<keyof T>>;
+  selectedIdx: ArrayIndex<T>;
+  setSelectedIdx: React.Dispatch<React.SetStateAction<ArrayIndex<T>>>;
 }) {
   const [markerStyle, setMarkerStyle] = useState<CSSProperties>({});
   const markerRef = useRef<HTMLDivElement | null>(null);
@@ -64,7 +66,10 @@ export function TabSelectorBar<T extends readonly string[]>({
     };
   }, [initialSelectedRef]);
 
-  function onSwitchTab(event: MouseEvent<HTMLButtonElement>, index: keyof T) {
+  function onSwitchTab(
+    event: MouseEvent<HTMLButtonElement>,
+    index: ArrayIndex<T>,
+  ) {
     setSelectedIdx(index);
     updateMarkerStyle(event.currentTarget);
   }
@@ -79,7 +84,7 @@ export function TabSelectorBar<T extends readonly string[]>({
       {options.map((option, index) => (
         <TabSelector
           key={option}
-          idx={index as keyof T}
+          idx={index as ArrayIndex<typeof options>}
           selectedIdx={selectedIdx}
           text={option}
           onClick={onSwitchTab}
