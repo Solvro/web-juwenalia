@@ -18,7 +18,7 @@ function PersonCard({ person }: { person: Person }) {
       <div className="overflow-hidden rounded-full bg-neutral-300">
         <Image
           src={
-            person.image && person.image.trim() !== ""
+            person.image != null && person.image.trim() !== ""
               ? `${API_URL}/assets/${person.image}`
               : `/${defaultImage}`
           }
