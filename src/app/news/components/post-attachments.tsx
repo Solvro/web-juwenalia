@@ -31,6 +31,7 @@ function PostAttachment({ attachment }: { attachment: FacebookAttachment }) {
           onClick={() => {
             setShowSubAttachments((old) => !old);
           }}
+          variant="ghost"
         >
           <div className="flex items-center gap-4">
             <ChevronDown
@@ -38,7 +39,9 @@ function PostAttachment({ attachment }: { attachment: FacebookAttachment }) {
                 "rotate-180": showSubAttachments,
               })}
             />
-            {showSubAttachments ? "Mniej" : "Więcej"} zdjęć
+            <span className="underline-animation">
+              {showSubAttachments ? "Mniej" : "Więcej"} zdjęć
+            </span>
           </div>
         </Button>
       ) : null}

@@ -4,7 +4,7 @@ import { Button } from "@/components/button";
 
 export function ArrowSeeMore({ text }: { text: string }) {
   return (
-    <Button variant="ghost" className="group flex hover:bg-transparent">
+    <Button variant="ghost" className="group flex">
       <span className="text-lg font-light !normal-case md:text-xl lg:text-2xl">
         {text}
       </span>
