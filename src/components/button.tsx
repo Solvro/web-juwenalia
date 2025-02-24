@@ -18,8 +18,7 @@ const buttonVariants = cva(
         gradient: "before:bg-gradient-main",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        ghost:
-          "border-0 bg-slate-500/0 transition-colors hover:bg-slate-500/10",
+        ghost: "border-0 bg-slate-500/0 transition-colors",
         link: "border-0 !py-1 !px-2",
         levelSelected: "bg-gradient-main w-[90%] mx-auto border-0 rounded-2xl",
         levelUnselected: "border-2 border-grey-300 w-[90%] mx-auto rounded-2xl",
