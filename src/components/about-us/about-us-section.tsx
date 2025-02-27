@@ -49,7 +49,6 @@ export async function AboutUs() {
       "items/organisations?fields=name, url, logo, logoScale, role",
     ),
   ]);
-  console.log(responsePersons.data);
   const forStaff = responsePersons.data.filter(
     (person) => person.title === "1",
   );
