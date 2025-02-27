@@ -48,11 +48,9 @@ export function Post({
       <p className="whitespace-pre-line border-t-2 pt-2">
         {post.message ?? ""}
       </p>
-      <div className="flex flex-wrap justify-center md:justify-start">
+      <div className="flex flex-col flex-wrap items-center justify-center sm:flex-row md:justify-start">
         <PostAttachments attachments={post.attachments?.data ?? []} />
-        {post.permalink_url.length > 0 && (
-          <ShareButton link={post.permalink_url} />
-        )}
+        {post.permalink_url.length > 0 && <ShareButton post={post} />}
       </div>
     </div>
   );
