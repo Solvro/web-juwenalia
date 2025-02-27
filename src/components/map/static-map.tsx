@@ -19,7 +19,7 @@ export function StaticMap() {
   const currentLevel = MAP_ITEMS[currentLevelIndex];
 
   return (
-    <div>
+    <>
       <h1 className="mt-8 pl-5 text-4xl font-semibold">Mapa Wydarzenia</h1>
       <hr className="mb-16 mt-5" />
       <div id="map-container">
@@ -33,7 +33,7 @@ export function StaticMap() {
           <h2 className="mt-auto font-semibold">Mapa</h2>
           <MapEnlargementButton currentView={currentLevel} />
         </div>
-        <div id="map" className="w-screen">
+        <div id="map" className="">
           {MAP_ITEMS.map((dialogMapLevel, dialogMapLevelIndex) => (
             <Image
               key={dialogMapLevel.name}
@@ -42,7 +42,7 @@ export function StaticMap() {
               width={1000}
               height={800}
               className={cn(
-                "mx-auto aspect-square w-[90%] rounded-3xl object-cover",
+                "mx-auto aspect-square w-[90%] rounded-3xl object-cover sm:aspect-auto",
                 { hidden: dialogMapLevelIndex !== currentLevelIndex },
               )}
             />
@@ -76,9 +76,9 @@ export function StaticMap() {
         </h2>
         <StaticLegend
           activeLevel={currentLevel}
-          className="hidden sm:my-10 sm:grid"
+          className="mx-auto hidden sm:my-10 sm:grid"
         />
       </div>
-    </div>
+    </>
   );
 }
