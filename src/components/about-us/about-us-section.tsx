@@ -49,10 +49,12 @@ export async function AboutUs() {
       "items/organisations?fields=name, url, logo, logoScale, role",
     ),
   ]);
-
-  const forStaff = responsePersons.data.filter((person) => person.role === "1");
+  console.log(responsePersons.data);
+  const forStaff = responsePersons.data.filter(
+    (person) => person.title === "1",
+  );
   const forCoordinators = responsePersons.data.filter(
-    (person) => person.role === "2",
+    (person) => person.title === "2",
   );
   const forOrganisators = responseOrganisations.data.filter(
     (organisation) => organisation.role === "1",

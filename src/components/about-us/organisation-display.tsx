@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { API_URL } from "@/config/api";
-import { Organisation } from "@/lib/types";
+import type { Organisation } from "@/lib/types";
 
 export function OrganisationDisplay({
   forDisplay,
