@@ -5,15 +5,28 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { MapPin } from "lucide-react";
 import { useEffect } from "react";
-import { MapContainer, Popup, TileLayer, useMap } from "react-leaflet";
+import {
+  MapContainer,
+  Polyline,
+  Popup,
+  TileLayer,
+  useMap,
+} from "react-leaflet";
 
-import { wrLegendItems } from "@/config/wr-legend-items";
-import type { LeafletElement } from "@/lib/types";
+import type { LeafletElement, WrItemPoint, WrItemPolyline } from "@/lib/types";
 
 import { HorizontalRule } from "../horizontal-rule";
 import { WrMapLegend } from "./wr-map-legend";
 
-export function InteractiveMap() {
+interface Props {
+  WrMapProps: {
+    mapPoints: WrItemPoint[];
+    mapPolylines: WrItemPolyline[];
+  };
+}
+
+export function InteractiveMap({ WrMapProps }: Props) {
+  const { mapPoints, mapPolylines } = WrMapProps;
   useEffect(() => {
     return () => {
       const container: LeafletElement | null =
@@ -51,7 +64,7 @@ export function InteractiveMap() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copycenter">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {wrLegendItems.map((item) => (
+        {mapPoints.map((item) => (
           <Marker
             key={item.name}
             position={item.coordinates}
@@ -65,11 +78,19 @@ export function InteractiveMap() {
             </Popup>
           </Marker>
         ))}
+        {mapPolylines.map((polyline) => (
+          <Polyline
+            key={polyline.name}
+            pathOptions={{ color: polyline.color }}
+            positions={polyline.coordinates}
+            weight={10}
+          />
+        ))}
       </MapContainer>
       <h2 className="mx-auto mt-4 hidden w-[90%] font-semibold sm:block">
         Legenda
       </h2>
-      <WrMapLegend className="my-10" items={wrLegendItems} />
+      <WrMapLegend className="my-10" items={WrMapProps} />
     </div>
   );
 }

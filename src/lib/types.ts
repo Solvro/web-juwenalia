@@ -129,6 +129,7 @@ export interface Faq {
   answer: string;
 }
 
+// #region --- Map types ---
 export interface MapLevel {
   name: "Outside" | "Ground Floor" | "Floor 1" | "Floor -1";
   description: string;
@@ -154,13 +155,31 @@ export interface NavLink {
   name: string;
   label: string;
 }
-export interface WrLegendItem {
+
+export interface GeoJSONPoint {
   name: string;
-  description: string | React.ReactNode; // React.ReactNode używane dla n.p. tabelek w opisie
+  coordinates: [number, number];
+}
+
+export interface GeoJSONPolyline {
+  name: string;
+  coordinates: [number, number][];
+}
+export interface WrItemPoint {
+  name: string;
+  description: string;
   color: string;
   coordinates: [number, number];
+}
+
+export interface WrItemPolyline {
+  name: string;
+  description: string;
+  color: string;
+  coordinates: [number, number][];
 }
 
 export interface LeafletElement extends Element {
   _leaflet_id?: string | null;
 }
+// #endregion
