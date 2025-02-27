@@ -118,13 +118,15 @@ export interface Organisation {
   url: string;
   logo: string;
   logoScale?: number;
+  role: string;
 }
 
 export interface Person {
   name: string;
-  role: string;
+  title?: string;
   generalRole?: string;
   image?: string;
+  role: string;
 }
 // #endregion
 

@@ -29,7 +29,7 @@ function PersonCard({ person }: { person: Person }) {
         />
       </div>
       <p className="mt-3 text-lg">{person.name}</p>
-      <small className="text-xs uppercase">{person.role}</small>
+      <small className="text-xs uppercase">{person.title}</small>
     </div>
   );
 }
@@ -41,7 +41,7 @@ export function PersonCardList({ people }: { people: Person[] }) {
     >
       {people.map((person) => (
         <li
-          key={`${person.role}-${person.name}`}
+          key={`${person.title}-${person.name}`}
           className="flex justify-center"
         >
           <PersonCard person={person} />
