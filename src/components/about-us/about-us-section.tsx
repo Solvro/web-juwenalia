@@ -41,37 +41,36 @@ function Section({
 }
 
 export async function AboutUs() {
-  const [
-    responseOrganisers,
-    responseCoordinators,
-    responseStaff,
-    responseMainPartners,
-    responseMediaPartners,
-  ] = await Promise.all([
-    fetchData<{ data: Organisation[] }>(
-      "items/organisers?fields=name, url, logo, logoScale",
-    ),
+  const [responsePersons, responseOrganisations] = await Promise.all([
     fetchData<{ data: Person[] }>(
-      "items/coordinators?fields=name, role, image",
-    ),
-    fetchData<{ data: Person[] }>("items/staff?fields=name, role, image"),
-    fetchData<{ data: Organisation[] }>(
-      "items/mainPartners?fields=name, url, logo, logoScale",
+      "items/persons?fields=name, title, image, role",
     ),
     fetchData<{ data: Organisation[] }>(
-      "items/mediaPartners?fields=name, url, logo, logoScale",
+      "items/organisations?fields=name, url, logo, logoScale, role",
     ),
   ]);
-  const organisersData = [
-    responseOrganisers.data,
-    responseCoordinators.data,
-    responseStaff.data,
-  ];
-  const partnersData = [responseMainPartners.data, responseMediaPartners.data];
+
+  const forStaff = responsePersons.data.filter((person) => person.role === "1");
+  const forCoordinators = responsePersons.data.filter(
+    (person) => person.role === "2",
+  );
+  const forOrganisators = responseOrganisations.data.filter(
+    (organisation) => organisation.role === "1",
+  );
+  const forMainPartners = responseOrganisations.data.filter(
+    (organisation) => organisation.role === "2",
+  );
+  const forMediaPartners = responseOrganisations.data.filter(
+    (organisation) => organisation.role === "3",
+  );
+
   return (
     <div className="mt-24 flex flex-col gap-24 md:mt-32 md:gap-32 lg:mt-48 lg:gap-64">
       <Section header="Partnerzy">
-        <PartnersList allPartners={partnersData} />
+        <PartnersList
+          mainPartners={forMainPartners}
+          mediaPartners={forMediaPartners}
+        />
       </Section>
 
       <Section
@@ -80,7 +79,11 @@ export async function AboutUs() {
           hendrerit nullam consequat amet convallis sagittis. Quisque mauris
           magnis augue scelerisque facilisi accumsan."
       >
-        <OrganisersList allOrganisers={organisersData} />
+        <OrganisersList
+          organisators={forOrganisators}
+          coordinators={forCoordinators}
+          staff={forStaff}
+        />
       </Section>
     </div>
   );
