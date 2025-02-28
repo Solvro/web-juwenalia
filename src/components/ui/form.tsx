@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import type * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
 import * as React from "react";
@@ -48,7 +46,9 @@ const useFormField = () => {
 
   const fieldState = getFieldState(fieldContext.name, formState);
 
-  if (!fieldContext) {
+  if (
+    (fieldContext as FormFieldContextValue<FieldValues, string> | null) == null
+  ) {
     throw new Error("useFormField should be used within <FormField>");
   }
 
@@ -87,7 +87,7 @@ const FormLabel = React.forwardRef<
   return (
     <Label
       ref={ref}
-      className={cn(error && "text-destructive", className)}
+      className={cn(error == null ? undefined : "text-destructive", className)}
       htmlFor={formItemId}
       {...props}
     />
@@ -107,9 +107,11 @@ const FormControl = React.forwardRef<
       ref={ref}
       id={formItemId}
       aria-describedby={
-        error ? `${formDescriptionId} ${formMessageId}` : formDescriptionId
+        error == null
+          ? formDescriptionId
+          : `${formDescriptionId} ${formMessageId}`
       }
-      aria-invalid={!!error}
+      aria-invalid={error != null}
       {...props}
     />
   );
@@ -138,9 +140,9 @@ const FormMessage = React.forwardRef<
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, children, ...props }, ref) => {
   const { error, formMessageId } = useFormField();
-  const body = error ? String(error.message) : children;
+  const body = error == null ? children : String(error.message);
 
-  if (!body) {
+  if (body == null || body === "") {
     return null;
   }
 

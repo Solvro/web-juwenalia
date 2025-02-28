@@ -27,6 +27,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { FEEDBACK_FORM_URL, MUTATION_KEYS } from "@/config/api";
 import { useBugReport } from "@/hooks/use-bug-report";
+import { FetchError, fetchData } from "@/lib/api";
 import type { FeedbackFormSchema } from "@/lib/schemas";
 import { feedbackFormSchema } from "@/lib/schemas";
 
@@ -40,9 +41,10 @@ export function BugReportForm() {
         "entry.1557371849": values.title,
         "entry.2068246667": values.description,
       };
-      return fetch(FEEDBACK_FORM_URL, {
+      return fetchData(FEEDBACK_FORM_URL, {
         method: "POST",
         mode: "no-cors", // Google Forms doesn't allow CORS
+        allowStatus0: true,
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(body).toString(),
       });
@@ -95,17 +97,11 @@ export function BugReportForm() {
             <form
               onSubmit={form.handleSubmit((values) => {
                 toast.promise(
-                  mutateAsync(values).then((response) => {
-                    // Sometimes the Google Forms response has status "0" (string) despite successful submission
-                    if (!response.ok && response.status.toString() === "0") {
-                      console.warn(
-                        "Feedback form response status is 0:",
-                        response,
-                      );
-                      // If you return a non-ok response object the toast will show an error
+                  mutateAsync(values).catch((error: unknown) => {
+                    if (error instanceof FetchError) {
                       return null;
                     }
-                    return response;
+                    throw error;
                   }),
                   {
                     loading: "Trwa wysyłanie zgłoszenia...",
@@ -120,7 +116,7 @@ export function BugReportForm() {
                   },
                 );
               })}
-              className="grid w-full gap-4 py-4 sm:max-w-[425px]"
+              className="grid w-full gap-4 py-4"
             >
               <FormField
                 control={form.control}
