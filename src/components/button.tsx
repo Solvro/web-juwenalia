@@ -50,6 +50,7 @@ export interface ButtonProps<T extends React.ElementType = "button">
   as?: T;
   asChild?: boolean;
   disabled?: boolean;
+  normalCase?: boolean;
 }
 
 function ButtonInner<T extends React.ElementType = "button">(
@@ -62,6 +63,7 @@ function ButtonInner<T extends React.ElementType = "button">(
     variant = "default",
     variantColor = "black",
     asChild = false,
+    normalCase = false,
     ...props
   }: ButtonProps<T> &
     Omit<React.ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>,
@@ -106,7 +108,7 @@ function ButtonInner<T extends React.ElementType = "button">(
         )}
       >
         <span
-          className={cn("lowercase transition-all duration-200", {
+          className={cn("transition-all duration-200", {
             "text-foreground": variantColor === "black",
             "text-white": variantColor === "white",
             "group-hover:text-black":
@@ -116,6 +118,7 @@ function ButtonInner<T extends React.ElementType = "button">(
               ["default", "secondary"].includes(variant ?? "") &&
               variantColor === "black",
             "underline-animation flex": variant === "link",
+            lowercase: !normalCase,
           })}
         >
           {children}
