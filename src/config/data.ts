@@ -11,7 +11,6 @@ export const FOOTER_LINKS = {
     tt: process.env.JUWE_TIKTOK_URL ?? "https://tiktok.com/",
   },
   privacyPolicy: "https://example.com/",
-  bugReport: "https://example.com.",
 };
 
 export const NAV_LINKS: NavLink[] = [
