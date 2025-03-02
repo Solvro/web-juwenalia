@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { Suspense, useState } from "react";
 
 import { Button } from "@/components/button";
+import { NoMapInfo } from "@/components/map/no-map-info";
 import { StaticMap } from "@/components/map/static-map";
 
 const DynamicInteractiveMap = dynamic(
@@ -48,13 +49,14 @@ export default function Page() {
         </Button>
       </div>
       <div>
-        {activeStaticMap ? (
+        <NoMapInfo />
+        {/* {activeStaticMap ? (
           <StaticMap />
         ) : (
           <Suspense fallback={<div>Loading...</div>}>
             <DynamicInteractiveMap />
           </Suspense>
-        )}
+        )} */}
       </div>
     </div>
   );
