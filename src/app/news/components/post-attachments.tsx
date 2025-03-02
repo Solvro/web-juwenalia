@@ -27,7 +27,7 @@ function PostAttachment({ attachment }: { attachment: FacebookAttachment }) {
       )}
       {hasSubAttachments ? (
         <Button
-          className="order-2 mt-2 sm:ml-3 sm:mt-0"
+          className="mb-2"
           onClick={() => {
             setShowSubAttachments((old) => !old);
           }}

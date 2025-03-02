@@ -48,7 +48,7 @@ export function Post({
       <p className="whitespace-pre-line border-t-2 pt-2">
         {post.message ?? ""}
       </p>
-      <div className="flex flex-col flex-wrap items-center justify-center sm:flex-row md:justify-start">
+      <div className="flex flex-col items-center justify-center">
         <PostAttachments attachments={post.attachments?.data ?? []} />
         {post.permalink_url.length > 0 && <ShareButton post={post} />}
       </div>
