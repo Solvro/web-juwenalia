@@ -33,7 +33,7 @@ export async function Schedule() {
   }
 
   return (
-    <div className="z-[-1] mb-4 mt-[-60px] flex justify-start bg-primary pt-24 md:justify-evenly">
+    <div className="z-[-1] mb-4 mt-[-60px] flex justify-start bg-primary pb-24 pt-24 md:justify-evenly">
       <div className="hidden max-w-80 flex-col items-start justify-start px-16 pt-24 md:flex xl:px-0">
         <Image
           src="/lineup.svg"

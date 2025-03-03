@@ -2,9 +2,11 @@
 
 import { format, isWithinInterval, setDefaultOptions } from "date-fns";
 import { pl } from "date-fns/locale";
-import { useEffect, useState } from "react";
+import Image from "next/image";
+import React, { useEffect, useRef, useState } from "react";
 
 import { HorizontalRule } from "@/components/horizontal-rule";
+import { LeafComponent } from "@/components/leaf-component";
 import { Day } from "@/components/schedule/day";
 import type { DayProps } from "@/lib/types";
 
@@ -23,6 +25,8 @@ const combineDateAndTime = (date: Date, time: string): Date => {
 
 function DynamicSchedule({ daysList }: Props): React.ReactElement {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [scheduleHeight, setScheduleHeight] = useState<number>(0);
+  const scheduleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,13 +38,55 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
     };
   }, []);
 
+  useEffect(() => {
+    if (scheduleRef.current != null) {
+      setScheduleHeight(scheduleRef.current.clientHeight);
+    }
+  }, [daysList]);
+
   const days = daysList.map((day) => ({
     ...day,
     date: new Date(day.date),
   }));
 
+  const HEIGHT_SECOND_LEAF = 1000;
+  const HEIGHT_THIRD_LEAF = 2100;
+
   return (
-    <div className="mt-16 w-full space-y-14 text-white sm:mt-24 sm:w-auto sm:space-y-24">
+    <div
+      ref={scheduleRef}
+      className="mt-16 w-full space-y-14 text-white sm:mt-24 sm:w-auto sm:space-y-24"
+    >
+      <LeafComponent className="z-0 mt-[-150px] md:ml-40">
+        <Image
+          className="lg:w-[400px]"
+          src="/schedule-leaves/leaves-with-vines.svg"
+          alt="liscie"
+          width={300}
+          height={30}
+        />
+      </LeafComponent>
+      {scheduleHeight > HEIGHT_SECOND_LEAF && (
+        <LeafComponent className="top-100 absolute right-0 z-[1] hidden lg:block">
+          <Image
+            src="/schedule-leaves/leaves-1.svg"
+            alt="liscie"
+            width={230}
+            height={30}
+          />
+        </LeafComponent>
+      )}
+      {scheduleHeight > HEIGHT_THIRD_LEAF && (
+        <LeafComponent className="mt-1000 absolute left-0 hidden md:top-[2100px] md:block xl:top-[2500px]">
+          <Image
+            src="/schedule-leaves/leaves-3.svg"
+            className="xl:w-[240px]"
+            alt="liscie"
+            width={400}
+            height={30}
+          />
+        </LeafComponent>
+      )}
       {days.map((day) => (
         <div key={day.id}>
           {day.events.length > 0 && (
