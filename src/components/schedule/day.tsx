@@ -6,7 +6,7 @@ export function Day({ event, isOn }: { event: EventProps; isOn: boolean }) {
   return (
     <div>
       <HorizontalRule />
-      <PaddingWrapper className="flex flex-col justify-between space-x-16 sm:flex-row sm:items-center sm:py-6 md:py-4">
+      <PaddingWrapper className="flex flex-col justify-between sm:flex-row sm:items-center sm:space-x-20 sm:py-6 md:py-4">
         <div className="flex flex-col">
           {isOn ? (
             <div className="my-1 flex max-w-32 animate-moving-gradient items-center justify-center rounded-md bg-gradient-main bg-[length:200%_200%] py-[5px]">
@@ -32,7 +32,7 @@ export function Day({ event, isOn }: { event: EventProps; isOn: boolean }) {
             {event.location.name}
           </div>
         </div>
-        <div className="text-l mt-4 flex-none text-right font-semibold sm:mr-32 sm:mt-0 sm:text-right sm:text-xl md:text-2xl xl:text-3xl">
+        <div className="text-l mt-4 flex-none text-left font-semibold sm:mr-32 sm:mt-0 sm:text-right sm:text-xl md:text-2xl xl:text-3xl">
           <h2>{`${event.start_time.split(":").slice(0, 2).join(":")}-${event.end_time.split(":").slice(0, 2).join(":")}`}</h2>
         </div>
       </PaddingWrapper>

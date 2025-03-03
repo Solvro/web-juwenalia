@@ -40,16 +40,16 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
   }));
 
   return (
-    <div className="mt-16 space-y-14 text-white sm:mt-24 sm:space-y-24">
+    <div className="mt-16 w-full space-y-14 text-white sm:mt-24 sm:w-auto sm:space-y-24">
       {days.map((day) => (
         <div key={day.id}>
           {day.events.length > 0 && (
             <>
-              <div className="relative h-[200px]">
-                <div className="absolute left-0 top-0 text-8xl font-black text-white/50">
+              <div className="relative mx-4 h-16 sm:h-36">
+                <div className="absolute text-nowrap text-4xl font-black text-white/50 sm:text-6xl md:text-7xl xl:text-8xl">
                   {format(day.date, "d MMMM")}
                 </div>
-                <div className="absolute right-8 top-[50px] text-7xl font-black text-white">
+                <div className="absolute top-5 text-right text-3xl font-black text-white sm:right-8 sm:top-[50px] sm:text-5xl md:text-6xl xl:text-7xl">
                   {format(day.date, "EEEE")}
                 </div>
               </div>
