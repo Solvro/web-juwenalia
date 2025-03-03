@@ -1,3 +1,6 @@
+import Image from "next/image";
+import React from "react";
+
 import { DynamicSchedule } from "@/components/schedule/dynamic-schedule";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { fetchData } from "@/lib/api";
@@ -29,5 +32,18 @@ export async function Schedule() {
     return null;
   }
 
-  return <DynamicSchedule daysList={days} />;
+  return (
+    <div className="mb-4 flex justify-start bg-primary md:justify-evenly">
+      <div className="hidden max-w-80 flex-col items-start justify-start px-16 pt-24 md:flex xl:px-0">
+        <Image
+          src="/lineup.svg"
+          alt="line-up"
+          loading="eager"
+          width={300}
+          height={48}
+        />
+      </div>
+      <DynamicSchedule daysList={days} />
+    </div>
+  );
 }
