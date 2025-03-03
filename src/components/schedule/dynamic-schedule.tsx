@@ -4,9 +4,7 @@ import { format, isWithinInterval, setDefaultOptions } from "date-fns";
 import { pl } from "date-fns/locale";
 import { useEffect, useState } from "react";
 
-import { HomepageHeader } from "@/components/homepage-header";
 import { HorizontalRule } from "@/components/horizontal-rule";
-import { NoDataInfo } from "@/components/no-data-info";
 import { Day } from "@/components/schedule/day";
 import type { DayProps } from "@/lib/types";
 
@@ -42,27 +40,35 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
   }));
 
   return (
-    <div className="mt-16 space-y-14 sm:mt-24 sm:space-y-24">
+    <div className="mt-16 space-y-14 text-white sm:mt-24 sm:space-y-24">
       {days.map((day) => (
         <div key={day.id}>
-          <HomepageHeader>{format(day.date, "d MMMM (EEEE)")}</HomepageHeader>
-          {day.events.length > 0 ? (
-            day.events.map((event) => {
-              const eventStart = combineDateAndTime(day.date, event.start_time);
-              const eventEnd = combineDateAndTime(day.date, event.end_time);
-              const isOn = isWithinInterval(currentTime, {
-                start: eventStart,
-                end: eventEnd,
-              });
-              return <Day isOn={isOn} event={event} key={event.id} />;
-            })
-          ) : (
-            <NoDataInfo
-              errorTitle="Brak wydarzeń"
-              errorMessage="Nie udało nam się znaleźć żadnych wydarzeń w tym dniu. Wróć tutaj później!"
-            />
+          {day.events.length > 0 && (
+            <>
+              <div className="relative h-[200px]">
+                <div className="absolute left-0 top-0 text-8xl font-black text-white/50">
+                  {format(day.date, "d MMMM")}
+                </div>
+                <div className="absolute right-8 top-[50px] text-7xl font-black text-white">
+                  {format(day.date, "EEEE")}
+                </div>
+              </div>
+
+              {day.events.map((event) => {
+                const eventStart = combineDateAndTime(
+                  day.date,
+                  event.start_time,
+                );
+                const eventEnd = combineDateAndTime(day.date, event.end_time);
+                const isOn = isWithinInterval(currentTime, {
+                  start: eventStart,
+                  end: eventEnd,
+                });
+                return <Day isOn={isOn} event={event} key={event.id} />;
+              })}
+              <HorizontalRule />
+            </>
           )}
-          <HorizontalRule />
         </div>
       ))}
     </div>
