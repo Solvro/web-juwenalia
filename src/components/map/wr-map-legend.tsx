@@ -1,30 +1,61 @@
+import { MapPin } from "lucide-react";
+
+import type { WrItemPoint, WrItemPolyline } from "@/lib/types";
 import { cn } from "@/lib/utils";
+
+import { PaddingWrapper } from "../padding-wrapper";
 
 interface LegendProps {
   items: {
-    text: string;
-    color: string;
-  }[];
+    mapPoints: WrItemPoint[];
+    mapPolylines: WrItemPolyline[];
+  };
   className?: string;
 }
 
-export function Legend({ items, className }: LegendProps) {
+export function WrMapLegend({ items, className }: LegendProps) {
+  const { mapPoints, mapPolylines } = items;
   return (
-    <div
-      className={cn(
-        "mx-auto grid w-[90%] grid-cols-2 gap-x-28 gap-y-2 sm:w-fit sm:gap-x-4",
-        className,
-      )}
-    >
-      {items.map((item) => (
-        <div key={item.text} className="flex items-center">
-          <div
-            className="mr-2 h-4 w-4 rounded-full"
-            style={{ backgroundColor: item.color }}
-          />
-          <span>{item.text}</span>
-        </div>
-      ))}
-    </div>
+    <PaddingWrapper>
+      <h3 className="mx-auto mt-4 hidden w-[90%] font-semibold sm:block">
+        Lokalizacje
+      </h3>
+      <div
+        className={cn(
+          "grid w-full grid-cols-1 gap-x-5 gap-y-2 sm:grid-cols-3",
+          className,
+        )}
+      >
+        {mapPoints.map((mapPoint) => (
+          <div key={mapPoint.name} className="flex items-center">
+            <MapPin className="mr-2 h-8 w-8" color={mapPoint.color} />
+            <p className="line-clamp-2 w-[75%] overflow-hidden text-ellipsis text-wrap text-[3vw] sm:text-base">
+              {mapPoint.name}
+            </p>
+          </div>
+        ))}
+      </div>
+      <h3 className="mx-auto mt-4 hidden w-[90%] font-semibold sm:block">
+        Pochody
+      </h3>
+      <div
+        className={cn(
+          "grid w-full grid-cols-1 gap-x-5 gap-y-2 sm:grid-cols-3",
+          className,
+        )}
+      >
+        {mapPolylines.map((mapPolyline) => (
+          <div key={mapPolyline.name} className="flex items-center">
+            <div
+              className="mr-2 h-4 w-4 rounded-full"
+              style={{ backgroundColor: mapPolyline.color }}
+            />
+            <p className="line-clamp-2 w-[75%] overflow-hidden text-ellipsis text-wrap text-[3vw] sm:text-base">
+              {mapPolyline.name}
+            </p>
+          </div>
+        ))}
+      </div>
+    </PaddingWrapper>
   );
 }
