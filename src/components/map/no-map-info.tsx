@@ -4,7 +4,7 @@ import { Button } from "../button";
 
 export function NoMapInfo() {
   return (
-    <div className="relative mt-16 flex w-full flex-col items-center text-center">
+    <div className="relative -mb-32 flex w-full flex-col items-center text-center">
       <hr className="top-0 w-full" />
       {/* vectors */}
       <div className="absolute z-0 flex h-full w-full flex-col">
@@ -78,7 +78,7 @@ export function NoMapInfo() {
           Odśwież
         </Button>
       </div>
-      <hr className="bottom-0 w-full" />
+      {/* <hr className="bottom-0 w-full" /> */}
     </div>
   );
 }
