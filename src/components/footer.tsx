@@ -3,6 +3,7 @@ import { Space_Grotesk } from "next/font/google";
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
 import Link from "next/link";
+import type { ReactElement, ReactNode } from "react";
 
 import Logo from "@/../public/Juwe2025.svg";
 import Solvro from "@/../public/logo-solvro.svg";
@@ -10,6 +11,8 @@ import { HorizontalRule } from "@/components/horizontal-rule";
 import { PaddingWrapper } from "@/components/padding-wrapper";
 import { FOOTER_LINKS, NAV_LINKS } from "@/config/data";
 import { cn } from "@/lib/utils";
+
+import { OpenBugReportFormButton } from "./bug-report-form/open-form-button";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: "400" });
 
@@ -19,7 +22,7 @@ function List({
   className,
 }: {
   text: string;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: ClassValue;
 }) {
   return (
@@ -32,25 +35,29 @@ function List({
 
 function ListItem({
   url,
+  as,
   target = "_blank",
   text,
   label,
 }: {
-  url: string;
   target?: string;
   label?: string;
   text: string;
-}) {
+} & ({ as: ReactElement; url?: never } | { as?: never; url: string })) {
   return (
     <li className="mb-2 w-full text-sm font-light md:text-base">
-      <Link
-        href={url}
-        target={target}
-        className="underline-animation"
-        aria-label={label}
-      >
-        {text}
-      </Link>
+      {url == null ? (
+        as
+      ) : (
+        <Link
+          href={url}
+          target={target}
+          className="underline-animation"
+          aria-label={label}
+        >
+          {text}
+        </Link>
+      )}
     </li>
   );
 }
@@ -100,13 +107,12 @@ function Footer() {
               />
             ))}
           </List>
-
           <List text="Inne" className="pt-6 lg:row-start-2 xl:row-start-1">
             <ListItem
               text="Polityka prywatności"
               url={FOOTER_LINKS.privacyPolicy}
             />
-            <ListItem text="Zgłoś błąd" url={FOOTER_LINKS.bugReport} />
+            <ListItem text="Zgłoś błąd" as={<OpenBugReportFormButton />} />
           </List>
         </div>
       </PaddingWrapper>

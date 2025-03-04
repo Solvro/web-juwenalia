@@ -7,6 +7,8 @@ import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { PhraseSearch } from "@/components/phrase-search";
 import { SocialSidebar } from "@/components/socials-sidebar";
+import { Toaster } from "@/components/ui/sonner";
+import { BugReportProvider } from "@/hooks/use-bug-report";
 import { QueryProvider } from "@/lib/query-client";
 
 import "./globals.css";
@@ -36,12 +38,15 @@ export default function RootLayout({
     <html lang="pl" className={montserrat.variable}>
       <QueryProvider>
         <body className="relative">
-          <SocialSidebar />
-          <Navbar />
-          <PhraseSearch />
-          {children}
-          <Footer />
-          <SocialSidebar />
+          <BugReportProvider>
+            <SocialSidebar />
+            <Navbar />
+            <PhraseSearch />
+            {children}
+            <Footer />
+            <Toaster />
+            <SocialSidebar />
+          </BugReportProvider>
         </body>
       </QueryProvider>
     </html>
