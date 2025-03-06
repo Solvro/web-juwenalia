@@ -99,13 +99,13 @@ export function Carousel({ artists }: { artists: ArtistProps[] }) {
     responsive: [
       {
         breakpoint: 1200,
-        settings: { slidesToShow: 2, slidesToScroll: 2 },
+        settings: { slidesToShow: 1.5, slidesToScroll: 1.5 },
       },
       {
         breakpoint: 500,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: 1.4,
+          slidesToScroll: 1.4,
           appendDots: getAppendDots(4),
         },
       },

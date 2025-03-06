@@ -67,7 +67,7 @@ function CardFace({
     >
       <div
         className={cn("h-full max-h-90 w-full px-3 sm:px-4 md:px-5 lg:px-10", {
-          "overflow-y-auto": showScrollbar,
+          "overflow-y-scroll": showScrollbar,
         })}
       >
         <button
