@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="132.62044"
+   height="181.98439"
+   viewBox="0 0 132.62044 181.98439"
+   fill="none"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="pin1.svg"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="3.7558685"
+     inkscape:cx="72.68625"
+     inkscape:cy="87.59625"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="1920"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <path
+     fill-rule="evenodd"
+     clip-rule="evenodd"
+     d="m 70.84793,0.6186835 c -22.4277,-3.177 -44.6958,6.0338 -58.331,24.1275995 -13.36929956,18.2426 -16.2454996,42.3223 -7.5818996,63.4751 C 13.85653,109.10738 33.47213,124.20438 54.17783,133.63538 c 11.9669,5.483 24.5138,9.538 37.3846,12.081 1.292,0.181 2.604,0.121 3.871,-0.176 1.127,-0.512 2.108,-1.301 2.854,-2.296 11.502,-16.282 19.98,-34.558 25.026,-53.949997 4.235,-16.1969 3.42,-33.3685 -2.332,-49.1835 -8.567,-21.2389 -27.706,-36.3151995 -50.1335,-39.4921995 z m 13.7965,64.3966995 c -0.024,8.7443 -5.2623,16.558 -13.2691,19.793 -5.2303,2.157 -11.1183,2.101 -16.3519,-0.155 -5.2337,-2.256 -9.3782,-6.5242 -11.5101,-11.8544 -3.3106,-8.1134 -1.4746,-17.3938 4.6505,-23.5081 6.1252,-6.1143 15.3314,-7.8565 23.3201,-4.413 7.9887,3.4434 13.1845,11.3932 13.1605,20.1375 z"
+     fill="#dc7e84"
+     id="path1" />
+  <ellipse
+     cx="-174.98439"
+     cy="94.12043"
+     rx="7"
+     ry="38.5"
+     transform="rotate(-90)"
+     fill="#dc7e84"
+     fill-opacity="0.6"
+     id="ellipse1" />
+</svg>
