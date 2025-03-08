@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { Suspense, useState } from "react";
+import { SyncLoader } from "react-spinners";
 
 import { Button } from "@/components/button";
 import { StaticMap } from "@/components/map/static-map";
@@ -58,7 +59,9 @@ export function Map({ dynamicMapLocations }: Props) {
         {activeStaticMap ? (
           <StaticMap />
         ) : (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={<SyncLoader className="mx-auto my-[40vh] h-full w-fit" />}
+          >
             <DynamicInteractiveMap WrMapProps={dynamicMapLocations} />
           </Suspense>
         )}
