@@ -11,11 +11,11 @@ import { OrganisationDisplay } from "./organisation-display";
 const ROLES = ["Organizatorzy", "Koordynatorzy", "Sztab"] as const;
 
 export function OrganisersList({
-  organisators,
+  organisers,
   coordinators,
   staff,
 }: {
-  organisators: Organisation[];
+  organisers: Organisation[];
   coordinators: Person[];
   staff: Person[];
 }) {
@@ -32,7 +32,7 @@ export function OrganisersList({
       />
       {selectedIndex === 0 ? (
         // TODO: Convert into carousel
-        <OrganisationDisplay forDisplay={organisators} />
+        <OrganisationDisplay forDisplay={organisers} />
       ) : (
         <PersonCardList people={section} />
       )}
