@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 
 import { HorizontalRule } from "@/components/horizontal-rule";
 import { PaddingWrapper } from "@/components/padding-wrapper";
+import { fetchData } from "@/lib/api";
+import type { Organisation, Person } from "@/lib/types";
 
 import { HomepageHeader } from "../homepage-header";
 import { OrganisersList } from "./organisers";
@@ -38,11 +40,38 @@ function Section({
   );
 }
 
-export function AboutUs() {
+export async function AboutUs() {
+  const [responsePersons, responseOrganisations] = await Promise.all([
+    fetchData<{ data: Person[] }>(
+      "items/persons?fields=name, title, image, role",
+    ),
+    fetchData<{ data: Organisation[] }>(
+      "items/organisations?fields=name, url, logo, logoScale, role",
+    ),
+  ]);
+  const forStaff = responsePersons.data.filter(
+    (person) => person.title === "1",
+  );
+  const forCoordinators = responsePersons.data.filter(
+    (person) => person.title === "2",
+  );
+  const forOrganisers = responseOrganisations.data.filter(
+    (organisation) => organisation.role === "1",
+  );
+  const forMainPartners = responseOrganisations.data.filter(
+    (organisation) => organisation.role === "2",
+  );
+  const forMediaPartners = responseOrganisations.data.filter(
+    (organisation) => organisation.role === "3",
+  );
+
   return (
     <div className="mt-24 flex flex-col gap-24 md:mt-32 md:gap-32 lg:mt-48 lg:gap-64">
       <Section header="Partnerzy">
-        <PartnersList />
+        <PartnersList
+          mainPartners={forMainPartners}
+          mediaPartners={forMediaPartners}
+        />
       </Section>
 
       <Section
@@ -51,7 +80,11 @@ export function AboutUs() {
           hendrerit nullam consequat amet convallis sagittis. Quisque mauris
           magnis augue scelerisque facilisi accumsan."
       >
-        <OrganisersList />
+        <OrganisersList
+          organisers={forOrganisers}
+          coordinators={forCoordinators}
+          staff={forStaff}
+        />
       </Section>
     </div>
   );
