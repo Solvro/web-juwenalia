@@ -55,7 +55,7 @@ export async function AboutUs() {
   const forCoordinators = responsePersons.data.filter(
     (person) => person.title === "2",
   );
-  const forOrganisators = responseOrganisations.data.filter(
+  const forOrganisers = responseOrganisations.data.filter(
     (organisation) => organisation.role === "1",
   );
   const forMainPartners = responseOrganisations.data.filter(
@@ -81,7 +81,7 @@ export async function AboutUs() {
           magnis augue scelerisque facilisi accumsan."
       >
         <OrganisersList
-          organisators={forOrganisators}
+          organisers={forOrganisers}
           coordinators={forCoordinators}
           staff={forStaff}
         />
