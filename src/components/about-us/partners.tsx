@@ -19,7 +19,6 @@ export function PartnersList({
   const [selectedIndex, setSelectedIndex] =
     useState<ArrayIndex<typeof PARTNER_TYPES>>(0);
   const section = selectedIndex === 0 ? mainPartners : mediaPartners;
-  //I have no idea how partners should look like. It's only a placeholder for showing data from directus (it's copied from organisers.tsx )
   return (
     <>
       <TabSelectorBar
