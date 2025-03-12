@@ -30,8 +30,7 @@ function getColSpan(faq: Faq, sibling: Faq | null): ClassValue {
     return null;
   }
   const constrained = Math.max(Math.min(columns, 8), 4);
-  const span = `sm:col-span-${constrained.toString()}`;
-  return span;
+  return `sm:col-span-${constrained.toString()}`;
 }
 
 function CardFace({
@@ -67,7 +66,7 @@ function CardFace({
     >
       <div
         className={cn("h-full max-h-90 w-full px-3 sm:px-4 md:px-5 lg:px-10", {
-          "overflow-y-scroll": showScrollbar,
+          "overflow-y-auto": showScrollbar,
         })}
       >
         <button
