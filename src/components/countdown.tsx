@@ -14,8 +14,8 @@ import type { ReactNode } from "react";
 
 import { PaddingWrapper } from "./padding-wrapper";
 
-const eventStartDate: Date = new Date(2025, 4, 21, 16); //It's the date from pwr calendar, but i have no idea what the actuall hour will be
-const eventEndDate: Date = new Date(2025, 4, 23, 2);
+const eventStartDate: Date = new Date(2025, 5, 21, 16); //It's the date from pwr calendar, but i have no idea what the actuall hour will be
+const eventEndDate: Date = new Date(2025, 5, 23, 2);
 function TextsForTimer({ children }: { children: ReactNode }) {
   return (
     <div className="mt-2.5 text-base font-medium sm:mt-0 sm:text-[18px] lg:text-[20px] xl:pb-1.5">
@@ -67,14 +67,21 @@ function Countdown() {
     };
   }, []);
 
-  const forDuration = intervalToDuration({
-    start: currentDate,
-    end: eventStartDate,
-  });
+  const isBeforeEvent = compareAsc(currentDate, eventStartDate) === -1;
+  const isToday =
+    compareAsc(currentDate, eventStartDate) >= 0 &&
+    compareAsc(currentDate, eventEndDate) === -1;
 
-  const days = differenceInDays(eventStartDate, currentDate);
-  const isToday = !!compareAsc(eventStartDate, currentDate);
-  const isOver = !!compareAsc(eventEndDate, currentDate);
+  const days = isBeforeEvent
+    ? differenceInDays(eventStartDate, currentDate)
+    : 0;
+
+  const forDuration = isBeforeEvent
+    ? intervalToDuration({
+        start: currentDate,
+        end: eventStartDate,
+      })
+    : { days: 0, hours: 0, minutes: 0 };
 
   const duration = {
     days,
@@ -87,7 +94,7 @@ function Countdown() {
     <div className="relative z-[-10] h-[90vh] w-full flex-shrink-0 rounded-b-[40px] bg-[url('/images/background_homepage.png')] bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:rounded-b-[40px] before:bg-gradient-to-b before:from-black/40 before:to-black/30 sm:h-[90vh] sm:w-full sm:rounded-b-[60px] sm:before:sm:rounded-b-[60px] lg:h-[90vh] xl:h-[95vh]">
       <div className="absolute left-5 top-20 mt-16 text-[8vh] font-extrabold leading-[7vh] text-[#FFF] sm:left-1/2 sm:top-1/2 sm:mt-10 sm:-translate-x-1/2 sm:-translate-y-[50%] sm:transform sm:text-[76px] sm:leading-[80px] lg:text-[112px] lg:leading-[96px] xl:text-[156px] xl:leading-[110px]">
         <PaddingWrapper>
-          {isToday ? (
+          {isBeforeEvent ? (
             <div className="flex w-full flex-col justify-start sm:flex-row sm:items-center sm:gap-3 md:gap-5">
               <div className="sm:mr-12 lg:mr-16 xl:mr-20">
                 <TextsForTimer>DNI</TextsForTimer>
@@ -108,7 +115,7 @@ function Countdown() {
                 <AnimatedCount value={duration.seconds} />
               </div>
             </div>
-          ) : isOver ? (
+          ) : isToday ? (
             <CountdownOverText>Wydarzenie trwa!</CountdownOverText>
           ) : (
             <CountdownOverText smTextClass="sm:text-[5.5vw]">
