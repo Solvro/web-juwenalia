@@ -1,3 +1,4 @@
+import { MotionConfig, motion } from "framer-motion";
 import Image from "next/image";
 
 import { Button } from "../button";
@@ -7,50 +8,83 @@ export function NoMapInfo() {
     <div className="relative -mb-32 flex w-full flex-col items-center text-center">
       <hr className="top-0 w-full" />
       {/* vectors */}
-      <div className="absolute z-0 flex h-full w-full flex-col">
-        <Image
-          className="absolute left-[calc(100%/3.5)] top-0 hidden w-[calc(100%/3)] md:block md:w-[calc(100%/4)]"
-          src="no-map-info/leaf_top.svg"
-          alt="leaf deco"
-          width={322}
-          height={160}
-        />
-        <Image
-          className="absolute bottom-0 right-[calc(100%/3.5)] hidden w-[calc(100%/3)] md:block md:w-[calc(100%/4)]"
-          src="no-map-info/leaf_bottom.svg"
-          alt="leaf deco"
-          width={322}
-          height={160}
-        />
-        <Image
-          className="absolute bottom-[calc(100%/5)] left-[calc(100%/11)] w-[calc(100%/10)] md:w-[calc(100%/11)]"
-          src="no-map-info/pin1.svg"
-          alt="floating pin deco"
-          width={133}
-          height={182}
-        />
-        <Image
-          className="absolute bottom-[calc(100%/6)] left-[calc(100%/5)] w-[calc(100%/14)] md:w-[calc(100%/15)]"
-          src="no-map-info/pin2.svg"
-          alt="floating pin deco"
-          width={87}
-          height={115}
-        />
-        <Image
-          className="absolute left-0 top-0 w-[calc(100%/3)] md:w-[calc(100%/4)]"
-          src="no-map-info/branch_tl.svg"
-          alt="leafy branch deco"
-          width={444}
-          height={292}
-        />
-        <Image
-          className="absolute bottom-0 right-[calc(100%/20)] w-[calc(100%/3)] md:w-[calc(100%/4)]"
-          src="no-map-info/branch_br.svg"
-          alt="leafy branch deco"
-          width={434}
-          height={278}
-        />
-      </div>
+      <MotionConfig>
+        <div className="absolute z-0 flex h-full w-full flex-col overflow-hidden">
+          <motion.div
+            animate={{
+              rotate: [],
+              skew: [0, 1, -1.5],
+            }}
+            transition={{
+              duration: 1,
+              ease: "easeIn",
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+            className="absolute left-[calc(100%/3.5)] top-0 hidden w-[calc(100%/3)] md:block md:w-[calc(100%/4)]"
+          >
+            <Image
+              src="no-map-info/leaf_top.svg"
+              alt="leaf deco"
+              width={322}
+              height={160}
+            />
+          </motion.div>
+          <motion.div
+            animate={{
+              translate: [2, 1, 1],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+            }}
+          >
+            <Image
+              className="absolute bottom-0 right-[calc(100%/3.5)] hidden w-[calc(100%/3)] md:block md:w-[calc(100%/4)]"
+              src="no-map-info/leaf_bottom.svg"
+              alt="leaf deco"
+              width={322}
+              height={160}
+            />
+          </motion.div>
+          <motion.div>
+            <Image
+              className="absolute bottom-[calc(100%/5)] left-[calc(100%/11)] w-[calc(100%/10)] md:w-[calc(100%/11)]"
+              src="no-map-info/pin1.svg"
+              alt="floating pin deco"
+              width={133}
+              height={182}
+            />
+          </motion.div>
+          <motion.div>
+            <Image
+              className="absolute bottom-[calc(100%/6)] left-[calc(100%/5)] w-[calc(100%/14)] md:w-[calc(100%/15)]"
+              src="no-map-info/pin2.svg"
+              alt="floating pin deco"
+              width={87}
+              height={115}
+            />
+          </motion.div>
+          <motion.div>
+            <Image
+              className="absolute left-0 top-0 w-[calc(100%/3)] md:w-[calc(100%/4)]"
+              src="no-map-info/branch_tl.svg"
+              alt="leafy branch deco"
+              width={444}
+              height={292}
+            />
+          </motion.div>
+          <motion.div>
+            <Image
+              className="absolute bottom-0 right-[calc(100%/20)] w-[calc(100%/3)] md:w-[calc(100%/4)]"
+              src="no-map-info/branch_br.svg"
+              alt="leafy branch deco"
+              width={434}
+              height={278}
+            />
+          </motion.div>
+        </div>
+      </MotionConfig>
 
       {/* text and buttons */}
       <div className="z-10">
