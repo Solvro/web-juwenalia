@@ -117,10 +117,10 @@ function Countdown() {
           )}
 
           <div className="pt-8 sm:pt-0">
-            <span className="flex flex-col py-[1vh] text-left text-lg font-normal leading-tight sm:max-w-full sm:py-[3vh] sm:text-center sm:text-2xl lg:text-3xl xl:text-4xl">
+            <h1 className="flex flex-col py-[1vh] text-left text-lg font-normal leading-tight sm:max-w-full sm:py-[3vh] sm:text-center sm:text-2xl lg:text-3xl xl:text-4xl">
               Juwenalia #WrocławRazem
               <span className="font-black">już 21 i 22 maja</span>
-            </span>
+            </h1>
           </div>
         </PaddingWrapper>
       </div>
