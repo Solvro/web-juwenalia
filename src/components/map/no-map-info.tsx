@@ -10,19 +10,7 @@ export function NoMapInfo() {
       {/* vectors */}
       <MotionConfig>
         <div className="absolute z-0 flex h-full w-full flex-col overflow-hidden">
-          <motion.div
-            animate={{
-              rotate: [],
-              skew: [0, 1, -1.5],
-            }}
-            transition={{
-              duration: 1,
-              ease: "easeIn",
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-            className="absolute left-[calc(100%/3.5)] top-0 hidden w-[calc(100%/3)] md:block md:w-[calc(100%/4)]"
-          >
+          <motion.div>
             <Image
               src="no-map-info/leaf_top.svg"
               alt="leaf deco"
@@ -30,15 +18,7 @@ export function NoMapInfo() {
               height={160}
             />
           </motion.div>
-          <motion.div
-            animate={{
-              translate: [2, 1, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-            }}
-          >
+          <motion.div>
             <Image
               className="absolute bottom-0 right-[calc(100%/3.5)] hidden w-[calc(100%/3)] md:block md:w-[calc(100%/4)]"
               src="no-map-info/leaf_bottom.svg"
