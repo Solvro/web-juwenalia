@@ -1,8 +1,14 @@
-import { fetchWrMapContent } from "@/lib/wr-map-content";
+"use client";
 
-import { Map } from "./map";
+import { NoMapInfo } from "@/components/map/no-map-info";
 
-export default async function Page() {
-  const mapLocations = await fetchWrMapContent();
-  return <Map dynamicMapLocations={mapLocations} />;
+// switch out NoMapInfo for Map when readxy
+// import { Map } from "@/components/map/map";
+
+export default function Page() {
+  return (
+    <div className="mt-48">
+      <NoMapInfo />
+    </div>
+  );
 }
