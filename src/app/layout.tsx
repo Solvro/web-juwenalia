@@ -21,6 +21,20 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.svg",
   },
+  openGraph: {
+    title: "Juwenalia 2025 #WrocławRazem",
+    description: "Oficjalna strona wydarzenia Juwenalia 2025 #WrocławRazem",
+    type: "website",
+    locale: "pl_PL",
+    images: [
+      {
+        url: "pacehold.it/1200x630",
+        width: 1200,
+        height: 630,
+        alt: "Juwenalia 2025 #WrocławRazem",
+      },
+    ],
+  },
 };
 
 const montserrat = Montserrat({
