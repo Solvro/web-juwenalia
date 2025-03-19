@@ -3,8 +3,6 @@ import { MapPin } from "lucide-react";
 import type { WrItemPoint, WrItemPolyline } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-import { PaddingWrapper } from "../padding-wrapper";
-
 interface LegendProps {
   items: {
     mapPoints: WrItemPoint[];
@@ -16,10 +14,8 @@ interface LegendProps {
 export function WrMapLegend({ items, className }: LegendProps) {
   const { mapPoints, mapPolylines } = items;
   return (
-    <PaddingWrapper>
-      <h3 className="mx-auto mt-4 hidden w-[90%] font-semibold sm:block">
-        Lokalizacje
-      </h3>
+    <div className="w-full">
+      <h3 className="mt-4 hidden w-full font-semibold sm:block">Lokalizacje</h3>
       <div
         className={cn(
           "grid w-full grid-cols-1 gap-x-5 gap-y-2 sm:grid-cols-3",
@@ -35,9 +31,7 @@ export function WrMapLegend({ items, className }: LegendProps) {
           </div>
         ))}
       </div>
-      <h3 className="mx-auto mt-4 hidden w-[90%] font-semibold sm:block">
-        Pochody
-      </h3>
+      <h3 className="mt-4 hidden w-full font-semibold sm:block">Pochody</h3>
       <div
         className={cn(
           "grid w-full grid-cols-1 gap-x-5 gap-y-2 sm:grid-cols-3",
@@ -56,6 +50,6 @@ export function WrMapLegend({ items, className }: LegendProps) {
           </div>
         ))}
       </div>
-    </PaddingWrapper>
+    </div>
   );
 }

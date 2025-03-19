@@ -7,23 +7,29 @@ import { cn } from "@/lib/utils";
 function MapFloorsButton({ level, active, ...props }: MapFloorsButtonProps) {
   return (
     <button
-      className={cn(
-        "mx-auto h-16 w-[90%] rounded-2xl border-0 sm:h-20 sm:w-full",
-        active ? "bg-gradient-main" : "border-2 border-gray-400",
-      )}
+      className={cn("flex w-full rounded-xl border-2 border-gray-400 p-0.5", {
+        "bg-gradient-main transition-colors duration-200": active,
+      })}
       {...props}
     >
       <div
         className={cn(
-          "mx-auto h-[calc(4rem-5px)] w-[calc(100%-5px)] rounded-[0.9rem] sm:h-[calc(5rem-5px)] sm:w-[calc(100%-5px)]",
-          active ? "bg-white/85" : "",
+          "relative isolate flex h-full min-h-[80px] w-full rounded-lg bg-white p-3 px-5",
+          {
+            "bg-white before:absolute before:inset-0 before:z-[-1] before:bg-gradient-main before:opacity-20 before:transition-colors before:duration-200 before:content-['']":
+              active,
+          },
         )}
       >
-        <div className="grid h-full w-full grid-cols-[minmax(80px,_1fr)_minmax(calc(100%-50px),_1fr)]">
-          <div className="mx-auto my-auto overflow-hidden">{level.icon}</div>
-          <span className="w-[calc(100%-2.5rem)] self-center text-wrap text-left text-muted-foreground">
-            {level.description}
-          </span>
+        <div className="grid h-full w-full grid-cols-7 items-center gap-5 md:grid-cols-12 md:gap-3">
+          <div className="relative flex aspect-square h-full w-full min-w-[30px] max-w-[30px] items-center justify-end md:col-span-2">
+            {level.icon}
+          </div>
+          <div className="col-span-6 flex w-full md:col-span-10">
+            <span className="text-left text-[.95em] text-muted-foreground md:text-sm">
+              {level.description}
+            </span>
+          </div>
         </div>
       </div>
     </button>

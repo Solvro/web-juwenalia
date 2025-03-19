@@ -23,7 +23,7 @@ export function MapEnlargementButton({
       <DialogTrigger asChild>
         <Button
           variant="default"
-          className="hidden w-max items-center lg:flex [&_svg]:size-6"
+          className="hidden w-max items-center rounded-lg lg:flex [&_svg]:size-6"
         >
           <div className="flex flex-row gap-2">
             <Maximize />
@@ -31,18 +31,17 @@ export function MapEnlargementButton({
           </div>
         </Button>
       </DialogTrigger>
-      <DialogContent className="fixed left-[50vw] top-[50vh] h-fit max-w-fit">
+      <DialogContent className="left-1/2 top-1/2 max-w-[95vw] -translate-x-1/2 -translate-y-1/2">
         <DialogHeader className="">
-          <DialogTitle className="mb-2 text-center">
+          <DialogTitle className="mb-2 mt-8 text-center">
             {currentView.description}
           </DialogTitle>
-          <DialogDescription className="h-[85vh] w-max">
+          <DialogDescription className="relative h-[85vh] w-full">
             <Image
               src={currentView.image.src}
               alt={currentView.image.alt}
-              width={1000}
-              height={800}
-              className="mx-auto h-full rounded-3xl"
+              fill
+              className="rounded-3xl object-contain"
             />
           </DialogDescription>
         </DialogHeader>
