@@ -18,7 +18,7 @@
   },
   "prettier": "@solvro/config/prettier",
   "dependencies": {
-    "@adamscybot/react-leaflet-component-marker": "^2.0.2",
+    "@adamscybot/react-leaflet-component-marker": "^2.0.3",
     "@hookform/resolvers": "^4.1.0",
     "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-dialog": "^1.1.4",

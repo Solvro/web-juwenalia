@@ -123,6 +123,9 @@ export default {
         "moving-gradient": "gradient-swap 3s ease-in-out infinite",
         "pulsating-circle": "pulse-circle 1.5s ease-in-out infinite",
       },
+      width: {
+        "9/10": "90%",
+      },
     },
   },
   plugins: [animate],
