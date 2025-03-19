@@ -15,7 +15,6 @@ import {
 
 import type { LeafletElement, WrItemPoint, WrItemPolyline } from "@/lib/types";
 
-import { HorizontalRule } from "../horizontal-rule";
 import { WrMapLegend } from "./wr-map-legend";
 
 interface Props {
@@ -27,6 +26,7 @@ interface Props {
 
 export function InteractiveMap({ WrMapProps }: Props) {
   const { mapPoints, mapPolylines } = WrMapProps;
+
   useEffect(() => {
     return () => {
       const container: LeafletElement | null =
@@ -50,14 +50,12 @@ export function InteractiveMap({ WrMapProps }: Props) {
 
   return (
     <div>
-      <h1 className="mt-8 pl-5 text-4xl font-semibold">Mapa Wydarzenia</h1>
-      <HorizontalRule />
       <MapContainer
         center={[51.106_972, 17.077_329]}
         zoom={16}
         scrollWheelZoom={true}
         dragging={false}
-        className="relative z-0 mx-auto h-[50vh] w-[90%] touch-auto rounded-3xl object-cover sm:h-[75vh]"
+        className="relative z-0 mt-16 h-[50vh] w-full touch-auto rounded-3xl object-cover sm:h-[75vh]"
       >
         <MapInitializer />
         <TileLayer
@@ -78,6 +76,7 @@ export function InteractiveMap({ WrMapProps }: Props) {
             </Popup>
           </Marker>
         ))}
+
         {mapPolylines.map((polyline) => (
           <Polyline
             key={polyline.name}
@@ -87,9 +86,7 @@ export function InteractiveMap({ WrMapProps }: Props) {
           />
         ))}
       </MapContainer>
-      <h2 className="mx-auto mt-4 hidden w-[90%] font-semibold sm:block">
-        Legenda
-      </h2>
+      <h2 className="mt-4 hidden w-full font-semibold sm:block">Legenda</h2>
       <WrMapLegend className="my-10" items={WrMapProps} />
     </div>
   );

@@ -19,66 +19,68 @@ export function StaticMap() {
   const currentLevel = MAP_ITEMS[currentLevelIndex];
 
   return (
-    <>
-      <h1 className="mt-8 pl-5 text-4xl font-semibold">Mapa Wydarzenia</h1>
-      <hr className="mb-16 mt-5" />
-      <div id="map-container">
-        <div className="mx-auto mb-10 hidden w-[90%] sm:grid sm:grid-cols-2 sm:gap-2 xl:grid-cols-4">
-          <MapLevelSelector
-            currentLevelIndex={currentLevelIndex}
-            setCurrentLevelIndex={setCurrentLevelIndex}
-          />
-        </div>
-        <div className="mx-auto mb-5 flex w-[90%] flex-row items-center justify-between">
-          <h2 className="mt-auto font-semibold">Mapa</h2>
-          <MapEnlargementButton currentView={currentLevel} />
-        </div>
-        <div id="map" className="">
-          {MAP_ITEMS.map((dialogMapLevel, dialogMapLevelIndex) => (
-            <Image
-              key={dialogMapLevel.name}
-              src={dialogMapLevel.image.src}
-              alt={dialogMapLevel.image.alt}
-              width={1000}
-              height={800}
-              className={cn(
-                "mx-auto aspect-square w-[90%] rounded-3xl object-cover sm:aspect-auto",
-                { hidden: dialogMapLevelIndex !== currentLevelIndex },
-              )}
-            />
-          ))}
-        </div>
-        <Accordion type="multiple" className="sm:hidden">
-          <AccordionItem value="Poziomy">
-            <AccordionTrigger className="pl-5 font-bold">
-              Poziomy
-            </AccordionTrigger>
-            <AccordionContent>
-              <div id="controls" className="grid grid-cols-1 gap-5">
-                <MapLevelSelector
-                  currentLevelIndex={currentLevelIndex}
-                  setCurrentLevelIndex={setCurrentLevelIndex}
-                />
-              </div>
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="Legenda">
-            <AccordionTrigger className="pl-5 font-bold">
-              Legenda
-            </AccordionTrigger>
-            <AccordionContent>
-              <StaticLegend activeLevel={currentLevel} />
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-        <h2 className="mx-auto mt-4 hidden w-[90%] font-semibold sm:block">
-          Legenda
-        </h2>
-        <StaticLegend
-          activeLevel={currentLevel}
-          className="mx-auto hidden sm:my-10 sm:grid"
+    <div id="map-container">
+      <h2 className="mt-16 hidden font-semibold sm:block">Poziomy</h2>
+      <div className="mt-5 hidden w-full sm:grid sm:grid-cols-2 sm:gap-2 xl:grid-cols-4">
+        <MapLevelSelector
+          currentLevelIndex={currentLevelIndex}
+          setCurrentLevelIndex={setCurrentLevelIndex}
         />
       </div>
-    </>
+
+      <div className="mt-16 flex w-full flex-row items-center justify-between">
+        <h2 className="mt-auto font-semibold">Mapa</h2>
+        <MapEnlargementButton currentView={currentLevel} />
+      </div>
+
+      <div
+        id="map"
+        className="relative mt-5 h-full min-h-[100svh] w-full xl:min-h-[90svh]"
+      >
+        {MAP_ITEMS.map((dialogMapLevel, dialogMapLevelIndex) => (
+          <Image
+            key={dialogMapLevel.name}
+            src={dialogMapLevel.image.src}
+            alt={dialogMapLevel.image.alt}
+            fill
+            className={cn(
+              "aspect-auto h-full w-full rounded-3xl object-cover object-center",
+              {
+                hidden: dialogMapLevelIndex !== currentLevelIndex,
+              },
+            )}
+          />
+        ))}
+      </div>
+      <Accordion type="multiple" className="mt-5 sm:hidden">
+        <AccordionItem value="Poziomy" className="!border-0">
+          <AccordionTrigger className="pl-5 font-bold">
+            Poziomy
+          </AccordionTrigger>
+          <AccordionContent>
+            <div id="controls" className="grid grid-cols-1 gap-5">
+              <MapLevelSelector
+                currentLevelIndex={currentLevelIndex}
+                setCurrentLevelIndex={setCurrentLevelIndex}
+              />
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="Legenda" className="!border-0">
+          <AccordionTrigger className="pl-5 font-bold">
+            Legenda
+          </AccordionTrigger>
+          <AccordionContent>
+            <StaticLegend activeLevel={currentLevel} />
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+
+      <h2 className="mt-8 hidden w-full font-semibold sm:block">Legenda</h2>
+      <StaticLegend
+        activeLevel={currentLevel}
+        className="hidden w-full sm:my-10 sm:grid"
+      />
+    </div>
   );
 }

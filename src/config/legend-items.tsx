@@ -6,7 +6,11 @@ export const MAP_ITEMS: MapLevel[] = [
   {
     name: "Outside",
     description: "Scena plenerowa, gastronomia, atrakcje",
-    icon: <SunIcon className="size-10" />,
+    icon: (
+      <div className="grid h-full w-full place-items-center">
+        <SunIcon className="h-full w-full shrink-0" />
+      </div>
+    ),
     image: {
       src: "/hala-stulecia-zewnatrz.png",
       alt: "Hala Stulecia Widok Satelitarny",
@@ -37,7 +41,7 @@ export const MAP_ITEMS: MapLevel[] = [
   {
     name: "Ground Floor",
     description: "Trybuna A, strefa dla gości",
-    icon: <div className="text-3xl font-bold">1</div>,
+    icon: <span className="text-4xl font-bold">1</span>,
     image: {
       src: "/hala-stulecia-poziom-0.png",
       alt: "Hala Stulecia Parter",
@@ -64,7 +68,7 @@ export const MAP_ITEMS: MapLevel[] = [
   {
     name: "Floor 1",
     description: "Strefa atrakcji, backstage",
-    icon: <div className="text-3xl font-bold">0</div>,
+    icon: <span className="text-4xl font-bold">0</span>,
     image: {
       src: "/hala-stulecia-poziom-1.png",
       alt: "Hala Stulecia Piętro 1",
@@ -91,7 +95,7 @@ export const MAP_ITEMS: MapLevel[] = [
   {
     name: "Floor -1",
     description: "Scena techno, gastronomia, strefa partnera",
-    icon: <div className="text-3xl font-bold">-1</div>,
+    icon: <span className="text-4xl font-bold">-1</span>,
     image: {
       src: "/hala-stulecia-piwnica.png",
       alt: "Hala Stulecia Piętro -1",
