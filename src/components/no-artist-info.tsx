@@ -20,7 +20,7 @@ function GradientText({
   return (
     <>
       <span
-        className={`text-balance bg-gradient-to-r from-[#58C473] to-[#049BAD] bg-clip-text font-extrabold text-transparent ${className}`}
+        className={`text-balance bg-gradient-main bg-clip-text font-extrabold text-transparent ${className}`}
       >
         {text}
       </span>
