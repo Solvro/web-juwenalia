@@ -72,10 +72,6 @@ function Footer() {
               text={FOOTER_LINKS.contact.mail}
               url={`mailto:${FOOTER_LINKS.contact.mail}`}
             />
-            <ListItem
-              text={FOOTER_LINKS.contact.phone}
-              url={`tel:${FOOTER_LINKS.contact.phone}`}
-            />
           </List>
 
           <List
