@@ -2,7 +2,6 @@ import type { NavLink } from "@/lib/types";
 
 export const FOOTER_LINKS = {
   contact: {
-    phone: "+48 000 000 000",
     mail: "kontakt@juwenalia.wroc.pl",
   },
   socials: {
@@ -14,7 +13,8 @@ export const FOOTER_LINKS = {
     tt:
       process.env.JUWE_TIKTOK_URL ?? "https://www.tiktok.com/@juwewroclawrazem",
   },
-  privacyPolicy: "https://example.com/",
+  privacyPolicy:
+    "https://www.termsfeed.com/live/98368f7b-984b-40a8-963d-7210e4c673eb",
 };
 
 export const NAV_LINKS: NavLink[] = [
