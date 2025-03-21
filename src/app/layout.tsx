@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     images: [
       {
-        url: "/opengraph-image.jpg",
+        url: "/opengraph-image-2.jpg",
         width: 1200,
         height: 630,
         alt: "Juwenalia 2025 #WrocławRazem",
