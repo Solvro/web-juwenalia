@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     images: [
       {
-        url: "https://www.place-hold.it/1200x630",
+        url: "background_homepage_1.jpg",
         width: 1200,
         height: 630,
         alt: "Juwenalia 2025 #WrocławRazem",
