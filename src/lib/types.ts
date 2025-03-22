@@ -41,7 +41,7 @@ export interface DayProps {
 }
 
 export interface NoDataInfoProps {
-  errorTitle: string;
+  errorTitle?: string;
   errorMessage: string;
 }
 
