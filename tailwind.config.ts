@@ -114,6 +114,11 @@ export default {
           "0%, 100%": { transform: "scale(1)" },
           "50%": { transform: "scale(1.5)" },
         },
+        shake: {
+          "0%, 100%": { transform: "translateX(0)" },
+          "10%, 30%, 50%, 70%, 90%": { transform: "translateX(-10px)" },
+          "20%, 40%, 60%, 80%": { transform: "translateX(10px)" },
+        },
       },
       animation: {
         "reveal-arrow":
@@ -122,6 +127,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "moving-gradient": "gradient-swap 3s ease-in-out infinite",
         "pulsating-circle": "pulse-circle 1.5s ease-in-out infinite",
+        shake: "shake 0.5 ease",
       },
       width: {
         "9/10": "90%",
