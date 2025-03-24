@@ -91,7 +91,7 @@ function Countdown() {
   };
 
   return (
-    <div className="relative z-[-10] h-[90vh] w-full flex-shrink-0 rounded-b-[40px] bg-[url('/images/background_homepage.png')] bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:rounded-b-[40px] before:bg-gradient-to-b before:from-black/40 before:to-black/30 sm:h-[90vh] sm:w-full sm:rounded-b-[60px] sm:before:sm:rounded-b-[60px] lg:h-[90vh] xl:h-[95vh]">
+    <div className="relative z-0 h-[90vh] w-full flex-shrink-0 rounded-b-[40px] bg-[url('/images/background_homepage.png')] bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:rounded-b-[40px] before:bg-gradient-to-b before:from-black/40 before:to-black/30 sm:h-[90vh] sm:w-full sm:rounded-b-[60px] sm:before:sm:rounded-b-[60px] lg:h-[90vh] xl:h-[95vh]">
       <div className="absolute left-5 top-20 mt-16 text-[8vh] font-extrabold leading-[7vh] text-[#FFF] sm:left-1/2 sm:top-1/2 sm:mt-10 sm:-translate-x-1/2 sm:-translate-y-[50%] sm:transform sm:text-[76px] sm:leading-[80px] lg:text-[112px] lg:leading-[96px] xl:text-[156px] xl:leading-[110px]">
         <PaddingWrapper>
           {isBeforeEvent ? (

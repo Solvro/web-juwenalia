@@ -50,7 +50,7 @@ export function Navbar() {
         // Later on need to be modified in order to react to user scroll behaviour,
         // scroll down: nav hides,
         // scroll up: nav shows
-        "absolute top-0 flex w-full items-center justify-between py-3",
+        "absolute top-0 z-10 flex w-full items-center justify-between py-3",
         {
           "sm:text-white": currentPath === "/",
         },
