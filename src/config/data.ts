@@ -40,5 +40,5 @@ export const NAV_LINKS: NavLink[] = [
   },
 ];
 
-export const HERO_BG_BLUR_HASH: string =
+export const HERO_BG_BLUR_HASH =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAAXNSR0IArs4c6QAAAIhJREFUGFdFjbsKwkAUBee6eWgKIUhIowTExiDih+j/N36AQkA0BDHZvVfWxilONZyRumrMUEQEA8zi/pHDpjVLPIr9hPcUCGrRRM2Qy7G1uizwwcjmOV0/MoaAemXmQM77na2rgsdrYlUuud560tQxeCWLD6emsdwlDJ/Atlxwf450kxIkZuALpi9AOLz+vL4AAAAASUVORK5CYII=";
