@@ -74,12 +74,7 @@ export async function AboutUs() {
         />
       </Section>
 
-      <Section
-        header="Organizatorzy"
-        body="Lorem ipsum dolor sit amet consectetur. Lectus purus faucibus senectus
-          hendrerit nullam consequat amet convallis sagittis. Quisque mauris
-          magnis augue scelerisque facilisi accumsan."
-      >
+      <Section header="Organizatorzy">
         <OrganisersList
           organisers={forOrganisers}
           coordinators={forCoordinators}
