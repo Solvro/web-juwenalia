@@ -66,8 +66,11 @@ function Footer() {
   return (
     <footer className="mt-32 w-full border-t border-gray-300">
       <PaddingWrapper>
-        <div className="grid h-full w-full grid-cols-2 gap-5 py-5 lg:grid-cols-4 lg:gap-20 lg:py-16 xl:grid-cols-6">
-          <List text="Kontakt" className="pt-6 lg:row-start-2 xl:row-start-1">
+        <div className="flex h-full w-full flex-wrap gap-5 py-5 sm:grid sm:grid-cols-2 lg:grid-cols-4 lg:gap-20 lg:py-16 xl:grid-cols-6">
+          <List
+            text="Kontakt"
+            className="w-fit flex-shrink flex-grow pt-6 lg:row-start-2 xl:row-start-1"
+          >
             <ListItem
               text={FOOTER_LINKS.contact.mail}
               url={`mailto:${FOOTER_LINKS.contact.mail}`}
@@ -76,14 +79,14 @@ function Footer() {
 
           <List
             text="Social media"
-            className="pt-6 lg:row-start-2 xl:row-start-1"
+            className="w-fit flex-shrink flex-grow pt-6 lg:row-start-2 xl:row-start-1"
           >
             <ListItem text="Instagram" url={FOOTER_LINKS.socials.ig} />
             <ListItem text="Facebook" url={FOOTER_LINKS.socials.fb} />
             <ListItem text="Tiktok" url={FOOTER_LINKS.socials.tt} />
           </List>
 
-          <div className="relative col-span-2 row-start-1 row-end-1 h-full min-h-52 w-full sm:min-h-60 lg:col-start-2 lg:col-end-4 lg:row-start-1 lg:row-end-1 xl:col-span-2 xl:col-start-3 xl:min-h-full">
+          <div className="relative -order-1 row-start-1 row-end-1 h-full min-h-52 w-full sm:col-span-2 sm:min-h-60 lg:col-start-2 lg:col-end-4 lg:row-start-1 lg:row-end-1 xl:col-span-2 xl:col-start-3 xl:min-h-full">
             <Image
               src={Logo as StaticImageData}
               alt="Logo Juwenalia 2025 #WROCŁAWRAZEM"
@@ -93,7 +96,10 @@ function Footer() {
             />
           </div>
 
-          <List text="Linki" className="pt-6 lg:row-start-2 xl:row-start-1">
+          <List
+            text="Linki"
+            className="w-fit flex-shrink flex-grow pt-6 lg:row-start-2 xl:row-start-1"
+          >
             {NAV_LINKS.map(({ name, url, label }, index) => (
               <ListItem
                 text={name}
@@ -103,7 +109,10 @@ function Footer() {
               />
             ))}
           </List>
-          <List text="Inne" className="pt-6 lg:row-start-2 xl:row-start-1">
+          <List
+            text="Inne"
+            className="w-fit flex-shrink flex-grow pt-6 lg:row-start-2 xl:row-start-1"
+          >
             <ListItem
               text="Polityka prywatności"
               url={FOOTER_LINKS.privacyPolicy}
@@ -113,7 +122,7 @@ function Footer() {
         </div>
       </PaddingWrapper>
       <HorizontalRule />
-      <PaddingWrapper className="flex flex-row justify-between gap-3 py-5 pt-2 sm:items-center sm:gap-5 md:py-8 md:pt-3">
+      <PaddingWrapper className="flex flex-col justify-between gap-3 py-5 pt-2 sm:flex-row sm:items-center sm:gap-5 md:py-8 md:pt-3">
         <span className="text-sm font-light text-gray-500">
           ©{" "}
           <span className="font-regular">

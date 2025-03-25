@@ -55,7 +55,7 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
   return (
     <div
       ref={scheduleRef}
-      className="mt-16 w-full space-y-14 text-white sm:mt-24 sm:w-auto sm:space-y-24"
+      className="mt-16 w-full space-y-14 text-white sm:mt-24 sm:space-y-24 md:w-auto"
     >
       <LeafComponent className="z-0 mt-[-150px] md:ml-40">
         <Image
@@ -95,7 +95,7 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
                 <div className="absolute text-nowrap text-4xl font-black text-white/50 sm:text-6xl md:text-7xl xl:text-8xl">
                   {format(day.date, "d MMMM")}
                 </div>
-                <div className="absolute top-5 text-right text-3xl font-black text-white sm:right-8 sm:top-[50px] sm:text-5xl md:text-6xl xl:text-7xl">
+                <div className="absolute top-5 text-right text-3xl font-black text-white sm:top-[50px] sm:text-5xl md:right-8 md:text-6xl xl:text-7xl">
                   {format(day.date, "EEEE")}
                 </div>
               </div>
