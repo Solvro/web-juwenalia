@@ -1,4 +1,5 @@
 import type { ClassValue } from "clsx";
+import type { CSSProperties } from "react";
 import { useState } from "react";
 
 import { cn } from "@/lib/utils";
@@ -6,9 +7,11 @@ import { cn } from "@/lib/utils";
 export function LeafComponent({
   children,
   className = "",
+  style = {},
 }: {
   children: React.ReactNode;
   className?: ClassValue;
+  style?: CSSProperties;
 }) {
   const [isShaking, setIsShaking] = useState(false);
 
@@ -20,15 +23,12 @@ export function LeafComponent({
   };
 
   return (
-    <div
-      className={cn(
-        "w-full px-4 md:px-8 lg:px-12 xl:px-16",
-        className,
-        isShaking ? "animate-shake" : "",
-      )}
+    <button
+      className={cn(className, isShaking ? "animate-shake" : "")}
       onClick={handleClick}
+      style={style}
     >
       {children}
-    </div>
+    </button>
   );
 }
