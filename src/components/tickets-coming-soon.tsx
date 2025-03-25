@@ -17,7 +17,6 @@ export function TicketsComingSoon() {
             wkrótce
           </span>
         </h2>
-
         <div className="relative my-auto mt-5 flex w-full flex-col gap-10 md:my-0 lg:mx-auto lg:w-fit">
           <div className="flex max-w-[600px] flex-col sm:gap-1.5 md:gap-1">
             <p className="text-white md:text-lg lg:text-xl">
