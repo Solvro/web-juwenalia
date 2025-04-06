@@ -5,20 +5,15 @@ import { pl } from "date-fns/locale";
 import { useState } from "react";
 
 import { PaddingWrapper } from "@/components/padding-wrapper";
-import type { FacebookPost } from "@/lib/types";
+import type { NewsPost } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 import { Button } from "../button";
 
-export function PostPreview({ post }: { post: FacebookPost }) {
-  const date = format(post.updated_time, "dd MMMM yyyy", { locale: pl });
-  let postTitle = post.title;
-  let postMessage = post.message;
-  if (postTitle == null) {
-    const splittedMessage = post.message?.split("\n") ?? [];
-    postTitle = splittedMessage.shift();
-    postMessage = splittedMessage.join("\n");
-  }
+export function PostPreview({ post }: { post: NewsPost }) {
+  const date = format(post.date_updated ?? post.date_created, "dd MMMM yyyy", {
+    locale: pl,
+  });
   const [showDetails, setShowDetails] = useState(false);
   return (
     <PaddingWrapper className="flex w-full flex-col items-start gap-2 py-3 md:flex-row md:justify-between">
@@ -27,11 +22,7 @@ export function PostPreview({ post }: { post: FacebookPost }) {
       </p>
       <div className="md:w-3/4 lg:w-2/3">
         <h3 className="text-lg md:text-xl lg:text-2xl">
-          {postTitle === undefined ? (
-            <i>Brak tytułu</i>
-          ) : (
-            <span className="font-semibold">{postTitle}</span>
-          )}
+          {<span className="font-semibold">{post.title}</span>}
         </h3>
         <div className="flex flex-col items-start gap-3">
           <div
@@ -43,9 +34,11 @@ export function PostPreview({ post }: { post: FacebookPost }) {
               },
             )}
           >
-            <p className="mt-6 overflow-hidden whitespace-pre-line">
-              {postMessage}
-            </p>
+            <p
+              className="mt-6 overflow-hidden whitespace-pre-line"
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
           </div>
           <Button
             className="cursor-pointer list-none font-light hover:bg-transparent"
