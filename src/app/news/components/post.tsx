@@ -36,7 +36,7 @@ export function Post({
           >
             {new Date(post.date_created).toLocaleString("pl-PL")}
             {post.date_updated == null ||
-            post.date_updated !== post.date_created ? null : (
+            post.date_updated === post.date_created ? null : (
               <span> (edytowano)</span>
             )}
           </p>
