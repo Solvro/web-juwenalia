@@ -3,14 +3,14 @@ import { Fragment } from "react";
 
 import { NewsErrorMessage } from "@/app/news/components/news-error-message";
 import { ArrowSeeMore } from "@/components/arrow-see-more";
-import { getFacebookPosts } from "@/lib/facebook";
+import { getNewsPosts } from "@/lib/news";
 
 import { HomepageHeader } from "../homepage-header";
 import { HorizontalRule } from "../horizontal-rule";
 import { PostPreview } from "./post-preview";
 
 export async function LatestNews() {
-  const posts = await getFacebookPosts();
+  const posts = await getNewsPosts();
 
   return (
     <div className="text-xs sm:text-sm md:text-base">

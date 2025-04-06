@@ -1,17 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import type { FacebookPost, FacebookUser } from "@/lib/types";
-
-import { PostAttachments } from "./post-attachments";
-import { ShareButton } from "./share-button";
+import type { FacebookUser, NewsPost } from "@/lib/types";
 
 export function Post({
   author,
   post,
 }: {
   author: FacebookUser;
-  post: FacebookPost;
+  post: NewsPost;
 }) {
   return (
     <div className="m-3 mt-0 rounded-xl border p-3 text-sm md:m-10 md:mt-0 md:w-2/3 md:text-base xl:w-1/2">
@@ -34,24 +31,26 @@ export function Post({
           <p
             className="flex items-center gap-1 text-xs text-gray-500 md:text-sm"
             title={`ostatnia modyfikacja: ${new Date(
-              post.updated_time,
+              post.date_updated ?? post.date_created,
             ).toLocaleString("pl-PL")}`}
           >
-            {new Date(post.created_time).toLocaleString("pl-PL")}
-            {post.updated_time.length > 0 &&
-              post.updated_time !== post.created_time && (
-                <span> (edytowano)</span>
-              )}
+            {new Date(post.date_created).toLocaleString("pl-PL")}
+            {post.date_updated == null ||
+            post.date_updated !== post.date_created ? null : (
+              <span> (edytowano)</span>
+            )}
           </p>
         </div>
       </div>
-      <p className="whitespace-pre-line border-t-2 pt-2">
-        {post.message ?? ""}
-      </p>
-      <div className="flex flex-col items-center justify-center">
+      <p
+        className="whitespace-pre-line border-t-2 pt-2"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      />
+      {/* <div className="flex flex-col items-center justify-center">
         <PostAttachments attachments={post.attachments?.data ?? []} />
         {post.permalink_url.length > 0 && <ShareButton post={post} />}
-      </div>
+      </div> */}
     </div>
   );
 }

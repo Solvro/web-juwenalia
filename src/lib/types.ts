@@ -52,36 +52,14 @@ export interface SearchPhrase {
   intervalHours: number;
 }
 
-// #region --- Facebook API-related definitions ---
+// #region --- News-related definitions ---
 
-interface FacebookAttachments {
-  data?: FacebookAttachment[];
-}
-
-export interface FacebookAttachment {
-  /** URL to the Facebook image post, not the image itself. */
-  // url: string;
-  /** Known values: `"photo"` */
-  // type: string;
-  media: {
-    image: {
-      height: number;
-      width: number;
-      src: string;
-    };
-  };
-  subattachments?: FacebookAttachments;
-}
-
-/** A Facebook post as returned by the Facebook API. */
-export interface FacebookPost {
+export interface NewsPost {
   id: string;
-  title?: string;
-  message?: string;
-  permalink_url: string;
-  created_time: string;
-  updated_time: string;
-  attachments?: FacebookAttachments;
+  date_created: string;
+  date_updated: string | null;
+  title: string;
+  content: string;
 }
 
 /** A Facebook user as returned by the Facebook API. */
@@ -97,12 +75,6 @@ export interface FacebookUser {
       is_silhouette: boolean;
     };
   };
-}
-
-/** A generated long-lived access token as returned by the Facebook API. */
-export interface FacebookAccessToken {
-  access_token: string;
-  token_type: string;
 }
 
 // #endregion
