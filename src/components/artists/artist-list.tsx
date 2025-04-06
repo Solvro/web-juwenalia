@@ -4,7 +4,6 @@ import { fetchData } from "@/lib/api";
 import type { ArtistProps } from "@/lib/types";
 
 import { HorizontalRule } from "../horizontal-rule";
-import { NoDataInfo } from "../no-data-info";
 import { PaddingWrapper } from "../padding-wrapper";
 
 // if we need shuffling the artists, so everyone in their respective category
