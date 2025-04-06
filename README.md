@@ -61,9 +61,7 @@ npm install
 Create an `.env` file with the following content:
 
 ```env
-FACEBOOK_ACCESS_TOKEN=
-FACEBOOK_APP_ID=
-FACEBOOK_APP_SECRET=
+FEEDBACK_FORM_URL=
 ```
 
 ### 4. Run the Project
