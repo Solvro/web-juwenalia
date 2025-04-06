@@ -52,8 +52,6 @@ export interface SearchPhrase {
   intervalHours: number;
 }
 
-// #region --- News-related definitions ---
-
 export interface NewsPost {
   id: string;
   date_created: string;
@@ -61,23 +59,6 @@ export interface NewsPost {
   title: string;
   content: string;
 }
-
-/** A Facebook user as returned by the Facebook API. */
-export interface FacebookUser {
-  id: string;
-  name: string;
-  link: string;
-  picture: {
-    data: {
-      height: number;
-      width: number;
-      url: string;
-      is_silhouette: boolean;
-    };
-  };
-}
-
-// #endregion
 
 // #region --- About Us Page ---
 type ParseInt<T> = T extends `${infer N extends number}` ? N : never;
