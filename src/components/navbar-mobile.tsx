@@ -86,15 +86,15 @@ export function NavbarMobile({ isOpened, onOpenChange }: NavbarMobileProps) {
             ))}
           </div>
 
-          <Button
-            as={Link}
-            href="/"
-            className="!w-full !bg-gradient-main !py-4 before:!bg-black/10 [&_*]:hover:!text-white"
-            variant="default"
-            variantColor="white"
-          >
-            Kup Bilet
-          </Button>
+          {/*<Button*/}
+          {/*  as={Link}*/}
+          {/*  href="/"*/}
+          {/*  className="!w-full !bg-gradient-main !py-4 before:!bg-black/10 [&_*]:hover:!text-white"*/}
+          {/*  variant="default"*/}
+          {/*  variantColor="white"*/}
+          {/*>*/}
+          {/*  Kup Bilet*/}
+          {/*</Button>*/}
         </div>
       </SheetContent>
     </Sheet>

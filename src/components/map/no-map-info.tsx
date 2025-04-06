@@ -69,12 +69,12 @@ export function NoMapInfo() {
       {/* text and buttons */}
       <div className="z-10">
         <div className="mb-10 mt-36 font-extrabold leading-[95.625%] md:mt-72">
-          <span className="bg-gradient-to-r from-[#049BAD] to-[#58C473] bg-clip-text text-[32px] text-transparent sm:text-[54px] lg:text-[96px]">
+          <span className="bg-gradient-main bg-clip-text text-[32px] text-transparent sm:text-[54px] lg:text-[96px]">
             MAPA POJAWI SIĘ
           </span>
           <br />
           <br />
-          <span className="bg-gradient-to-r from-[#049BAD] to-[#58C473] bg-clip-text text-[39px] leading-[95.625%] text-transparent sm:text-[64px] lg:text-[115px]">
+          <span className="bg-gradient-main bg-clip-text text-[39px] leading-[95.625%] text-transparent sm:text-[64px] lg:text-[115px]">
             JUŻ WKRÓTCE!
           </span>
         </div>

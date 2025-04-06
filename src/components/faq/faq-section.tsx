@@ -8,7 +8,7 @@ export async function FrequentlyAskedQuestions() {
   const faqs = await fetchData<{ data: Faq[] }>("items/faqs");
   return (
     <PaddingWrapper>
-      <div className="mb-14 box-border grid grid-cols-12 justify-between gap-2 sm:gap-4 md:gap-6">
+      <div className="mb-14 mt-24 box-border grid grid-cols-12 justify-between gap-2 sm:gap-4 md:gap-6">
         <div className="col-span-12 mb-8 flex h-full w-full font-[900] sm:col-span-6 sm:mb-0">
           <h2 className="text-balance text-3xl sm:w-min sm:text-6xl md:text-7xl lg:text-8xl">
             Częste Pytania

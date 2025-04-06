@@ -1,4 +1,5 @@
 import { Artist } from "@/components/artists/artist";
+import { NoArtistInfo } from "@/components/no-artist-info";
 import { fetchData } from "@/lib/api";
 import type { ArtistProps } from "@/lib/types";
 
@@ -63,10 +64,7 @@ async function ArtistList() {
           </div>
         </PaddingWrapper>
       ) : (
-        <NoDataInfo
-          errorTitle="Brak artystów"
-          errorMessage="Nie udało nam się znaleźć listy artystów. Wróć tutaj później!"
-        />
+        <NoArtistInfo errorMessage="Artyści nie są jeszcze dostępni. Wróć tutaj później!" />
       )}
     </div>
   );
