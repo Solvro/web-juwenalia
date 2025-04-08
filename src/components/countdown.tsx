@@ -17,8 +17,8 @@ import { HERO_BG_BLUR_HASH } from "@/config/data";
 
 import { PaddingWrapper } from "./padding-wrapper";
 
-const eventStartDate: Date = new Date(2025, 5, 21, 16); //It's the date from pwr calendar
-const eventEndDate: Date = new Date(2025, 5, 23, 2);
+const eventStartDate: Date = new Date(2025, 4, 21, 16);
+const eventEndDate: Date = new Date(2025, 4, 23, 2);
 function TextsForTimer({ children }: { children: ReactNode }) {
   return (
     <div className="mt-2.5 text-base font-medium sm:mt-0 sm:text-[18px] lg:text-[20px] xl:pb-1.5">
