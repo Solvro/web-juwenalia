@@ -2,8 +2,6 @@ import { setDefaultOptions } from "date-fns";
 import { pl } from "date-fns/locale";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import { headers } from "next/headers";
-import Script from "next/script";
 
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
@@ -21,7 +19,6 @@ const WEBSITE_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000"
     : "https://juwenalia.solvro.pl";
-// : "https://juwenalia.wroc.pl";
 
 export const metadata: Metadata = {
   title: "Juwenalia 2025 #WrocławRazem",
@@ -57,9 +54,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const headersList = await headers();
-  const nonce = headersList.get("x-nonce");
-
   return (
     <html lang="pl" className={montserrat.variable}>
       <body className="relative">
@@ -72,15 +66,6 @@ export default async function RootLayout({
             <Footer />
             <Toaster />
             <SocialSidebar />
-            <Script
-              async
-              defer
-              src="https://analytics.solvro.pl/script.js"
-              data-website-id={/* TODO: add website ID */ ""}
-              data-domains="juwenalia.wroc.pl,juwenalia.solvro.pl"
-              nonce={nonce ?? undefined}
-              strategy="afterInteractive"
-            />
           </BugReportProvider>
         </QueryProvider>
       </body>
