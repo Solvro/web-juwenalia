@@ -54,7 +54,7 @@ export function Artist({
         >
           {/* Front side */}
           <div
-            className="backface-hidden absolute inset-0 h-full w-full"
+            className="backface-hidden absolute inset-0 h-full w-full lg:h-[90%]"
             style={{ backfaceVisibility: "hidden", transform: "rotateY(0deg)" }}
           >
             <Image
@@ -68,7 +68,7 @@ export function Artist({
 
           {/* Back side */}
           <div
-            className="absolute inset-0 flex h-full w-full items-center justify-center rounded-xl border border-black bg-white p-4 text-black"
+            className="absolute inset-0 flex h-full w-full items-center justify-center overflow-y-auto rounded-xl border border-black bg-white p-4 text-black lg:h-[90%]"
             style={{
               backfaceVisibility: "hidden",
               transform: "rotateY(180deg)",
