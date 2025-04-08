@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 import { API_URL } from "@/config/api";
 import type { ArtistProps } from "@/lib/types";
@@ -11,7 +14,9 @@ export function Artist({
   instagramUrl,
   spotifyUrl,
   events,
+  description,
 }: ArtistProps) {
+  const [flip, setFlip] = useState(false);
   const weekDays = ["NIE", "PON", "WT", "ŚR", "CZW", "PT", "SOB"];
 
   const days: Date[] = events.map(
@@ -26,18 +31,56 @@ export function Artist({
       key={id}
       className="flex flex-col items-center rounded-lg p-2 text-center text-xl"
     >
-      <Image
-        className={
-          "mb-4 aspect-square h-[400px] w-full rounded-xl object-cover sm:h-[621px]"
-        }
-        src={`${API_URL}/assets/${image}`}
-        alt={`Zdjęcie artysty ${name}`}
-        width={441}
-        height={621}
-      />
+      <div
+        className="relative h-[400px] w-full cursor-pointer sm:h-[621px]"
+        onClick={() => {
+          setFlip(!flip);
+        }}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            setFlip(!flip);
+          }
+        }}
+        role="button"
+        tabIndex={0}
+      >
+        <div
+          className={`relative h-full w-full transform transition-transform duration-500 ${
+            flip ? "rotate-y-180" : ""
+          }`}
+          style={{
+            transformStyle: "preserve-3d",
+          }}
+        >
+          {/* Front side */}
+          <div
+            className="backface-hidden absolute inset-0 h-full w-full"
+            style={{ backfaceVisibility: "hidden", transform: "rotateY(0deg)" }}
+          >
+            <Image
+              className="aspect-square h-full w-full rounded-xl object-cover"
+              src={`${API_URL}/assets/${image}`}
+              alt={`Zdjęcie artysty ${name}`}
+              width={441}
+              height={621}
+            />
+          </div>
+
+          {/* Back side */}
+          <div
+            className="absolute inset-0 flex h-full w-full items-center justify-center rounded-xl border border-black bg-white p-4 text-black"
+            style={{
+              backfaceVisibility: "hidden",
+              transform: "rotateY(180deg)",
+            }}
+          >
+            <p className="text-lg">{description}</p>
+          </div>
+        </div>
+      </div>
 
       <div className="flex w-full flex-row justify-between">
-        <h2 className={"p-2 text-left text-2xl font-extrabold xl:text-3xl"}>
+        <h2 className="p-2 text-left text-2xl font-extrabold xl:text-3xl">
           {name.toUpperCase()}
         </h2>
         {/* div for the IG and Spotify buttons */}
@@ -51,9 +94,7 @@ export function Artist({
               role="button"
             >
               <Image
-                className={
-                  "rounded-xl p-1 hover:bg-green-400 active:bg-green-600"
-                }
+                className="rounded-xl p-1 hover:bg-green-400 active:bg-green-600"
                 src={`/buttons/spotify-svgrepo-com.svg`}
                 alt="Link do Spotify artysty."
                 width="43"
@@ -70,9 +111,7 @@ export function Artist({
               rel="noopener noreferrer"
             >
               <Image
-                className={
-                  "rounded-xl bg-gradient-to-bl p-1 hover:from-fuchsia-500 hover:to-amber-400 active:from-fuchsia-700 active:to-amber-600"
-                }
+                className="rounded-xl bg-gradient-to-bl p-1 hover:from-fuchsia-500 hover:to-amber-400 active:from-fuchsia-700 active:to-amber-600"
                 src={`/buttons/ig.svg`}
                 alt="Link do Instagrama artysty."
                 width="43"
