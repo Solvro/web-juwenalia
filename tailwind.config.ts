@@ -132,6 +132,12 @@ export default {
       width: {
         "9/10": "90%",
       },
+      transform: {
+        "preserve-3d": "preserve-3d",
+      },
+      rotate: {
+        "y-180": "rotateY(180deg)",
+      },
     },
   },
   plugins: [animate],
