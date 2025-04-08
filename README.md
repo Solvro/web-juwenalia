@@ -27,7 +27,7 @@ This app is the result of collaboration between members of the Solvro Science Cl
 - [Dawid Kowal](https://github.com/GTR1701) - Frontend Developer
 - [Miłosz Kowalczyk](https://github.com/zeolsem) - Frontend Developer
 - [Kuba Dołharz](https://github.com/Konzum59) - Frontend Developer
-- [Kuba Czajkowski](https://github.com/czaja307) - Devops
+- [Kuba Czajkowski](https://github.com/czaja307) - DevOps Engineer
 
 ## Technologies used
 
