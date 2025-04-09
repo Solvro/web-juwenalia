@@ -15,7 +15,8 @@ export default function Home() {
       <TicketsComingSoon />
       <FrequentlyAskedQuestions />
       <LatestNews />
-      {/*<AboutUs />*/}
+      {/*<AboutUs />*/}{" "}
+      {/*Uncomment this line to include the About Us section*/}
     </>
   );
 }
