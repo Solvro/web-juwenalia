@@ -38,6 +38,11 @@ export const NAV_LINKS: NavLink[] = [
   //   url: "/our-team",
   //   label: "Przejdź do strony o organizatorach wydarzenia",
   // },
+  {
+    name: "FAQ",
+    url: "/faq",
+    label: "Przejdź do strony z często zadawanymi pytaniami",
+  },
 ];
 
 export const HERO_BG_BLUR_HASH =
