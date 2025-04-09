@@ -6,6 +6,9 @@ import { FrequentlyAskedQuestion } from "./faq-card";
 
 export async function FrequentlyAskedQuestions() {
   const faqs = await fetchData<{ data: Faq[] }>("items/faqs");
+  if (faqs.data.length === 0) {
+    return null;
+  }
   return (
     <PaddingWrapper>
       <div className="mb-14 mt-24 box-border grid grid-cols-12 justify-between gap-2 sm:gap-4 md:gap-6">
