@@ -1,28 +1,33 @@
-import * as Accordion from "@radix-ui/react-accordion";
-import { ChevronDown } from "lucide-react";
-
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { fetchData } from "@/lib/api";
 import type { Faq } from "@/lib/types";
 
-export function QuestionContent({ faq, index }: { faq: Faq; index: number }) {
+export function QuestionContent({
+  faq,
+  index,
+  isLast,
+}: {
+  faq: Faq;
+  index: number;
+  isLast: boolean;
+}) {
   return (
-    <Accordion.Item className="AccordionItem" value={`item-${String(index)}`}>
-      <Accordion.Trigger
-        className={
-          index === 0
-            ? "flexbox w-full py-5 text-left text-4xl font-semibold"
-            : "flexbox w-full border-t border-gray-300 py-5 text-left text-4xl font-semibold"
-        }
-      >
-        <div className="relative">
-          {faq.question}
-          <ChevronDown className="absolute inset-y-0 right-0 h-8 w-8" />
-        </div>
-      </Accordion.Trigger>
-      <Accordion.Content className="text-left text-xl text-gray-500">
+    <AccordionItem
+      className={`AccordionItem ${isLast ? "border-none" : ""}`}
+      value={`item-${String(index)}`}
+    >
+      <AccordionTrigger className="flexbox w-full py-5 text-left text-xl font-bold sm:text-2xl sm:font-semibold lg:text-3xl xl:text-4xl [&>svg]:h-8 [&>svg]:w-8">
+        <div className="relative">{faq.question}</div>
+      </AccordionTrigger>
+      <AccordionContent className="text-left text-sm font-medium text-gray-500 sm:text-base lg:text-lg xl:text-xl">
         {faq.answer}
-      </Accordion.Content>
-    </Accordion.Item>
+      </AccordionContent>
+    </AccordionItem>
   );
 }
 
@@ -34,11 +39,16 @@ export async function FaqContent() {
 
   return (
     <div>
-      <Accordion.Root type="single" collapsible className="space-y-2">
-        {faqs.data.map((localFaqs, index) => (
-          <QuestionContent key={localFaqs.id} faq={localFaqs} index={index} />
+      <Accordion type="single" collapsible className="space-y-2">
+        {faqs.data.map((singleSet, index) => (
+          <QuestionContent
+            key={singleSet.id}
+            faq={singleSet}
+            index={index}
+            isLast={index === faqs.data.length - 1}
+          />
         ))}
-      </Accordion.Root>
+      </Accordion>
     </div>
   );
 }
