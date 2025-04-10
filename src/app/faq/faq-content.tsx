@@ -18,13 +18,13 @@ export function QuestionContent({
 }) {
   return (
     <AccordionItem
-      className={`AccordionItem ${isLast ? "border-none" : ""}`}
+      className={isLast ? "border-none" : ""}
       value={`item-${String(index)}`}
     >
-      <AccordionTrigger className="flexbox w-full py-5 text-left text-xl font-bold sm:text-2xl sm:font-semibold lg:text-3xl xl:text-4xl [&>svg]:h-8 [&>svg]:w-8">
+      <AccordionTrigger className="py-5 text-left text-xl font-bold hover:no-underline sm:text-2xl sm:font-semibold lg:text-3xl xl:text-4xl [&>svg]:h-8 [&>svg]:w-8">
         <div className="relative">{faq.question}</div>
       </AccordionTrigger>
-      <AccordionContent className="text-left text-sm font-medium text-gray-500 sm:text-base lg:text-lg xl:text-xl">
+      <AccordionContent className="text-sm font-medium text-muted-foreground sm:text-base lg:text-lg xl:text-xl">
         {faq.answer}
       </AccordionContent>
     </AccordionItem>
