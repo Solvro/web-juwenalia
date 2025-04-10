@@ -1,16 +1,10 @@
 import * as Accordion from "@radix-ui/react-accordion";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 import { fetchData } from "@/lib/api";
-import { Faq } from "@/lib/types";
+import type { Faq } from "@/lib/types";
 
-export default function QuestionContent({
-  faq,
-  index,
-}: {
-  faq: Faq;
-  index: number;
-}) {
+export function QuestionContent({ faq, index }: { faq: Faq; index: number }) {
   return (
     <Accordion.Item className="AccordionItem" value={`item-${index}`}>
       <Accordion.Trigger
@@ -41,8 +35,8 @@ export async function FaqContent() {
   return (
     <div>
       <Accordion.Root type="single" collapsible className="space-y-2">
-        {faqs.data.map((faqs, index) => (
-          <QuestionContent key={faqs.id} faq={faqs} index={index} />
+        {faqs.data.map((localFaqs, index) => (
+          <QuestionContent key={localFaqs.id} faq={localFaqs} index={index} />
         ))}
       </Accordion.Root>
     </div>
