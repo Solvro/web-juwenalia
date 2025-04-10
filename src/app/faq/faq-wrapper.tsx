@@ -14,12 +14,12 @@ export default function FaqWrapper({
   className?: ClassValue;
 }) {
   return (
-    <section className="relative bottom-[-8rem] mt-48">
+    <section className="relative bottom-[-8rem] mt-28 sm:mt-36">
       <h1 className="overflow-wrap w-10/12 pb-3 text-2xl font-semibold leading-10 sm:pb-8 sm:text-3xl sm:font-extrabold md:text-4xl lg:text-5xl xl:text-6xl">
         <PaddingWrapper>Najczęściej zadawane pytania</PaddingWrapper>
       </h1>
 
-      <PaddingWrapper className="border-t border-gray-300 pb-40 pt-9 md:pt-16">
+      <PaddingWrapper className="border-t border-gray-300 pb-32 pt-8 sm:pb-40 md:pt-16">
         {children}
       </PaddingWrapper>
 
