@@ -16,7 +16,7 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 
-const PATHS = ["/", "/artists", "/map"];
+const PATHS = ["/", "/artists", "/map", "/faq"];
 
 export function LetterSearch({
   phrase,
