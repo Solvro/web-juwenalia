@@ -8,7 +8,7 @@ import { PaddingWrapper } from "@/components/padding-wrapper";
 export function FaqWrapper({ children }: { children: React.ReactNode }) {
   return (
     <section className="relative bottom-[-8rem] mt-28 sm:mt-36">
-      <h1 className="overflow-wrap w-10/12 pb-3 text-2xl font-semibold leading-10 sm:pb-8 sm:text-3xl sm:font-extrabold md:text-4xl lg:text-5xl xl:text-6xl">
+      <h1 className="overflow-wrap w-10/12 pb-3 text-3xl font-semibold leading-10 sm:pb-8 sm:text-3xl sm:font-extrabold md:text-4xl lg:text-5xl xl:text-6xl">
         <PaddingWrapper>Najczęściej zadawane pytania</PaddingWrapper>
       </h1>
 
