@@ -6,7 +6,7 @@ import type { Faq } from "@/lib/types";
 
 export function QuestionContent({ faq, index }: { faq: Faq; index: number }) {
   return (
-    <Accordion.Item className="AccordionItem" value={`item-${index}`}>
+    <Accordion.Item className="AccordionItem" value={`item-${index.toString}`}>
       <Accordion.Trigger
         className={
           index === 0
