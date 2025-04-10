@@ -1,6 +1,5 @@
 "use client";
 
-import type { ClassValue } from "clsx";
 import Image from "next/image";
 
 import { LeafComponent } from "@/components/leaf-component";
