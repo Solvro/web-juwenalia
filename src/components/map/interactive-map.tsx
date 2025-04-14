@@ -51,7 +51,7 @@ export function InteractiveMap({ WrMapProps }: Props) {
   return (
     <div>
       <MapContainer
-        center={[51.106_972, 17.077_329]}
+        center={[51.123_211, 17.011_204]}
         zoom={16}
         scrollWheelZoom={true}
         dragging={false}
