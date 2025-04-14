@@ -13,7 +13,7 @@ export const MAP_ITEMS: MapLevel[] = [
     ),
     image: {
       src: "/hala-stulecia-zewnatrz.png",
-      alt: "Hala Stulecia Widok Satelitarny",
+      alt: "Teren Juwenaliów Widok Satelitarny",
     },
     nodes: [
       {
@@ -35,87 +35,6 @@ export const MAP_ITEMS: MapLevel[] = [
       {
         name: "Partnerzy/Atrakcje",
         color: "#CB6BA9",
-      },
-    ],
-  },
-  {
-    name: "Ground Floor",
-    description: "Trybuna A, strefa dla gości",
-    icon: <span className="text-4xl font-bold">1</span>,
-    image: {
-      src: "/hala-stulecia-poziom-0.png",
-      alt: "Hala Stulecia Parter",
-    },
-    nodes: [
-      {
-        name: "Coś ciekawego",
-        color: "#CD7E32",
-      },
-      {
-        name: "Coś ciekawszego",
-        color: "#32CBA3",
-      },
-      {
-        name: "Coś jeszcze ciekawszego",
-        color: "#5F6EB6",
-      },
-      {
-        name: "Coś najciekawszego",
-        color: "#BBE880",
-      },
-    ],
-  },
-  {
-    name: "Floor 1",
-    description: "Strefa atrakcji, backstage",
-    icon: <span className="text-4xl font-bold">0</span>,
-    image: {
-      src: "/hala-stulecia-poziom-1.png",
-      alt: "Hala Stulecia Piętro 1",
-    },
-    nodes: [
-      {
-        name: "Coś ciekawego 1",
-        color: "#CD7E32",
-      },
-      {
-        name: "Coś ciekawszego 1",
-        color: "#32CBA3",
-      },
-      {
-        name: "Coś jeszcze ciekawszego 1",
-        color: "#5F6EB6",
-      },
-      {
-        name: "Coś najciekawszego 1",
-        color: "#BBE880",
-      },
-    ],
-  },
-  {
-    name: "Floor -1",
-    description: "Scena techno, gastronomia, strefa partnera",
-    icon: <span className="text-4xl font-bold">-1</span>,
-    image: {
-      src: "/hala-stulecia-piwnica.png",
-      alt: "Hala Stulecia Piętro -1",
-    },
-    nodes: [
-      {
-        name: "Coś ciekawego 2",
-        color: "#CD7E32",
-      },
-      {
-        name: "Coś ciekawszego 2",
-        color: "#32CBA3",
-      },
-      {
-        name: "Coś jeszcze ciekawszego 2",
-        color: "#5F6EB6",
-      },
-      {
-        name: "Coś najciekawszego 2",
-        color: "#BBE880",
       },
     ],
   },
