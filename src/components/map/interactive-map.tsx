@@ -3,7 +3,6 @@
 import { Marker } from "@adamscybot/react-leaflet-component-marker";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { MapPin } from "lucide-react";
 import { useEffect } from "react";
 import {
   MapContainer,
@@ -15,6 +14,7 @@ import {
 
 import type { LeafletElement, WrItemPoint, WrItemPolyline } from "@/lib/types";
 
+import { MapPin } from "./map-pin";
 import { WrMapLegend } from "./wr-map-legend";
 
 interface Props {
