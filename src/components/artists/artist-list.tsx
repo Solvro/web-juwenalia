@@ -63,7 +63,9 @@ async function ArtistList() {
           </div>
         </PaddingWrapper>
       ) : (
-        <NoArtistInfo errorMessage="Artyści nie są jeszcze dostępni. Wróć tutaj później!" />
+        <div className="-mt-32">
+          <NoArtistInfo errorMessage="Artyści nie są jeszcze dostępni. Wróć tutaj później!" />
+        </div>
       )}
     </div>
   );
