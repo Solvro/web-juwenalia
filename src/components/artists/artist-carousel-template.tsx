@@ -122,7 +122,7 @@ export function Carousel({ artists }: { artists: ArtistProps[] }) {
 
   return (
     <>
-      <div className="sm:flex sm:items-center sm:justify-between">
+      <div className="pt-10 sm:flex sm:items-center sm:justify-between">
         <HomepageHeader>Tegoroczni artyści</HomepageHeader>
         <div className="hidden sm:block">
           {" "}
