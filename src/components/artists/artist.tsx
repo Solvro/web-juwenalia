@@ -145,7 +145,9 @@ export function Artist({
             </div>
           ))
         ) : (
-          <span className="mx-2">Brak informacji o koncertach.</span>
+          <span className="mx-2 flex text-left">
+            Brak informacji o koncertach.
+          </span>
         )}
       </div>
     </div>
