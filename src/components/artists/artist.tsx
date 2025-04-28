@@ -29,7 +29,7 @@ export function Artist({
   return (
     <div
       key={id}
-      className="flex flex-col items-center rounded-lg p-2 text-center text-xl"
+      className="flex max-w-[450px] flex-col items-center rounded-lg p-2 text-center text-xl"
     >
       <div
         className="relative h-[400px] w-full cursor-pointer sm:h-[621px]"
@@ -58,7 +58,7 @@ export function Artist({
             style={{ backfaceVisibility: "hidden", transform: "rotateY(0deg)" }}
           >
             <Image
-              className="aspect-square h-full w-full rounded-xl object-cover"
+              className="aspect-square h-full w-full rounded-xl object-contain"
               src={`${API_URL}/assets/${image}`}
               alt={`Zdjęcie artysty ${name}`}
               width={441}
