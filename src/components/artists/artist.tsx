@@ -54,7 +54,7 @@ export function Artist({
         >
           {/* Front side */}
           <div
-            className="backface-hidden absolute inset-0 h-full w-full lg:h-[90%]"
+            className="backface-hidden absolute inset-0 h-full w-full lg:h-[95%]"
             style={{ backfaceVisibility: "hidden", transform: "rotateY(0deg)" }}
           >
             <Image
@@ -79,7 +79,7 @@ export function Artist({
         </div>
       </div>
 
-      <div className="flex w-full flex-row justify-between">
+      <div className="flex w-full flex-row justify-between md:-mt-8 md:px-5">
         <h2 className="p-2 text-left text-2xl font-extrabold xl:text-3xl">
           {name.toUpperCase()}
         </h2>
@@ -122,33 +122,29 @@ export function Artist({
         </div>
       </div>
       <div className="w-full pr-4 text-sm lg:text-xl">
-        {events.length > 0 ? (
-          events.slice(0, 1).map((event) => (
-            <div
-              key={event.id}
-              className="mx-2 flex w-full justify-between text-sm lg:text-xl"
-            >
-              <div className="text-left">
-                {event.events_id.location.name.toUpperCase()}
-              </div>
-              {firstValidDay instanceof Date && (
-                <div className="text-right">
-                  {weekDays[firstValidDay.getDay()]}
-                  {` / `}
-                  {firstValidDay.getDate()}
-                  {`.`}
-                  {firstValidDay.getMonth() + 1}
-                  {` / `}
-                  {event.events_id.start_time.slice(0, 5)}
+        {events.length > 0
+          ? events.slice(0, 1).map((event) => (
+              <div
+                key={event.id}
+                className="mx-2 flex w-full justify-between text-sm lg:text-xl"
+              >
+                <div className="text-left">
+                  {event.events_id.location.name.toUpperCase()}
                 </div>
-              )}
-            </div>
-          ))
-        ) : (
-          <span className="mx-2 flex text-left">
-            Brak informacji o koncertach.
-          </span>
-        )}
+                {firstValidDay instanceof Date && (
+                  <div className="text-right">
+                    {weekDays[firstValidDay.getDay()]}
+                    {` / `}
+                    {firstValidDay.getDate()}
+                    {`.`}
+                    {firstValidDay.getMonth() + 1}
+                    {` / `}
+                    {event.events_id.start_time.slice(0, 5)}
+                  </div>
+                )}
+              </div>
+            ))
+          : null}
       </div>
     </div>
   );
