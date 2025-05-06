@@ -22,7 +22,7 @@ export async function LatestNews() {
   }
 
   return (
-    <div className="text-xs sm:text-sm md:text-base">
+    <div className="pt-10 text-xs sm:text-sm md:text-base">
       <HomepageHeader>Najnowsze aktualności</HomepageHeader>
 
       <div className="flex flex-col items-center md:items-start md:gap-5 lg:gap-10">
