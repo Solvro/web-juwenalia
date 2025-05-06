@@ -68,7 +68,7 @@ export function Artist({
 
           {/* Back side */}
           <div
-            className="absolute inset-0 flex h-full w-full items-center justify-center overflow-y-auto rounded-xl border border-black bg-white p-4 text-black lg:h-[90%]"
+            className="absolute inset-0 flex h-[90%] w-full items-center justify-center overflow-y-auto rounded-xl border border-black bg-white p-4 text-black"
             style={{
               backfaceVisibility: "hidden",
               transform: "rotateY(180deg)",

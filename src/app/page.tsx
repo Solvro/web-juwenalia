@@ -17,7 +17,7 @@ export default function Home() {
       {/*Uncomment this line to include the About Us section*/}
       <FrequentlyAskedQuestions />
       <LatestNews />
-      {/*<AboutUs />*/}{" "}
+      {/*<AboutUs />*/}
       {/*Uncomment this line to include the About Us section*/}
     </>
   );

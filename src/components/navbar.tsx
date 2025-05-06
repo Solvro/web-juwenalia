@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import type { ReactNode } from "react";
 
-// import { Button } from "@/components/button";
+import { Button } from "@/components/button";
 import { PaddingWrapper } from "@/components/padding-wrapper";
 import { NAV_LINKS } from "@/config/data";
 import { cn } from "@/lib/utils";
@@ -78,15 +78,15 @@ export function Navbar() {
           ))}
         </div>
 
-        {/*<Button*/}
-        {/*  as={Link}*/}
-        {/*  href="/"*/}
-        {/*  variant="gradient"*/}
-        {/*  variantColor={currentPath === "/" ? "white" : "black"}*/}
-        {/*  className="h-14 max-w-[200px]"*/}
-        {/*>*/}
-        {/*  kup bilet*/}
-        {/*</Button>*/}
+        <Button
+          as={Link}
+          href="/"
+          variant="gradient"
+          variantColor={currentPath === "/" ? "white" : "black"}
+          className="h-14"
+        >
+          Akredytacja Medialna
+        </Button>
       </div>
       <div className="flex lg:hidden">
         <NavbarMobile isOpened={isMenuOpen} onOpenChange={changeLogoState} />

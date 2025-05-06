@@ -7,7 +7,7 @@ import type { ArrayIndex, Organisation } from "@/lib/types";
 
 import { OrganisationDisplay } from "./organisation-display";
 
-const PARTNER_TYPES = ["Główni", "Medialni"] as const;
+const PARTNER_TYPES = ["Honorowi", "Medialni"] as const;
 
 export function PartnersList({
   mainPartners,

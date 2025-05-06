@@ -67,7 +67,7 @@ export async function AboutUs() {
 
   return (
     <div className="mt-24 flex flex-col gap-24 md:mt-32 md:gap-32 lg:mt-48 lg:gap-64">
-      <Section header="Partnerzy">
+      <Section header="Patroni">
         <PartnersList
           mainPartners={forMainPartners}
           mediaPartners={forMediaPartners}
