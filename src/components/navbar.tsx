@@ -80,7 +80,7 @@ export function Navbar() {
 
         <Button
           as={Link}
-          href="/"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSepW2oQ1f1lAmfYBfDi_zP-vB-i7bfVFkXpHE7IaA72jq55SA/viewform?usp=header"
           variant="gradient"
           variantColor={currentPath === "/" ? "white" : "black"}
           className="h-14"
