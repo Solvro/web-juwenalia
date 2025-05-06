@@ -24,7 +24,19 @@ const WEBSITE_URL =
 
 export const metadata: Metadata = {
   title: "Juwenalia 2025 #WrocławRazem",
-  description: "Juwenalia Wrocław",
+  description:
+    "Oficjalna strona Juwenaliów Wrocław Razem 2025 – program, line-up, bilety i strefy wydarzeń.",
+  keywords: [
+    "Juwenalia 2025",
+    "Wrocław",
+    "studenci",
+    "Juwenalia Wrocław",
+    "Juwenalia Wrocław 2025",
+    "Juwenalia 2025 Wrocław Razem",
+    "Juwenalia 2025 #WrocławRazem",
+    "Juwenalia #WrocławRazem",
+    "Juwenalia",
+  ],
   icons: {
     icon: "/favicon.svg",
   },
