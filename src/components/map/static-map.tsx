@@ -20,14 +20,6 @@ export function StaticMap() {
 
   return (
     <div id="map-container">
-      {/* <h2 className="mt-16 hidden font-semibold sm:block">Poziomy</h2>
-      <div className="mt-5 hidden w-full sm:grid sm:grid-cols-2 sm:gap-2 xl:grid-cols-4">
-        <MapLevelSelector
-          currentLevelIndex={currentLevelIndex}
-          setCurrentLevelIndex={setCurrentLevelIndex}
-        />
-      </div> */}
-
       <div className="mt-16 flex w-full flex-row items-center justify-between">
         <h2 className="mt-auto font-semibold">Mapa</h2>
         <MapEnlargementButton currentView={currentLevel} />
