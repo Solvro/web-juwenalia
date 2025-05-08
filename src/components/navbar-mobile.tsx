@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// import { Button } from "@/components/button";
+import { Button } from "@/components/button";
 import {
   Sheet,
   SheetContent,
@@ -86,15 +86,15 @@ export function NavbarMobile({ isOpened, onOpenChange }: NavbarMobileProps) {
             ))}
           </div>
 
-          {/*<Button*/}
-          {/*  as={Link}*/}
-          {/*  href="https://docs.google.com/forms/d/e/1FAIpQLSepW2oQ1f1lAmfYBfDi_zP-vB-i7bfVFkXpHE7IaA72jq55SA/viewform?usp=header"*/}
-          {/*  className="!w-full !bg-gradient-main !py-4 before:!bg-black/10 [&_*]:hover:!text-white"*/}
-          {/*  variant="default"*/}
-          {/*  variantColor="white"*/}
-          {/*>*/}
-          {/*  Akredytacja Medialna*/}
-          {/*</Button>*/}
+          <Button
+            as={Link}
+            href="https://docs.google.com/forms/d/e/1FAIpQLSepW2oQ1f1lAmfYBfDi_zP-vB-i7bfVFkXpHE7IaA72jq55SA/viewform?usp=header"
+            className="!w-full !bg-gradient-main !py-4 before:!bg-black/10 [&_*]:hover:!text-white"
+            variant="default"
+            variantColor="white"
+          >
+            Akredytacja Medialna
+          </Button>
         </div>
       </SheetContent>
     </Sheet>
