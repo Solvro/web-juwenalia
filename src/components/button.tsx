@@ -82,7 +82,7 @@ function ButtonInner<T extends React.ElementType = "button">(
         }),
         "group pointer-events-auto inline-flex w-fit before:pointer-events-auto before:absolute before:bg-transparent before:content-['']" +
           " isolate before:left-1/2 before:top-full before:z-[-1] before:h-[200%] before:w-[110%] before:-translate-x-1/2 before:rounded-[50%]" +
-          " before:ease-[cubic-bezier(.23,1,.32,1)] before:transition-all before:duration-200 hover:before:-top-1/2" +
+          " before:ease-efore:ease-[cubic-bezier(.23,1,.32,1)]lsqb;cubic-bezier(.23,1,.32,1)efore:ease-[cubic-bezier(.23,1,.32,1)]rsqb; before:transition-all before:duration-200 hover:before:-top-1/2" +
           " z-2 before:pointer-events-none hover:before:origin-top hover:before:ease-in",
         {
           "before:bg-white":

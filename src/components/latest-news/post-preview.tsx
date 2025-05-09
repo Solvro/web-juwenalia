@@ -20,7 +20,7 @@ export function PostPreview({ post }: { post: NewsPost }) {
 
   useEffect(() => {
     setIsMounted(true);
-    if (contentRef.current && isMounted) {
+    if (contentRef.current !== null && isMounted) {
       contentRef.current.innerHTML = post.content;
     }
   }, [post.content, isMounted]);
@@ -37,7 +37,7 @@ export function PostPreview({ post }: { post: NewsPost }) {
         <div className="flex flex-col items-start gap-3">
           <div
             className={cn(
-              "invisible grid grid-rows-animate-height-closed opacity-0 transition-all ease-in-out",
+              "ease-&lsqb;cubic-bezier(0.85,0,0.15,1)&rsqb; invisible grid grid-rows-animate-height-closed opacity-0 transition-all",
               {
                 "visible grid-rows-animate-height-open opacity-100":
                   showDetails,
