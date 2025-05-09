@@ -8,20 +8,17 @@ import type { ArrayIndex, Organisation, Person } from "@/lib/types";
 
 import { OrganisationDisplay } from "./organisation-display";
 
-const ROLES = ["Organizatorzy", "Koordynatorzy", "Sztab"] as const;
+const ROLES = ["Organizatorzy", "Sztab"] as const;
 
 export function OrganisersList({
   organisers,
-  coordinators,
   staff,
 }: {
   organisers: Organisation[];
-  coordinators: Person[];
   staff: Person[];
 }) {
   const [selectedIndex, setSelectedIndex] =
     useState<ArrayIndex<typeof ROLES>>(0);
-  const section = selectedIndex === 1 ? coordinators : staff;
 
   return (
     <>
@@ -34,7 +31,7 @@ export function OrganisersList({
         // TODO: Convert into carousel
         <OrganisationDisplay forDisplay={organisers} />
       ) : (
-        <PersonCardList people={section} />
+        <PersonCardList people={staff} />
       )}
     </>
   );
