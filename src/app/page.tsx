@@ -1,4 +1,4 @@
-// import { AboutUs } from "@/components/about-us/about-us-section";
+import { AboutUs } from "@/components/about-us/about-us-section";
 import { ArtistsCarousel } from "@/components/artists/artists-carousel";
 import { Countdown } from "@/components/countdown";
 import { FrequentlyAskedQuestions } from "@/components/faq/faq-section";
@@ -17,7 +17,7 @@ export default function Home() {
       {/*Uncomment this line to include the About Us section*/}
       <FrequentlyAskedQuestions />
       <LatestNews />
-      {/*<AboutUs />*/}
+      <AboutUs />
       {/*Uncomment this line to include the About Us section*/}
     </>
   );

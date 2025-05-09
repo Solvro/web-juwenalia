@@ -6,6 +6,7 @@ import { fetchData } from "@/lib/api";
 import type { Organisation, Person } from "@/lib/types";
 
 import { HomepageHeader } from "../homepage-header";
+import { OrganisationDisplay } from "./organisation-display";
 import { OrganisersList } from "./organisers";
 import { PartnersList } from "./partners";
 
@@ -52,9 +53,6 @@ export async function AboutUs() {
   const forStaff = responsePersons.data.filter(
     (person) => person.title === "1",
   );
-  const forCoordinators = responsePersons.data.filter(
-    (person) => person.title === "2",
-  );
   const forOrganisers = responseOrganisations.data.filter(
     (organisation) => organisation.role === "1",
   );
@@ -63,6 +61,9 @@ export async function AboutUs() {
   );
   const forMediaPartners = responseOrganisations.data.filter(
     (organisation) => organisation.role === "3",
+  );
+  const forSponsors = responseOrganisations.data.filter(
+    (organisation) => organisation.role === "4",
   );
 
   return (
@@ -75,11 +76,11 @@ export async function AboutUs() {
       </Section>
 
       <Section header="Organizatorzy">
-        <OrganisersList
-          organisers={forOrganisers}
-          coordinators={forCoordinators}
-          staff={forStaff}
-        />
+        <OrganisersList organisers={forOrganisers} staff={forStaff} />
+      </Section>
+
+      <Section header="Sponsorzy">
+        <OrganisationDisplay forDisplay={forSponsors} />
       </Section>
     </div>
   );
