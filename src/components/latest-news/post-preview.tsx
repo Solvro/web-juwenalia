@@ -2,7 +2,7 @@
 
 import { format } from "date-fns";
 import { pl } from "date-fns/locale";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { PaddingWrapper } from "@/components/padding-wrapper";
 import type { NewsPost } from "@/lib/types";
@@ -15,6 +15,16 @@ export function PostPreview({ post }: { post: NewsPost }) {
     locale: pl,
   });
   const [showDetails, setShowDetails] = useState(false);
+  const contentRef = useRef<HTMLParagraphElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    if (contentRef.current && isMounted) {
+      contentRef.current.innerHTML = post.content;
+    }
+  }, [post.content, isMounted]);
+
   return (
     <PaddingWrapper className="flex w-full flex-col items-start gap-2 py-3 md:flex-row md:justify-between">
       <p className="bg-gradient-main bg-clip-text text-xs text-transparent md:text-sm lg:text-base">
@@ -35,9 +45,8 @@ export function PostPreview({ post }: { post: NewsPost }) {
             )}
           >
             <p
+              ref={contentRef}
               className="mt-6 overflow-hidden whitespace-pre-line"
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: post.content }}
             />
           </div>
           <Button
