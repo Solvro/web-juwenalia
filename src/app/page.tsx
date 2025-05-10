@@ -14,11 +14,9 @@ export default function Home() {
       <Schedule />
       <ArtistsCarousel />
       {/*<TicketsComingSoon />*/}
-      {/*Uncomment this line to include the About Us section*/}
       <FrequentlyAskedQuestions />
       <LatestNews />
       <AboutUs />
-      {/*Uncomment this line to include the About Us section*/}
     </>
   );
 }

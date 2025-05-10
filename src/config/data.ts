@@ -33,6 +33,11 @@ export const NAV_LINKS: NavLink[] = [
     url: "/map",
     label: "Przejdź do strony z mapą wydarzenia",
   },
+  {
+    name: "O nas",
+    url: "/about",
+    label: "Przejdź do strony o organizatorach wydarzenia",
+  },
 ];
 
 export const HERO_BG_BLUR_HASH =

@@ -27,7 +27,7 @@ export function PartnersList({
         setSelectedIdx={setSelectedIndex}
       />
 
-      <OrganisationDisplay forDisplay={section} />
+      <OrganisationDisplay organisations={section} />
     </>
   );
 }

@@ -5,13 +5,13 @@ import { API_URL } from "@/config/api";
 import type { Organisation } from "@/lib/types";
 
 export function OrganisationDisplay({
-  forDisplay,
+  organisations,
 }: {
-  forDisplay: Organisation[];
+  organisations: Organisation[];
 }) {
   return (
     <ul className="grid grid-cols-2 items-center gap-x-4 gap-y-5 sm:gap-x-8 md:grid-cols-3 md:gap-x-12 lg:grid-cols-4 lg:gap-x-16 xl:grid-cols-5 xl:gap-x-20 2xl:gap-x-24">
-      {forDisplay.map((organisation) => (
+      {organisations.map((organisation) => (
         <li
           key={`organiser-${organisation.name}`}
           className="grid w-full place-items-center"
