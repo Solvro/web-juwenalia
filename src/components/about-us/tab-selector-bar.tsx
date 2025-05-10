@@ -47,7 +47,7 @@ export function TabSelectorBar<T extends readonly string[]>({
 }: {
   options: T;
   selectedIdx: ArrayIndex<T>;
-  setSelectedIdx?: Dispatch<SetStateAction<ArrayIndex<T>>>;
+  setSelectedIdx: Dispatch<SetStateAction<ArrayIndex<T>>>;
 }) {
   const [markerStyle, setMarkerStyle] = useState<CSSProperties>({});
   const markerRef = useRef<HTMLDivElement | null>(null);
@@ -78,9 +78,7 @@ export function TabSelectorBar<T extends readonly string[]>({
     event: MouseEvent<HTMLButtonElement>,
     index: ArrayIndex<T>,
   ) {
-    if (setSelectedIdx != null) {
-      setSelectedIdx(index);
-    }
+    setSelectedIdx(index);
     updateMarkerStyle(event.currentTarget);
   }
 
