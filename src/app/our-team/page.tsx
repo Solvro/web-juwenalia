@@ -1,5 +1,6 @@
-import { AboutUsSection } from "@/components/about-us/about-us-section";
 import { PersonCardList } from "@/components/about-us/person-card-list";
+import { PaddingWrapper } from "@/components/padding-wrapper";
+import { PageHeader } from "@/components/page-header";
 import { fetchData } from "@/lib/api";
 import type { Person } from "@/lib/types";
 
@@ -10,10 +11,11 @@ export default async function AboutUsPage() {
   const staff = result.data.filter((person) => person.title === "1");
 
   return (
-    <div className="mt-24 flex flex-col gap-24 md:mt-32 md:gap-32 lg:mt-48 lg:gap-64">
-      <AboutUsSection header="Nasz Zespół">
+    <div className="mt-48">
+      <PageHeader>Nasz zespół</PageHeader>
+      <PaddingWrapper className="mt-8">
         <PersonCardList people={staff} />
-      </AboutUsSection>
+      </PaddingWrapper>
     </div>
   );
 }
