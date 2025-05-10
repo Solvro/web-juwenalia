@@ -28,7 +28,7 @@ export function StaticMap() {
         />
       </div>
 
-      <div className="mt-16 flex w-full flex-row items-center justify-between">
+      <div className="mt-16 hidden w-full flex-row items-center justify-between md:flex">
         <h2 className="mt-auto font-semibold">Mapa</h2>
         <MapEnlargementButton currentView={currentLevel} />
       </div>
