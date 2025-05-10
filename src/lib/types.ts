@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+import type { ORGANISATION_ROLES } from "@/config/data";
+
 export interface ArtistProps {
   id: number;
   name: string;
@@ -66,12 +68,14 @@ export type ArrayIndex<T extends readonly unknown[]> = ParseInt<
   Exclude<keyof T, keyof []>
 >;
 
+type OrganisationRole = keyof typeof ORGANISATION_ROLES;
+
 export interface Organisation {
   name: string;
   url: string;
   logo: string;
   logoScale?: number;
-  role: string;
+  role: (typeof ORGANISATION_ROLES)[OrganisationRole];
 }
 
 export interface Person {

@@ -11,7 +11,7 @@ export default async function AboutUsPage() {
 
   return (
     <div className="mt-24 flex flex-col gap-24 md:mt-32 md:gap-32 lg:mt-48 lg:gap-64">
-      <AboutUsSection header="Skład Sztabu">
+      <AboutUsSection header="Nasz Zespół">
         <PersonCardList people={staff} />
       </AboutUsSection>
     </div>
