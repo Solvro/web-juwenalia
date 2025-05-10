@@ -3,8 +3,8 @@ import { NoArtistInfo } from "@/components/no-artist-info";
 import { fetchData } from "@/lib/api";
 import type { ArtistProps } from "@/lib/types";
 
-import { HorizontalRule } from "../horizontal-rule";
 import { PaddingWrapper } from "../padding-wrapper";
+import { PageHeader } from "../page-header";
 
 // if we need shuffling the artists, so everyone in their respective category
 // gets a somewhat even representation on our site
@@ -44,16 +44,7 @@ async function ArtistList() {
 
   return (
     <div className="mt-48">
-      <PaddingWrapper>
-        <h1
-          className={
-            "my-8 text-center text-2xl font-extrabold sm:text-left sm:text-5xl"
-          }
-        >
-          Tegoroczni artyści
-        </h1>
-      </PaddingWrapper>
-      <HorizontalRule />
+      <PageHeader>Tegoroczni artyści</PageHeader>
       {artists.length > 0 ? (
         <PaddingWrapper className="mt-8">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
