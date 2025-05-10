@@ -2,11 +2,13 @@ import type { ReactNode } from "react";
 
 import { HorizontalRule } from "@/components/horizontal-rule";
 import { PaddingWrapper } from "@/components/padding-wrapper";
+import { ORGANISATION_ROLES } from "@/config/data";
 import { fetchData } from "@/lib/api";
 import type { Organisation } from "@/lib/types";
 
 import { HomepageHeader } from "../homepage-header";
 import { OrganisationDisplay } from "./organisation-display";
+import { OrganisersList } from "./organisers";
 import { PartnersList } from "./partners";
 
 export function AboutUsSection({
@@ -44,34 +46,37 @@ export async function AboutUs() {
   const responseOrganisations = await fetchData<{ data: Organisation[] }>(
     "items/organisations?fields=name, url, logo, logoScale, role",
   );
-  const forOrganisers = responseOrganisations.data.filter(
-    (organisation) => organisation.role === "1",
-  );
-  const forMainPartners = responseOrganisations.data.filter(
-    (organisation) => organisation.role === "2",
-  );
-  const forMediaPartners = responseOrganisations.data.filter(
-    (organisation) => organisation.role === "3",
-  );
-  const forSponsors = responseOrganisations.data.filter(
-    (organisation) => organisation.role === "4",
-  );
+  const groups: Record<Organisation["role"], Organisation[]> = {
+    [ORGANISATION_ROLES.UNIVERSITY]: [],
+    [ORGANISATION_ROLES.STUDENT_ORGANISATION]: [],
+    [ORGANISATION_ROLES.MAIN_PARTNER]: [],
+    [ORGANISATION_ROLES.MEDIA_PARTNER]: [],
+    [ORGANISATION_ROLES.SPONSOR]: [],
+  };
+  for (const organisation of responseOrganisations.data) {
+    groups[organisation.role].push(organisation);
+  }
 
   return (
     <div className="mt-24 flex flex-col gap-24 md:mt-32 md:gap-32 lg:mt-48 lg:gap-64">
       <AboutUsSection header="Patroni">
         <PartnersList
-          mainPartners={forMainPartners}
-          mediaPartners={forMediaPartners}
+          mainPartners={groups[ORGANISATION_ROLES.MAIN_PARTNER]}
+          mediaPartners={groups[ORGANISATION_ROLES.MEDIA_PARTNER]}
         />
       </AboutUsSection>
 
       <AboutUsSection header="Organizatorzy">
-        <OrganisationDisplay organisations={forOrganisers} />
+        <OrganisersList
+          universities={groups[ORGANISATION_ROLES.UNIVERSITY]}
+          studentOrganisations={groups[ORGANISATION_ROLES.STUDENT_ORGANISATION]}
+        />
       </AboutUsSection>
 
       <AboutUsSection header="Sponsorzy">
-        <OrganisationDisplay organisations={forSponsors} />
+        <OrganisationDisplay
+          organisations={groups[ORGANISATION_ROLES.SPONSOR]}
+        />
       </AboutUsSection>
     </div>
   );

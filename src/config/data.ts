@@ -34,11 +34,19 @@ export const NAV_LINKS: NavLink[] = [
     label: "Przejdź do strony z mapą wydarzenia",
   },
   {
-    name: "O nas",
-    url: "/about",
+    name: "Nasz zespół",
+    url: "/our-team",
     label: "Przejdź do strony o organizatorach wydarzenia",
   },
 ];
 
 export const HERO_BG_BLUR_HASH =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAAXNSR0IArs4c6QAAAIhJREFUGFdFjbsKwkAUBee6eWgKIUhIowTExiDih+j/N36AQkA0BDHZvVfWxilONZyRumrMUEQEA8zi/pHDpjVLPIr9hPcUCGrRRM2Qy7G1uizwwcjmOV0/MoaAemXmQM77na2rgsdrYlUuud560tQxeCWLD6emsdwlDJ/Atlxwf450kxIkZuALpi9AOLz+vL4AAAAASUVORK5CYII=";
+
+export const ORGANISATION_ROLES = {
+  UNIVERSITY: "0",
+  STUDENT_ORGANISATION: "1",
+  MAIN_PARTNER: "2",
+  MEDIA_PARTNER: "3",
+  SPONSOR: "4",
+} as const;
