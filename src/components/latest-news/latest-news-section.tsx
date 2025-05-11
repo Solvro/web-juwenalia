@@ -11,7 +11,7 @@ export async function LatestNews() {
   let posts;
   try {
     const response = await fetchData<{ data: NewsPost[] }>("items/news");
-    posts = response.data;
+    posts = response.data.reverse();
   } catch (error) {
     console.error("Error fetching news posts:", error);
     return null;
