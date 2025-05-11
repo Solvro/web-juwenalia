@@ -115,6 +115,7 @@ function Footer() {
             text="Inne"
             className="col-span-2 flex w-full flex-grow pt-6 sm:col-span-3 md:col-span-4 lg:col-span-1 lg:row-start-2 xl:row-start-1"
           >
+            <ListItem text="Regulamin" url="/regulamin_juwenalia_2025.pdf" />
             <ListItem
               text="Polityka prywatności"
               url={FOOTER_LINKS.privacyPolicy}
