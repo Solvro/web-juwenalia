@@ -78,7 +78,7 @@ export function Navbar() {
           ))}
         </div>
 
-        <Button
+        {/* <Button
           as={Link}
           href="https://docs.google.com/forms/d/e/1FAIpQLSepW2oQ1f1lAmfYBfDi_zP-vB-i7bfVFkXpHE7IaA72jq55SA/viewform?usp=header"
           variant="gradient"
@@ -86,7 +86,7 @@ export function Navbar() {
           className="h-14"
         >
           Akredytacja Medialna
-        </Button>
+        </Button> */}
       </div>
       <div className="flex lg:hidden">
         <NavbarMobile isOpened={isMenuOpen} onOpenChange={changeLogoState} />
