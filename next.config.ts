@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    // Wyłączenie optymalizacji obrazów proxy (_next/image)
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",

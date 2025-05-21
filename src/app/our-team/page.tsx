@@ -8,7 +8,8 @@ export default async function AboutUsPage() {
   const result = await fetchData<{ data: Person[] }>(
     "items/persons?fields=name, title, image, role",
   );
-  const staff = result.data.filter((person) => person.title === "1");
+  // Wyświetlamy całą listę osób zamiast tylko tych ze starszą wartością title === "1"
+  const staff = result.data;
 
   return (
     <div className="mt-48">

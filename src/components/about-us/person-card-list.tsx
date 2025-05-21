@@ -15,7 +15,7 @@ function PersonCard({ person }: { person: Person }) {
     : DEFAULT_IMAGE_MALE;
   return (
     <div className="flex max-w-[200px] flex-col items-center text-center">
-      <div className="overflow-hidden rounded-full bg-neutral-300">
+      <div className="h-[125px] w-[125px] overflow-hidden rounded-full bg-neutral-300">
         <Image
           src={
             person.image != null && person.image.trim() !== ""
@@ -25,11 +25,10 @@ function PersonCard({ person }: { person: Person }) {
           alt={`${person.name}'s photo`}
           width={125}
           height={125}
-          className="flex items-center"
+          className="h-full w-full object-cover"
         />
       </div>
       <p className="mt-3 text-lg">{person.name}</p>
-      <small className="text-xs uppercase">{person.role}</small>
     </div>
   );
 }
