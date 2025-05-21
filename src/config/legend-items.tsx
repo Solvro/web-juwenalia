@@ -1,5 +1,6 @@
 import { SunIcon } from "lucide-react";
 
+import staticMapImage from "@/../public/images/mapa-statyczna.png";
 import type { MapLevel } from "@/lib/types";
 
 export const MAP_ITEMS: MapLevel[] = [
@@ -12,7 +13,7 @@ export const MAP_ITEMS: MapLevel[] = [
       </div>
     ),
     image: {
-      src: "/images/mapa-statyczna.png",
+      src: staticMapImage,
       alt: "Teren Juwenaliów Widok Satelitarny",
     },
     nodes: [
