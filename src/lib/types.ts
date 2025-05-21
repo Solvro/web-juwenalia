@@ -1,3 +1,4 @@
+import type { StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 
 import type { ORGANISATION_ROLES } from "@/config/data";
@@ -99,7 +100,7 @@ export interface MapLevel {
   description: string;
   icon: ReactNode;
   image: {
-    src: string;
+    src: StaticImageData;
     alt: string;
   };
   nodes: {
