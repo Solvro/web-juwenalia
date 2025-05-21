@@ -9,6 +9,9 @@ export async function FrequentlyAskedQuestions() {
   if (faqs.data.length === 0) {
     return null;
   }
+
+  const slicedFaqs = faqs.data.slice(0, 5);
+
   return (
     <PaddingWrapper>
       <div className="mb-14 mt-24 box-border grid grid-cols-12 justify-between gap-2 sm:gap-4 md:gap-6">
@@ -17,7 +20,7 @@ export async function FrequentlyAskedQuestions() {
             Częste Pytania
           </h2>
         </div>
-        {faqs.data.map((faq, index) => (
+        {slicedFaqs.map((faq, index) => (
           <FrequentlyAskedQuestion
             key={faq.id}
             faqs={faqs.data}
