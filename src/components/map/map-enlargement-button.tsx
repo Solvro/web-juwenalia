@@ -1,4 +1,5 @@
 import { Maximize } from "lucide-react";
+import type { StaticImageData } from "next/image";
 import Image from "next/image";
 
 import type { MapLevel } from "@/lib/types";
@@ -15,8 +16,10 @@ import {
 
 export function MapEnlargementButton({
   currentView,
+  image,
 }: {
   currentView: MapLevel;
+  image: StaticImageData;
 }) {
   return (
     <Dialog>
@@ -38,7 +41,7 @@ export function MapEnlargementButton({
           </DialogTitle>
           <DialogDescription className="relative h-[85vh] w-full">
             <Image
-              src={currentView.image.src}
+              src={image}
               alt={currentView.image.alt}
               fill
               className="rounded-3xl object-contain"

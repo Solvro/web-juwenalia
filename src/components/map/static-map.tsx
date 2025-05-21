@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
+import staticMapImage from "@/../public/images/mapa-statyczna.png";
 import { MAP_ITEMS } from "@/config/legend-items";
 import { cn } from "@/lib/utils";
 
@@ -22,21 +23,20 @@ export function StaticMap() {
     <div id="map-container">
       <div className="mt-16 flex w-full flex-row items-center justify-between">
         <h2 className="mt-auto font-semibold">Mapa</h2>
-        <MapEnlargementButton currentView={currentLevel} />
+        <MapEnlargementButton
+          currentView={currentLevel}
+          image={staticMapImage}
+        />
       </div>
 
-      <div
-        id="map"
-        className="relative mt-5 h-full min-h-[100svh] w-full xl:min-h-[90svh]"
-      >
+      <div id="map" className="relative mt-5 h-full w-full xl:min-h-[90svh]">
         {MAP_ITEMS.map((dialogMapLevel, dialogMapLevelIndex) => (
           <Image
             key={dialogMapLevel.name}
-            src={dialogMapLevel.image.src}
+            src={staticMapImage}
             alt={dialogMapLevel.image.alt}
-            fill
             className={cn(
-              "aspect-auto h-full w-full rounded-3xl object-cover object-center",
+              "mx-auto aspect-auto h-full w-full max-w-6xl rounded-3xl object-center",
               {
                 hidden: dialogMapLevelIndex !== currentLevelIndex,
               },
