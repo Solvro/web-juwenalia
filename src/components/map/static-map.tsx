@@ -1,10 +1,10 @@
 import Image from "next/image";
+import { useState } from "react";
 
 import { MAP_ITEMS } from "@/config/legend-items";
 import { cn } from "@/lib/utils";
 
 import { MapEnlargementButton } from "./map-enlargement-button";
-import { useState } from "react";
 import { MapLevelSelector } from "./map-level-selector";
 
 export function StaticMap() {
