@@ -1,6 +1,9 @@
+import Link from "next/link";
+
 import { fetchData } from "@/lib/api";
 import type { Faq } from "@/lib/types";
 
+import { Button } from "../button";
 import { PaddingWrapper } from "../padding-wrapper";
 import { FrequentlyAskedQuestion } from "./faq-card";
 
@@ -10,7 +13,7 @@ export async function FrequentlyAskedQuestions() {
     return null;
   }
 
-  const slicedFaqs = faqs.data.slice(0, 5);
+  const slicedFaqs = faqs.data.slice(0, 6);
 
   return (
     <PaddingWrapper>
@@ -28,6 +31,14 @@ export async function FrequentlyAskedQuestions() {
           />
         ))}
       </div>
+      <Button
+        as={Link}
+        href="/faq"
+        variant="secondary"
+        className="ml-4 mr-20 w-full max-w-[225px]"
+      >
+        zobacz więcej
+      </Button>
     </PaddingWrapper>
   );
 }
