@@ -14,6 +14,7 @@ import type { ReactNode } from "react";
 
 import BgImage from "@/../public/images/background_homepage.webp";
 import { HERO_BG_BLUR_HASH } from "@/config/data";
+import { cn } from "@/lib/utils";
 
 import { PaddingWrapper } from "./padding-wrapper";
 
@@ -35,7 +36,10 @@ function CountdownOverText({
 }) {
   return (
     <p
-      className={`mt-[55vh] flex justify-start text-[4vh] leading-[4vh] sm:my-[5vh] sm:w-[80vw] sm:items-center sm:justify-center ${smTextClass}`}
+      className={cn(
+        "flex justify-start text-[4vh] leading-[4vh] sm:my-[5vh] sm:w-[80vw] sm:items-center sm:justify-center",
+        smTextClass,
+      )}
     >
       {children}
     </p>
@@ -136,16 +140,14 @@ function Countdown() {
               Do zobaczenia za rok!
             </CountdownOverText>
           )}
-
-          <div className="pt-8 sm:pt-0">
-            <h1 className="flex flex-col py-[1vh] text-left text-lg font-normal leading-tight sm:max-w-full sm:py-[3vh] sm:text-center sm:text-2xl lg:text-3xl xl:text-4xl">
-              Juwenalia #WrocławRazem
-              <span className="font-black">już 21 i 22 maja</span>
-            </h1>
-          </div>
         </PaddingWrapper>
       </div>
-
+      <div className="absolute bottom-16 w-full pl-10 pt-8 text-left text-[#FFF] sm:bottom-20 sm:p-0 sm:text-center">
+        <h1 className="flex flex-col py-[1vh] text-left text-lg font-normal leading-tight sm:max-w-full sm:py-[3vh] sm:text-center sm:text-2xl lg:text-3xl xl:text-4xl">
+          Juwenalia #WrocławRazem
+          <span className="font-black">już 21 i 22 maja</span>
+        </h1>
+      </div>
       <div className="absolute bottom-5 flex scale-[.8] justify-start text-left sm:bottom-10 sm:left-1/2 sm:-translate-x-1/2 sm:justify-center lg:scale-[0.85] xl:scale-100">
         <Image
           src="/wroclawrazem.svg"
