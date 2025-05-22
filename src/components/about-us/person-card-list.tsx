@@ -13,21 +13,21 @@ function PersonCard({ person }: { person: Person }) {
   const defaultImage = getForename(person).endsWith("a")
     ? DEFAULT_IMAGE_FEMALE
     : DEFAULT_IMAGE_MALE;
+  const src = person.image?.trim()
+    ? `${API_URL}/assets/${person.image}`
+    : `/${defaultImage}`;
+
   return (
     <div className="flex max-w-[200px] flex-col items-center text-center">
-      <div className="h-[125px] w-[125px] overflow-hidden rounded-full bg-neutral-300">
+      <div className="relative h-[125px] w-[125px] overflow-hidden rounded-full">
         <Image
-          src={
-            person.image != null && person.image.trim() !== ""
-              ? `${API_URL}/assets/${person.image}`
-              : `/${defaultImage}`
-          }
+          src={src}
           alt={`${person.name}'s photo`}
-          width={125}
-          height={125}
-          className="h-full w-full object-cover"
+          fill
+          className="absolute inset-0 origin-top scale-125 transform object-cover object-center"
         />
       </div>
+
       <p className="mt-3 text-lg">{person.name}</p>
     </div>
   );
