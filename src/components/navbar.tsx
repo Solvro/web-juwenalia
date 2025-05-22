@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import type { ReactNode } from "react";
 
-import { Button } from "@/components/button";
+// import { Button } from "@/components/button";
 import { PaddingWrapper } from "@/components/padding-wrapper";
 import { NAV_LINKS } from "@/config/data";
 import { cn } from "@/lib/utils";
@@ -78,7 +78,7 @@ export function Navbar() {
           ))}
         </div>
 
-        <Button
+        {/* <Button
           as={Link}
           href="https://docs.google.com/forms/d/e/1FAIpQLSel3CXdWuvrGTLkkrIMJWkvMqw6AiVz2cy2bAYw5bQntOFRQw/viewform?usp=send_form"
           variant="gradient"
@@ -86,7 +86,7 @@ export function Navbar() {
           className="h-14"
         >
           Turniej flanek
-        </Button>
+        </Button> */}
       </div>
       <div className="flex lg:hidden">
         <NavbarMobile isOpened={isMenuOpen} onOpenChange={changeLogoState} />

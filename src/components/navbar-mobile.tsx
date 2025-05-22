@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { Button } from "@/components/button";
+// import { Button } from "@/components/button";
 import {
   Sheet,
   SheetContent,
@@ -86,7 +86,7 @@ export function NavbarMobile({ isOpened, onOpenChange }: NavbarMobileProps) {
             ))}
           </div>
 
-          <Button
+          {/* <Button
             as={Link}
             href="https://docs.google.com/forms/d/e/1FAIpQLSel3CXdWuvrGTLkkrIMJWkvMqw6AiVz2cy2bAYw5bQntOFRQw/viewform?usp=send_form"
             className="!w-full !bg-gradient-main !py-4 before:!bg-black/10 [&_*]:hover:!text-white"
@@ -94,7 +94,7 @@ export function NavbarMobile({ isOpened, onOpenChange }: NavbarMobileProps) {
             variantColor="white"
           >
             Turniej flanek
-          </Button>
+          </Button> */}
         </div>
       </SheetContent>
     </Sheet>
