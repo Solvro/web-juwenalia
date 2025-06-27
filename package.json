@@ -53,7 +53,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
     "@next/eslint-plugin-next": "^15.1.0",
-    "@solvro/config": "^1.13.5",
+    "@solvro/config": "^1.13.6",
     "@types/leaflet": "^1.9.14",
     "@types/node": "^20",
     "@types/react": "^18",
