@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { API_URL } from "@/config/api";
 import type { ArtistProps } from "@/lib/types";
@@ -16,6 +16,8 @@ export function Artist({
   events,
   description,
 }: ArtistProps) {
+  // pointer position for click detection
+  const pointerStart = useRef<number>(0);
   const [flip, setFlip] = useState(false);
   const weekDays = ["NIE", "PON", "WT", "ŚR", "CZW", "PT", "SOB"];
 
@@ -33,8 +35,15 @@ export function Artist({
     >
       <div
         className="relative h-[400px] w-full cursor-pointer sm:h-[621px]"
-        onClick={() => {
-          setFlip(!flip);
+        onPointerDown={(event) => {
+          // save pointer position
+          pointerStart.current = event.clientX;
+        }}
+        onClick={(event) => {
+          // if the pointer moved less than 5px, consider it a click
+          if (Math.abs(event.clientX - pointerStart.current) < 5) {
+            setFlip(!flip);
+          }
         }}
         onKeyDown={(event) => {
           if (event.key === "Enter" || event.key === " ") {
