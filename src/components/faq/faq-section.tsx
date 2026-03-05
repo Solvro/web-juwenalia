@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { fetchData } from "@/lib/api";
+import { hasEdition } from "@/lib/edition";
 import type { Faq } from "@/lib/types";
 
 import { Button } from "../button";
@@ -9,11 +10,13 @@ import { FrequentlyAskedQuestion } from "./faq-card";
 
 export async function FrequentlyAskedQuestions() {
   const faqs = await fetchData<{ data: Faq[] }>("items/faqs");
-  if (faqs.data.length === 0) {
+  const filteredFaqs = faqs.data.filter((faq) => hasEdition(faq.edition));
+
+  if (filteredFaqs.length === 0) {
     return null;
   }
 
-  const slicedFaqs = faqs.data.slice(0, 6);
+  const slicedFaqs = filteredFaqs.slice(0, 6);
 
   return (
     <PaddingWrapper>
@@ -26,7 +29,7 @@ export async function FrequentlyAskedQuestions() {
         {slicedFaqs.map((faq, index) => (
           <FrequentlyAskedQuestion
             key={faq.id}
-            faqs={faqs.data}
+            faqs={filteredFaqs}
             index={index}
           />
         ))}

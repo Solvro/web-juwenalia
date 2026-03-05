@@ -12,6 +12,7 @@ export interface ArtistProps {
   spotifyUrl: string;
   isPopular: boolean;
   events: ArtistEvents[];
+  edition: string;
 }
 
 interface ArtistEvents {
@@ -34,6 +35,7 @@ export interface EventProps {
   day: DayProps;
   artists: EventArtists[];
   name: string | null;
+  edition: string;
 }
 
 export interface DayProps {
@@ -41,6 +43,7 @@ export interface DayProps {
   day: number;
   events: EventProps[];
   date: Date | string;
+  edition: string;
 }
 
 export interface NoDataInfoProps {
@@ -61,6 +64,7 @@ export interface NewsPost {
   date_updated: string | null;
   title: string;
   content: string;
+  edition: string;
 }
 
 // #region --- About Us Page ---
@@ -77,6 +81,7 @@ export interface Organisation {
   logo: string;
   logoScale?: number;
   role: (typeof ORGANISATION_ROLES)[OrganisationRole];
+  edition: string;
 }
 
 export interface Person {
@@ -85,6 +90,7 @@ export interface Person {
   generalRole?: string;
   image?: string;
   role: string;
+  edition: string;
 }
 // #endregion
 
@@ -92,6 +98,7 @@ export interface Faq {
   id: number;
   question: string;
   answer: string;
+  edition: unknown;
 }
 
 // #region --- Map types ---

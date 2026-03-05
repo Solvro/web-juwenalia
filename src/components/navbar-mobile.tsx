@@ -63,7 +63,7 @@ export function NavbarMobile({ isOpened, onOpenChange }: NavbarMobileProps) {
       >
         <SheetHeader className="flex space-x-2">
           <Image
-            src="/LOGO_juwenalia2025.svg"
+            src="/logo.svg"
             alt="Ikonka logo juwenalia 2025"
             width={100}
             height={83}
