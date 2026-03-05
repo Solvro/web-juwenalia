@@ -12,7 +12,7 @@ export function hasEdition(
     return edition.some((value) => String(value) === expected);
   }
 
-  if (edition && typeof edition === "object") {
+  if (edition !== null && typeof edition === "object") {
     return JSON.stringify(edition).includes(expected);
   }
 
