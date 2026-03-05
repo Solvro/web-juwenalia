@@ -1,4 +1,5 @@
 import { fetchData } from "./api";
+import { hasEdition } from "./edition";
 import type {
   GeoJSONPoint,
   GeoJSONPolyline,
@@ -15,6 +16,7 @@ interface ResponseType {
     point?: GeoJSONPoint;
     polyline?: GeoJSONPolyline;
     isPolyline: boolean;
+    edition: unknown;
   }[];
 }
 
@@ -22,7 +24,9 @@ export async function fetchWrMapContent() {
   const response: ResponseType =
     await fetchData<ResponseType>("items/locations");
 
-  const normalizedPoints: WrItemPoint[] = response.data
+  const filteredData = response.data.filter((item) => hasEdition(item.edition));
+
+  const normalizedPoints: WrItemPoint[] = filteredData
     .map((point) => {
       return (
         point.point !== undefined &&
@@ -36,7 +40,7 @@ export async function fetchWrMapContent() {
     })
     .filter((item): item is WrItemPoint => item !== false);
 
-  const normalizedPolylines: WrItemPolyline[] = response.data
+  const normalizedPolylines: WrItemPolyline[] = filteredData
     .map((polyline) => {
       return (
         polyline.polyline !== undefined &&

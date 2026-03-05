@@ -27,7 +27,7 @@ export function partitionArray<T>(array: T[], predicate: (item: T) => boolean) {
 
 async function ArtistList() {
   const response = await fetchData<{ data: ArtistProps[] }>(
-    "items/artists?fields=*,events.*,events.events_id.*,events.events_id.location.*,events.events_id.day.*",
+    "items/artists?fields=*,events.*,events.events_id.*,events.events_id.location.*,events.events_id.day.*&filter[edition][_eq]=current",
   );
 
   const rawArtists = response.data;

@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { fetchData } from "@/lib/api";
+import { hasEdition } from "@/lib/edition";
 import type { Faq } from "@/lib/types";
 
 export function QuestionContent({
@@ -33,19 +34,21 @@ export function QuestionContent({
 
 export async function FaqContent() {
   const faqs = await fetchData<{ data: Faq[] }>("items/faqs");
-  if (faqs.data.length === 0) {
+  const filteredFaqs = faqs.data.filter((faq) => hasEdition(faq.edition));
+
+  if (filteredFaqs.length === 0) {
     return null;
   }
 
   return (
     <div>
       <Accordion type="single" collapsible className="space-y-2">
-        {faqs.data.map((singleSet, index) => (
+        {filteredFaqs.map((singleSet, index) => (
           <QuestionContent
             key={singleSet.id}
             faq={singleSet}
             index={index}
-            isLast={index === faqs.data.length - 1}
+            isLast={index === filteredFaqs.length - 1}
           />
         ))}
       </Accordion>
