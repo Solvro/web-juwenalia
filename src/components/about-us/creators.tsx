@@ -7,15 +7,25 @@ import { TabSelectorBar } from "@/components/about-us/tab-selector-bar";
 import type { ArrayIndex, Person } from "@/lib/types";
 
 const CREATORS: Person[] = [
-  { name: "Adrian Iskra", role: "UI/UX" },
-  { name: "Barbara Cząstkiewicz", role: "UI/UX" },
-  { name: "Dawid Kowal", role: "Frontend" },
-  { name: "Jakub Dołharz", role: "Frontend" },
-  { name: "Jan Goleński", role: "Project Manager", generalRole: "PM & TL" },
-  { name: "Konrad Guzek", role: "Frontend" },
-  { name: "Miłosz Kowalczyk", role: "Frontend" },
-  { name: "Pola Abramowicz", role: "Tech Lead", generalRole: "PM & TL" },
-  { name: "Tymon Jędryczka", role: "Frontend" },
+  { name: "Adrian Iskra", role: "UI/UX", edition: "2026" },
+  { name: "Barbara Cząstkiewicz", role: "UI/UX", edition: "2026" },
+  { name: "Dawid Kowal", role: "Frontend", edition: "2026" },
+  { name: "Jakub Dołharz", role: "Frontend", edition: "2026" },
+  {
+    name: "Jan Goleński",
+    role: "Project Manager",
+    generalRole: "PM & TL",
+    edition: "2026",
+  },
+  { name: "Konrad Guzek", role: "Frontend", edition: "2026" },
+  { name: "Miłosz Kowalczyk", role: "Frontend", edition: "2026" },
+  {
+    name: "Pola Abramowicz",
+    role: "Tech Lead",
+    generalRole: "PM & TL",
+    edition: "2026",
+  },
+  { name: "Tymon Jędryczka", role: "Frontend", edition: "2026" },
 ];
 
 const ROLES = ["Wszyscy", "Frontend", "UI/UX", "PM & TL"] as const;
