@@ -3,6 +3,5 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "daily"
-    allow:
-      - dependency-name: "@solvro/config"
+      interval: "weekly"
+    open-pull-requests-limit: 5
