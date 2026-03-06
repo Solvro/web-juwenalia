@@ -7,6 +7,21 @@ import { useRef, useState } from "react";
 import { API_URL } from "@/config/api";
 import type { ArtistProps } from "@/lib/types";
 
+const CLICK_THRESHOLD = 5;
+
+function isPureClick(
+  start: {
+    x: number;
+    y: number;
+  },
+  end: {
+    x: number;
+    y: number;
+  },
+) {
+  return Math.hypot(end.x - start.x, end.y - start.y) < CLICK_THRESHOLD;
+}
+
 export function Artist({
   id,
   name,
@@ -17,7 +32,7 @@ export function Artist({
   description,
 }: ArtistProps) {
   // pointer position for click detection
-  const pointerStart = useRef<number>(0);
+  const pointerStart = useRef({ x: 0, y: 0 });
   const [flip, setFlip] = useState(false);
   const weekDays = ["NIE", "PON", "WT", "ŚR", "CZW", "PT", "SOB"];
 
@@ -36,12 +51,15 @@ export function Artist({
       <div
         className="relative h-[400px] w-full cursor-pointer sm:h-[621px]"
         onPointerDown={(event) => {
-          // save pointer position
-          pointerStart.current = event.clientX;
+          pointerStart.current = { x: event.clientX, y: event.clientY };
         }}
         onClick={(event) => {
-          // if the pointer moved less than 5px, consider it a click
-          if (Math.abs(event.clientX - pointerStart.current) < 5) {
+          if (
+            isPureClick(pointerStart.current, {
+              x: event.clientX,
+              y: event.clientY,
+            })
+          ) {
             setFlip(!flip);
           }
         }}
