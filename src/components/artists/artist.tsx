@@ -9,16 +9,12 @@ import type { ArtistProps } from "@/lib/types";
 
 const CLICK_THRESHOLD = 5;
 
-function isPureClick(
-  start: {
-    x: number;
-    y: number;
-  },
-  end: {
-    x: number;
-    y: number;
-  },
-) {
+interface Point {
+  x: number;
+  y: number;
+}
+
+function isPureClick(start: Point, end: Point) {
   return Math.hypot(end.x - start.x, end.y - start.y) < CLICK_THRESHOLD;
 }
 
@@ -32,7 +28,7 @@ export function Artist({
   description,
 }: ArtistProps) {
   // pointer position for click detection
-  const pointerStart = useRef({ x: 0, y: 0 });
+  const pointerStart = useRef<Point>({ x: 0, y: 0 });
   const [flip, setFlip] = useState(false);
   const weekDays = ["NIE", "PON", "WT", "ŚR", "CZW", "PT", "SOB"];
 
