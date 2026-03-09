@@ -31,6 +31,18 @@ jobs:
         run: npm run format:check
         if: always()
 
+      - name: Generate typed routes
+        run: npm run types:generate
+        if: always()
+
+      - name: Check types
+        run: npm run types:check
+        if: always()
+
+      - name: Lint code
+        run: npm run lint
+        if: always()
+
       - name: Build
         run: npm run build
         if: always()
