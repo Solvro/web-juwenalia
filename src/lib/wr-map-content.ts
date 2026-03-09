@@ -34,7 +34,7 @@ export async function fetchWrMapContent() {
           name: point.name,
           description: point.description,
           color: point.color,
-          coordinates: point.point.coordinates.reverse(),
+          coordinates: point.point.coordinates.toReversed(),
         }
       );
     })
@@ -49,7 +49,7 @@ export async function fetchWrMapContent() {
           description: polyline.description,
           color: polyline.color,
           coordinates: polyline.polyline.coordinates.map((point) =>
-            point.reverse(),
+            point.toReversed(),
           ),
         }
       );
