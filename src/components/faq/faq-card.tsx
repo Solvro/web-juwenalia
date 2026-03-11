@@ -1,21 +1,21 @@
 "use client";
 
 import type { ClassValue } from "clsx";
-import type { MouseEvent, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 
 import type { Faq } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 const FAQ_CARD_STYLES = [
-  "col-span-6 bg-gradient-alt-1",
-  "col-span-6 bg-gradient-alt-2",
-  "col-span-12 bg-gradient-alt-1 sm:bg-gradient-alt-3",
-  "col-span-6 bg-gradient-alt-3 sm:bg-gradient-main",
-  "col-span-6 bg-gradient-main sm:bg-gradient-alt-1",
-  "col-span-12 bg-gradient-alt-1 sm:bg-gradient-alt-3",
-  "col-span-12 bg-gradient-alt-2",
-  "col-span-6 bg-gradient-alt-3 sm:bg-gradient-main",
+  "col-span-6 bg-gradient-alt-1 before:bg-gradient-alt-1",
+  "col-span-6 bg-gradient-alt-2 before:bg-gradient-alt-2",
+  "col-span-12 bg-gradient-alt-1 sm:bg-gradient-alt-3 before:bg-gradient-alt-1 sm:before:bg-gradient-alt-3",
+  "col-span-6 bg-gradient-alt-3 sm:bg-gradient-main before:bg-gradient-alt-3 sm:before:bg-gradient-main",
+  "col-span-6 bg-gradient-main sm:bg-gradient-alt-1 before:bg-gradient-main sm:before:bg-gradient-alt-1",
+  "col-span-12 bg-gradient-alt-1 sm:bg-gradient-alt-3 before:bg-gradient-alt-1 sm:before:bg-gradient-alt-3",
+  "col-span-12 bg-gradient-alt-2 before:bg-gradient-alt-2",
+  "col-span-6 bg-gradient-alt-3 sm:bg-gradient-main before:bg-gradient-alt-3 sm:before:bg-gradient-main",
 ];
 
 function getColSpan(faq: Faq, sibling: Faq | null): ClassValue {
@@ -25,24 +25,29 @@ function getColSpan(faq: Faq, sibling: Faq | null): ClassValue {
   const textProportion =
     faq.answer.length / (faq.answer.length + sibling.answer.length);
   const columns = Math.round(textProportion * 12);
-  if (columns < 1 || columns > 11) {
+  if (Number.isNaN(columns) || columns < 1 || columns > 11) {
     console.warn("Unexpected column count", columns);
     return null;
   }
   const constrained = Math.max(Math.min(columns, 8), 4);
-  return `sm:col-span-${constrained.toString()}`;
+  const map: Record<number, string> = {
+    4: "sm:col-span-4",
+    5: "sm:col-span-5",
+    6: "sm:col-span-6",
+    7: "sm:col-span-7",
+    8: "sm:col-span-8",
+  };
+  return map[constrained];
 }
 
 function CardFace({
   className,
   children,
   visible,
-  onClick,
 }: {
   children: ReactNode;
   className?: ClassValue;
   visible: boolean;
-  onClick: (event_: MouseEvent) => void;
 }) {
   const [showScrollbar, setShowScrollbar] = useState(false);
   useEffect(() => {
@@ -60,21 +65,19 @@ function CardFace({
   return (
     <div
       className={cn(
-        "col-start-1 row-start-1 px-1 py-5 [backface-visibility:hidden] sm:py-3 md:py-5 lg:py-9",
+        "col-start-1 row-start-1 h-full w-full overflow-hidden px-1 py-5 text-start [backface-visibility:hidden] sm:py-3 md:py-5 lg:py-9",
         className,
       )}
     >
       <div
-        className={cn("h-full max-h-90 w-full px-3 sm:px-4 md:px-5 lg:px-10", {
-          "overflow-y-auto": showScrollbar,
-        })}
+        className={cn(
+          "flex h-full max-h-90 w-full flex-col justify-between gap-2 px-3 sm:px-4 md:px-5 lg:px-10",
+          {
+            "overflow-y-auto": showScrollbar,
+          },
+        )}
       >
-        <button
-          onClick={onClick}
-          className="flex h-full w-full flex-col justify-between gap-2 text-start"
-        >
-          {children}
-        </button>
+        {children}
       </div>
     </div>
   );
@@ -95,15 +98,17 @@ export function FrequentlyAskedQuestion({
   // Gets the other FAQ item in the same column for questions >= #3
   const sibling = index < 2 ? null : faqs[index - (index % 2) * 2 + 1];
 
-  function toggleFlipped(event_: MouseEvent) {
-    event_.preventDefault();
+  function toggleFlipped() {
     setFlipped((old) => !old);
   }
 
   return (
-    <div
+    <button
+      type="button"
+      onClick={toggleFlipped}
       className={cn(
-        "grid cursor-pointer rounded-2xl text-primary-foreground transition-transform duration-300 [transform-style:preserve-3d] sm:rounded-3xl",
+        "relative grid cursor-pointer rounded-2xl text-start text-primary-foreground transition-transform duration-300 [transform-style:preserve-3d] focus-visible:outline-2 focus-visible:outline-white sm:rounded-3xl",
+        "before:absolute before:-inset-1.5 before:-z-10 before:rounded-[1.25rem] before:opacity-0 before:content-[''] focus-visible:before:opacity-100 sm:before:rounded-[1.75rem]",
         style,
         getColSpan(faq, sibling),
         {
@@ -122,7 +127,6 @@ export function FrequentlyAskedQuestion({
           },
         )}
         visible={!flipped}
-        onClick={toggleFlipped}
       >
         <h3 className="text-4xl font-extrabold sm:text-xl md:mb-2 md:text-4xl lg:mb-7 lg:text-6xl">
           #{questionId}
@@ -131,15 +135,11 @@ export function FrequentlyAskedQuestion({
           {faq.question}
         </p>
       </CardFace>
-      <CardFace
-        className="[transform:rotateY(180deg)]"
-        onClick={toggleFlipped}
-        visible={flipped}
-      >
+      <CardFace className="[transform:rotateY(180deg)]" visible={flipped}>
         <p className="whitespace-pre-wrap sm:text-base md:text-xl">
           {faq.answer}
         </p>
       </CardFace>
-    </div>
+    </button>
   );
 }
