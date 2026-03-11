@@ -1,7 +1,7 @@
 "use client";
 
 import type { ClassValue } from "clsx";
-import type { MouseEvent, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 
 import type { Faq } from "@/lib/types";
@@ -25,7 +25,7 @@ function getColSpan(faq: Faq, sibling: Faq | null): ClassValue {
   const textProportion =
     faq.answer.length / (faq.answer.length + sibling.answer.length);
   const columns = Math.round(textProportion * 12);
-  if (columns < 1 || columns > 11) {
+  if (Number.isNaN(columns) || columns < 1 || columns > 11) {
     console.warn("Unexpected column count", columns);
     return null;
   }
@@ -98,17 +98,17 @@ export function FrequentlyAskedQuestion({
   // Gets the other FAQ item in the same column for questions >= #3
   const sibling = index < 2 ? null : faqs[index - (index % 2) * 2 + 1];
 
-  function toggleFlipped(event_: MouseEvent) {
-    event_.preventDefault();
+  function toggleFlipped() {
     setFlipped((old) => !old);
   }
 
   return (
     <button
+      type="button"
       onClick={toggleFlipped}
       className={cn(
         "relative grid cursor-pointer rounded-2xl text-start text-primary-foreground transition-transform duration-300 [transform-style:preserve-3d] focus-visible:outline-2 focus-visible:outline-white sm:rounded-3xl",
-        "before:absolute before:-inset-1.5 before:-z-10 before:rounded-[1.25rem] before:opacity-0 focus-visible:before:opacity-100 sm:before:rounded-[1.75rem]",
+        "before:absolute before:-inset-1.5 before:-z-10 before:rounded-[1.25rem] before:opacity-0 before:content-[''] focus-visible:before:opacity-100 sm:before:rounded-[1.75rem]",
         style,
         getColSpan(faq, sibling),
         {
