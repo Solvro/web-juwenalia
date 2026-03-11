@@ -15,8 +15,7 @@ function PersonCard({ person }: { person: Person }) {
     : DEFAULT_IMAGE_MALE;
   const trimmedImage = person.image?.trim();
   const hasValidImage = trimmedImage !== undefined && trimmedImage !== "";
-  const resolvedApiUrl =
-    person.role === "Twórca strony" ? SOLVRO_API_URL : API_URL;
+  const resolvedApiUrl = person.isCreator === true ? SOLVRO_API_URL : API_URL;
   const imageSource = hasValidImage
     ? `${resolvedApiUrl}/assets/${trimmedImage}`
     : `/${defaultImage}`;

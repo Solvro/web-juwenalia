@@ -85,6 +85,7 @@ export interface Person {
   generalRole?: string;
   image?: string;
   role: string;
+  isCreator?: boolean;
 }
 // #endregion
 
