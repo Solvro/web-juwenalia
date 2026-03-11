@@ -91,6 +91,7 @@ export interface Person {
   image?: string;
   role: string;
   edition: string;
+  isCreator?: boolean;
 }
 // #endregion
 
