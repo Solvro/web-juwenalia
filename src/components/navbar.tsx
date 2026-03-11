@@ -64,8 +64,8 @@ export function Navbar() {
               "opacity-0": isMenuOpen,
             },
           )}
-          src="/LOGO_juwenalia2025.svg"
-          alt="Logo na juwenalia 2025"
+          src="/logo.svg"
+          alt="Logo na juwenalia 2026"
           fill
         />
       </Link>

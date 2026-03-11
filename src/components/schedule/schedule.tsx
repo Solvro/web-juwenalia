@@ -10,7 +10,7 @@ export async function Schedule() {
   let days = null;
   try {
     const response = await fetchData<{ data: DayProps[] }>(
-      "items/days?fields=*,events.*,events.location.*,events.artists.*,events.artists.artists_id.*",
+      "items/days?fields=*,events.*,events.location.*,events.artists.*,events.artists.artists_id.*&filter[edition][_eq]=2026",
     );
     days = response.data;
   } catch (error) {

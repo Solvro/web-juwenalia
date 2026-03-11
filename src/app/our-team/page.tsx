@@ -6,7 +6,7 @@ import type { Person } from "@/lib/types";
 
 export default async function AboutUsPage() {
   const result = await fetchData<{ data: Person[] }>(
-    "items/persons?fields=name, title, image, role",
+    "items/persons?fields=name, title, image, role&filter[edition][_eq]=2026",
   );
   // Wyświetlamy całą listę osób zamiast tylko tych ze starszą wartością title === "1"
   const staff = result.data;

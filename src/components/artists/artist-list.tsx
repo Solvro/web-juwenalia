@@ -27,7 +27,7 @@ export function partitionArray<T>(array: T[], predicate: (item: T) => boolean) {
 
 async function ArtistList() {
   const response = await fetchData<{ data: ArtistProps[] }>(
-    "items/artists?fields=*,events.*,events.events_id.*,events.events_id.location.*,events.events_id.day.*",
+    "items/artists?fields=*,events.*,events.events_id.*,events.events_id.location.*,events.events_id.day.*&filter[edition][_eq]=current",
   );
 
   const rawArtists = response.data;
@@ -44,19 +44,19 @@ async function ArtistList() {
 
   return (
     <div className="mt-48">
-      <PageHeader>Tegoroczni artyści</PageHeader>
       {artists.length > 0 ? (
-        <PaddingWrapper className="mt-8">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-            {artists.map((artist) => (
-              <Artist key={artist.id} {...artist} />
-            ))}
-          </div>
-        </PaddingWrapper>
+        <>
+          <PageHeader>Tegoroczni artyści</PageHeader>
+          <PaddingWrapper className="mt-8">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+              {artists.map((artist) => (
+                <Artist key={artist.id} {...artist} />
+              ))}
+            </div>
+          </PaddingWrapper>
+        </>
       ) : (
-        <div className="-mt-32">
-          <NoArtistInfo errorMessage="Artyści nie są jeszcze dostępni. Wróć tutaj później!" />
-        </div>
+        <NoArtistInfo errorMessage="Artyści nie są jeszcze dostępni. Wróć tutaj później!" />
       )}
     </div>
   );

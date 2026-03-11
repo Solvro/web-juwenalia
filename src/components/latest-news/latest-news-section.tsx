@@ -10,7 +10,9 @@ import { PostPreview } from "./post-preview";
 export async function LatestNews() {
   let posts;
   try {
-    const response = await fetchData<{ data: NewsPost[] }>("items/news");
+    const response = await fetchData<{ data: NewsPost[] }>(
+      "items/news?filter[edition][_eq]=2026",
+    );
     posts = response.data.reverse();
   } catch (error) {
     console.error("Error fetching news posts:", error);
