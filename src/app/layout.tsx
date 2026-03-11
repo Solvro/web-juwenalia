@@ -23,17 +23,17 @@ const WEBSITE_URL =
     : "https://juwenalia.solvro.pl";
 
 export const metadata: Metadata = {
-  title: "Juwenalia 2025 #WrocławRazem",
+  title: "Juwenalia 2026 #WrocławRazem",
   description:
-    "Oficjalna strona Juwenaliów Wrocław Razem 2025 – program, line-up, bilety i strefy wydarzeń.",
+    "Oficjalna strona Juwenaliów Wrocław Razem 2026 – program, line-up, bilety i strefy wydarzeń.",
   keywords: [
-    "Juwenalia 2025",
+    "Juwenalia 2026",
     "Wrocław",
     "studenci",
     "Juwenalia Wrocław",
-    "Juwenalia Wrocław 2025",
-    "Juwenalia 2025 Wrocław Razem",
-    "Juwenalia 2025 #WrocławRazem",
+    "Juwenalia Wrocław 2026",
+    "Juwenalia 2026 Wrocław Razem",
+    "Juwenalia 2026 #WrocławRazem",
     "Juwenalia #WrocławRazem",
     "Juwenalia",
   ],
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(WEBSITE_URL),
   openGraph: {
-    title: "Juwenalia 2025 #WrocławRazem",
-    description: "Oficjalna strona wydarzenia Juwenalia 2025 #WrocławRazem",
+    title: "Juwenalia 2026 #WrocławRazem",
+    description: "Oficjalna strona wydarzenia Juwenalia 2026 #WrocławRazem",
     type: "website",
     locale: "pl_PL",
     images: [
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Juwenalia 2025 #WrocławRazem",
+        alt: "Juwenalia 2026 #WrocławRazem",
       },
     ],
   },

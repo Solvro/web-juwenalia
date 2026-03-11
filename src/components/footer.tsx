@@ -5,8 +5,8 @@ import type { StaticImageData } from "next/image";
 import Link from "next/link";
 import type { ReactElement, ReactNode } from "react";
 
-import Logo from "@/../public/Juwe2025.svg";
 import Solvro from "@/../public/logo-solvro.svg";
+import Logo from "@/../public/logo.svg";
 import { HorizontalRule } from "@/components/horizontal-rule";
 import { PaddingWrapper } from "@/components/padding-wrapper";
 import { FOOTER_LINKS, NAV_LINKS } from "@/config/data";
@@ -91,7 +91,7 @@ function Footer() {
           <div className="relative -order-1 col-span-full row-start-1 row-end-1 h-full min-h-52 w-full sm:min-h-60 lg:col-start-2 lg:col-end-4 lg:row-start-1 lg:row-end-1 xl:col-span-2 xl:col-start-3 xl:min-h-full">
             <Image
               src={Logo as StaticImageData}
-              alt="Logo Juwenalia 2025 #WROCŁAWRAZEM"
+              alt="Logo Juwenalia 2026 #WROCŁAWRAZEM"
               className="relative"
               loading="lazy"
               fill

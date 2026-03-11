@@ -44,7 +44,7 @@ export function AboutUsSection({
 
 export async function AboutUs() {
   const responseOrganisations = await fetchData<{ data: Organisation[] }>(
-    "items/organisations?fields=name, url, logo, logoScale, role",
+    "items/organisations?fields=name, url, logo, logoScale, role&filter[edition][_eq]=2026",
   );
   const groups: Record<Organisation["role"], Organisation[]> = {
     [ORGANISATION_ROLES.UNIVERSITY]: [],
