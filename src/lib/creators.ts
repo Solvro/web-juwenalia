@@ -41,6 +41,7 @@ export async function fetchCreators(): Promise<Person[]> {
       image: creator.photo,
       role: "Twórca strony",
       isCreator: true,
+      edition: "2026",
     };
   });
 }
