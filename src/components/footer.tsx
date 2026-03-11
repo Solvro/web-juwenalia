@@ -105,6 +105,7 @@ function Footer() {
             {NAV_LINKS.map(({ name, url, label }, index) => (
               <ListItem
                 text={name}
+                target={url.startsWith("/") ? "_self" : "_blank"}
                 url={url}
                 label={label}
                 key={`key${index.toString()}`}
