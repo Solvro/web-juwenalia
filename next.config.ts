@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
         pathname: "/assets/**",
       },
       {
+        protocol: "https",
+        hostname: "cms.solvro.pl",
+        port: "",
+        pathname: "/assets/**",
+      },
+      {
         // Facebook CDN for posted images
         protocol: "https",
         hostname: "**.fbcdn.net",

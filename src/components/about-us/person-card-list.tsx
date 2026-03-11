@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { API_URL } from "@/config/api";
+import { API_URL, SOLVRO_API_URL } from "@/config/api";
 import type { Person } from "@/lib/types";
 
 const DEFAULT_IMAGE_MALE = "avatar-man.png";
@@ -15,8 +15,9 @@ function PersonCard({ person }: { person: Person }) {
     : DEFAULT_IMAGE_MALE;
   const trimmedImage = person.image?.trim();
   const hasValidImage = trimmedImage !== undefined && trimmedImage !== "";
+  const resolvedApiUrl = person.isCreator === true ? SOLVRO_API_URL : API_URL;
   const imageSource = hasValidImage
-    ? `${API_URL}/assets/${trimmedImage}`
+    ? `${resolvedApiUrl}/assets/${trimmedImage}`
     : `/${defaultImage}`;
 
   return (
