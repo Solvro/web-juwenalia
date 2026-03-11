@@ -65,7 +65,7 @@ export function Navbar() {
             },
           )}
           src="/logo.svg"
-          alt="Logo na juwenalia 2025"
+          alt="Logo na juwenalia 2026"
           fill
         />
       </Link>

@@ -18,8 +18,8 @@ import { cn } from "@/lib/utils";
 
 import { PaddingWrapper } from "./padding-wrapper";
 
-const eventStartDate: Date = new Date(2026, 4, 21, 16);
-const eventEndDate: Date = new Date(2026, 4, 23, 2);
+const eventStartDate: Date = new Date(2026, 4, 20, 16);
+const eventEndDate: Date = new Date(2026, 4, 22, 2);
 function TextsForTimer({ children }: { children: ReactNode }) {
   return (
     <div className="mt-2.5 text-base font-medium sm:mt-0 sm:text-[18px] lg:text-[20px] xl:pb-1.5">
@@ -145,13 +145,13 @@ function Countdown() {
       <div className="absolute bottom-16 w-full pl-10 pt-8 text-left text-[#FFF] sm:bottom-20 sm:p-0 sm:text-center">
         <h1 className="flex flex-col py-[1vh] text-left text-lg font-normal leading-tight sm:max-w-full sm:py-[3vh] sm:text-center sm:text-2xl lg:text-3xl xl:text-4xl">
           Juwenalia #WrocławRazem
-          <span className="font-black">już 21 i 22 maja</span>
+          <span className="font-black">już 20 i 21 maja</span>
         </h1>
       </div>
       <div className="absolute bottom-5 flex scale-[.8] justify-start text-left sm:bottom-10 sm:left-1/2 sm:-translate-x-1/2 sm:justify-center lg:scale-[0.85] xl:scale-100">
         <Image
           src="/wroclawrazem.svg"
-          alt="Ikona logo juwenalia 2025"
+          alt="Ikona logo juwenalia 2026"
           loading="eager"
           width={348}
           height={48}
