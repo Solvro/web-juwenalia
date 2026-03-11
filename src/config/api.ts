@@ -1,5 +1,8 @@
 export const API_URL = process.env.API_URL ?? "https://cms.juwenalia.solvro.pl";
 
+export const SOLVRO_API_URL =
+  process.env.SOLVRO_API_URL ?? "https://cms.solvro.pl";
+
 export const MUTATION_KEYS = {
   SEND_FEEDBACK_FORM: "sendFeedbackForm",
 };
