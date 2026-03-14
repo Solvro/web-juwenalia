@@ -56,7 +56,7 @@ export function CreatorsList() {
         selectedIdx={selectedIndex}
         setSelectedIdx={setSelectedIndex}
       />
-      <PersonCardList people={creators.sort(comparePeople)} />
+      <PersonCardList people={creators.toSorted(comparePeople)} />
     </>
   );
 }

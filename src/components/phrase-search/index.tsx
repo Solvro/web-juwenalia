@@ -27,7 +27,7 @@ export async function PhraseSearch() {
           currentTime,
     )
     // In case there are two overlapping phrases, we want to display the one that was started the latest.
-    .sort((a, b) => b.startDateTime - a.startDateTime)
+    .toSorted((a, b) => b.startDateTime - a.startDateTime)
     .at(0);
   if (currentPhrase == null) {
     console.warn("No started phrases found.");
