@@ -1,7 +1,8 @@
 import Image from "next/image";
 
-import { API_URL } from "@/config/api";
+import { API_URL, SOLVRO_API_URL } from "@/config/api";
 import type { Person } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 const DEFAULT_IMAGE_MALE = "avatar-man.png";
 const DEFAULT_IMAGE_FEMALE = "avatar-woman.png";
@@ -15,8 +16,9 @@ function PersonCard({ person }: { person: Person }) {
     : DEFAULT_IMAGE_MALE;
   const trimmedImage = person.image?.trim();
   const hasValidImage = trimmedImage !== undefined && trimmedImage !== "";
+  const resolvedApiUrl = person.isCreator === true ? SOLVRO_API_URL : API_URL;
   const imageSource = hasValidImage
-    ? `${API_URL}/assets/${trimmedImage}`
+    ? `${resolvedApiUrl}/assets/${trimmedImage}`
     : `/${defaultImage}`;
 
   return (
@@ -26,7 +28,11 @@ function PersonCard({ person }: { person: Person }) {
           src={imageSource}
           alt={`${person.name}'s photo`}
           fill
-          className="absolute inset-0 origin-top scale-125 transform object-cover object-center"
+          className={cn(
+            "absolute inset-0 origin-top transform object-cover object-center",
+            (person.isCreator === undefined || !person.isCreator) &&
+              "scale-125",
+          )}
         />
       </div>
 
