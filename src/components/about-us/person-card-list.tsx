@@ -28,11 +28,9 @@ function PersonCard({ person }: { person: Person }) {
           src={imageSource}
           alt={`${person.name}'s photo`}
           fill
-          className={cn(
-            "absolute inset-0 origin-top transform object-cover object-center",
-            (person.isCreator === undefined || !person.isCreator) &&
-              "scale-125",
-          )}
+          className={cn("absolute inset-0 object-cover", {
+            "origin-top scale-125": person.isCreator !== true,
+          })}
         />
       </div>
 
