@@ -12,6 +12,9 @@ export default {
   safelist: [{ pattern: /^col-span-\d/, variants: ["sm"] }],
   theme: {
     extend: {
+      screens: {
+        "3/2xl": "1400px",
+      },
       fontFamily: {
         sans: ["var(--font-montserrat)", "sans-serif"],
       },

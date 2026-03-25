@@ -68,10 +68,10 @@ function Footer() {
   return (
     <footer className="mt-32 w-full border-t border-gray-300">
       <PaddingWrapper>
-        <div className="grid h-full w-full grid-cols-8 gap-2 gap-y-4 py-5 sm:gap-5 lg:grid-cols-4 lg:gap-20 lg:py-16 xl:grid-cols-6">
+        <div className="grid h-full w-full grid-cols-8 gap-2 gap-y-4 py-5 sm:gap-5 lg:grid-cols-4 lg:gap-20 lg:py-16 3/2xl:grid-cols-6">
           <List
             text="Kontakt"
-            className="col-span-5 w-full flex-grow pt-6 sm:col-span-4 lg:col-span-1 lg:row-start-2 xl:row-start-1"
+            className="col-span-5 w-full flex-grow pt-6 sm:col-span-4 lg:col-span-1 lg:row-start-2 3/2xl:row-start-1"
           >
             <ListItem
               text={FOOTER_LINKS.contact.mail}
@@ -81,14 +81,14 @@ function Footer() {
 
           <List
             text="Social media"
-            className="col-span-3 w-full flex-grow pt-6 md:col-span-4 lg:col-span-1 lg:row-start-2 xl:row-start-1"
+            className="col-span-3 w-full flex-grow pt-6 md:col-span-4 lg:col-span-1 lg:row-start-2 3/2xl:row-start-1"
           >
             <ListItem text="Instagram" url={FOOTER_LINKS.socials.ig} />
             <ListItem text="Facebook" url={FOOTER_LINKS.socials.fb} />
             <ListItem text="Tiktok" url={FOOTER_LINKS.socials.tt} />
           </List>
 
-          <div className="relative -order-1 col-span-full row-start-1 row-end-1 h-full min-h-52 w-full sm:min-h-60 lg:col-start-2 lg:col-end-4 lg:row-start-1 lg:row-end-1 xl:col-span-2 xl:col-start-3 xl:min-h-full">
+          <div className="relative -order-1 col-span-full row-start-1 row-end-1 h-full min-h-52 w-full sm:min-h-60 lg:col-start-2 lg:col-end-4 lg:row-start-1 lg:row-end-1 3/2xl:col-span-2 3/2xl:col-start-3 3/2xl:min-h-full">
             <Image
               src={Logo as StaticImageData}
               alt="Logo Juwenalia 2026 #WROCŁAWRAZEM"
@@ -100,7 +100,7 @@ function Footer() {
 
           <List
             text="Linki"
-            className="col-span-5 w-full flex-grow pt-6 sm:col-span-4 lg:col-span-1 lg:row-start-2 xl:row-start-1"
+            className="col-span-5 w-full flex-grow pt-6 sm:col-span-4 lg:col-span-1 lg:row-start-2 3/2xl:row-start-1"
           >
             {NAV_LINKS.map(({ name, url, label }, index) => (
               <ListItem
@@ -113,7 +113,7 @@ function Footer() {
           </List>
           <List
             text="Inne"
-            className="col-span-2 flex w-full flex-grow pt-6 sm:col-span-3 md:col-span-4 lg:col-span-1 lg:row-start-2 xl:row-start-1"
+            className="col-span-2 flex w-full flex-grow pt-6 sm:col-span-3 md:col-span-4 lg:col-span-1 lg:row-start-2 3/2xl:row-start-1"
           >
             <ListItem text="Regulamin" url="/regulamin_juwenalia_2025.pdf" />
             <ListItem
