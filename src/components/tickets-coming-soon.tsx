@@ -5,10 +5,6 @@ import Link from "next/link";
 import { Button } from "@/components/button";
 import { PaddingWrapper } from "@/components/padding-wrapper";
 
-const handleReload = () => {
-  window.location.reload();
-};
-
 export function TicketsComingSoon() {
   return (
     <PaddingWrapper className="my-24 grid w-full place-items-center bg-gradient-main py-16 md:my-32 md:min-h-[30svh] md:py-16 lg:my-48 lg:py-24">
