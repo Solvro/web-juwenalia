@@ -3,8 +3,7 @@ import { Countdown } from "@/components/countdown";
 import { FrequentlyAskedQuestions } from "@/components/faq/faq-section";
 import { LatestNews } from "@/components/latest-news/latest-news-section";
 import { Schedule } from "@/components/schedule/schedule";
-
-// import { TicketsComingSoon } from "@/components/tickets-coming-soon";
+import { TicketsComingSoon } from "@/components/tickets-coming-soon";
 
 export default function Home() {
   return (
@@ -12,7 +11,7 @@ export default function Home() {
       <Countdown />
       <Schedule />
       <ArtistsCarousel />
-      {/*<TicketsComingSoon />*/}
+      <TicketsComingSoon />
       <FrequentlyAskedQuestions />
       <LatestNews />
       {/* <AboutUs /> */}
