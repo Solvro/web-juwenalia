@@ -74,7 +74,7 @@ export default {
         "gradient-alt-3":
           "radial-gradient(circle at top right, #9256F5, #DC7E84)",
         "gradient-blue-green":
-          "radial-gradient(94.87% 94.87% at 90% 70%, #76B329, #00A2E8)",
+          "radial-gradient(100% 120% at 90% 60%, #76B329, #00A2E8)",
       },
       spacing: {
         "90": "22rem",

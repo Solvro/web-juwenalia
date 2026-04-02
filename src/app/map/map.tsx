@@ -6,8 +6,10 @@ import type { StaticImageData } from "next/image";
 import { Suspense, useState } from "react";
 import { SyncLoader } from "react-spinners";
 
-import Branch from "@/../public/no-map-info/branch_br.svg";
-import LeafTop from "@/../public/no-map-info/leaf_top.svg";
+import Bush from "@/../public/no-map-info/bush_full.svg";
+import Fire1 from "@/../public/no-map-info/fire1.svg";
+import Fire2 from "@/../public/no-map-info/fire2.svg";
+import Mountain from "@/../public/no-map-info/mountain.svg";
 import { TabSelectorBar } from "@/components/about-us/tab-selector-bar";
 import { HorizontalRule } from "@/components/horizontal-rule";
 import { StaticMap } from "@/components/map/static-map";
@@ -47,13 +49,18 @@ export function Map({ dynamicMapLocations }: Props) {
         </h1>
       </PaddingWrapper>
       <HorizontalRule />
-      <PaddingWrapper className="relative">
-        <Image
-          src={LeafTop as StaticImageData}
-          alt="ilustracja liści"
-          className="pointer-events-none absolute -top-5 right-16 w-[160px] select-none md:right-32 md:w-[240px] lg:right-64 xl:w-[321px]"
-        />
+      <Image
+        src={Fire2 as StaticImageData}
+        alt="ilustracja ogień"
+        className="pointer-events-none absolute -right-6 -top-4 w-[70px] -rotate-45 select-none sm:w-[100px] md:w-[80px] xl:w-[140px]"
+      />
 
+      <Image
+        src={Bush as StaticImageData}
+        alt="ilustracja krzak"
+        className="pointer-events-none absolute -left-8 top-72 z-10 w-[90px] rotate-90 select-none sm:-left-12 sm:top-64 sm:w-[110px] md:w-[120px] xl:w-[140px]"
+      />
+      <PaddingWrapper className="relative">
         <div className="flex w-full flex-col">
           <h2 className="mt-16 font-semibold">Rodzaj mapy</h2>
           <div className="mt-5 w-full">
@@ -77,9 +84,15 @@ export function Map({ dynamicMapLocations }: Props) {
       </PaddingWrapper>
 
       <Image
-        src={Branch as StaticImageData}
+        src={Mountain as StaticImageData}
+        alt="ilustracja góra"
+        className="pointer-events-none absolute -bottom-32 right-0 w-[200px] select-none sm:w-[300px] xl:w-[350px]"
+      />
+
+      <Image
+        src={Fire1 as StaticImageData}
         alt="ilustracja liści"
-        className="pointer-events-none absolute -bottom-32 right-20 w-[150px] md:w-[215px] lg:right-48 xl:w-[300px]"
+        className="pointer-events-none absolute -bottom-36 -left-6 w-[70px] md:w-[105px] lg:right-48 xl:-bottom-40 xl:-left-10 xl:w-[150px]"
       />
     </div>
   );
