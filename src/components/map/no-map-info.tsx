@@ -1,6 +1,7 @@
 "use client";
 
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
+import type { StaticImageData } from "next/image";
 
 import Bush from "@/../public/no-map-info/bush_top.svg";
 import Mountain from "@/../public/no-map-info/mountain.svg";
