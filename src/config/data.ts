@@ -55,3 +55,6 @@ export const ORGANISATION_ROLES = {
   MEDIA_PARTNER: "3",
   SPONSOR: "4",
 } as const;
+
+export const TICKETMASTER_URL =
+  "https://www.ticketmaster.pl/artist/juwenalia-wroclawrazem-bilety/1277573";

@@ -8,7 +8,7 @@ import type { ReactNode } from "react";
 
 import { Button } from "@/components/button";
 import { PaddingWrapper } from "@/components/padding-wrapper";
-import { NAV_LINKS } from "@/config/data";
+import { NAV_LINKS, TICKETMASTER_URL } from "@/config/data";
 import { cn } from "@/lib/utils";
 
 import { NavbarMobile } from "./navbar-mobile";
@@ -80,7 +80,7 @@ export function Navbar() {
 
         <Button
           as={Link}
-          href="https://www.ticketmaster.pl/artist/juwenalia-wroclawrazem-bilety/1277573"
+          href={TICKETMASTER_URL}
           variant="gradient"
           variantColor={currentPath === "/" ? "white" : "black"}
           className="h-14"
