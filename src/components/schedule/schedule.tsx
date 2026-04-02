@@ -4,7 +4,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { fetchData } from "@/lib/api";
 import type { DayProps } from "@/lib/types";
 
-import { ScheduleClient } from "./scheduleClient";
+import { ScheduleClient } from "./schedule-client";
 
 export async function Schedule() {
   let days = null;

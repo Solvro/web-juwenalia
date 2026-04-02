@@ -1,4 +1,4 @@
-import { Carousel } from "@/components/artists/artist-carousel-template";
+import { ArtistsCarouselClient } from "@/components/artists/artists-carousel-client";
 import { fetchData } from "@/lib/api";
 import type { ArtistProps } from "@/lib/types";
 
@@ -11,7 +11,7 @@ async function ArtistsCarousel() {
     if (popularArtists.length === 0) {
       return null;
     }
-    return <Carousel artists={popularArtists} />;
+    return <ArtistsCarouselClient artists={popularArtists} />;
   } catch (error) {
     console.error(error);
     return null;
