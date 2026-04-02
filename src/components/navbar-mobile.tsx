@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// import { Button } from "@/components/button";
+import { Button } from "@/components/button";
 import {
   Sheet,
   SheetContent,
@@ -11,7 +11,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { NAV_LINKS } from "@/config/data";
+import { NAV_LINKS, TICKETMASTER_URL } from "@/config/data";
 
 interface NavbarMobileProps {
   onOpenChange: (open: boolean) => void;
@@ -86,15 +86,15 @@ export function NavbarMobile({ isOpened, onOpenChange }: NavbarMobileProps) {
             ))}
           </div>
 
-          {/* <Button
+          <Button
             as={Link}
-            href="https://docs.google.com/forms/d/e/1FAIpQLSel3CXdWuvrGTLkkrIMJWkvMqw6AiVz2cy2bAYw5bQntOFRQw/viewform?usp=send_form"
+            href={TICKETMASTER_URL}
             className="!w-full !bg-gradient-main !py-4 before:!bg-black/10 [&_*]:hover:!text-white"
             variant="default"
             variantColor="white"
           >
-            Turniej flanek
-          </Button> */}
+            Bilety
+          </Button>
         </div>
       </SheetContent>
     </Sheet>
