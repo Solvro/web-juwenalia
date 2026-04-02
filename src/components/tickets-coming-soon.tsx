@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/button";
 import { PaddingWrapper } from "@/components/padding-wrapper";
+import { TICKETMASTER_URL } from "@/config/data";
 
 export function TicketsComingSoon() {
   return (
@@ -22,11 +23,7 @@ export function TicketsComingSoon() {
             </p>
           </div>
 
-          <Button
-            as={Link}
-            href="https://www.ticketmaster.pl/artist/juwenalia-wroclawrazem-bilety/1277573"
-            variantColor="white"
-          >
+          <Button as={Link} href={TICKETMASTER_URL} variantColor="white">
             Bilety
           </Button>
         </div>
