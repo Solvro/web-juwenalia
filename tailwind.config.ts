@@ -73,6 +73,11 @@ export default {
           "radial-gradient(circle at right 30%, #FFB77C, #FF6CBF)",
         "gradient-alt-3":
           "radial-gradient(circle at top right, #9256F5, #DC7E84)",
+        "gradient-alt-4": "linear-gradient(130deg, #16C3EA 0%, #63BE3F 100%)",
+        "gradient-alt-5":
+          "linear-gradient(90deg, rgba(118, 179, 41, 1) 0%, rgba(118, 179, 41, 1) 72%, rgba(248, 128, 2, 1) 100%)",
+        "gradient-alt-6":
+          "radial-gradient(90.4% 3306.43% at 103.23% 32.24%, #6E2576 2.88%, #82216D 33.17%, #804180 70.67%, #935D8B 100%) ",
       },
       spacing: {
         "90": "22rem",

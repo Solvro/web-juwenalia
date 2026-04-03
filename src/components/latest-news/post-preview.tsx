@@ -27,7 +27,7 @@ export function PostPreview({ post }: { post: NewsPost }) {
 
   return (
     <PaddingWrapper className="flex w-full flex-col items-start gap-2 py-3 md:flex-row md:justify-between">
-      <p className="bg-gradient-main bg-clip-text text-xs text-transparent md:text-sm lg:text-base">
+      <p className="bg-gradient-alt-6 bg-clip-text text-xs text-transparent md:text-sm lg:text-base">
         {date}
       </p>
       <div className="md:w-3/4 lg:w-2/3">
