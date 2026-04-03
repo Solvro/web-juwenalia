@@ -1,11 +1,10 @@
-import { HorizontalRule } from "@/components/horizontal-rule";
 import { PaddingWrapper } from "@/components/padding-wrapper";
 import type { EventProps } from "@/lib/types";
 
 export function Day({ event, isOn }: { event: EventProps; isOn: boolean }) {
   return (
     <div>
-      <HorizontalRule />
+      <hr className="my-5 h-[1.5px] w-full bg-gray-300 opacity-40" />
       <PaddingWrapper className="flex flex-col justify-between sm:flex-row sm:items-center sm:space-x-20 sm:py-6 md:py-4">
         <div className="flex flex-col">
           {isOn ? (

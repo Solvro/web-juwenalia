@@ -10,13 +10,13 @@ import { LeafComponent } from "../leaf-component";
 function ArtistsCarouselClient({ artists }: { artists: ArtistProps[] }) {
   return (
     <section className="relative pb-16">
-      <LeafComponent className="absolute -right-8 top-0 z-20 md:-right-6">
+      <LeafComponent className="absolute -right-8 top-0 z-0 md:-right-6">
         <Image
           src="/bushes/bush-1.svg"
           alt=""
           width={238}
           height={129}
-          className="w-[95px] sm:w-[140px] md:w-[170px]"
+          className="w-[80px] sm:w-[90px] md:w-[110px] lg:w-[120px] xl:w-[140px]"
         />
       </LeafComponent>
 
@@ -26,7 +26,7 @@ function ArtistsCarouselClient({ artists }: { artists: ArtistProps[] }) {
           alt=""
           width={238}
           height={129}
-          className="w-[95px] rotate-180 sm:w-[140px] md:w-[170px]"
+          className="w-[80px] rotate-180 sm:w-[90px] md:w-[110px] lg:w-[120px] xl:w-[140px]"
         />
       </LeafComponent>
 
