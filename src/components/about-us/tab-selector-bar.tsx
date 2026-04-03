@@ -85,7 +85,7 @@ export function TabSelectorBar<T extends readonly string[]>({
   return (
     <ul className="relative flex flex-wrap gap-1 sm:justify-start">
       <div
-        className="absolute bottom-0 -z-10 h-full w-auto rounded-full bg-gradient-main text-white transition-all duration-300"
+        className="absolute bottom-0 -z-10 h-full w-auto rounded-full bg-gradient-alt-5 text-white transition-all duration-300"
         ref={markerRef}
         style={markerStyle}
       />

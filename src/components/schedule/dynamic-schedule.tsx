@@ -5,8 +5,6 @@ import { pl } from "date-fns/locale";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
-import { HorizontalRule } from "@/components/horizontal-rule";
-import { LeafComponent } from "@/components/leaf-component";
 import { Day } from "@/components/schedule/day";
 import type { DayProps } from "@/lib/types";
 
@@ -25,7 +23,7 @@ const combineDateAndTime = (date: Date, time: string): Date => {
 
 function DynamicSchedule({ daysList }: Props): React.ReactElement {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [scheduleHeight, setScheduleHeight] = useState<number>(0);
+
   const scheduleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,60 +36,32 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
     };
   }, []);
 
-  useEffect(() => {
-    if (scheduleRef.current != null) {
-      setScheduleHeight(scheduleRef.current.clientHeight);
-    }
-  }, [daysList]);
-
   const days = daysList.map((day) => ({
     ...day,
     date: new Date(day.date),
   }));
-
-  const HEIGHT_SECOND_LEAF = 1000;
-  const HEIGHT_THIRD_LEAF = 2100;
 
   return (
     <div
       ref={scheduleRef}
       className="mt-16 w-full space-y-14 text-white sm:mt-24 sm:space-y-24 md:w-auto"
     >
-      <LeafComponent className="z-0 mt-[-150px] md:ml-40">
-        <Image
-          className="lg:w-[400px]"
-          src="/schedule-leaves/leaves-with-vines.svg"
-          alt="liscie"
-          width={300}
-          height={30}
-        />
-      </LeafComponent>
-      {scheduleHeight > HEIGHT_SECOND_LEAF && (
-        <LeafComponent className="top-100 absolute right-0 z-[1] hidden lg:block">
-          <Image
-            src="/schedule-leaves/leaves-1.svg"
-            alt="liscie"
-            width={230}
-            height={30}
-          />
-        </LeafComponent>
-      )}
-      {scheduleHeight > HEIGHT_THIRD_LEAF && (
-        <LeafComponent className="mt-1000 absolute left-0 hidden md:top-[2100px] md:block xl:top-[2500px]">
-          <Image
-            src="/schedule-leaves/leaves-3.svg"
-            className="xl:w-[240px]"
-            alt="liscie"
-            width={400}
-            height={30}
-          />
-        </LeafComponent>
-      )}
-      {days.map((day) => (
+      {days.map((day, index) => (
         <div key={day.id}>
           {day.events.length > 0 && (
             <>
               <div className="relative mx-4 h-16 sm:h-36">
+                {index === 1 && (
+                  <div className="absolute -top-10 right-[-228px] z-0 sm:right-6">
+                    <Image
+                      src="/schedule-waves/wave-5.svg"
+                      className="w-[56px] sm:w-[100px] lg:w-[146px] xl:w-[176px]"
+                      alt="fala"
+                      width={72}
+                      height={24}
+                    />
+                  </div>
+                )}
                 <div className="absolute text-nowrap text-4xl font-black text-white/50 sm:text-6xl md:text-7xl xl:text-8xl">
                   {format(day.date, "d MMMM")}
                 </div>
@@ -112,7 +82,7 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
                 });
                 return <Day isOn={isOn} event={event} key={event.id} />;
               })}
-              <HorizontalRule />
+              <hr className="my-5 h-[1.5px] w-full bg-gray-300 opacity-40" />
             </>
           )}
         </div>

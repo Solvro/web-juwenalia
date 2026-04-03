@@ -1,11 +1,7 @@
-import { Fragment } from "react";
-
 import { fetchData } from "@/lib/api";
 import type { NewsPost } from "@/lib/types";
 
-import { HomepageHeader } from "../homepage-header";
-import { HorizontalRule } from "../horizontal-rule";
-import { PostPreview } from "./post-preview";
+import { LatestNewsSectionClient } from "./latest-news-section-client";
 
 export async function LatestNews() {
   let posts;
@@ -23,21 +19,5 @@ export async function LatestNews() {
     return null;
   }
 
-  return (
-    <div className="pt-24 text-xs sm:text-sm md:text-base">
-      <HomepageHeader>Najnowsze aktualności</HomepageHeader>
-
-      <div className="flex flex-col items-center md:items-start md:gap-5 lg:gap-10">
-        <HorizontalRule />
-        <div className="w-full">
-          {posts.slice(0, 3).map((post) => (
-            <Fragment key={post.id}>
-              <PostPreview post={post} />
-              <HorizontalRule />
-            </Fragment>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+  return <LatestNewsSectionClient posts={posts} />;
 }
