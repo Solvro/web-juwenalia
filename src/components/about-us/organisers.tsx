@@ -41,6 +41,16 @@ export function OrganisersList({
           height={20}
         />
       </LeafComponent>
+
+      <LeafComponent className="absolute right-[-30px] top-[-100px] lg:right-[-50px] xl:right-[-65px]">
+        <Image
+          src="/bushes/fire-2.svg"
+          alt="About Us"
+          className="w-[90px] md:w-[115px] lg:w-[100px] xl:w-[140px]"
+          width={48}
+          height={20}
+        />
+      </LeafComponent>
       <TabSelectorBar
         options={ROLES}
         selectedIdx={selectedIndex}

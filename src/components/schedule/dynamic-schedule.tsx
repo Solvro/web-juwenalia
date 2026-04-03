@@ -5,7 +5,6 @@ import { pl } from "date-fns/locale";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
-import { HorizontalRule } from "@/components/horizontal-rule";
 import { Day } from "@/components/schedule/day";
 import type { DayProps } from "@/lib/types";
 
@@ -83,7 +82,7 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
                 });
                 return <Day isOn={isOn} event={event} key={event.id} />;
               })}
-              <HorizontalRule />
+              <hr className="my-5 h-[1.5px] w-full bg-gray-300 opacity-40" />
             </>
           )}
         </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
 
 import { LeafComponent } from "@/components/leaf-component";
 import { DynamicSchedule } from "@/components/schedule/dynamic-schedule";
@@ -14,9 +13,9 @@ interface Props {
 function ScheduleClient({ daysList }: Props): React.ReactElement {
   return (
     <div className="relative z-[-1] mb-4 mt-[-60px] flex justify-start overflow-hidden bg-primary pb-24 pt-24 md:justify-evenly">
-      <LeafComponent className="absolute left-0 top-0 z-0">
+      <LeafComponent className="absolute left-0 top-5 z-0 lg:top-0">
         <Image
-          className="w-[200px] lg:w-[300px] xl:w-[400px]"
+          className="w-[150px] md:w-[200px] lg:w-[300px] xl:w-[350px]"
           src="/schedule-waves/wave-2.svg"
           alt="liscie"
           width={300}
@@ -27,7 +26,7 @@ function ScheduleClient({ daysList }: Props): React.ReactElement {
       <LeafComponent className="top-100 absolute right-0 z-0 block">
         <Image
           src="/schedule-waves/wave-1.svg"
-          className="w-[100px] sm:w-[140px] md:w-[200px] lg:w-[300px] xl:w-[340px]"
+          className="w-[100px] sm:w-[120px] md:w-[140px] lg:w-[160px] xl:w-[200px]"
           alt="liscie"
           width={230}
           height={30}

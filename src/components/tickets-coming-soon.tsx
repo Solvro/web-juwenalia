@@ -9,10 +9,10 @@ import { LeafComponent } from "./leaf-component";
 
 export function TicketsComingSoon() {
   return (
-    <PaddingWrapper className="z-1 relative my-24 grid w-full place-items-center bg-gradient-alt-4 py-16 md:my-32 md:min-h-[30svh] md:py-16 lg:my-48 lg:py-24">
-      <LeafComponent className="absolute right-0 top-[-200px] z-[1]">
+    <PaddingWrapper className="z-1 relative mb-0 mt-24 grid w-full place-items-center bg-gradient-alt-4 py-16 md:mb-0 md:mt-32 md:min-h-[30svh] md:py-16 lg:mb-0 lg:mt-48 lg:py-24">
+      <LeafComponent className="absolute right-0 top-[-110px] z-[1] sm:top-[-130px] md:top-[-150px] lg:top-[-170px] xl:top-[-200px]">
         <img
-          className="z-0 w-[200px] lg:w-[300px] xl:w-[200px]"
+          className="z-0 w-[100px] sm:w-[120px] md:w-[140px] lg:w-[160px] xl:w-[200px]"
           src="/bushes/greenMountain.svg"
           alt="liscie"
           width={300}
