@@ -26,7 +26,7 @@ export function OrganisersList({
       <LeafComponent className="absolute left-0 top-[-180px] -z-10 sm:top-[-170px] md:left-[-10px] md:top-[-220px] lg:left-[-10px] lg:top-[-255px] xl:left-[-20px] xl:top-[-280px]">
         <Image
           src="/bushes/tornado-2.svg"
-          alt="About Us"
+          alt=""
           className="w-[80px] sm:w-[70px] md:w-[125px] lg:w-[160px] xl:w-[180px]"
           width={48}
           height={20}
@@ -35,7 +35,7 @@ export function OrganisersList({
       <LeafComponent className="absolute left-[80px] top-[-155px] -z-10 sm:top-[-145px] md:left-[95px] md:top-[-170px] lg:left-[110px] lg:top-[-195px] xl:left-[130px] xl:top-[-220px]">
         <Image
           src="/bushes/fire-1.svg"
-          alt="About Us"
+          alt=""
           className="w-[80px] sm:w-[70px] md:w-[105px] lg:w-[130px] xl:w-[150px]"
           width={48}
           height={20}
@@ -45,7 +45,7 @@ export function OrganisersList({
       <LeafComponent className="absolute right-[-30px] top-[-100px] lg:right-[-50px] xl:right-[-65px]">
         <Image
           src="/bushes/fire-2.svg"
-          alt="About Us"
+          alt=""
           className="w-[90px] md:w-[115px] lg:w-[100px] xl:w-[140px]"
           width={48}
           height={20}

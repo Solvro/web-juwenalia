@@ -10,14 +10,14 @@ interface Props {
   daysList: DayProps[];
 }
 
-function ScheduleClient({ daysList }: Props): React.ReactElement {
+function ScheduleClient({ daysList }: Props) {
   return (
     <div className="relative z-[-1] mb-4 mt-[-60px] flex justify-start overflow-hidden bg-primary pb-24 pt-24 md:justify-evenly">
       <LeafComponent className="absolute left-0 top-5 z-0 lg:top-0">
         <Image
           className="w-[150px] md:w-[200px] lg:w-[300px] xl:w-[350px]"
           src="/schedule-waves/wave-2.svg"
-          alt="liscie"
+          alt=""
           width={300}
           height={30}
         />
@@ -27,7 +27,7 @@ function ScheduleClient({ daysList }: Props): React.ReactElement {
         <Image
           src="/schedule-waves/wave-1.svg"
           className="w-[100px] sm:w-[120px] md:w-[140px] lg:w-[160px] xl:w-[200px]"
-          alt="liscie"
+          alt=""
           width={230}
           height={30}
         />
@@ -37,7 +37,7 @@ function ScheduleClient({ daysList }: Props): React.ReactElement {
         <Image
           src="/schedule-waves/wave-3.svg"
           className="w-[100px] md:w-[180px] lg:w-[200px] xl:w-[240px]"
-          alt="liscie"
+          alt=""
           width={400}
           height={30}
         />
@@ -47,7 +47,7 @@ function ScheduleClient({ daysList }: Props): React.ReactElement {
         <Image
           src="/schedule-waves/wave-4.svg"
           className="w-[180px] md:w-[180px] lg:w-[200px] xl:w-[240px]"
-          alt="liscie"
+          alt=""
           width={400}
           height={30}
         />
