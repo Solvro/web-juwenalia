@@ -1,4 +1,3 @@
-// import { AboutUs } from "@/components/about-us/about-us-section";
 import Image from "next/image";
 
 import { ArtistsCarousel } from "@/components/artists/artists-carousel";

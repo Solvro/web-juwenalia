@@ -8,6 +8,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { Day } from "@/components/schedule/day";
 import type { DayProps } from "@/lib/types";
 
+import { HorizontalRule } from "../horizontal-rule";
+
 setDefaultOptions({ locale: pl });
 
 interface Props {
@@ -82,7 +84,7 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
                 });
                 return <Day isOn={isOn} event={event} key={event.id} />;
               })}
-              <hr className="my-5 h-[1.5px] w-full bg-gray-300 opacity-40" />
+              <HorizontalRule className="opacity-40" />
             </>
           )}
         </div>

@@ -76,9 +76,9 @@ export default {
         "gradient-alt-4":
           "radial-gradient(94.87% 94.87% at 90% 70%, #76B329, #00A2E8)",
         "gradient-alt-5":
-          "radial-gradient(119.9% 170.94% at 112.53% 50.47%, #F88002 8.85%, #76B329 74.82%);",
+          "radial-gradient(119.9% 170.94% at 112.53% 50.47%, #F88002 8.85%, #76B329 74.82%)",
         "gradient-alt-6":
-          "radial-gradient(90.4% 3306.43% at 103.23% 32.24%, #6E2576 2.88%, #82216D 33.17%, #804180 70.67%, #935D8B 100%) ",
+          "radial-gradient(90.4% 3306.43% at 103.23% 32.24%, #6E2576 2.88%, #82216D 33.17%)",
       },
       spacing: {
         "90": "22rem",
