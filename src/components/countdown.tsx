@@ -20,6 +20,7 @@ import { PaddingWrapper } from "./padding-wrapper";
 
 const eventStartDate: Date = new Date(2026, 4, 20, 16);
 const eventEndDate: Date = new Date(2026, 4, 22, 2);
+
 function TextsForTimer({ children }: { children: ReactNode }) {
   return (
     <div className="mt-2.5 text-base font-medium sm:mt-0 sm:text-[18px] lg:text-[20px] xl:pb-1.5">
@@ -27,6 +28,7 @@ function TextsForTimer({ children }: { children: ReactNode }) {
     </div>
   );
 }
+
 function CountdownOverText({
   children,
   smTextClass = "sm:text-[7vw]",
@@ -98,19 +100,19 @@ function Countdown() {
   };
 
   return (
-    <div className="relative z-[1] h-[90vh] w-full flex-shrink-0 rounded-b-[40px] before:absolute before:inset-0 before:rounded-b-[40px] before:bg-gradient-to-b before:from-black/40 before:to-black/30 sm:h-[90vh] sm:w-full sm:rounded-b-[60px] sm:before:sm:rounded-b-[60px] lg:h-[90vh] xl:h-[95vh]">
+    <div className="relative z-[1] min-h-[90vh] w-full rounded-b-[40px] before:absolute before:inset-0 before:rounded-b-[40px] before:bg-gradient-to-b before:from-black/40 before:to-black/30 sm:min-h-[90vh] sm:w-full sm:rounded-b-[60px] sm:before:sm:rounded-b-[60px] lg:min-h-[90vh] xl:min-h-[95vh]">
       <div className="absolute inset-0 -z-[1]">
         <Image
           src={BgImage}
-          alt="zdjęcie w tle"
-          className="relative h-full w-full rounded-b-[40px] object-cover"
+          alt="Zdjęcie w tle"
+          className="relative rounded-b-[40px] object-cover"
           fill
           loading="eager"
           placeholder="blur"
           blurDataURL={HERO_BG_BLUR_HASH}
         />
       </div>
-      <div className="absolute left-5 top-20 mt-16 text-[8vh] font-extrabold leading-[7vh] text-[#FFF] sm:left-1/2 sm:top-1/2 sm:mt-10 sm:-translate-x-1/2 sm:-translate-y-[50%] sm:transform sm:text-[76px] sm:leading-[80px] lg:text-[112px] lg:leading-[96px] xl:text-[156px] xl:leading-[110px]">
+      <div className="absolute left-5 top-16 mt-16 text-[8vh] font-extrabold leading-[7vh] text-white sm:left-1/2 sm:top-1/2 sm:mt-10 sm:-translate-x-1/2 sm:-translate-y-[50%] sm:transform sm:text-[76px] sm:leading-[80px] lg:text-[112px] lg:leading-[96px] xl:text-[156px] xl:leading-[110px]">
         <PaddingWrapper>
           {isBeforeEvent ? (
             <div className="flex w-full flex-col justify-start sm:flex-row sm:items-center sm:gap-3 md:gap-5">
@@ -142,7 +144,7 @@ function Countdown() {
           )}
         </PaddingWrapper>
       </div>
-      <div className="absolute bottom-16 w-full pl-10 pt-8 text-left text-[#FFF] sm:bottom-20 sm:p-0 sm:text-center">
+      <div className="absolute bottom-16 w-full pl-10 pt-8 text-left text-white sm:bottom-20 sm:p-0 sm:text-center">
         <h1 className="flex flex-col py-[1vh] text-left text-lg font-normal leading-tight sm:max-w-full sm:py-[3vh] sm:text-center sm:text-2xl lg:text-3xl xl:text-4xl">
           Juwenalia #WrocławRazem
           <span className="font-black">już 20 i 21 maja</span>
