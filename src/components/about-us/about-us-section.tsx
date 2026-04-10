@@ -23,7 +23,7 @@ export function AboutUsSection({
   return (
     <div className="w-full">
       <div className="w-full">
-        <HomepageHeader>{header}</HomepageHeader>
+        <HomepageHeader variant="alternative">{header}</HomepageHeader>
         {body != null && body.length > 0 && (
           <PaddingWrapper className="mt-6 md:pb-6">
             <p className="max-w-[450px] text-base md:max-w-[60%] md:text-xl lg:text-2xl">
