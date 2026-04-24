@@ -1,4 +1,5 @@
 import { fetchData } from "@/lib/api";
+import { CURRENT_EDITION } from "@/lib/edition";
 import type { NewsPost } from "@/lib/types";
 
 import { LatestNewsSectionClient } from "./latest-news-section-client";
@@ -7,7 +8,7 @@ export async function LatestNews() {
   let posts;
   try {
     const response = await fetchData<{ data: NewsPost[] }>(
-      "items/news?filter[edition][_eq]=2026",
+      `items/news?filter[edition][_contains]=${CURRENT_EDITION}`,
     );
     posts = response.data.toReversed();
   } catch (error) {

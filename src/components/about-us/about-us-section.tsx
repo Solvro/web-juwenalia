@@ -4,6 +4,7 @@ import { HorizontalRule } from "@/components/horizontal-rule";
 import { PaddingWrapper } from "@/components/padding-wrapper";
 import { ORGANISATION_ROLES } from "@/config/data";
 import { fetchData } from "@/lib/api";
+import { CURRENT_EDITION } from "@/lib/edition";
 import type { Organisation } from "@/lib/types";
 
 import { HomepageHeader } from "../homepage-header";
@@ -44,7 +45,7 @@ export function AboutUsSection({
 
 export async function AboutUs() {
   const responseOrganisations = await fetchData<{ data: Organisation[] }>(
-    "items/organisations?fields=name, url, logo, logoScale, role&filter[edition][_eq]=2026",
+    `items/organisations?fields=name, url, logo, logoScale, role&filter[edition][_contains]=${CURRENT_EDITION}`,
   );
   const groups: Record<Organisation["role"], Organisation[]> = {
     [ORGANISATION_ROLES.UNIVERSITY]: [],

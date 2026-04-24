@@ -1,6 +1,7 @@
 import { Artist } from "@/components/artists/artist";
 import { NoArtistInfo } from "@/components/no-artist-info";
 import { fetchData } from "@/lib/api";
+import { CURRENT_EDITION } from "@/lib/edition";
 import type { ArtistProps } from "@/lib/types";
 
 import { PaddingWrapper } from "../padding-wrapper";
@@ -27,7 +28,7 @@ export function partitionArray<T>(array: T[], predicate: (item: T) => boolean) {
 
 async function ArtistList() {
   const response = await fetchData<{ data: ArtistProps[] }>(
-    "items/artists?fields=*,events.*,events.events_id.*,events.events_id.location.*,events.events_id.day.*&filter[edition][_eq]=current",
+    `items/artists?fields=*,events.*,events.events_id.*,events.events_id.location.*,events.events_id.day.*&filter[edition][_contains]=${CURRENT_EDITION}`,
   );
 
   const rawArtists = response.data;

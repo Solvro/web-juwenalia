@@ -2,6 +2,7 @@ import React from "react";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { fetchData } from "@/lib/api";
+import { CURRENT_EDITION } from "@/lib/edition";
 import type { DayProps } from "@/lib/types";
 
 import { ScheduleClient } from "./schedule-client";
@@ -10,7 +11,7 @@ export async function Schedule() {
   let days = null;
   try {
     const response = await fetchData<{ data: DayProps[] }>(
-      "items/days?fields=*,events.*,events.location.*,events.artists.*,events.artists.artists_id.*&filter[edition][_eq]=2026",
+      `items/days?fields=*,events.*,events.location.*,events.artists.*,events.artists.artists_id.*&filter[edition][_contains]=${CURRENT_EDITION}`,
     );
     days = response.data;
   } catch (error) {
