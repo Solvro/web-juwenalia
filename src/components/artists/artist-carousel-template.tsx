@@ -19,8 +19,6 @@ import { cn } from "@/lib/utils";
 function CarouselArrow({
   left = false,
   right = false,
-  currentIndex,
-  totalArtists = 0,
   onClick,
 }: {
   onClick?: () => void;
@@ -34,9 +32,6 @@ function CarouselArrow({
       className={cn(
         "absolute -bottom-[50px] z-10 scale-125 transition-opacity duration-300",
         {
-          "opacity-50": left
-            ? Math.floor(currentIndex) === 0
-            : Math.ceil(currentIndex) === totalArtists - 1,
           "right-1 sm:right-1/4 md:right-1/3": right,
           "left-1 sm:left-1/4 md:left-1/3": left,
         },
@@ -77,10 +72,14 @@ export function Carousel({ artists }: { artists: ArtistProps[] }) {
 
   const settings: Settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    pauseOnFocus: false,
     slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
     initialSlide: 0,
     prevArrow: <CarouselArrow left currentIndex={currentIndex} />,
     nextArrow: (
