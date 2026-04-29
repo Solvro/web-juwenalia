@@ -9,7 +9,11 @@ import Solvro from "@/../public/logo-solvro.svg";
 import Logo from "@/../public/logo.svg";
 import { HorizontalRule } from "@/components/horizontal-rule";
 import { PaddingWrapper } from "@/components/padding-wrapper";
-import { FOOTER_LINKS, NAV_LINKS } from "@/config/data";
+import {
+  FOOTER_LINKS,
+  NAV_LINKS,
+  TERMS_AND_CONDITIONS_URL,
+} from "@/config/data";
 import { cn } from "@/lib/utils";
 
 import { OpenBugReportFormButton } from "./bug-report-form/open-form-button";
@@ -116,10 +120,7 @@ function Footer() {
             text="Inne"
             className="col-span-2 flex w-full flex-grow pt-6 sm:col-span-3 md:col-span-4 lg:col-span-1 lg:row-start-2 3/2xl:row-start-1"
           >
-            <ListItem
-              text="Regulamin"
-              url="/Regulamin_Juwenalia2026_WroclawRazem2026.pdf"
-            />
+            <ListItem text="Regulamin" url={TERMS_AND_CONDITIONS_URL} />
             <ListItem
               text="Polityka prywatności"
               url={FOOTER_LINKS.privacyPolicy}

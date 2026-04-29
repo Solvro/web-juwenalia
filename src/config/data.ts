@@ -58,3 +58,6 @@ export const ORGANISATION_ROLES = {
 
 export const TICKETMASTER_URL =
   "https://www.ticketmaster.pl/artist/juwenalia-wroclawrazem-bilety/1277573";
+
+export const TERMS_AND_CONDITIONS_URL =
+  "/Regulamin_Juwenalia2026_WroclawRazem2026.pdf";

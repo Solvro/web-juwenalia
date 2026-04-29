@@ -11,7 +11,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { NAV_LINKS, TICKETMASTER_URL } from "@/config/data";
+import {
+  NAV_LINKS,
+  TERMS_AND_CONDITIONS_URL,
+  TICKETMASTER_URL,
+} from "@/config/data";
 
 interface NavbarMobileProps {
   onOpenChange: (open: boolean) => void;
@@ -85,10 +89,11 @@ export function NavbarMobile({ isOpened, onOpenChange }: NavbarMobileProps) {
               </Link>
             ))}
             <Link
-              href={"/Regulamin_Juwenalia2026_WroclawRazem2026.pdf"}
+              href={TERMS_AND_CONDITIONS_URL}
               aria-label="Regulamin"
               className="nav-link link-item"
               target="_blank"
+              rel="noopener noreferrer"
             >
               Regulamin
             </Link>
