@@ -84,6 +84,14 @@ export function NavbarMobile({ isOpened, onOpenChange }: NavbarMobileProps) {
                 {name}
               </Link>
             ))}
+            <Link
+              href={"/Regulamin_Juwenalia2026_WroclawRazem2026.pdf"}
+              aria-label="Regulamin"
+              className="nav-link link-item"
+              target="_blank"
+            >
+              Regulamin
+            </Link>
           </div>
 
           <Button
