@@ -7,6 +7,7 @@ import Script from "next/script";
 
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
+import { OneSignalInit } from "@/components/one-signal-init";
 import { PhraseSearch } from "@/components/phrase-search";
 import { SocialSidebar } from "@/components/socials-sidebar";
 import { Toaster } from "@/components/ui/sonner";
@@ -76,6 +77,7 @@ export default async function RootLayout({
       <body className="relative">
         <QueryProvider>
           <BugReportProvider>
+            <OneSignalInit />
             <SocialSidebar />
             <Navbar />
             <PhraseSearch />
