@@ -103,8 +103,8 @@ export function Carousel({ artists }: { artists: ArtistProps[] }) {
       {
         breakpoint: 500,
         settings: {
-          slidesToShow: 1.4,
-          slidesToScroll: 1.4,
+          slidesToShow: 1,
+          slidesToScroll: 1,
           appendDots: getAppendDots(4),
         },
       },
