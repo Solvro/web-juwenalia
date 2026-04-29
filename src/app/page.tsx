@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { AboutUs } from "@/components/about-us/about-us-section";
 import { ArtistsCarousel } from "@/components/artists/artists-carousel";
 import { Countdown } from "@/components/countdown";
 import { FrequentlyAskedQuestions } from "@/components/faq/faq-section";
@@ -16,7 +17,7 @@ export default function Home() {
       <TicketsComingSoon />
       <FrequentlyAskedQuestions />
       <LatestNews />
-      {/* <AboutUs /> */}
+      <AboutUs />
       <div className="relative h-0 overflow-visible">
         <Image
           src="/bushes/fire-3.svg"
