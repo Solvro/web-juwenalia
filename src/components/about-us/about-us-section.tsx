@@ -10,7 +10,6 @@ import type { Organisation } from "@/lib/types";
 import { HomepageHeader } from "../homepage-header";
 import { OrganisationDisplay } from "./organisation-display";
 import { OrganisersList } from "./organisers";
-import { PartnersList } from "./partners";
 
 export function AboutUsSection({
   children,
@@ -52,7 +51,8 @@ export async function AboutUs() {
     [ORGANISATION_ROLES.STUDENT_ORGANISATION]: [],
     [ORGANISATION_ROLES.MAIN_PARTNER]: [],
     [ORGANISATION_ROLES.MEDIA_PARTNER]: [],
-    [ORGANISATION_ROLES.SPONSOR]: [],
+    [ORGANISATION_ROLES.PARTNER]: [],
+    [ORGANISATION_ROLES.MAIN_SPONSOR]: [],
   };
   for (const organisation of responseOrganisations.data) {
     groups[organisation.role].push(organisation);
@@ -60,13 +60,6 @@ export async function AboutUs() {
 
   return (
     <div className="mt-24 flex flex-col gap-24 md:mt-32 md:gap-32 lg:mt-48 lg:gap-64">
-      <AboutUsSection header="Patroni">
-        <PartnersList
-          mainPartners={groups[ORGANISATION_ROLES.MAIN_PARTNER]}
-          mediaPartners={groups[ORGANISATION_ROLES.MEDIA_PARTNER]}
-        />
-      </AboutUsSection>
-
       <AboutUsSection header="Organizatorzy">
         <OrganisersList
           universities={groups[ORGANISATION_ROLES.UNIVERSITY]}
@@ -74,9 +67,15 @@ export async function AboutUs() {
         />
       </AboutUsSection>
 
-      <AboutUsSection header="Sponsorzy">
+      <AboutUsSection header="Sponsor główny">
         <OrganisationDisplay
-          organisations={groups[ORGANISATION_ROLES.SPONSOR]}
+          organisations={groups[ORGANISATION_ROLES.MAIN_SPONSOR]}
+        />
+      </AboutUsSection>
+
+      <AboutUsSection header="Partnerzy">
+        <OrganisationDisplay
+          organisations={groups[ORGANISATION_ROLES.PARTNER]}
         />
       </AboutUsSection>
     </div>
