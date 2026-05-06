@@ -55,6 +55,7 @@ export const ORGANISATION_ROLES = {
   MEDIA_PARTNER: "3",
   PARTNER: "4",
   MAIN_SPONSOR: "5",
+  PATRON: "6",
 } as const;
 
 export const TICKETMASTER_URL =

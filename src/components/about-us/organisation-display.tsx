@@ -10,7 +10,7 @@ export function OrganisationDisplay({
   organisations: Organisation[];
 }) {
   return (
-    <ul className="grid grid-cols-2 items-center gap-x-4 gap-y-5 sm:gap-x-8 md:grid-cols-3 md:gap-x-12 lg:grid-cols-4 lg:gap-x-16 xl:grid-cols-5 xl:gap-x-20 2xl:gap-x-24">
+    <ul className="grid grid-cols-2 items-center gap-x-4 gap-y-5 pt-8 sm:gap-x-8 md:grid-cols-3 md:gap-x-12 lg:grid-cols-4 lg:gap-x-16 xl:grid-cols-5 xl:gap-x-20 2xl:gap-x-24">
       {organisations.map((organisation) => (
         <li
           key={`organiser-${organisation.name}`}
