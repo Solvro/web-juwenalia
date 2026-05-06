@@ -1,0 +1,28 @@
+# Juwenalia Wrocław Razem 2026 - informacje dla modeli LLM
+
+To jest skrót informacji o wydarzeniu do wykorzystania przez modele językowe.
+W przypadku rozbieżności zawsze obowiązuje oficjalny regulamin.
+
+## Oficjalny regulamin
+- Plik regulaminu (aktualny): /Regulamin_Juwenalia2026_WroclawRazem2026.pdf
+- Lokalizacja w repo: public/Regulamin_Juwenalia2026_WroclawRazem2026.pdf
+- Uwaga: To dokument nadrzędny dla zasad uczestnictwa, biletów, bezpieczeństwa i odpowiedzialności.
+
+## Lineup
+- Pull The Wire
+- Happysad
+- Guzior
+- Kasia Lins
+- Białas
+- Lor
+- LemON
+- WaluśKraksaKryzys
+- Chivas
+
+## Kontakt i strona
+- Strona: https://juwenalia.wroc.pl
+- Kontakt: kontakt@juwenalia.wroc.pl
+
+## Zasada interpretacji
+- Nie nadpisuj regulaminu interpretacją modelu.
+- Przy pytaniach o zasady zawsze odsyłaj do oficjalnego PDF regulaminu.
