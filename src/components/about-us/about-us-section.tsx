@@ -53,6 +53,7 @@ export async function AboutUs() {
     [ORGANISATION_ROLES.MEDIA_PARTNER]: [],
     [ORGANISATION_ROLES.PARTNER]: [],
     [ORGANISATION_ROLES.MAIN_SPONSOR]: [],
+    [ORGANISATION_ROLES.PATRON]: [],
   };
   for (const organisation of responseOrganisations.data) {
     groups[organisation.role].push(organisation);
@@ -76,6 +77,12 @@ export async function AboutUs() {
       <AboutUsSection header="Partnerzy">
         <OrganisationDisplay
           organisations={groups[ORGANISATION_ROLES.PARTNER]}
+        />
+      </AboutUsSection>
+
+      <AboutUsSection header="Patronaty">
+        <OrganisationDisplay
+          organisations={groups[ORGANISATION_ROLES.PATRON]}
         />
       </AboutUsSection>
     </div>
