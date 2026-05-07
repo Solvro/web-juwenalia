@@ -107,7 +107,7 @@ export function Artist({
           {name.toUpperCase()}
         </h2>
         {/* div for the IG and Spotify buttons */}
-        <div className="flex min-w-24 items-center justify-end justify-items-end p-1">
+        <div className="z-10 flex min-w-24 items-center justify-end justify-items-end p-1">
           {/* spotify button */}
           {Boolean(spotifyUrl) && (
             <Link
