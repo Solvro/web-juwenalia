@@ -103,11 +103,11 @@ export function Artist({
       </div>
 
       <div className="flex w-full flex-row justify-between md:-mt-8 md:px-5">
-        <h2 className="p-2 text-left text-2xl font-extrabold xl:text-3xl">
+        <h2 className="max-w-full truncate p-2 text-left text-2xl font-extrabold xl:text-3xl">
           {name.toUpperCase()}
         </h2>
         {/* div for the IG and Spotify buttons */}
-        <div className="flex items-center justify-end justify-items-end p-1">
+        <div className="flex min-w-24 items-center justify-end justify-items-end p-1">
           {/* spotify button */}
           {Boolean(spotifyUrl) && (
             <Link
