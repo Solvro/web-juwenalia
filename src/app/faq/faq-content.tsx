@@ -33,8 +33,15 @@ export function QuestionContent({
 }
 
 export async function FaqContent() {
-  const faqs = await fetchData<{ data: Faq[] }>("items/faqs");
-  const filteredFaqs = faqs.data.filter((faq) => hasEdition(faq.edition));
+  let filteredFaqs: Faq[] = [];
+
+  try {
+    const faqs = await fetchData<{ data: Faq[] }>("items/faqs");
+    filteredFaqs = faqs.data.filter((faq) => hasEdition(faq.edition));
+  } catch (error) {
+    console.error("Error fetching FAQs:", error);
+    return null;
+  }
 
   if (filteredFaqs.length === 0) {
     return null;
