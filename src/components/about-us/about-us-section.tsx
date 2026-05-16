@@ -43,9 +43,17 @@ export function AboutUsSection({
 }
 
 export async function AboutUs() {
-  const responseOrganisations = await fetchData<{ data: Organisation[] }>(
-    `items/organisations?fields=name, url, logo, logoScale, role&filter[edition][_contains]=${CURRENT_EDITION}`,
-  );
+  let organisations: Organisation[] = [];
+
+  try {
+    const responseOrganisations = await fetchData<{ data: Organisation[] }>(
+      `items/organisations?fields=name, url, logo, logoScale, role&filter[edition][_contains]=${CURRENT_EDITION}`,
+    );
+    organisations = responseOrganisations.data;
+  } catch (error) {
+    console.error("Error fetching organisations:", error);
+    return null;
+  }
   const groups: Record<Organisation["role"], Organisation[]> = {
     [ORGANISATION_ROLES.UNIVERSITY]: [],
     [ORGANISATION_ROLES.STUDENT_ORGANISATION]: [],
@@ -55,7 +63,7 @@ export async function AboutUs() {
     [ORGANISATION_ROLES.MAIN_SPONSOR]: [],
     [ORGANISATION_ROLES.PATRON]: [],
   };
-  for (const organisation of responseOrganisations.data) {
+  for (const organisation of organisations) {
     groups[organisation.role].push(organisation);
   }
 

@@ -26,12 +26,12 @@ const sortDaysAndEvents = (days: DayProps[]): DayProps[] =>
   days
     .map((day) => ({
       ...day,
-      events: [...day.events].sort(
+      events: day.events.toSorted(
         (a, b) =>
           getTimeInMinutes(a.start_time) - getTimeInMinutes(b.start_time),
       ),
     }))
-    .sort((a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date));
+    .toSorted((a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date));
 
 export async function Schedule() {
   let days = null;
