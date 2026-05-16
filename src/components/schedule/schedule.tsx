@@ -7,13 +7,39 @@ import type { DayProps } from "@/lib/types";
 
 import { ScheduleClient } from "./schedule-client";
 
+const getDateTimestamp = (date: DayProps["date"]): number => {
+  const timestamp = new Date(date).getTime();
+  return Number.isNaN(timestamp) ? Number.POSITIVE_INFINITY : timestamp;
+};
+
+const getTimeInMinutes = (time: string): number => {
+  const [hours, minutes] = time.split(":").map(Number);
+
+  if (Number.isNaN(hours) || Number.isNaN(minutes)) {
+    return Number.POSITIVE_INFINITY;
+  }
+
+  return hours * 60 + minutes;
+};
+
+const sortDaysAndEvents = (days: DayProps[]): DayProps[] =>
+  days
+    .map((day) => ({
+      ...day,
+      events: [...day.events].sort(
+        (a, b) =>
+          getTimeInMinutes(a.start_time) - getTimeInMinutes(b.start_time),
+      ),
+    }))
+    .sort((a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date));
+
 export async function Schedule() {
   let days = null;
   try {
     const response = await fetchData<{ data: DayProps[] }>(
       `items/days?fields=*,events.*,events.location.*,events.artists.*,events.artists.artists_id.*&filter[edition][_contains]=${CURRENT_EDITION}`,
     );
-    days = response.data;
+    days = sortDaysAndEvents(response.data);
   } catch (error) {
     console.error(error);
     return (
