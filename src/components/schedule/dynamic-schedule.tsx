@@ -2,13 +2,16 @@
 
 import { format, isWithinInterval, setDefaultOptions } from "date-fns";
 import { pl } from "date-fns/locale";
+import { SmartphoneIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
 import { Day } from "@/components/schedule/day";
 import type { DayProps } from "@/lib/types";
 
 import { HorizontalRule } from "../horizontal-rule";
+import { PaddingWrapper } from "../padding-wrapper";
 
 setDefaultOptions({ locale: pl });
 
@@ -46,8 +49,30 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
   return (
     <div
       ref={scheduleRef}
-      className="mt-16 w-full space-y-14 text-white sm:mt-24 sm:space-y-24 md:w-auto"
+      className="mt-8 w-full space-y-14 text-white sm:mt-24 sm:space-y-24 md:w-auto"
     >
+      <PaddingWrapper className="relative -mt-4 mb-6 md:hidden">
+        <Link
+          href="/app"
+          className="flex items-center justify-between gap-4 rounded-2xl bg-gradient-alt-5 p-4 text-white shadow-md transition-transform active:scale-[0.98]"
+        >
+          <div className="flex items-center gap-3">
+            <SmartphoneIcon className="h-6 w-6 shrink-0" />
+            <div className="flex flex-col">
+              <span className="text-sm font-bold uppercase tracking-wider">
+                Pobierz aplikację
+              </span>
+              <span className="text-xs text-white/90">
+                Program, mapa i gra terenowa w&nbsp;Twojej kieszeni
+              </span>
+            </div>
+          </div>
+          <span aria-hidden="true" className="text-xl font-bold">
+            →
+          </span>
+        </Link>
+      </PaddingWrapper>
+
       {days.map((day, index) => (
         <div key={day.id}>
           {day.events.length > 0 && (

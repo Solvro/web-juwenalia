@@ -12,7 +12,7 @@ interface Props {
 
 function ScheduleClient({ daysList }: Props) {
   return (
-    <div className="relative z-[-1] mb-4 mt-[-60px] flex justify-start overflow-hidden bg-primary pb-24 pt-24 md:justify-evenly">
+    <div className="relative mb-4 mt-[-60px] flex justify-start overflow-hidden bg-primary pb-24 pt-24 md:justify-evenly">
       <LeafComponent className="absolute left-0 top-5 z-0 lg:top-0">
         <Image
           className="w-[150px] md:w-[200px] lg:w-[300px] xl:w-[350px]"
