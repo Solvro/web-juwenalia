@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { cn } from "@/lib/utils";
+
 export function LogoBox({
   src,
   alt,
@@ -14,16 +16,12 @@ export function LogoBox({
   className?: string;
 }) {
   return (
-    <div
-      className={`flex items-center justify-center ${className ?? ""}`}
-      style={{ width: "100%" }}
-    >
+    <div className={cn("flex w-full items-center justify-center", className)}>
       <div
+        className="relative max-w-full"
         style={{
-          position: "relative",
           width: `${maxWidth}px`,
           height: `${maxHeight}px`,
-          maxWidth: "100%",
         }}
       >
         <Image
