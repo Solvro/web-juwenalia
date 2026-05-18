@@ -51,8 +51,8 @@ export function InteractiveMap({ WrMapProps }: Props) {
   return (
     <div>
       <MapContainer
-        center={[51.110_611, 17.032_241]}
-        zoom={13}
+        center={[51.141_108, 16.945_832]}
+        zoom={16}
         scrollWheelZoom={true}
         dragging={false}
         className="relative z-0 mt-16 h-[50vh] w-full touch-auto rounded-3xl object-cover sm:h-[75vh]"
