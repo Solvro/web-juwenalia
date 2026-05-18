@@ -1,9 +1,12 @@
-import { NoMapInfo } from "@/components/map/no-map-info";
+import { fetchWrMapContent } from "@/lib/wr-map-content";
 
-export default function Page() {
+import { Map } from "./map";
+
+export default async function Page() {
+  const mapLocations = await fetchWrMapContent();
   return (
     <div className="mt-48">
-      <NoMapInfo />
+      <Map dynamicMapLocations={mapLocations} />
     </div>
   );
 }
