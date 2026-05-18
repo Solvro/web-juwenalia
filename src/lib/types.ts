@@ -79,7 +79,6 @@ export interface Organisation {
   name: string;
   url: string;
   logo: string;
-  logoScale?: number;
   role: (typeof ORGANISATION_ROLES)[OrganisationRole];
   edition: string;
 }

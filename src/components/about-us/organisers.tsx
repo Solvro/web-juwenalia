@@ -60,6 +60,8 @@ export function OrganisersList({
         organisations={
           selectedIndex === 0 ? universities : studentOrganisations
         }
+        maxWidth={150}
+        maxHeight={150}
       />
     </div>
   );

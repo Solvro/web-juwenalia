@@ -47,7 +47,7 @@ export async function AboutUs() {
 
   try {
     const responseOrganisations = await fetchData<{ data: Organisation[] }>(
-      `items/organisations?fields=name, url, logo, logoScale, role&filter[edition][_contains]=${CURRENT_EDITION}`,
+      `items/organisations?fields=name, url, logo, role&filter[edition][_contains]=${CURRENT_EDITION}`,
     );
     organisations = responseOrganisations.data;
   } catch (error) {
