@@ -102,11 +102,17 @@ function DynamicSchedule({ daysList }: Props): React.ReactElement {
                   day.date,
                   event.start_time,
                 );
-                const eventEnd = combineDateAndTime(day.date, event.end_time);
-                const isOn = isWithinInterval(currentTime, {
-                  start: eventStart,
-                  end: eventEnd,
-                });
+                const eventEnd =
+                  event.end_time == null
+                    ? null
+                    : combineDateAndTime(day.date, event.end_time);
+                const isOn =
+                  eventEnd == null
+                    ? false
+                    : isWithinInterval(currentTime, {
+                        start: eventStart,
+                        end: eventEnd,
+                      });
                 return <Day isOn={isOn} event={event} key={event.id} />;
               })}
               <HorizontalRule className="opacity-40" />
