@@ -30,7 +30,7 @@ interface EventArtists {
 export interface EventProps {
   id: number;
   start_time: string;
-  end_time: string;
+  end_time: string | null;
   location: { id: number; name: string };
   day: DayProps;
   artists: EventArtists[];
