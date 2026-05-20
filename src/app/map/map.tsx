@@ -33,7 +33,7 @@ const DynamicInteractiveMap = dynamic(
 
 const MAP_TYPES: readonly string[] = [
   "Mapa wydarzenia",
-  "Imprezy towarzyszące",
+  "Mapa dynamiczna",
 ] as const;
 
 export function Map({ dynamicMapLocations }: Props) {
