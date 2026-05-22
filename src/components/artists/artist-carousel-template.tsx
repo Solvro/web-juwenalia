@@ -3,7 +3,7 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Settings } from "react-slick";
 import Slider from "react-slick";
 
@@ -45,6 +45,32 @@ function CarouselArrow({
 
 export function Carousel({ artists }: { artists: ArtistProps[] }) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const sliderRef = useRef<Slider | null>(null);
+  const [animateNav, setAnimateNav] = useState(false);
+  const [navDirection, setNavDirection] = useState<"prev" | "next">("next");
+  const navAnimationTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
+
+  useEffect(() => {
+    return () => {
+      if (navAnimationTimeoutRef.current !== null) {
+        clearTimeout(navAnimationTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  function getDirection(currentSlide: number, nextSlide: number) {
+    const total = artists.length;
+    if (total <= 1) {
+      return "next" as const;
+    }
+
+    const forwardDistance = (nextSlide - currentSlide + total) % total;
+    const backwardDistance = (currentSlide - nextSlide + total) % total;
+
+    return forwardDistance <= backwardDistance ? "next" : "prev";
+  }
 
   const getAppendDots = (dotsToShow: number) =>
     function appendDots(dots: ReactNode[]) {
@@ -71,7 +97,6 @@ export function Carousel({ artists }: { artists: ArtistProps[] }) {
     };
 
   const settings: Settings = {
-    dots: true,
     infinite: true,
     speed: 500,
     autoplay: true,
@@ -89,11 +114,20 @@ export function Carousel({ artists }: { artists: ArtistProps[] }) {
         totalArtists={artists.length}
       />
     ),
-    beforeChange: (_, nextSlide) => {
+    beforeChange: (currentSlide, nextSlide) => {
+      const direction = getDirection(currentSlide, nextSlide);
+      setNavDirection(direction);
+      setAnimateNav(true);
+      if (navAnimationTimeoutRef.current !== null) {
+        clearTimeout(navAnimationTimeoutRef.current);
+      }
+      navAnimationTimeoutRef.current = setTimeout(() => {
+        setAnimateNav(false);
+      }, 320);
       setCurrentIndex(nextSlide);
     },
     customPaging: (index) => <button>{index + 1}</button>,
-    appendDots: getAppendDots(5),
+    appendDots: getAppendDots(3),
 
     responsive: [
       {
@@ -105,7 +139,7 @@ export function Carousel({ artists }: { artists: ArtistProps[] }) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          appendDots: getAppendDots(4),
+          appendDots: getAppendDots(3),
         },
       },
       {
@@ -137,13 +171,53 @@ export function Carousel({ artists }: { artists: ArtistProps[] }) {
         </div>
       </div>
       <PaddingWrapper>
-        <Slider {...settings}>
+        <Slider ref={sliderRef} {...settings}>
           {artists.map((artist) => (
             <div key={artist.id} className="p-4">
               <Artist {...artist} />
             </div>
           ))}
         </Slider>
+        <div className="mt-8 flex items-center justify-center">
+          <ul className="flex items-center justify-center gap-3">
+            <li
+              className={cn(
+                "h-4 rounded-full transition-all duration-300 ease-in-out",
+                animateNav && navDirection === "prev"
+                  ? "w-20 bg-black"
+                  : "w-4 bg-zinc-300",
+              )}
+            >
+              <button
+                type="button"
+                aria-label="Previous slide"
+                className="h-full w-full rounded-full"
+                onClick={() => sliderRef.current?.slickPrev()}
+              />
+            </li>
+            <li
+              className={cn(
+                "h-4 rounded-full transition-all duration-300 ease-in-out",
+                animateNav ? "w-4 bg-zinc-300" : "w-20 bg-black",
+              )}
+            />
+            <li
+              className={cn(
+                "h-4 rounded-full transition-all duration-300 ease-in-out",
+                animateNav && navDirection === "next"
+                  ? "w-20 bg-black"
+                  : "w-4 bg-zinc-300",
+              )}
+            >
+              <button
+                type="button"
+                aria-label="Next slide"
+                className="h-full w-full rounded-full"
+                onClick={() => sliderRef.current?.slickNext()}
+              />
+            </li>
+          </ul>
+        </div>
       </PaddingWrapper>
     </>
   );
